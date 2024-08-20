@@ -42,7 +42,7 @@ ax = geoplot.voronoi(gdf,  # Define the GeoPandas DataFrame
                      clip=USA,  # Define the voronoi clipping (map edge)
                      projection=proj,  # Define the Projection
                      cmap='Greys',  # color set
-                    #  k=None,  # No. of discretized buckets to create
+                     # k=None,  # No. of discretized buckets to create
                      legend=False, # Dont create a legend
                      edgecolor='#000000',  # Color of the voronoi boundaries
                      linewidth=0.5  # width of the voronoi boundary lines
@@ -52,7 +52,7 @@ geoplot.polyplot(USA,  # Base Map
                  ax=ax,  # Axis attribute we created above
                  extent=USA.total_bounds,  # Set plotting boundaries to base map boundaries
                  edgecolor='black',  # Color of base map's edges
-                 linewidth=1,  # Width of base map's edge lines
+                 linewidth=0,  # Width of base map's edge lines
                  zorder=1  # Plot base map edges above the voronoi regions
                  )
 
