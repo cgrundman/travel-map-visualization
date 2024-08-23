@@ -8,7 +8,8 @@ import geoplot
 from shapely.geometry import Point
 
 # CSV into DataFrame
-df = pd.read_table("nps.csv", delimiter =",")
+df = pd.read_table("trial.csv", delimiter =",")
+# df = pd.read_table("nps.csv", delimiter =",")
 # df['name'] = df['name'].astype("string") # which will by default set the length to the max len it encounters
 
 print(df.tail())
