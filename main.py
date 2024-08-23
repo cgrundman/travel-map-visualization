@@ -1,4 +1,4 @@
-# Import pandas and matplotlib
+# Import pandas, and matplotlib
 import pandas as pd
 from matplotlib import pyplot as plt
 # Import Geopandas modules
@@ -8,16 +8,19 @@ import geoplot
 from shapely.geometry import Point
 
 # CSV into DataFrame
-df = pd.read_table("trial.csv", delimiter =",")
-# df = pd.read_table("nps.csv", delimiter =",")
+# df = pd.read_table("trial.csv", delimiter =",")
+df = pd.read_table("nps.csv", delimiter =",")
 # df['name'] = df['name'].astype("string") # which will by default set the length to the max len it encounters
-
-print(df.tail())
+# print(df.tail())
 
 # Assumes data stored in pandas DataFrame df
 geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
-print(geometry)
-gdf = geopandas.GeoDataFrame(df, geometry=geometry)
+# print(geometry)
+df['geometry'] = geometry
+gdf = geopandas.GeoDataFrame(df, geometry=df.geometry)
+# gdf.set_geometry('geometry', inplace=True)
+print(gdf.geometry)
+print(gdf.tail())
 
 # Import USA data for region clipping
 USA = geopandas.read_file(geoplot.datasets.get_path('contiguous_usa'))
@@ -47,6 +50,6 @@ geoplot.polyplot(USA,  # Base Map
                  edgecolor='black',  # Color of base map's edges
                  linewidth=3,  # Width of base map's edge lines
                  zorder=1  # Plot base map edges above the voronoi regions
-                 )
+                )
 
 plt.savefig('nps_segments.png')
