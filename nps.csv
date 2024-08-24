@@ -1,294 +1,513 @@
-name,latitude,longitude,values,date
-Congaree NP,33.799103145940514,-80.74876465928375,0.5,NAN
-Big Bend NP,29.253063567543737,-103.24975431611537,0.5,NAN
-Great Smoky Mountains NP,35.88769422966946,-83.48432666049747,0.5,NAN
-Constitution Gardens,38.891383355020075,-77.04449447928718,0.5,Dec 26 2015
-Thomas Jefferson Memorial,38.882072725669374,-77.03561717089835,0.5,Dec 26 2015
-President's Park-The White House,38.89625947757699,-77.03664156611484,0.5,Dec 26 2015
-Old Post Offce Tower,38.89473253751601,-77.02734669835284,0.5,Dec 26 2015
-MLK Memorial,38.88682836966869,-77.04431421756192,0.5,Dec 28 2015
-Washington Monument,38.88973863486032,-77.03516473109627,0.5,Dec 26 2015
-Franklin Delano Roosevelt Memorial,38.88365246853798,-77.04301403838059,0.5,Dec 26 2015
-Korean War Veterans Memorial,38.88817131702888,-77.04767358250892,0.5,Dec 26 2015
-World War II Memorial,38.889589843475676,-77.04061204858654,0.5,Dec 26 2015
-Pennsyluania Ave NHS,38.894138333927025,-77.02521643595114,0.5,Dec 26 2015
-Moores Creek NB,34.45855194460015,-78.11037497146239,0.5,May 31 2015
-Gullah Geechee NHA,32.46127495322722,-80.66635861242324,0.5,May 31 2015
-Cape Lookout NS,34.62704664760595,-76.5254274366722,0.5,Jun 1 2015
-Guilford Court house NMP,36.13356133023305,-79.84127445895412,0.5,Jun 6 2015
-Overmountain Victory NHT,35.14290598471972,-81.34477248243535,0.5,Jun 18 2015
-Kings Mountain NMP,35.13909986832201,-81.3910291051948,0.5,Jun 18 2015
-Cowpens NB,35.13763722941066,-81.81790085671085,0.5,Jul 18 2015
-Blue Ridge Parkway,36.57084237177497,-80.90804411274004,0.5,Aug 2 2015
-Ninety Six NHS,34.14726674376438,-82.0231085787722,0.5,Aug 23 2015
-Carl Sandburg Home NHS,35.27388545989517,-82.44542483228676,0.5,Aug 23 2015
-Russell Cave NM,34.9795307680942,-85.80982051979436,0.5,Oct 3 2015
-Trail of Tears NHT,35.1987750208027,-85.62902037361069,0.5,Oct 3 2015
-Chickamauga and Chattanooga NMP,34.93452033836275,-85.27981038760173,0.5,Oct 3 2015
-Kennesaw Mountain NBP,33.95773667161415,-84.59646837546336,0.5,Oct 4 2015
-Chattahoochee River NRA,33.98801138096806,-84.32396735070135,0.5,Oct 4 2015
-Fort Raleigh NHS,35.936048611382226,-75.70855210955061,0.5,Oct 24 2015
-Wright Brothers NM,36.01822972192283,-75.66798457025918,0.5,Oct 24 2015
-Cape Hatteras NS,35.24981376461104,-75.54298379002378,0.5,Oct 25 2015
-Oregon NHT,42.59952627882903,-110.88357942387294,0.5,May 25 2015
-CaliFornia NHT,42.497013564213276,-111.32054046134587,0.5,May 25 2015
-Fossil Butte NM,41.856973007126605,-110.76243369160098,0.5,May 25 2015
-Timpanagos Cave NM,40.448925643293975,-111.70498101935263,0.5,May 26 2015
-Arches NP,38.7984438736437,-109.57885263111442,0.5,May 26 2015
-Canyonlands NP,38.26026675978296,-109.88777498950508,0.5,May 26 2015
-Golden Gate NRA,37.84752486423288,-122.53064043595771,0.5,May 17 2015
-Pinnacles NP,36.50807595291916,-121.18166464353499,0.5,May 15 2015
-San Francisco Maritime NHP,37.806756404025926,-122.42387612061684,0.5,May 17 2015
-Fort Point NHS,37.811090328287875,-122.4770253510181,0.5,May 17 2015
-Muir Woods NM,37.89803639846539,-122.58161466806644,0.5,May 18 2015
-World War 1 Memorial,38.896855056234905,-77.03258101518942,0.5,Dec 26 2015
-National Mall,38.88809151115863,-77.03673551987248,0.5,Dec 26 2015
-Vietnam Veterans Memonial,38.89197988751329,-77.04772381023938,0.5,Dec 26 2015
-George Washington Mem. Pkwy,38.84432053284586,-77.04904918343047,0.5,Dec 26 2015
-Arlingten House,38.881663490895164,-77.07251615247694,0.5,Dec 28 2015
-Arlington National Cemetery,38.87767730264922,-77.07080149325924,0.5,Dec 28 2015
-Theodore Roosevelt Island,38.89627503230698,-77.06361518421703,0.5,Dec 28 2015
-LBJ Memorial Grove on the Potomac,38.879487227547244, -77.05111973353269,0.5,Dec 28 2015
-Anacostia Park,38.868408428169595,-76.99540567650256,0.5,Dec 29 2015
-Fredence Douglass NHS,38.863704403616424,-76.98503073854394,0.5,Dec 28 2015
-Greenbelt Park,38.98353734392952,-76.89754222932665,0.5,Dec 28 2015
-Maggie L Walker NHS,37.54822825115402,-77.43715867686957,0.5,Dec 29 2015
-Potomac Heritage NST,39.0523091169613,-77.33387136723051,0.5,Oct 10 2015
-Piscataway Park,38.687792796669264,-77.05009900250093,0.5,Oct 10 2015
-Fort Foote Park,38.76879715654533,-77.02553698350603,0.5,Oct 10 2015
-Fort Washington Park,38.71221493865144,-77.02826946670208,0.5,Oct 10 2015
-Peterson House NHS,38.89745432965521,-77.02661383933355,0.5,Dec 26 2015
-Lincoln Memorial,38.88966195467553,-77.05010791362615,0.5,Dec 26 2015
-Little River Canyon NPres,34.38725873367442,-85.69729293564662,0.5,Oct 3 2015
-Yellowstone NP,44.61521585844979,-110.56183829896669,0.5,May 22 2015
-John D. RockeFeller Jr Mem Prwy,44.08299721053517,-110.6814414160302,0.5,May 24 2015
-Grand Teton NP,43.89544646073525,-110.70234829353197,0.5,May 25 2015
-Boston African American NHS,42.36012644392457,-71.06525179054586,0.5,Jun 8 2015
-Boston NHP,42.37705008285948,-71.06103426034727,0.5,Jun 10 2015
-Frederick Law Olmsted NHS,42.32554441116105,-71.13237981938444,0.5,Jun 10 2015
-John F. Kennedy NHS,42.347629591820116,-71.12352486051564,0.5,Jun 10 2015
-Longfellow House-Washington's Headquarters NHS,42.3771945383069,-71.12633731752638,0.5,Jun 11 2015
-Adams NHP,42.25654472937884,-71.01182317706142,0.5,Jun 12 2015
-Boston Harbor Islands NRA,42.312087216303034,-70.94948466542228,0.5,Jun 13 2015
-Booker T Washington NM,37.11970694993277,-79.73176324851529,0.5,Aug 8 2015
-Appomattox Court House NHP,37.38059899952072,-78.7988693182267,0.5,Aug 8 2015
-New River Gorge NP,37.88820670530608,-81.0570322918487,0.5,Sep 6 2015
-Gauley River NRA,38.2233531018613,-80.99125511961944,0.5,Sep 6 2015
-Bluestone NSR,37.445484128301665, -81.17587869463242,0.5,Sep 6 2015
-Potomac Heritage NST,38.59476991043494,-77.38323490917237,0.5,Oct 9 2015
-Prince William Forest Park,38.59476991043499,-77.38323490917238,0.5,Oct 9 2015
-Manassas NBP,38.81767644704253,-77.53525707259493,0.5,Oct 10 2015
-Fredericksburg and Spotsylvania NMP,38.294035885175504,-77.4674511196155,0.5,Oct 9 2015
-Captain John Smith Chesapeake NHT,37.245977113228605,-76.77681920430354,0.5,Oct 10 2015
-George Washington Birthplace NM,38.184602373954576,-76.92007086059353,0.5,Oct 10 2015
-Star Spangled Banner NST,39.26669535356416,-76.57901572773102,0.5,Oct 10 2015
-Underground Railroad Network,38.540650153765284,-77.01891995987472,0.5,Oct 11 2015
-Thomas Stone NHS,38.534932897975835,-77.03690304654114,0.5,Oct 11 2015
-Richmond NBP,37.526980111080796,-77.41214963129293,0.5,Oct 11 2015
-Petersburg NB,37.22952543427905,-77.36640825762137,0.5,Oct 11 2015
-Ford's Theatre NHS,38.89638062097899,-77.02540733518123,0.85,Dec 26 2015
-Mary McLeod Bethune Council House NHS,38.90885013920995,-77.03070919538197,0.5,Dec 26 2015
-Carter G. Woodson NHS,38.91105078388592,-77.0240898140168,0.5,Dec 26 2015
-Saint-Gaudens NHS,43.500790538149204,-72.36927091878337,0.5,Sep 22 2016
-Acadia NP,44.37087723638388,-68.26382357089209,0.5,Sep 24 2016
-Cape Cod NS, 41.72102558126269,-69.92732882944938,0.5,Sep 26 2016
-Saugus Iron Works NHS,42.468535461654696,-71.0083314131745,0.5,Sep 26 2016
-Essex NHA,42.536280407543394,-70.8927967338032,0.5,Sep 26 2016
-Minute Man NHP,42.45528704556791,-71.30210284825357,0.5,Sep 27 2016
-Lowell NHP,42.645042694425705,-71.31323569273582,0.5,Sep 27 2016
-Roger Williams NMem,41.831714218198776,-71.41073224922938,0.5,Sep 28 2016
-Blackstone River Valley NHP,41.877909484058435,-71.38307913711753,0.5,Sep 28 2016
-Salem Maritime NHS,42.5219648998631,-70.8868453284178,0.5,Sep 29 2016
-Springfield Armory NHS,42.10751962550505,-72.58159460041853,0.5,Sep 29 2016
-Colonial NHP,37.22992504921214,-76.50172109158221,0.5,Mar 25 2016
-Fort Monroe NM,37.004435478001,-76.30735820687686,0.5,Mar 25 2016
-First State NHP,39.66043595915284,-75.56364575932514,0.5,Mar 26 2016
-Assateague Island NS,38.07636245610278,-75.23541574470154,0.5,Mar 25 2016
-Valley Forge NHP,40.10020635760798,-75.4459885448094,0.5,Mar 26 2016
-Hopewell Fernace NHS,40.2065247170664,-75.76798633461337,0.5,Mar 26 2016
-Hampton NHS,39.41700208166506,-76.58736504208886,0.5,Mar 27 2016
-Fort McHenry NM,39.26429590625495,-76.58066822201299,0.5,Mar 27 2016
-Monocacy NB,39.384159514205926,-77.39867074260906,0.5,Mar 28 2016
-Catoctin Mountain Park,39.64154946214728,-77.4401718378204,0.5,Mar 28 2016
-Gettysburg NMP,39.80604603083958,-77.24176391734454,0.5,Mar 29 2016
-Eisenhower NHS,39.79432361323513,-77.26279576152858,0.5,Mar 29 2016
-Antietam NB,39.46759415372663,-77.7362504959499,0.5,Mar 30 2016
-Harpers Ferry NHP,39.318558746530805,-77.75804542798129,0.5,Mar 30 2016
-Appalachian NST,38.92294554365739,-78.04904251479664,0.5,Mar 30 2016
-Shenandoah Battlefields NHP,38.702384723025624,-78.6839125995787,0.5,Mar 30 2016
-Cedar Creek and Belle Grove NHP,39.01128603793594,-78.3038092586907,0.5,Mar 30 2016
-Shenandoah NP,38.65992911930794,-78.50155650811787,0.5,Mar 30 2016
-Johnstown Flood NMem,40.349940018224984,-78.77128649884382,0.5,Jun 19 2016
-Charles Pinckney NHS,32.846670754094966,-79.82479533356978,0.5,May 1 2016
-Fort Sumter NM,32.753481591837286,-79.87472830787479,0.5,May 1 2016
-Andrew Johnson NHS,36.21615018469484,-82.84462718664598,0.5,Aug 9 2016
-Andrew Johnson NCem,36.15574768894396,-82.83792454220298,0.5,Aug 9 2016
-Stones River NB,35.87782266460514,-86.43128446043005,0.5,Aug 10 2016
-Obed Wild And Scenic River,36.1227604020076,-84.79073235119873,0.5,Aug 9 2016
-Manhattan Project NHP,36.03062025969222,-84.2704045017105,0.5,Aug 9 2016
-Fort Donelson NB,36.48203860738685,-87.86323030622172,0.5,Aug 10 2016
-Abraham Lincoln Birthplace NHP,37.53134308515666,-85.7375252908205,0.5,Aug 11 2016
-Mammoth Cave NP,37.204652744774485,-86.1145075357343,0.5,Aug 12 2016
-Big South Fork NRRA,36.617604430016854,-84.72570529023578,0.5,Aug 13 2016
-Cumberland Gap NHP,36.626367989911664,-83.60854543319562,0.5,Aug 14 2016
-Great Smoky Mountains NP,35.61929423081716,-83.55301990110371,0.5,Oct 8 2016
-Lincoln Boyhood NMem,38.1136456398398,-86.99589503311614,0.5,Aug ll 2016
-George Rogers Clark NHP,38.678555600397885,-87.53671700402562,0.5,Aug ll 2016
-Friendship Hill NHS,39.775767459873606,-79.93143486557003,0.5,Jun 18 2016
-Fort Necessity NB,39.81535067263434,-79.58939930418511,0.5,Jun 18 2016
-Flight 93 NMem,40.05921313933951,-78.8950831618441,0.5,Jun 19 2016
-Allegheny Portage Railroad NHS,40.45953991361108,-78.5495450190602,0.5,Jun 19 2016
-Edgar Allen Poe NHS,39.96227192045095,-75.14982327846732,0.5,Jul 16 2016
-Benjamin Franklin NMem,39.95869696239034,-75.17261507086707,0.5,Jul 16 2016
-Independence NHP,39.95006889660073,-75.14977510120266,0.5,Jul 16 2016
-Thaddeus Kosciuszko NMem,39.94397591121047,-75.14745295902833,0.5,Jul 16 2016
-First State NHP,39.66067837511941,-75.56365331765275,0.5,Jul 17 2016
-Vanderbilt NHS,41.79704335508667,-73.94262063711639,0.5,Sep 19 2016
-Hudson River Valley NHA,41.08848621999045,-73.96822610658788,0.5,Sep 19 2016
-Home of Franklin D. Roosevelt NHS,41.768103529755656,-73.93520661375213,0.5,Sep 19 2016
-Eleanor Roosevelt NHS,41.76334933103634,-73.89951288422994,0.5,Sep 20 2016
-Martin Van Buren NHS,42.37076603095273,-73.704162443248,0.5,Sep 20 2016
-Fort Stanwix NM,43.21093184379912,-75.45547018552809,0.5,Sep 20 2016
-Womens Rights NHP,42.9112978117035,-76.80003002935565,0.5,Sep 19 2016
-North Country NST,41.34302629794716,-79.21364707259195,0.5,Sep 20 2016
-Saratoga NHP,43.01303262566732,-73.64895819072919,0.5,Sep 21 2016
-Erie Canalway NHC,42.78470364983774,-73.68078660359195,0.5,Sep 21 2016
-Champlain Valley NHA,43.42157316700646,-73.7133948031666,0.5,Sep 21 2016
-March-Billings-RockeFeller NHP,43.631610524199495,-72.51791750469339,0.5,Sep 22 2016
-Cuyahoga Valley NP,41.282053249240555,-81.56786640577586,0.5,June 12 2016
-Santa Monica Mountains NRA,34.10501964118729,-118.60288977360253,0.5,May 9 2016
-Channel Islands NP,34.018344107416354,-119.75191878979318,0.5,May 8 2016
-Juan Bautista de Anza NHT,32.47690850226753,-111.30308676748822,0.5,May 9 2016
-Joshua Tree NP,33.9556535514339,-115.94008610384427,0.5,May 10 2016
-Horseshoe Bend NMP,32.976303789055564,-85.73349218315522,0.5,Jan 30 2016
-Tuskegee Airmen NHS,32.457343643549635,-85.68012600128898,0.5,Jan 30 2016
-Tuskegee Institute NHS,32.43006500388269,-85.70674707362225,0.5,Jап 24 2016
-Jimmy Carter NHS,32.036607262200484,-84.39260149950216,0.5,Jan 31 2016
-Andersonville NHS,32.201399898602055,-84.13046393274165,0.5,Jan 31 2016
-Ocmulgee NHP,32.83886825031845,-83.60201404146925,0.5,Jan. 31 2016
-Rock Creek Park,38.96778444624323,-77.04519340781022,0.5,Маг 26 2016
-Morristown NHP,40.796878657878956,-74.46615167034822,0.5,Sep 6 2016
-Washington-Rochambeau Revolutionary Route NHT,42.09449253084768,-71.26957904320165,0.5,Sep 12 2016
-Crossroads of the American Revolution NHA,40.22417515841588,-74.76929959861877,0.5,Sep 12 2016
-Thomas Edison NHP,40.78409018432675,-74.23416163883454,0.5,Sep 17 2016
-Paterson Great Falls NHP,40.91550727900018,-74.17981886408471,0.5,Jul 12 2016
-Steamtown NHS,41.40820873952256,-75.67212627151395,0.5,Sep 18 2016
-Delaware Water Gap NRA,41.10482829649665,-74.94433564096168,0.5,Sep 18 2016
-Upper Delaware Scene and Recreational River,41.62702674888498,-75.05011336409483,0.5,Sep 18 2016
-Natchez NHP,31.555498567045476,-91.41245141660036,0.5,Dec 5 2017
-Martin LutherKing Jr. NHS,33.757089193193714,-84.37321234873617,0.5,Nov 24 2017
-Tupelo NB,34.25588720655271,-88.73710868247407,0.5,Nov 24 2017
-Brices Gross Roads NBS,34.50649966118395,-88.72886127163306,0.5,Nov 24 2017
-Natchez Trace Parkway,34.330950239812594, -88.70999566297208,0.5,Nov 25 2017
-Natcher Trace NST,33.76745086709636,-89.01878355493555,0.5,Nov 25 2017
-Shiloh NMP,35.13943068681856,-88.3422805731541,0.5,Nov 25 2017
-Wilson's CreeK NB,37.11665085664003,-93.4199837582675,0.5,Nov 26 2017
-Fort Scott NHS,37.843738201701015,-94.70430621211041,0.5,Nov 26 2017
-George Washington Carver NM,36.986499757874974,-94.35481599898057,0.5,Nov 26 2017
-Fort Smith NHS,35.388407460093156,-94.42992626154779,0.5,Nov 27 2017
-Pea Ridge NMP,36.44374605569355,-94.02666323890038,0.5,Nov 28 2017
-Buffalo NR,35.98376142729616,-92.75502989318383,0.5,Nov 28 2017
-Little Rock Central High School NHS,34.738446505565264,-92.29758823649458,0.5,Nov 29 2017
-Hot Springs NP,34.52964327189979,-93.06967601722492,0.5,Nov 29 2017
-President William Jefferson Clinton Birthplace Home NHS,33.668029961213655,-93.59626956344013,0.5,Nov 28 2017
-Arkansas Post NMem,34.014705900152414,-91.34391225394414,0.5,Nov 30 2017
-Poverty Point NM,32.636261923948624,-91.40321908898645,0.5,Nov 30 2017
-Jean Lafitte NHP and Pres,29.811003980760702,-90.13370648808822,0.5,Dec 2 2017
-New Orleans Jazz NHP,29.95906402189571,-90.06084942160875,0.5,Dec 2 2017
-Cane River Creole NHP,31.66431883118274,-93.00489866605548,0.5,Dec 5 2017
-Big Thicket NPres,30.458703588236695,-94.38712517132646,0.5,Dec 6 2017
-Lyndon B. Johnson NHP,30.242862778569144,-98.60848805616163,0.5,Dec 7 2017
-Waco Mammoth NM,31.60701149716986,-97.17591394246442,0.5,Dec 7 2017
-Padre Island NS,27.089591031507574, -97.38420414900936,0.5,Dec 8 2017
-Palo Alto Battlefield NHP,26.017797787741184,-97.47910160168989,0.5,Dec 10 2017
-San Antonio Missions NHP,29.32958863035816,-98.4536478985602,0.5,Dec 16 2017
-Amistad NRA,29.466694103480137,-100.98832247492263,0.5,Dec 17 2017
-Vicksburg NMP,32.35525031738373,-90.84540659149077,0.5,Nov 30 2017
-Gulf Islands NS,30.35554710567759,-87.03609750493277,0.5,Dec 4 2017
-First Ladies NHS,40.798043960611864,-81.37535053661043,0.5,Dec 1 2017
-David Berger NM,41.474361460145275,-81.4918880670202,0.5,Apr 14 2017
-James A. GarField NHS,41.665121517222076,-81.35087871713841,0.5,Apr 14 2017
-Big Bend NP,29.253063567543737,-103.24975431611537,0.5,Dес 17 2017
-Rio Grande Wild and Scene River,29.613730478783,-102.73716564333672,0.5,Dес 17 2017
-Fort Davis NHS,30.599163523481344,-103.89538707335883,0.5,Dec 20 2017
-Carlsbad Caverns NP,32.17373500375175,-104.54199749446116,0.5,Dec 21 2017
-Guadalupe Mountains NP,31.95554417790332,-104.87813319232946,0.5,Dec 21 2017
-Lake Meredith NRA,35.64445963244159,-101.58624522008733,0.5,Dec 22 2017
-Alibates Flint Quarries NM,35.58252358250946,-101.67342136023511,0.5,Dec 22 2017
-Oklahoma City NMem,35.47389481524732,-97.5171067276664,0.5,Dec 22 2017
-Chickasaw NRA,34.461552006321234,-97.0068207336837,0.5,Dec 23 2017
-Washita BaHlefield NM,35.61698719211112,-99.68640852542877,0.5,Dec 22 2017
-Hamilton Grange NMem,40.82156606080263,-73.94725310966436,0.5,July 20 2018
-General Grant NMem,40.813644624564596,-73.96314852221981,0.5,Jul 21 2018
-Statue of Liberty NM,40.68942321151421,-74.04449779858993,0.5,Jul 22 2018
-Castle Clinton NM,40.70357656675663,-74.01663311891215,0.5,Jul 22 2018
-Governors Island NM,40.6903451480992,-74.01721006247739,0.5,Jul 22 2018
-Hopenell Culture NHP,39.37583946770785,-83.00641634774179,0.5,Oct 5 2018
-Dayton Anation Heritage NHP,39.75593769248969,-84.2117280628123,0.5,Oct 5 2018
-William Howard Taft NHS,39.11970634057602,-84.50825970747766,0.5,Oct 6 2018
-Charles Young Buffalo Soldiers NM,39.707563688545875,-83.89032088725969,0.5,Oct 6 2018
-Herbert Hoover NHS,41.66936048028164,-91.34617763646217,0.5,Oct 6 2018
-Effigy Mounds NM,43.0891864086019,-91.18548094183626,0.5,Oct 8 2018
-Pipestone NM,44.01358811016133,-96.32516827340066,0.5,Oct 9 2018
-Missouri NRR,42.869609110429764,-97.38457310883791,0.5,Oct 9 2018
-Lewis and Clark NHT,41.280859763104644,-95.92442836326819,0.5,Oct 9 2018
-Niebrara NSR,42.86857897634071,-100.55303593595308,0.5,Oct 9 2018
-Agate Fossil Beds NM,42.42546590434438,-103.73422601443535,0.5,October 10 2018
-Pony Express NHT,40.752408283715894,-111.82001741932734,0.5,Oct 11 2018
-Scott's Bluff NM,41.83455452971182,-103.70713459504977,0.5,Oct 11 2018
-Mount Rushmore NMem,43.88055569396787,-103.45375521180127,0.5,Nov 22 2018
-Wind Cave NP,43.57815189565061,-103.43738330498547,0.5,Nov 23 2018
-Capulin Volcano NM,36.78383361648849,-103.97048298948602,0.5,Oct 16 2018
-Fort Union NM,35.90532654765167,-105.01130700881284,0.5,Oct 16 2018
-Santa Fe NHT,35.66564157975656,-105.92103090525504,0.5,Oct 15 2018
-Valles Caldera NPres,35.83312502033975,-106.48702923485935,0.5,Oct 12 2018
-Bandelier NM,35.77932962722867,-106.27096008595835,0.5,Oct 12 2018
-Manhattan Project NHP,35.88129903626558,-106.30307239169612,0.5,Осt 12 2018
-Pecos NHP,35.54830014188327,-105.68453915363246,0.5,Oct 18 2018
-Fort Laramie NHS,42.20405697596207,-104.55596427486225,0.5,Oct 11 2018
-Rocky Mountain NP,40.362805964933834,-105.68419039616386,0.5,Oct 11 2018
-Florissant Fossil Beds NM,38.913963432893915,-105.28562145350008,0.5,Oct 15 2018
-Sangre de CAsto NHA,37.47126088958901,-105.86541549985759,0.5,Oct 16 2018
-Great Sand Dunes NP,37.78896480909817,-105.63026797976573,0.5,Oct 16 2018
-Little Bighern Battlefield NM,45.57090420549393,-107.42760343146533,0.5,Now 19 2018
-Devils Tower NM,44.59037470602943,-104.7145607310951,0.5,Nov 20 2018
-Badlands NP,43.870709399663994,-102.3410970340214,0.5,Nov 20 2018
-Minuteman Missle NHS,43.84484621516371,-101.90112153590611,0.5,Nov 21 2018
-Canaveral NS,28.798788016495024,-80.76061167540324,0.5,Dес 22 2019
-Everglades NP,25.393677671904296,-80.94223818892222,0.5,Dec 22 2019
-Biscayne NP,25.51012364389344,-80.1840487670858,0.5,Dec 22 2019
-Dry Tortugas NP,24.62987323497218,-82.87285418247525,0.5,Dec 25 2019
-De Soto NMem,27.524238043933416,-82.64325393218336,0.5,Dec 26 2019
-Paint Reyes NS,38.055591917873194,-122.88741827337142,0.5,Jun 29 2019
-Redwood NP,41.52412887867876,-124.05048232690092,0.5,Jun 30 2019
-Lava Beds NM,41.77566751025205,-121.50675209251881,0.5,Jul 3 2019
-Tule Lake NM,41.88778533661114,-121.37704234291847,0.5,Jul 3 2019
-Lassen Volcanic NP,40.50919326413788,-121.41584725389872,0.5,Jul 4 2019
-San Francisco Maritime NHP,37.806763578732806,-122.42396082255401,0.5,Jul 6 2019
-Eugene O'Neall NHS,37.826311098488276,-122.0271226124946,0.5,Jul 6 2019
-Rosie the Riveter NHP,37.910121392791126,-122.35713472227168,0.5,Jul 6 2019
-Port Chicago Naval Magazine NM,38.05790202447126,-122.02970333452649,0.5,Jul 6 2019
-John Muir NHS,37.99247501931067,-122.1310264932125,0.5,Jul 6 2019
-Oregon Caves NM,42.09880599655202,-123.40698994910386,0.5,Jul 1 2019
-Crater Lake NP,42.9562058303081,-122.12170274137125,0.5,Jul 2 2019
-Fort Frederica NM,31.224689469195766,-81.39201800710434,0.5,May 23 2019
-Cumberland Island NS,30.84758882117774,-81.45460123915076,0.5,May 25 2019
-Fort Matanzas NM,29.716154438034813,-81.23898385460589,0.5,May 26 2019
-Castillo de San Marcos NM,29.8987691616612,-81.31147577200838,0.5,May 26 2019
-Fort Pulaski NM,32.02759075839597,-80.89049163161603,0.5,May 21 2019
-Fort Caroline NM,30.385193389295814,-81.49795717479358,0.5,May 26 2019
-Timucuan Ecological and Historical Preserve,30.45540602181015,-81.4499352373656,0.5,May 26 2019
-Reconstruction Era NM,32.432842241617514,-80.67082581828608,0.5,May 27 2019
-Olympic NP,47.86956236904482,-123.60348186744997,0.5,July 22 2021
-Klondike Gold Rush NHP,47.59987796322652,-122.33174236119358,0.5,July 23 2021
-Lake Roosevelt NRA,48.13593895595897,-118.24652620967308,0.5,July 25 2021
-Pacific Crest NST,40.754803214677054,-121.38590600900491,0.5,Jul 11 2021
-Lake Chelan NRA,48.35709952900904,-120.68465272960513,0.5,Jul 11 2021
-North Cascades NP,48.774468225808214,-121.29888233498473,0.5,Jul 11 2021
-Ross Lake NRA,48.786057571765916,-121.06556493301773,0.5,Jul 11 2021
-Nez Perce NHP,46.44790904380559,-116.82283503471668,0.5,Jul 13 2021
-Whitman Mission NHS,46.04189055179995,-118.46389387830416,0.5,Jul 14 2021
-John Day Fossil Beds NM,44.63497624424187,-120.23907214260267,0.5,Jul 15 2021
-Fort Vancouver NHS,45.62748464574933,-122.65648872892966,0.5,Jul 17 2021
-Lewis and Clark NHP,46.135366013492195,-123.88054952484993,0.5,Jul 17 2021
-Mount Rainier NP,46.90398535765578,-121.71444389019729,0.5,Jul 20 2021
+name,name,latitude,longitude,values,date
+Abraham Lincoln Birthplace National Historical Park,Abraham Lincoln Birthplace NHP,37.53134309,-85.73752529,0.5,Aug 11 2016
+Acadia National Park,Acadia NP,44.37087724,-68.26382357,0.5,Sep 24 2016
+Adams National Historical Park,Adams NHP,42.25654473,-71.01182318,0.5,Jun 12 2015
+African Burial Ground National Monument,African Burial Ground National Monument,,,,
+Agate Fossil Beds National Monument,Agate Fossil Beds NM,42.4254659,-103.734226,0.5,October 10 2018
+Alagnak Wild River,Alagnak Wild River,35.58252358,-101.6734214,0.5,Dec 22 2017
+Alibates Flint Quarries National Monument,Alibates Flint Quarries NM,40.45953991,-78.54954502,0.5,Jun 19 2016
+Allegheny Portage Railroad National Historic Site,Allegheny Portage Railroad NHS,29.4666941,-100.9883225,0.5,Dec 17 2017
+Amache National Historic Site,Amache NHS,,,,
+Amistad National Recreation Area,Amistad NRA,38.86840843,-76.99540568,0.5,Dec 29 2015
+,Anacostia Park,32.2013999,-84.13046393,0.5,Jan 31 2016
+Andersonville National Historic Site,Andersonville NHS,36.15574769,-82.83792454,0.5,Aug 9 2016
+Andrew Johnson National Historic Site,Andrew Johnson NHS,36.21615018,-82.84462719,0.5,Aug 9 2016
+Aniakchak National Monument,Aniakchak National Monument,,,,
+Aniakchak National Preserve,Aniakchak National Preserve,,,,
+Antietam National Battlefield,Antietam NB,38.92294554,-78.04904251,0.5,Mar 30 2016
+Apostle Islands National Lakeshore,Apostle Islands NL,,,,
+Appalachian National Scenic Trail,Appalachian NST,37.380599,-78.79886932,0.5,Aug 8 2015
+Appomattox Court House National Historical Park,Appomattox Court House NHP,38.79844387,-109.5788526,0.5,May 26 2015
+Arches National Park,Arches NP,34.0147059,-91.34391225,0.5,Nov 30 2017
+Arkansas Post National Memorial,Arkansas Post NMem,38.88166349,-77.07251615,0.5,Dec 28 2015
+"Arlington House, The Robert E. Lee Memorial",Arlingten House,38.8776773,-77.07080149,0.5,Dec 28 2015
+Assateague Island National Seashore,Assateague Island NS,38.07636246,-75.23541574,0.5,Mar 25 2016
+Aztec Ruins National Monument,Aztec Ruins National Monument,,,,
+Badlands National Park,Badlands NP,43.8707094,-102.341097,0.5,Nov 20 2018
+Bandelier National Monument,Bandelier NM,35.77932963,-106.2709601,0.5,Oct 12 2018
+Belmont-Paul Women's Equality National Monument,Belmont-Paul Women's Equality NM,39.95869696,-75.17261507,0.5,Jul 16 2016
+Bent's Old Fort National Historic Site,Bent's Old Fort NHS,,,,
+,Benjamin Franklin NMem,29.25306357,-103.2497543,0.5,NAN
+Bering Land Bridge National Preserve,Bering Land Bridge NPres,,,,
+Big Bend National Park,Big Bend NP,30.45870359,-94.38712517,0.5,Dec 6 2017
+Big Cypress National Preserve,Big Cypress NPres,25.51012364,-80.18404877,0.5,Dec 22 2019
+Big Hole National Battlefield,Big Hole NB,,,,
+Big South Fork National River and Recreation Area,Big South Fork NRRA,41.87790948,-71.38307914,0.5,Sep 28 2016
+Big Thicket National Preserve,Big Thicket NPres,36.57084237,-80.90804411,0.5,Aug 2 2015
+Bighorn Canyon National Recreation Area,Bighorn Canyon NRA,,,,
+Birmingham Civil Rights National Monument,,,,,
+Biscayne National Park,Biscayne NP,37.11970695,-79.73176325,0.5,Aug 8 2015
+Black Canyon of the Gunnison National Park,Black Canyon of the Gunnison NP,,,,
+Blackstone River Valley National Historical Park,Blackstone River Valley NHP,42.36012644,-71.06525179,0.5,Jun 8 2015
+Blackwell School National Historic Site,Blackwell School NHS,,,,
+Blue Ridge Parkway,Blue Ridge Parkway,42.31208722,-70.94948467,0.5,Jun 13 2015
+Bluestone National Scenic River,Bluestone NSR,42.37705008,-71.06103426,0.5,Jun 10 2015
+Booker T. Washington National Monument,Booker T Washington NM,34.50649966,-88.72886127,0.5,Nov 24 2017
+Boston African American National Historic Site,Boston African American NHS,35.98376143,-92.75502989,0.5,Nov 28 2017
+Boston Harbor Islands National Recreation Area,Boston Harbor Islands NRA,42.49701356,-111.3205405,0.5,May 25 2015
+Boston National Historical Park,Boston NHP,28.79878802,-80.76061168,0.5,Dec 22 2019
+Brices Cross Roads National Battlefield Site,Brices Gross Roads NBS,31.66431883,-93.00489867,0.5,Dec 5 2017
+Brown v. Board of Education National Historical Park,Brown v. Board of Education NHP,,,,
+Bryce Canyon National Park,Bryce Canyon NP,,,,
+Buck Island Reef National Monument,Buck Island Reef NM,,,,
+Buffalo National River,Buffalo NR,38.26026676,-109.887775,0.5,May 26 2015
+Cabrillo National Monument,Cabrillo National Monument,,,,
+,California NHT,41.72102558,-69.92732883,0.5,Sep 26 2016
+Camp Nelson National Monument,Camp Nelson NM,,,,
+Canaveral National Seashore,Canaveral NS,35.24981376,-75.54298379,0.5,Oct 25 2015
+Cane River Creole National Historical Park,Cane River Creole NHP,34.62704665,-76.52542744,0.5,Jun 1 2015
+Canyon De Chelly National Monument,Canyon De Chelly National Monument,,,,
+Canyonlands National Park,Canyonlands NP,37.24597711,-76.7768192,0.5,Oct 10 2015
+Cape Cod National Seashore,Cape Cod NS,36.78383362,-103.970483,0.5,Oct 16 2018
+Cape Hatteras National Seashore,Cape Hatteras NS,35.27388546,-82.44542483,0.5,Aug 23 2015
+Cape Krusenstern National Monument,Cape Krusenstern NM,,,,
+Cape Lookout National Seashore,Cape Lookout NS,32.173735,-104.5419975,0.5,Dec 21 2017
+Capitol Reef National Park,Capitol Reef National Park,,,,
+,Captain John Smith Chesapeake NHT,38.91105078,-77.02408981,0.5,Dec 26 2015
+Capulin Volcano National Monument,Capulin Volcano NM,29.89876916,-81.31147577,0.5,May 26 2019
+Carl Sandburg Home National Historic Site,Carl Sandburg Home NHS,40.70357657,-74.01663312,0.5,Jul 22 2018
+Carlsbad Caverns National Park,Carlsbad Caverns NP,39.64154946,-77.44017184,0.5,Mar 28 2016
+Carter G. Woodson Home National Historic Site,Carter G. Woodson NHS,39.01128604,-78.30380926,0.5,Mar 30 2016
+Casa Grande Ruins National Monument,Casa Grande Ruins NM,,,,
+Castillo de San Marcos National Monument,Castillo de San Marcos NM,43.42157317,-73.7133948,0.5,Sep 21 2016
+Castle Clinton National Monument,Castle Clinton NM,34.01834411,-119.7519188,0.5,May 8 2016
+Castle Mountains National Monument,Castle Mountains NM,,,,
+Catoctin Mountain Park,Catoctin Mountain Park,32.84667075,-79.82479533,0.5,May 1 2016
+Cedar Breaks National Monument,Cedar Breaks NM,,,,
+Cedar Creek and Belle Grove National Historical Park,Cedar Creek and Belle Grove NHP,39.70756369,-83.89032089,0.5,Oct 6 2018
+C�sar E. Ch�vez National Monument,C�sar E. Ch�vez NM,,,,
+Chaco Culture National Historical Park,Chaco Culture NHP,,,,
+Chamizal National Memorial,Chamizal Nmem,,,,
+,Champlain Valley NHA,33.98801138,-84.32396735,0.5,Oct 4 2015
+Channel Islands National Park,Channel Islands NP,34.93452034,-85.27981039,0.5,Oct 3 2015
+Charles Pinckney National Historic Site,Charles Pinckney NHS,34.46155201,-97.00682073,0.5,Dec 23 2017
+Charles Young Buffalo Soldiers National Monument,Charles Young Buffalo Soldiers NM,37.22992505,-76.50172109,0.5,Mar 25 2016
+Chattahoochee River National Recreation Area,Chattahoochee River NRA,33.79910315,-80.74876466,0.5,NAN
+Chesapeake and Ohio Canal National Historical Park,Chesapeake and Ohio Canal NHP,,,,
+Chickamauga & Chattanooga National Military Park,Chickamauga and Chattanooga NMP,38.89138336,-77.04449448,0.5,Dec 26 2015
+Chickasaw National Recreation Area,Chickasaw NRA,35.13763723,-81.81790086,0.5,Jul 18 2015
+Chiricahua National Monument,Chiricahua NM,,,,
+Christiansted National Historic Site,Christiansted NHS,,,,
+City of Rocks National Reserve,City of Rocks Nres,,,,
+Clara Barton National Historic Site,Clara Barton NHS,,,,
+Colonial National Historical Park,Colonial NHP,42.95620583,-122.1217027,0.5,Jul 2 2019
+Colorado National Monument,Colorado NM,,,,
+Congaree National Park,Congaree NP,40.22417516,-74.7692996,0.5,Sep 12 2016
+Constitution Gardens,Constitution Gardens,36.62636799,-83.60854543,0.5,Aug 14 2016
+Coronado National Memorial,Coronado Nmem,,,,
+Cowpens National Battlefield,Cowpens NB,30.84758882,-81.45460124,0.5,May 25 2019
+Crater Lake National Park,Crater Lake NP,41.28205325,-81.56786641,0.5,June 12 2016
+Craters of the Moon National Monument,Craters of the Moon NM,,,,
+Craters of the Moon National Preserve,Craters of the Moon Npres,,,,
+,Crossroads of the American Revolution NHA,41.47436146,-81.49188807,0.5,Apr 14 2017
+Cumberland Gap National Historical Park,Cumberland Gap NHP,39.75593769,-84.21172806,0.5,Oct 5 2018
+Cumberland Island National Seashore,Cumberland Island NS,27.52423804,-82.64325393,0.5,Dec 26 2019
+Curecanti National Recreation Area,Curecanti NRA,,,,
+Cuyahoga Valley National Park,Cuyahoga Valley NP,41.1048283,-74.94433564,0.5,Sep 18 2016
+,David Berger NM,44.59037471,-104.7145607,0.5,Nov 20 2018
+Dayton Aviation Heritage National Historical Park,Dayton Anation Heritage NHP,24.62987323,-82.87285418,0.5,Dec 25 2019
+De Soto National Memorial,De Soto NMem,39.96227192,-75.14982328,0.5,Jul 16 2016
+Death Valley National Park,Death Valley NP,,,,
+Delaware Water Gap National Recreation Area,Delaware Water Gap NRA,43.08918641,-91.18548094,0.5,Oct 8 2018
+Denali National Park,Denali NP,,,,
+Denali National Preserve,Denali NPres,,,,
+Devils Postpile National Monument,Devils Postpile NM,,,,
+Devils Tower National Monument,Devils Tower NM,39.79432361,-77.26279576,0.5,Mar 29 2016
+Dinosaur National Monument,Dinosaur NM,,,,
+Dry Tortugas National Park,Dry Tortugas NP,41.76334933,-73.89951288,0.5,Sep 20 2016
+Dwight D. Eisenhower Memorial,Dwight D. Eisenhower Memorial,,,,
+Ebey's Landing National Historical Reserve,Ebey's Landing NHR,,,,
+Edgar Allan Poe National Historic Site,Edgar Allen Poe NHS,42.78470365,-73.6807866,0.5,Sep 21 2016
+Effigy Mounds National Monument,Effigy Mounds NM,42.53628041,-70.89279673,0.5,Sep 26 2016
+Eisenhower National Historic Site,Eisenhower NHS,37.8263111,-122.0271226,0.5,Jul 6 2019
+El Malpais National Monument,El Malpais NM,,,,
+El Morro National Monument,El Morro NM,,,,
+Eleanor Roosevelt National Historic Site,Eleanor Roosevelt NHS,25.39367767,-80.94223819,0.5,Dec 22 2019
+Emmett Till and Mamie Till-Mobley National Monument,Emmett Till and Mamie Till-Mobley NM,,,,
+,Erie Canalway NHC,40.79804396,-81.37535054,0.5,Dec 1 2017
+,Essex NHA,39.66043596,-75.56364576,0.5,Mar 26 2016
+Eugene O'Neill National Historic Site,Eugene O'Neall NHS,39.66067838,-75.56365332,0.5,Jul 17 2016
+Everglades National Park,Everglades NP,40.05921314,-78.89508316,0.5,Jun 19 2016
+Federal Hall National Memorial,Federal Hall Nmem,,,,
+Fire Island National Seashore,Fire Island NS,,,,
+First Ladies National Historic Site,First Ladies NHS,38.91396343,-105.2856215,0.5,Oct 15 2018
+First State National Historical Park,First State NHP,38.89638062,-77.02540734,0.85,Dec 26 2015
+Flight 93 National Memorial,Flight 93 NMem,30.59916352,-103.8953871,0.5,Dec 20 2017
+Florissant Fossil Beds National Monument,Florissant Fossil Beds NM,36.48203861,-87.86323031,0.5,Aug 10 2016
+Ford's Theatre National Historic Site,Ford's Theatre NHS,38.76879716,-77.02553698,0.5,Oct 10 2015
+Fort Bowie National Historic Site,Fort Bowie NHS,,,,
+Fort Caroline National Memorial,Fort Caroline Nmem,31.22468947,-81.39201801,0.5,May 23 2019
+Fort Davis National Historic Site,Fort Davis NHS,42.20405698,-104.5559643,0.5,Oct 11 2018
+Fort Donelson National Battlefield,Fort Donelson NB,29.71615444,-81.23898385,0.5,May 26 2019
+,Fort Foote Park,39.26429591,-76.58066822,0.5,Mar 27 2016
+Fort Frederica National Monument,Fort Frederica NM,37.00443548,-76.30735821,0.5,Mar 25 2016
+Fort Laramie National Historic Site,Fort Laramie NHS,39.81535067,-79.5893993,0.5,Jun 18 2016
+Fort Larned National Historic Site,Fort Larned NHS,,,,
+Fort Matanzas National Monument,Fort Matanzas NM,37.81109033,-122.4770254,0.5,May 17 2015
+Fort McHenry National Monument and Historic Shrine,Fort McHenry NM,32.02759076,-80.89049163,0.5,May 21 2019
+Fort Monroe National Monument,Fort Monroe NM,35.93604861,-75.70855211,0.5,Oct 24 2015
+Fort Necessity National Battlefield,Fort Necessity NB,37.8437382,-94.70430621,0.5,Nov 26 2017
+Fort Point National Historic Site,Fort Point NHS,35.38840746,-94.42992626,0.5,Nov 27 2017
+Fort Pulaski National Monument,Fort Pulaski NM,43.21093184,-75.45547019,0.5,Sep 20 2016
+Fort Raleigh National Historic Site,Fort Raleigh NHS,32.75348159,-79.87472831,0.5,May 1 2016
+Fort Scott National Historic Site,Fort Scott NHS,35.90532655,-105.011307,0.5,Oct 16 2018
+Fort Smith National Historic Site,Fort Smith NHS,45.62748465,-122.6564887,0.5,Jul 17 2021
+Fort Stanwix National Monument,Fort Stanwix NM,38.71221494,-77.02826947,0.5,Oct 10 2015
+Fort Sumter and Fort Moultrie National Historical Park,Fort Sumter and Fort Moultrie NHP,41.85697301,-110.7624337,0.5,May 25 2015
+Fort Union National Monument,Fort Union NM,38.88365247,-77.04301404,0.5,Dec 26 2015
+Fort Union Trading Post National Historic Site,Fort Union Trading Post NHS,,,,
+Fort Vancouver National Historic Site,Fort Vancouver NHS,38.8637044,-76.98503074,0.5,Dec 28 2015
+Fort Washington Park,Fort Washington Park,42.32554441,-71.13237982,0.5,Jun 10 2015
+Fossil Butte National Monument,Fossil Butte NM,38.29403589,-77.46745112,0.5,Oct 9 2015
+Franklin D. Roosevelt Memorial,Franklin Delano Roosevelt Memorial,39.77576746,-79.93143487,0.5,Jun 18 2016
+Frederick Douglass National Historic Site,Fredence Douglass NHS,38.2233531,-80.99125512,0.5,Sep 6 2015
+Frederick Law Olmsted National Historic Site,Frederick Law Olmsted NHS,40.81364462,-73.96314852,0.5,Jul 21 2018
+Fredericksburg and Spotsylvania National Military Park,Fredericksburg and Spotsylvania NMP,38.6785556,-87.536717,0.5,Aug ll 2016
+Freedom Riders National Monument,Freedom Riders NM,,,,
+Friendship Hill National Historic Site,Friendship Hill NHS,38.18460237,-76.92007086,0.5,Oct 10 2015
+Gates of the Arctic National Park,Gates of the Arctic NP,,,,
+Gates of the Arctic National Preserve,Gates of the Arctic Npres,,,,
+Gateway Arch National Park,Gateway Arch NP,,,,
+Gateway National Recreation Area,Gateway NRA,,,,
+Gauley River National Recreation Area,Gauley River NRA,36.98649976,-94.354816,0.5,Nov 26 2017
+General Grant National Memorial,General Grant NMem,38.84432053,-77.04904918,0.5,Dec 26 2015
+George Rogers Clark National Historical Park,George Rogers Clark NHP,39.80604603,-77.24176392,0.5,Mar 29 2016
+George Washington Birthplace National Monument,George Washington Birthplace NM,37.84752486,-122.5306404,0.5,May 17 2015
+George Washington Carver National Monument,George Washington Carver NM,40.69034515,-74.01721006,0.5,Jul 22 2018
+George Washington Memorial Parkway,George Washington Mem. Pkwy,43.89544646,-110.7023483,0.5,May 25 2015
+Gettysburg National Military Park,Gettysburg NMP,37.78896481,-105.630268,0.5,Oct 16 2018
+Gila Cliff Dwellings National Monument,Gila Cliff Dwellings NM,,,,
+Glacier Bay National Park,Glacier Bay NP,,,,
+Glacier Bay National Preserve,Glacier Bay NPres,,,,
+Glacier National Park,Glacier NP,,,,
+Glen Canyon National Recreation Area,Glen Canyon NRA,,,,
+Golden Gate National Recreation Area,Golden Gate NRA,35.88769423,-83.48432666,0.5,NAN
+Golden Spike National Historical Park,Golden Spike National Historical Park,,,,
+Governors Island National Monument,Governors Island NM,35.61929423,-83.5530199,0.5,Oct 8 2016
+Grand Canyon National Park,Grand Canyon NP,,,,
+Grand Portage National Monument,Grand Portage NM,,,,
+Grand Teton National Park,Grand Teton NP,38.98353734,-76.89754223,0.5,Dec 28 2015
+Grant-Kohrs Ranch National Historic Site,Grant-Kohrs Ranch NHS,,,,
+Great Basin National Park,Great Basin NP,,,,
+Great Egg Harbor Scenic and Recreational River,Great Egg Harbor Scenic and Recreational River,,,,
+Great Sand Dunes National Park,Great Sand Dunes NP,31.95554418,-104.8781332,0.5,Dec 21 2017
+Great Sand Dunes National Preserve,Great Sand Dunes Npres,,,,
+Great Smoky Mountains National Park,Great Smoky Mountains NP,36.13356133,-79.84127446,0.5,Jun 6 2015
+Greenbelt Park,Greenbelt Park,32.46127495,-80.66635861,0.5,May 31 2015
+Guadalupe Mountains National Park,Guadalupe Mountains NP,40.82156606,-73.94725311,0.5,July 20 2018
+Guilford Courthouse National Military Park,Guilford Courthouse NMP,39.41700208,-76.58736504,0.5,Mar 27 2016
+Gulf Islands National Seashore,Gulf Islands NS,39.31855875,-77.75804543,0.5,Mar 30 2016
+,Gullah Geechee NHA,41.66936048,-91.34617764,0.5,Oct 6 2018
+Hagerman Fossil Beds National Monument,Hagerman Fossil Beds NM,,,,
+Haleakala National Park,Haleakala NP,,,,
+Hamilton Grange National Memorial,Hamilton Grange NMem,41.76810353,-73.93520661,0.5,Sep 19 2016
+Hampton National Historic Site,Hampton NHS,39.37583947,-83.00641635,0.5,Oct 5 2018
+Harpers Ferry National Historical Park,Harpers Ferry NHP,40.20652472,-75.76798633,0.5,Mar 26 2016
+Harriet Tubman National Historical Park,Harriet Tubman NHP,,,,
+Harriet Tubman Underground Railroad National Historical Park,Harriet Tubman Underground Railroad NHP,,,,
+Harry S Truman National Historic Site,Harry S Truman NHS,,,,
+Hawaii Volcanoes National Park,Hawaii Volcanoes NP,,,,
+Herbert Hoover National Historic Site,Herbert Hoover NHS,32.97630379,-85.73349218,0.5,Jan 30 2016
+Hohokam Pima National Monument,Hohokam Pima NM,,,,
+Home of Franklin D. Roosevelt National Historic Site,Home of Franklin D. Roosevelt NHS,34.52964327,-93.06967602,0.5,Nov 29 2017
+Homestead National Historical Park,Homestead NHP,,,,
+Honouliuli National Historic Site,Honouliuli NHS,,,,
+Hopewell Culture National Historical Park,Hopewell Culture NHP,41.08848622,-73.96822611,0.5,Sep 19 2016
+Hopewell Furnace National Historic Site,Hopewell Fernace NHS,39.9500689,-75.1497751,0.5,Jul 16 2016
+Horseshoe Bend National Military Park,Horseshoe Bend NMP,41.66512152,-81.35087872,0.5,Apr 14 2017
+Hot Springs National Park,Hot Springs NP,29.81100398,-90.13370649,0.5,Dec 2 2017
+Hovenweep National Monument,Hovenweep NM,,,,
+Hubbell Trading Post National Historic Site,Hubbell Trading Post NHS,,,,
+,Hudson River Valley NHA,32.03660726,-84.3926015,0.5,Jan 31 2016
+Ice Age National Scenic Trail,Ice Age NST,,,,
+Independence National Historical Park,Independence NHP,44.08299721,-110.6814414,0.5,May 24 2015
+Indiana Dunes National Park,Indiana Dunes NP,,,,
+Isle Royale National Park,Isle Royale NP,,,,
+James A. Garfield National Historic Site,James A. GarField NHS,44.63497624,-120.2390721,0.5,Jul 15 2021
+Jean Lafitte National Historical Park and Preserve,Jean Lafitte NHP and Pres,42.34762959,-71.12352486,0.5,Jun 10 2015
+Jefferson Memorial,Jefferson Memorial,,,,
+Jewel Cave National Monument,Jewel Cave NM,,,,
+Jimmy Carter National Historical Park,Jimmy Carter NHP,37.99247502,-122.1310265,0.5,Jul 6 2019
+John D. Rockefeller Jr. Memorial Parkway,John D. RockeFeller Jr Memorial Parkway,40.34994002,-78.7712865,0.5,Jun 19 2016
+John Day Fossil Beds National Monument,John Day Fossil Beds NM,33.95565355,-115.9400861,0.5,May 10 2016
+John F. Kennedy National Historic Site,John F. Kennedy NHS,32.4769085,-111.3030868,0.5,May 9 2016
+John Muir National Historic Site,John Muir NHS,33.95773667,-84.59646838,0.5,Oct 4 2015
+Johnstown Flood National Memorial,Johnstown Flood NMem,35.13909987,-81.39102911,0.5,Jun 18 2015
+Joshua Tree National Park,Joshua Tree NP,47.59987796,-122.3317424,0.5,July 23 2021
+,Juan Bautista de Anza NHT,38.88817132,-77.04767358,0.5,Dec 26 2015
+Kalaupapa National Historical Park,Kalaupapa NHP,,,,
+Kaloko-Honokohau National Historical Park,Kaloko-Honokohau NHP,,,,
+Katahdin Woods and Waters National Monument,Katahdin Woods and Waters NM,,,,
+Katmai National Park,Katmai NP,,,,
+Katmai National Preserve,Katmai National Preserve,,,,
+Kenai Fjords National Park,Kenai Fjords National Park,,,,
+Kennesaw Mountain National Battlefield Park,Kennesaw Mountain NBP,48.35709953,-120.6846527,0.5,Jul 11 2021
+Keweenaw National Historical Park,Keweenaw NHP,,,,
+Kings Canyon National Park,Kings Canyon NP,,,,
+Kings Mountain National Military Park,Kings Mountain NMP,35.64445963,-101.5862452,0.5,Dec 22 2017
+Klondike Gold Rush National Historical Park,Klondike Gold Rush NHP,48.13593896,-118.2465262,0.5,July 25 2021
+Knife River Indian Villages National Historic Site,Knife River Indian Villages NHS,,,,
+Kobuk Valley National Park,Kobuk Valley NP,,,,
+Korean War Veterans Memorial,Korean War Veterans Memorial,40.50919326,-121.4158473,0.5,Jul 4 2019
+Lake Chelan National Recreation Area,Lake Chelan NRA,41.77566751,-121.5067521,0.5,Jul 3 2019
+Lake Clark National Park,Lake Clark NP,,,,
+Lake Clark National Preserve,Lake Clark NPres,,,,
+Lake Mead National Recreation Area,Lake Mead NRA,,,,
+Lake Meredith National Recreation Area,Lake Meredith NRA,38.87948723,-77.05111973,0.5,Dec 28 2015
+Lake Roosevelt National Recreation Area,Lake Roosevelt NRA,46.13536601,-123.8805495,0.5,Jul 17 2021
+Lassen Volcanic National Park,Lassen Volcanic NP,41.28085976,-95.92442836,0.5,Oct 9 2018
+Lava Beds National Monument,Lava Beds NM,38.11364564,-86.99589503,0.5,Aug ll 2016
+Lewis and Clark National Historical Park,Lewis and Clark NHP,45.57090421,-107.4276034,0.5,Now 19 2018
+,Lewis and Clark NHT,34.38725873,-85.69729294,0.5,Oct 3 2015
+Lincoln Boyhood National Memorial,Lincoln Boyhood NMem,34.73844651,-92.29758824,0.5,Nov 29 2017
+Lincoln Home National Historic Site,Lincoln Home NHS,,,,
+Lincoln Memorial,Lincoln Memorial,42.37719454,-71.12633732,0.5,Jun 11 2015
+Little Bighorn Battlefield National Monument,Little Bighorn Battlefield NM,42.64504269,-71.31323569,0.5,Sep 27 2016
+Little River Canyon National Preserve,Little River Canyon NPres,30.24286278,-98.60848806,0.5,Dec 7 2017
+Little Rock Central High School National Historic Site,Little Rock Central High School NHS,37.54822825,-77.43715868,0.5,Dec 29 2015
+Longfellow House�Washington's Headquarters National Historic Site,Longfellow House-Washington's Headquarters NHS,37.20465274,-86.11450754,0.5,Aug 12 2016
+Lowell National Historical Park,Lowell NHP,38.81767645,-77.53525707,0.5,Oct 10 2015
+Lyndon B. Johnson National Historical Park,Lyndon B. Johnson NHP,36.03062026,-84.2704045,0.5,Aug 9 2016
+Lyndon Baines Johnson Memorial Grove on the Potomac,Lyndon Baines Johnson Memorial Grove on the Potomac,38.88966195,-77.05010791,0.5,Dec 26 2015
+Maggie L. Walker National Historic Site,Maggie L Walker NHS,35.88129904,-106.3030724,0.5,Осt 12 2018
+Mammoth Cave National Park,Mammoth Cave NP,43.63161052,-72.5179175,0.5,Sep 22 2016
+Manassas National Battlefield Park,Manassas NBP,33.75708919,-84.37321235,0.5,Nov 24 2017
+Manhattan Project National Historical Park,Manhattan Project NHP,42.37076603,-73.70416244,0.5,Sep 20 2016
+,Manhattan Project NHP,38.90885014,-77.0307092,0.5,Dec 26 2015
+Manzanar National Historic Site,Manzanar NHS,,,,
+Marsh-Billings-Rockefeller National Historical Park,March-Billings-RockeFeller NHP,42.45528705,-71.30210285,0.5,Sep 27 2016
+Martin Luther King Jr. National Historical Park,Martin LutherKing Jr. NHP,43.84484622,-101.9011215,0.5,Nov 21 2018
+"Martin Luther King, Jr. Memorial","Martin Luther King, Jr. Memorial",46.90398536,-121.7144439,0.5,Jul 20 2021
+Martin Van Buren National Historic Site,Martin Van Buren NHS,42.86960911,-97.38457311,0.5,Oct 9 2018
+Mary McLeod Bethune Council House National Historic Site,Mary McLeod Bethune Council House NHS,38.88682837,-77.04431422,0.5,Dec 28 2015
+Medgar and Myrlie Evers Home National Monument,Medgar and Myrlie Evers Home NM,,,,
+Mesa Verde National Park,Mesa Verde NP,,,,
+Middle Delaware National Scenic River,Middle Delaware NSR,,,,
+Mill Springs Battlefield National Monument,Mill Springs Battlefield NM,,,,
+Minidoka National Historic Site,Minidoka NHS,,,,
+Minute Man National Historical Park,Minute Man NHP,39.38415951,-77.39867074,0.5,Mar 28 2016
+Minuteman Missile National Historic Site,Minuteman Missle NHS,34.45855194,-78.11037497,0.5,May 31 2015
+Mississippi National River and Recreation Area,Mississippi NRRA,,,,
+Missouri National Recreational River,Missouri NRR,40.79687866,-74.46615167,0.5,Sep 6 2016
+Mojave National Preserve,Mojave NPres,,,,
+Monocacy National Battlefield,Monocacy NB,43.88055569,-103.4537552,0.5,Nov 22 2018
+Montezuma Castle National Monument,Montezuma Castle NM,,,,
+Moores Creek National Battlefield,Moores Creek NB,37.8980364,-122.5816147,0.5,May 18 2015
+Morristown National Historical Park,Morristown NHP,33.76745087,-89.01878355,0.5,Nov 25 2017
+Mount Rainier National Park,Mount Rainier NP,31.55549857,-91.41245142,0.5,Dec 5 2017
+Mount Rushmore National Memorial,Mount Rushmore NMem,34.33095024,-88.70999566,0.5,Nov 25 2017
+Muir Woods National Monument,Muir Woods NM,38.88809151,-77.03673552,0.5,Dec 26 2015
+Natchez National Historical Park,Natchez NHP,37.88820671,-81.05703229,0.5,Sep 6 2015
+Natchez Trace National Scenic Trail,Natchez Trace NST,29.95906402,-90.06084942,0.5,Dec 2 2017
+Natchez Trace Parkway,Natchez Trace Parkway,46.44790904,-116.822835,0.5,Jul 13 2021
+National Capital Parks-East,National Capital Parks-East,,,,
+National Mall and Memorial Parks,National Mall,42.86857898,-100.5530359,0.5,Oct 9 2018
+National Park of American Samoa,National Park of American Samoa,,,,
+Natural Bridges National Monument,Natural Bridges NM,,,,
+Navajo National Monument,Navajo NM,,,,
+New Bedford Whaling National Historical Park,New Bedford Whaling NHP,,,,
+New England National Scenic Trail,New England NST,,,,
+New Orleans Jazz National Historical Park,New Orleans Jazz NHP,34.14726674,-82.02310858,0.5,Aug 23 2015
+New Philadelphia National Historic Site,New Philadelphia NHS,,,,
+New River Gorge National Park and Preserve,New River Gorge NP and Pres,48.77446823,-121.2988823,0.5,Jul 11 2021
+Nez Perce National Historical Park,Nez Perce NHP,41.3430263,-79.21364707,0.5,Sep 20 2016
+Nicodemus National Historic Site,Nicodemus NHS,,,,
+Ninety Six National Historic Site,Ninety Six NHS,32.83886825,-83.60201404,0.5,Jan. 31 2016
+Niobrara National Scenic River,Niobrara NSR,36.1227604,-84.79073235,0.5,Aug 9 2016
+Noatak National Preserve,Noatak Npres,,,,
+North Cascades National Park,North Cascades NP,35.47389482,-97.51710673,0.5,Dec 22 2017
+North Country National Scenic Trail,North Country NST,38.89473254,-77.0273467,0.5,Dec 26 2015
+Obed Wild and Scenic River,Obed Wild And Scenic River,47.86956237,-123.6034819,0.5,July 22 2021
+Ocmulgee Mounds National Historical Park,Ocmulgee NHP,42.098806,-123.4069899,0.5,Jul 1 2019
+,Oklahoma City NMem,42.59952628,-110.8835794,0.5,May 25 2015
+,Old Post Offce Tower,35.14290598,-81.34477248,0.5,Jun 18 2015
+Olympic National Park,Olympic NP,40.75480321,-121.385906,0.5,Jul 11 2021
+Oregon Caves National Monument and Preserve,Oregon Caves NM,27.08959103,-97.38420415,0.5,Dec 8 2017
+Organ Pipe Cactus National Monument,Organ Pipe Cactus NM,,,,
+Ozark National Scenic Riverways,Ozark NSR,,,,
+,Oregon NHT,38.05559192,-122.8874183,0.5,Jun 29 2019
+,Overmountain Victory NHT,26.01779779,-97.4791016,0.5,Dec 10 2017
+,Pacific Crest NST,40.91550728,-74.17981886,0.5,Jul 12 2016
+Padre Island National Seashore,Padre Island NS,36.44374606,-94.02666324,0.5,Nov 28 2017
+Palo Alto Battlefield National Historical Park,Palo Alto Battlefield NHP,38.89413833,-77.02521644,0.5,Dec 26 2015
+Paterson Great Falls National Historical Park,Paterson Great Falls NHP,37.22952543,-77.36640826,0.5,Oct 11 2015
+Pea Ridge National Military Park,Pea Ridge NMP,38.89745433,-77.02661384,0.5,Dec 26 2015
+Pearl Harbor National Memorial,Pearl Harbor NMem,,,,
+Pecos National Historical Park,Pecos NHP,36.50807595,-121.1816646,0.5,May 15 2015
+Pennsylvania Avenue National Historic Site,Pennsyluania Avenue NHS,44.01358811,-96.32516827,0.5,Oct 9 2018
+Perry's Victory and International Peace Memorial,Perry's Victory and International Peace Memorial,,,,
+Petersburg National Battlefield,Petersburg NB,38.6877928,-77.050099,0.5,Oct 10 2015
+,Peterson House NHS,40.75240828,-111.8200174,0.5,Oct 11 2018
+Petrified Forest National Park,Petrified Forest NP,,,,
+Petroglyph National Monument,Petroglyph NM,,,,
+Pictured Rocks National Lakeshore,Pictured Rocks NL,,,,
+Pinnacles National Park,Pinnacles NP,38.05790202,-122.0297033,0.5,Jul 6 2019
+Pipe Spring National Monument,Pipe Spring NM,,,,
+Pipestone National Monument,Pipestone NM,39.05230912,-77.33387137,0.5,Oct 10 2015
+Piscataway Park,Piscataway Park,38.59476991,-77.38323491,0.5,Oct 9 2015
+Point Reyes National Seashore,Point Reyes NS,35.54830014,-105.6845392,0.5,Oct 18 2018
+,Pony Express NHT,32.63626192,-91.40321909,0.5,Nov 30 2017
+Port Chicago Naval Magazine National Memorial,Port Chicago Naval Magazine NM,33.66802996,-93.59626956,0.5,Nov 28 2017
+Potomac Heritage National Scenic Trail,Potomac Heritage NST,38.59476991,-77.38323491,0.5,Oct 9 2015
+Poverty Point National Monument,Poverty Point NM,32.43284224,-80.67082582,0.5,May 27 2019
+President William Jefferson Clinton Birthplace Home National Historic Site,President William Jefferson Clinton Birthplace Home NHS,41.52412888,-124.0504823,0.5,Jun 30 2019
+Prince William Forest Park,Prince William Forest Park,29.61373048,-102.7371656,0.5,Dес 17 2017
+Pullman National Historical Park,Pullman NHP,,,,
+Pu'uhonua O Honaunau National Historical Park,Pu'uhonua O Honaunau NHP,,,,
+Pu'ukohola Heiau National Historic Site,Pu'ukohola Heiau NHS,,,,
+Rainbow Bridge National Monument,Rainbow Bridge NM,,,,
+Reconstruction Era National Historical Park,Reconstruction Era NHP,38.96778445,-77.04519341,0.5,Маг 26 2016
+Redwood National Park,Redwood NP,40.36280596,-105.6841904,0.5,Oct 11 2018
+Richmond National Battlefield Park,Richmond NBP,41.83171422,-71.41073225,0.5,Sep 28 2016
+Rio Grande Wild and Scenic River,Rio Grande Wild and Scene River,37.91012139,-122.3571347,0.5,Jul 6 2019
+River Raisin National Battlefield Park,River Raisin NBP,,,,
+Rock Creek Park,Rock Creek Park,48.78605757,-121.0655649,0.5,Jul 11 2021
+Rocky Mountain National Park,Rocky Mountain NP,34.97953077,-85.80982052,0.5,Oct 3 2015
+Roger Williams National Memorial,Roger Williams NMem,43.50079054,-72.36927092,0.5,Sep 22 2016
+Rosie the Riveter World War II Home Front National Historical Park,Rosie the Riveter NHP,42.5219649,-70.88684533,0.5,Sep 29 2016
+Ross Lake National Recreation Area,Ross Lake NRA,29.32958863,-98.4536479,0.5,Dec 16 2017
+Russell Cave National Monument,Russell Cave NM,37.8067564,-122.4238761,0.5,May 17 2015
+Sagamore Hill National Historic Site,Sagamore Hill NHS,,,,
+Saguaro National Park,Saguaro NP,,,,
+Saint Croix Island International Historic Site,Saint Croix Island IHS,,,,
+Saint Croix National Scenic Riverway,Saint Croix NSR,,,,
+Saint Paul's Church National Historic Site,Saint Paul's Church NHS,,,,
+Saint-Gaudens National Historical Park,Saint-Gaudens NHS,37.80676358,-122.4239608,0.5,Jul 6 2019
+Salem Maritime National Historic Site,Salem Maritime NHS,37.47126089,-105.8654155,0.5,Oct 16 2018
+Salinas Pueblo Missions National Monument,Salinas Pueblo Missions NM,,,,
+Salt River Bay National Historical Park and Ecological Preserve,Salt River Bay NHP and Ecological Preserve,,,,
+San Antonio Missions National Historical Park,San Antonio Missions NHP,35.66564158,-105.9210309,0.5,Oct 15 2018
+San Francisco Maritime National Historical Park,San Francisco Maritime NHP,34.10501964,-118.6028898,0.5,May 9 2016
+San Juan Island National Historical Park,San Juan Island NHP,,,,
+San Juan National Historic Site,San Juan NHS,,,,
+Sand Creek Massacre National Historic Site,Sand Creek Massacre NHS,,,,
+,Sangre de CAsto NHA,42.46853546,-71.00833141,0.5,Sep 26 2016
+,Santa Fe NHT,41.83455453,-103.7071346,0.5,Oct 11 2018
+Santa Monica Mountains National Recreation Area,Santa Monica Mountains NRA,38.70238472,-78.6839126,0.5,Mar 30 2016
+Saratoga National Historical Park,Saratoga NHP,38.65992912,-78.50155651,0.5,Mar 30 2016
+Saugus Iron Works National Historic Site,Saugus Iron Works NHS,35.13943069,-88.34228057,0.5,Nov 25 2017
+Scotts Bluff National Monument,Scotts Bluff NM,42.10751963,-72.5815946,0.5,Sep 29 2016
+Sequoia National Park,Sequoia NP,,,,
+,Shenandoah Battlefields NHP,39.26669535,-76.57901573,0.5,Oct 10 2015
+Shenandoah National Park,Shenandoah NP,40.68942321,-74.0444978,0.5,Jul 22 2018
+Shiloh National Military Park,Shiloh NMP,41.40820874,-75.67212627,0.5,Sep 18 2016
+Sitka National Historical Park,Sitka NHP,,,,
+Sleeping Bear Dunes National Lakeshore,Sleeping Bear Dunes NL,,,,
+Springfield 1908 Race Riot National Monument,Springfield 1908 Race Riot NM,,,,
+Springfield Armory National Historic Site,Springfield Armory NHS,35.87782266,-86.43128446,0.5,Aug 10 2016
+,Star Spangled Banner NST,39.94397591,-75.14745296,0.5,Jul 16 2016
+Statue of Liberty National Monument,Statue of Liberty NM,38.89627503,-77.06361518,0.5,Dec 28 2015
+Ste. Genevieve National Historical Park,Ste. Genevieve NHP,,,,
+Steamtown National Historic Site,Steamtown NHS,40.78409018,-74.23416164,0.5,Sep 17 2016
+Stones River National Battlefield,Stones River NB,38.88207273,-77.03561717,0.5,Dec 26 2015
+Stonewall National Monument,Stonewall NM,,,,
+Sunset Crater Volcano National Monument,Sunset Crater Volcano NM,,,,
+Tallgrass Prairie National Preserve,Tallgrass Prairie Npres,,,,
+Thaddeus Kosciuszko National Memorial,Thaddeus Kosciuszko NMem,38.5349329,-77.03690305,0.5,Oct 11 2015
+Theodore Roosevelt Birthplace National Historic Site,Theodore Roosevelt Birthplace NHS,,,,
+Theodore Roosevelt Inaugural National Historic Site,Theodore Roosevelt Inaugural NHS,,,,
+Theodore Roosevelt Island,Theodore Roosevelt Island,40.44892564,-111.704981,0.5,May 26 2015
+Theodore Roosevelt National Park,Theodore Roosevelt NP,,,,
+Thomas Edison National Historical Park,Thomas Edison NHP,30.45540602,-81.44993524,0.5,May 26 2019
+,Thomas Jefferson Memorial,35.19877502,-85.62902037,0.5,Oct 3 2015
+Thomas Stone National Historic Site,Thomas Stone NHS,41.88778534,-121.3770423,0.5,Jul 3 2019
+Timpanogos Cave National Monument,Timpanagos Cave NM,34.25588721,-88.73710868,0.5,Nov 24 2017
+Timucuan Ecological and Historic Preserve,Timucuan Ecological and Historical Preserve,32.45734364,-85.680126,0.5,Jan 30 2016
+Tonto National Monument,Tonto NM,,,,
+,Trail of Tears NHT,32.430065,-85.70674707,0.5,Jап 24 2016
+Tule Lake National Monument,Tule Lake NM,38.54065015,-77.01891996,0.5,Oct 11 2015
+Tule Springs Fossil Beds National Monument,Tule Springs Fossil Beds NM,,,,
+Tumacacori National Historical Park,Tumacacori NHP,,,,
+Tupelo National Battlefield,Tupelo NB,41.62702675,-75.05011336,0.5,Sep 18 2016
+Tuskegee Airmen National Historic Site,Tuskegee Airmen NHS,35.83312502,-106.4870292,0.5,Oct 12 2018
+Tuskegee Institute National Historic Site,Tuskegee Institute NHS,40.10020636,-75.44598854,0.5,Mar 26 2016
+Tuzigoot National Monument,Tuzigoot NM,,,,
+Ulysses S. Grant National Historic Site,Ulysses S. Grant NHS,,,,
+,Underground Railroad Network,41.79704336,-73.94262064,0.5,Sep 19 2016
+Upper Delaware Scenic and Recreational River,Upper Delaware Scene and Recreational River,32.35525032,-90.84540659,0.5,Nov 30 2017
+Valles Caldera National Preserve,Valles Caldera NPres,38.89197989,-77.04772381,0.5,Dec 26 2015
+Valley Forge National Historical Park,Valley Forge NHP,31.6070115,-97.17591394,0.5,Dec 7 2017
+Vanderbilt Mansion National Historic Site,Vanderbilt NHS,38.88973863,-77.03516473,0.5,Dec 26 2015
+Vicksburg National Military Park,Vicksburg NMP,42.09449253,-71.26957904,0.5,Sep 12 2016
+Vietnam Veterans Memorial,Vietnam Veterans Memonial,35.61698719,-99.68640853,0.5,Dec 22 2017
+Virgin Islands Coral Reef National Monument,Virgin Islands Coral Reef NM,,,,
+Virgin Islands National Park,Virgin Islands NP,,,,
+Voyageurs National Park,Voyageurs NP,,,,
+Waco Mammoth National Monument,Waco Mammoth NM,46.04189055,-118.4638939,0.5,Jul 14 2021
+Walnut Canyon National Monument,Walnut Canyon NM,,,,
+War in the Pacific National Historical Park,War in the Pacific NHP,,,,
+Washington Monument,Washington Monument,39.11970634,-84.50825971,0.5,Oct 6 2018
+,Washington-Rochambeau Revolutionary Route NHT,37.11665086,-93.41998376,0.5,Nov 26 2017
+Washita Battlefield National Historic Site,Washita Battlefield NM,43.5781519,-103.4373833,0.5,Nov 23 2018
+Weir Farm National Historical Park,Weir Farm NHP,,,,
+Whiskeytown-Shasta-Trinity National Recreation Area,Whiskeytown-Shasta-Trinity NRA,,,,
+White House and President's Park,President's Park-The White House,37.52698011,-77.41214963,0.5,Oct 11 2015
+White Sands National Park,White Sands NP,,,,
+Whitman Mission National Historic Site,Whitman Mission NHS,42.91129781,-76.80003003,0.5,Sep 19 2016
+William Howard Taft National Historic Site,William Howard Taft NHS,38.89685506,-77.03258102,0.5,Dec 26 2015
+Wilson's Creek National Battlefield,Wilson's Creek NB,38.88958984,-77.04061205,0.5,Dec 26 2015
+Wind Cave National Park,Wind Cave NP,36.01822972,-75.66798457,0.5,Oct 24 2015
+Wolf Trap National Park for the Performing Arts,Wolf Trap National Park for the Performing Arts,,,,
+Women's Rights National Historical Park,Womens Rights NHP,44.61521586,-110.5618383,0.5,May 22 2015
+World War I Memorial,World War 1 Memorial,,,,
+World War II Memorial,World War II Memorial,,,,
+Wrangell-St. Elias National Park,Wrangell-St. Elias NP,,,,
+Wrangell-St. Elias National Preserve,Wrangell-St. Elias NPres,,,,
+Wright Brothers National Memorial,Wright Brothers NM,,,,
+Wupatki National Monument,Wupatki NM,,,,
+Yellowstone National Park,Yellowstone NP,,,,
+Yosemite National Park,Yosemite NP,,,,
+Yucca House National Monument,Yucca House NM,,,,
+Yukon-Charley Rivers National Preserve,Yukon-Charley Rivers Npres,,,,
+Zion National Park,Zion NP,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
