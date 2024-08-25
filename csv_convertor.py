@@ -2,7 +2,7 @@ import pandas as pd
 from time import strptime
 import datetime
 
-df = pd.read_table("trial.csv", delimiter =",")
+df = pd.read_table("nps.csv", delimiter =",")
 
 for index, row in df.iterrows():
     if row['date'] != "NAN":
