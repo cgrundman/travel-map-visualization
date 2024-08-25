@@ -2,7 +2,7 @@ import pandas as pd
 from time import strptime
 import datetime
 
-df = pd.read_table("trial.csv", delimiter =",")
+df = pd.read_table("nps.csv", delimiter =",")
 
 for index, row in df.iterrows():
     if row['date'] != "NAN":
@@ -19,5 +19,7 @@ for index, row in df.iterrows():
     else:
         # Set null value to 0
         df.at[index,'date'] = 0
+
+    df.at[index,'values'] = 0
 
 df.to_csv("nps_list.csv")
