@@ -48,15 +48,15 @@ def plot_voronoi(counter, index, geodf, basemap, projection, site):
     # year = ''.join(date_list[:4])
     plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36)
     plt.savefig(f'plots/nps_segments_{counter}.png')
+    plt.close()
 
 # CSV into DataFrame
 # df = pd.read_table("trial.csv", delimiter =",")
 # df = pd.read_table("nps.csv", delimiter =",")
 df = pd.read_table("nps_list.csv", delimiter =",")
-print(df)
+
 # Sort the dataframe by date
 df = df.sort_values(by=['date'])
-print(df)
 
 # Import USA data for region clipping
 USA = geopandas.read_file(geoplot.datasets.get_path('contiguous_usa'))
@@ -72,8 +72,6 @@ for index, row in df.iterrows():
         # Set current region to active
         df.at[index,'values'] = 1
 
-        print(df)
-
         # Convert df to gdf (GeoPandas DataFrame)
         geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
         # df['geometry'] = geometry
@@ -82,6 +80,6 @@ for index, row in df.iterrows():
         # Plot the current map state
         counter += 1
         plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
-
+        print(row)
         # Set current region to inactive
         df.at[index,'values'] = 0.75
