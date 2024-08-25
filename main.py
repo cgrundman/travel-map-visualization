@@ -12,7 +12,7 @@ from time import strptime
 import datetime
 
 
-def plot_voronoi(i, geodf, basemap, projection):
+def plot_voronoi(counter, index, geodf, basemap, projection, site):
     # Setup the Voronoi axes; this creates the Voronoi regions
     ax = geoplot.voronoi(
         geodf, # Define the GeoPandas DataFrame
@@ -35,16 +35,28 @@ def plot_voronoi(i, geodf, basemap, projection):
                     linewidth=3,  # Width of base map's edge lines
                     zorder=1  # Plot base map edges above the voronoi regions
                     )
-
-    plt.savefig(f'plots/nps_segments_{i}.png')
+    
+    # Format date
+    date_list = list(map(str, str(site['date'])))
+    year_list, month_list, day_list = date_list[:4], date_list[4:6], date_list[6:] 
+    year = map(str, year_list)
+    year = ''.join(year)
+    month = map(str, month_list)
+    month = ''.join(month)
+    day = map(str, day_list)
+    day = ''.join(day)
+    # year = ''.join(date_list[:4])
+    plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36)
+    plt.savefig(f'plots/nps_segments_{counter}.png')
 
 # CSV into DataFrame
 # df = pd.read_table("trial.csv", delimiter =",")
 # df = pd.read_table("nps.csv", delimiter =",")
 df = pd.read_table("nps_list.csv", delimiter =",")
-
+print(df)
 # Sort the dataframe by date
-# df = df.sort_values(by=['date'])
+df = df.sort_values(by=['date'])
+print(df)
 
 # Import USA data for region clipping
 USA = geopandas.read_file(geoplot.datasets.get_path('contiguous_usa'))
@@ -57,9 +69,10 @@ counter = 0
 for index, row in df.iterrows():
     # if not np.isnan(row['date']):
     if row['date'] != 0:
-        print(row['date'], type(row['date']))
         # Set current region to active
         df.at[index,'values'] = 1
+
+        print(df)
 
         # Convert df to gdf (GeoPandas DataFrame)
         geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
@@ -68,10 +81,7 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        plot_voronoi(counter, geodf=gdf, basemap=USA, projection=proj)
+        plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
 
         # Set current region to inactive
         df.at[index,'values'] = 0.75
-
-counter += 1
-plot_voronoi(counter, geodf=gdf, basemap=USA, projection=proj)
