@@ -2,10 +2,11 @@ import pandas as pd
 from time import strptime
 import datetime
 
-df = pd.read_table("nps.csv", delimiter =",")
+df = pd.read_table("trial.csv", delimiter =",")
 
 for index, row in df.iterrows():
     if row['date'] != "NAN":
+        # Create date integer
         date = row['date']
         date_list = date.split(" ")
         year = int(date_list[2])
@@ -13,8 +14,10 @@ for index, row in df.iterrows():
         month = strptime(date_list[0],'%b').tm_mon
         datetime_obj = datetime.datetime(year, month, day)
         datetime_obj = int(datetime_obj.strftime('%Y%m%d'))
-        df.iloc[index]['date'] = datetime_obj
+        # Set value of date
+        df.at[index, 'date'] = datetime_obj
     else:
-        df.iloc[index]['date'] = 0
+        # Set null value to 0
+        df.at[index,'date'] = 0
 
-print(df)
+df.to_csv("nps_list.csv")
