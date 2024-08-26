@@ -20,7 +20,7 @@ def plot_voronoi(counter, index, geodf, basemap, projection, site):
         hue='values', # df column used to color regions
         clip=basemap,  # Define the voronoi clipping (map edge) -TODO VA source here?
         projection=projection, # Define the Projection
-        cmap='Greys', # color set
+        cmap='YlGn', # color set
         # k=None, # No. of discretized buckets to create
         legend=False, # Dont create a legend
         edgecolor='#000000', # Color of the voronoi boundaries
@@ -46,7 +46,7 @@ def plot_voronoi(counter, index, geodf, basemap, projection, site):
     day = map(str, day_list)
     day = ''.join(day)
     # year = ''.join(date_list[:4])
-    plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36)
+    plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36, loc='right')
     plt.savefig(f'plots/nps_segments_{counter}.png')
     plt.close()
 
@@ -80,6 +80,8 @@ for index, row in df.iterrows():
         # Plot the current map state
         counter += 1
         plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
-        print(row)
+        # print(row)
         # Set current region to inactive
         df.at[index,'values'] = 0.75
+
+# plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
