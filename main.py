@@ -63,8 +63,6 @@ def plot_voronoi(counter, index, geodf, basemap, projection, site):
     plt.close()
 
 # CSV into DataFrame
-# df = pd.read_table("trial.csv", delimiter =",")
-# df = pd.read_table("nps.csv", delimiter =",")
 df = pd.read_table("nps_list.csv", delimiter =",")
 
 # Sort the dataframe by date
@@ -91,9 +89,9 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
+        # plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
         # print(row)
         # Set current region to inactive
         df.at[index,'values'] = 0.75
 
-# plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
+plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
