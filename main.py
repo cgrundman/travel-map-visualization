@@ -70,6 +70,9 @@ df = df.sort_values(by=['date'])
 
 # Import USA data for region clipping
 USA = geopandas.read_file(geoplot.datasets.get_path('contiguous_usa'))
+shapefile = geopandas.read_file("cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp")
+print(USA)
+print(shapefile)
 
 # Set the map projection
 proj = geoplot.crs.AlbersEqualArea(central_longitude=-98, central_latitude=39.5)
@@ -95,4 +98,4 @@ for index, row in df.iterrows():
         df.at[index,'values'] = 0.75
 
 print(counter)
-plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
+plot_voronoi(counter, index, geodf=gdf, basemap=shapefile, projection=proj, site=row)
