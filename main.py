@@ -6,9 +6,10 @@ import geopandas
 import geoplot
 # Import shapely to convert string lat-longs to Point objects
 from shapely.geometry import Point
-# Import date and time formatters
 
 
+# Set global variables, directories for map creation and site locations
+LOCATION_CSV = "nps_list.csv"
 GEO_DATA_DIR = "cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
 
 
@@ -51,7 +52,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
     plt.close()
 
 # CSV into DataFrame
-df = pd.read_table("nps_list.csv", delimiter =",")
+df = pd.read_table(LOCATION_CSV, delimiter =",")
 
 # Sort the dataframe by date
 df = df.sort_values(by=['date'])
