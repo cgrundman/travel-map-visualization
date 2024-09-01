@@ -23,8 +23,10 @@ WEIGHTS = {
     "NS": 0.5
 }
 
+GEO_DATA_DIR = "cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
 
-def plot_voronoi(counter, index, geodf, basemap, projection, site):
+
+def plot_voronoi(counter, geodf, basemap, projection, site):
     # Setup the Voronoi axes; this creates the Voronoi regions
     ax = geoplot.voronoi(
         geodf, # Define the GeoPandas DataFrame
@@ -69,7 +71,7 @@ df = pd.read_table("nps_list.csv", delimiter =",")
 df = df.sort_values(by=['date'])
 
 # Import USA data for region clipping
-USA = geopandas.read_file("cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp")
+base_map = geopandas.read_file(GEO_DATA_DIR)
 
 # Set the map projection
 proj = geoplot.crs.AlbersEqualArea(central_longitude=-98, central_latitude=39.5)
@@ -89,11 +91,11 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
+        plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
         
         # Set current region to inactive
         df.at[index,'values'] = 0.75
 
 # Toubleshooting Map
 # print(counter)
-# plot_voronoi(counter, index, geodf=gdf, basemap=USA, projection=proj, site=row)
+# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
