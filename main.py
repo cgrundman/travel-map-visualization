@@ -1,6 +1,5 @@
 # Import pandas, numpy, and matplotlib
 import pandas as pd
-import numpy as np
 from matplotlib import pyplot as plt
 # Import Geopandas modules
 import geopandas
@@ -8,20 +7,7 @@ import geoplot
 # Import shapely to convert string lat-longs to Point objects
 from shapely.geometry import Point
 # Import date and time formatters
-from time import strptime
-import datetime
 
-
-WEIGHTS = {
-    "NP": 1.0,
-    "NPres": 0.7,
-    "NM": 0.5,
-    "NHP": 0.5,
-    "NMP":0.5,
-    "NB": 0.5,
-    "NL": 0.5,
-    "NS": 0.5
-}
 
 GEO_DATA_DIR = "cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
 
