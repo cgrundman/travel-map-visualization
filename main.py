@@ -35,7 +35,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
         hue='values', # df column used to color regions
         clip=basemap,  # Define the voronoi clipping (map edge)
         projection=projection, # Define the Projection
-        cmap='YlGn', # color set
+        cmap='tab20b', # color set
         # k=None, # No. of discretized buckets to create
         legend=False, # Dont create a legend
         edgecolor='#000000', # Color of the voronoi boundaries
@@ -72,6 +72,24 @@ df = pd.read_table(LOCATION_CSV, delimiter =",")
 # Sort the dataframe by date
 df = df.sort_values(by=['date'])
 
+# Add min and max points
+max_row = [190,"Max Point","not a point",34.593218347568765,69.17071209340384,1.0,0]
+min_row = [191,"Min Point","not a point",39.043989815673996,125.76231588440946,0.0,0]
+# dict = {'Name':['Martha', 'Tim', 'Rob', 'Georgia'], # TODO Add min and max points for coloring
+#         'Maths':[87, 91, 97, 95],
+#         'Science':[83, 99, 84, 76]
+#        }
+
+# df = pd.DataFrame(dict)
+
+# display(df)
+
+# df2 = {'Name': 'Amy', 'Maths': 89, 'Science': 93}
+# df = df._append(df2, ignore_index = True)
+
+# display(df)
+
+
 # Import USA data for region clipping
 base_map = geopandas.read_file(GEO_DATA_DIR)
 
@@ -87,7 +105,7 @@ for index, row in df.iterrows():
     # if not np.isnan(row['date']):
     if row['date'] != 0:
         # Set current region to active
-        df.at[index,'values'] = 1
+        df.at[index,'values'] = .2
 
         # Convert df to gdf (GeoPandas DataFrame)
         geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
@@ -96,11 +114,11 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+        # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
         
         # Set current region to inactive
-        df.at[index,'values'] = 0.75
+        df.at[index,'values'] = 0.15
 
 # Toubleshooting Map
 # print(counter)
-# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
