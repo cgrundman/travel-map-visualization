@@ -69,26 +69,18 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
 # CSV into DataFrame
 df = pd.read_table(LOCATION_CSV, delimiter =",")
 
-# Sort the dataframe by date
-df = df.sort_values(by=['date'])
+# Iterate through sites visited
+for index, row in df.iterrows():
+    df.at[index,'values'] = 0.51
 
 # Add min and max points
-max_row = [190,"Max Point","not a point",34.593218347568765,69.17071209340384,1.0,0]
-min_row = [191,"Min Point","not a point",39.043989815673996,125.76231588440946,0.0,0]
-# dict = {'Name':['Martha', 'Tim', 'Rob', 'Georgia'], # TODO Add min and max points for coloring
-#         'Maths':[87, 91, 97, 95],
-#         'Science':[83, 99, 84, 76]
-#        }
+max_row = [len(df),"Max Point","not a point",34.593218347568765,69.17071209340384,1.0,0]
+df.loc[len(df)] = max_row # append to dataframe
+min_row = [len(df),"Min Point","not a point",39.043989815673996,125.76231588440946,0.0,0]
+df.loc[len(df)] = min_row # append to dataframe
 
-# df = pd.DataFrame(dict)
-
-# display(df)
-
-# df2 = {'Name': 'Amy', 'Maths': 89, 'Science': 93}
-# df = df._append(df2, ignore_index = True)
-
-# display(df)
-
+# Sort the dataframe by date
+df = df.sort_values(by=['date'])
 
 # Import USA data for region clipping
 base_map = geopandas.read_file(GEO_DATA_DIR)
@@ -105,7 +97,7 @@ for index, row in df.iterrows():
     # if not np.isnan(row['date']):
     if row['date'] != 0:
         # Set current region to active
-        df.at[index,'values'] = .2
+        df.at[index,'values'] = .61
 
         # Convert df to gdf (GeoPandas DataFrame)
         geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
@@ -117,7 +109,7 @@ for index, row in df.iterrows():
         # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
         
         # Set current region to inactive
-        df.at[index,'values'] = 0.15
+        df.at[index,'values'] = 0.66
 
 # Toubleshooting Map
 # print(counter)
