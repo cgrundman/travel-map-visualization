@@ -1,6 +1,7 @@
 # Import pandas, numpy, and matplotlib
 import pandas as pd
 from matplotlib import pyplot as plt
+import math
 # Import Geopandas modules
 import geopandas
 import geoplot
@@ -62,7 +63,10 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
     day = map(str, day_list)
     day = ''.join(day)
     # year = ''.join(date_list[:4])
-    plt.title(f'{site['name']} {site['designation']}, {month}/{day}/{year}', fontsize=36, loc='right')
+    if math.isnan(site['designation']):
+        plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36, loc='right')
+    else:
+        plt.title(f'{site['name']} {site['designation']}, {month}/{day}/{year}', fontsize=36, loc='right')
     plt.savefig(f'plots/{MAP_NAME}_{counter}.png')
     plt.close()
 
