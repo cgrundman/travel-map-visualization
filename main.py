@@ -40,7 +40,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
         # k=None, # No. of discretized buckets to create
         legend=False, # Dont create a legend
         edgecolor='#000000', # Color of the voronoi boundaries
-        linewidth=0.5 # width of the voronoi boundary lines
+        linewidth=1 # width of the voronoi boundary lines
     )
 
     # Render the plot with a base map
@@ -49,7 +49,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
         ax=ax,  # Axis attribute we created above
         extent=EXTENT, # Set plotting boundaries to base map boundaries
         edgecolor='black',  # Color of base map's edges
-        linewidth=3,  # Width of base map's edge lines
+        linewidth=6,  # Width of base map's edge lines
         zorder=1  # Plot base map edges above the voronoi regions
     )
     
