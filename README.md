@@ -1,6 +1,6 @@
 # Travel Map Visualization
 
-This repo features visualization code for Regional/National travel. An example can be seen below (national parks visited as of Sep 2024):
+This repo features visualization code for Regional/National travel. Using a base map from a shapefile and geopandas to create a voronoi segmented map, this code can create a timelapse of travels in a geographic region or country from a list of locations. An example can be seen below (national parks visited as of Sep 2024):
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/national_parks.png"/>
 
@@ -26,9 +26,13 @@ Install libraries
 
 ## Demo
 
-The following gif shows the order in which the parks were seen (file is large, may take time to load):
+The following are limited gifs made with [ezgif.com](https://ezgif.com/maker). Full gifs can be seen in the subdirectories.
+
+US National Parks:
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/nps_small.gif" width="500"/>
+
+Germany cities and sites (sehenswürdigkeiten):
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/Sehenswuerdigkeiten/de_small.gif" width="350"/>
 
