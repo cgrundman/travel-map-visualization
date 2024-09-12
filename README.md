@@ -2,7 +2,9 @@
 
 This repo features visualization code for Regional/National travel. Using a base map from a shapefile and geopandas to create a voronoi segmented map, this code can create a timelapse of travels in a geographic region or country from a list of locations. An example can be seen below (national parks visited as of Sep 2024):
 
-<img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/national_parks.png"/>
+<img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/national_parks.png" width="300"/>
+
+<img src="https://github.com/cgrundman/np-map-visualization/blob/main/Sehenswuerdigkeiten/de_sites.png" width="200"/>
 
 ## Run Locally
 
