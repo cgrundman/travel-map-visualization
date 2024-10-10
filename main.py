@@ -11,24 +11,24 @@ from shapely.geometry import Point
 # Set global variables, directories for map creation and site locations
 
 # National Park Data
-MAP_NAME = "national_parks"
-EXTENT=[-120, 25, -73, 49]
-CENTRAL_LONGITUDE=-98
-CENTRAL_LATITUDE=39.5
-LOCATION_CSV = "National_Parks/nps_list.csv"
-GEO_DATA_DIR = "National_Parks/cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
-COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
-FIG_SIZE = (20,14)
+# MAP_NAME = "national_parks"
+# EXTENT=[-120, 25, -73, 49]
+# CENTRAL_LONGITUDE=-98
+# CENTRAL_LATITUDE=39.5
+# LOCATION_CSV = "National_Parks/nps_list.csv"
+# GEO_DATA_DIR = "National_Parks/cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
+# COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
+# FIG_SIZE = (20,14)
 
 # Germany Sites
-# MAP_NAME = "germany_sites"
-# EXTENT=[6, 47, 15, 55]
-# CENTRAL_LONGITUDE=10.5
-# CENTRAL_LATITUDE=51
-# LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
-# GEO_DATA_DIR = "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
-# COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
-# FIG_SIZE = (14,18)
+MAP_NAME = "germany_sites"
+EXTENT=[6, 47, 15, 55]
+CENTRAL_LONGITUDE=10.5
+CENTRAL_LATITUDE=51
+LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+GEO_DATA_DIR = "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
+COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
+FIG_SIZE = (14,18)
 
 def plot_voronoi(counter, geodf, basemap, projection, site):
     # Setup the Voronoi axes; this creates the Voronoi regions
@@ -115,6 +115,7 @@ for index, row in df.iterrows():
         # Plot the current map state
         counter += 1
         plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+        # print(df.at[index,'name'])
         
         # Set current region to inactive
         df.at[index,'values'] = COLOR_VALUES[2]
