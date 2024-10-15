@@ -6,6 +6,8 @@ This repo features visualization code for Regional/National travel. Using a base
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/Sehenswuerdigkeiten/de_sites.png" width="200"/>
 
+These maps are voronoi segmented maps. The this takes given points and maps regions of least distance to them. The need was to better show the extent of travels. Points do not accuratly show the amounbt of distance and size of the area seen. 
+
 ## Run Locally
 
 Clone the project
@@ -34,9 +36,13 @@ US National Parks:
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/nps_small.gif" width="500"/>
 
-Germany cities and sites (sehenswürdigkeiten):
+I drove to most of these parks with my own car (2012 Chevrolet Sonic), sometimes taking a free weekend or holiday to see the sites. I was also able to do this between jobs and committed all of vacation time for 6 years to this pursuit.
+
+Germany cities and sites (Sehenswürdigkeiten):
 
 <img src="https://github.com/cgrundman/np-map-visualization/blob/main/Sehenswuerdigkeiten/de_small.gif" width="350"/>
+
+As a fun fact, the locations seen on this maps are almost exclsivly through public transportation and train travel. This makes seeing these cities and places much more difficult.
 
 ## Acknowledgements
 
