@@ -1,0 +1,22 @@
+Usage of the geoBoundaries Database requires citation.:
+This can be satisfied by either:
+   1. (Preferred) - Citing our academic work: Runfola, D. et al. (2020)
+      geoBoundaries: A global database of political administrative boundaries.
+      PLoS ONE 15(4): e0231866. https://doi.org/10.1371/journal.pone.0231866
+   2. Providing a link to geoboundaries.org - i.e., 'Administrative boundaries courtesy 
+      of geoBoundaries.org'
+Additionally, we recommend citation of the source(s) noted in this metadata file.
+
+
+ISO-3166-1 (Alpha-3): GBR
+Boundary Representative of Year: 2021
+Boundary Type: ADM0
+Boundary Source(s): Eurostat- European Commission
+Canonical Boundary Type Name: Country
+License: Creative Commons Attribution 4.0 (CC BY 4.0)
+License Notes: 
+License Source: https//ec.europa.eu/info/legal-notice_en
+Data Source: https//ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
+Source Data Updated On: Thu Jan 19 07:31:04 2023
+File Built On: Dec 12, 2023
+Number of Administrative Units: 1
