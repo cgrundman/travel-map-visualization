@@ -15,13 +15,13 @@ from colormap import custom_cmap
 SCALE = 1
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Meta-Data CSV into list
 md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
@@ -162,6 +162,9 @@ for index, row in points_gdf.iterrows():
             cropped_image = image.crop(crop_box) # crop image
             cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
             # print("Figure cropped.")
+
+            # Save the last plot in the general file
+            cropped_image.save(f'./plots/{PATH}_{SCALE}.png') # save
 
         plt.close(fig)
 
