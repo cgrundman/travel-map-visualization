@@ -42,7 +42,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
         # k=None, # No. of discretized buckets to create
         legend=False, # Dont create a legend
         edgecolor='#000000', # Color of the voronoi boundaries
-        linewidth=1 # width of the voronoi boundary lines
+        linewidth=3 # width of the voronoi boundary lines
     )
 
     # Render the plot with a base map
@@ -71,7 +71,7 @@ def plot_voronoi(counter, geodf, basemap, projection, site):
     elif type(site['designation']) == type("string"):
         plt.title(f'{site['name']} {site['designation']}, {month}/{day}/{year}', fontsize=36, loc='right')
     print(f"Saving plot: {MAP_NAME}_{counter}")
-    plt.savefig(f'plots/{MAP_NAME}_{counter}.png')
+    plt.savefig(f'plots/temp/{MAP_NAME}_{counter}.png')
     plt.close()
 
 # CSV into DataFrame
@@ -113,13 +113,13 @@ for index, row in df.iterrows():
         gdf = geopandas.GeoDataFrame(df, geometry=geometry)
 
         # Plot the current map state
-        counter += 1
-        plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+        # counter += 1
+        # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
         # print(df.at[index,'name'])
         
         # Set current region to inactive
         df.at[index,'values'] = COLOR_VALUES[2]
 
 # Toubleshooting Map
-# print(counter)
-# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+print(counter)
+plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
