@@ -1,0 +1,28 @@
+{
+    "Title": "Deutschland",
+    "Submaps": [
+        {"Name": "BB", "Color": 0.6},
+        {"Name": "BE", "Color": 0.4},
+        {"Name": "BW", "Color": 0.0},
+        {"Name": "BY", "Color": 0.4},
+        {"Name": "HB", "Color": 0.0},
+        {"Name": "HE", "Color": 0.2},
+        {"Name": "HH", "Color": 0.8},
+        {"Name": "MV", "Color": 0.2},
+        {"Name": "NI", "Color": 0.4},
+        {"Name": "NW", "Color": 0.6},
+        {"Name": "RP", "Color": 0.8},
+        {"Name": "SH", "Color": 0.0},
+        {"Name": "SL", "Color": 0.4},
+        {"Name": "SN", "Color": 0.2},
+        {"Name": "ST", "Color": 0.8},
+        {"Name": "TH", "Color": 0.0}
+    ],
+    "Cropping": [
+        {
+            "small": [0.150, 0.175, 0.890, 0.830],
+            "big": [0.000, 0.111, 1.000, 1.000]
+        }
+    ],
+    "Colors": []
+}
