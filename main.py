@@ -6,6 +6,7 @@ import geopandas
 import geoplot
 # Import shapely to convert string lat-longs to Point objects
 from shapely.geometry import Point
+import make_gif
 
 
 # Set global variables, directories for map creation and site locations
@@ -114,12 +115,15 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
-        # print(df.at[index,'name'])
+        if counter >= 90:
+            plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+            print(df.at[index,'name'])
         
         # Set current region to inactive
         df.at[index,'values'] = COLOR_VALUES[2]
 
 # Toubleshooting Map
-print(counter)
-plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+# print(counter)
+# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+
+make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
