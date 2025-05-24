@@ -6,7 +6,7 @@ import geopandas
 import geoplot
 # Import shapely to convert string lat-longs to Point objects
 from shapely.geometry import Point
-import make_gif
+# import make_gif
 
 
 # Set global variables, directories for map creation and site locations
@@ -27,7 +27,7 @@ EXTENT=[6, 47, 15, 55]
 CENTRAL_LONGITUDE=10.5
 CENTRAL_LATITUDE=51
 LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
-GEO_DATA_DIR = "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
+GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 FIG_SIZE = (14,18)
 
@@ -93,6 +93,7 @@ df = df.sort_values(by=['date'])
 
 # Import USA data for region clipping
 base_map = geopandas.read_file(GEO_DATA_DIR)
+base_map = base_map[base_map["shapeISO"] == "DE-BY"]
 
 # Set the map projection
 proj = geoplot.crs.AlbersEqualArea(
@@ -115,15 +116,25 @@ for index, row in df.iterrows():
 
         # Plot the current map state
         counter += 1
-        if counter >= 90:
-            plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
-            print(df.at[index,'name'])
+        # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+        print(df.at[index,'name'])
         
         # Set current region to inactive
         df.at[index,'values'] = COLOR_VALUES[2]
 
 # Toubleshooting Map
 # print(counter)
-# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
+plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
 
-make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
+# make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
+
+
+# gdf = geopandas.read_file("Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp")  # path to your file
+# # Filter for a specific state, e.g., Bavaria
+# bavaria = gdf[gdf["shapeISO"] == "DE-BY"]  # Adjust to your column and name
+
+# # Plot it
+# bavaria.plot(edgecolor="black", facecolor="lightgreen", figsize=(8, 6))
+# plt.title("Bavaria (Bayern) – Admin Level 1")
+# plt.axis("off")
+# plt.show()
