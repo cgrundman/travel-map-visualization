@@ -1,13 +1,59 @@
 # Import pandas, numpy, and matplotlib
 import pandas as pd
 from matplotlib import pyplot as plt
+import numpy as np
 # Import Geopandas modules
 import geopandas as gpd
 import geoplot
 # Import shapely to convert string lat-longs to Point objects
-from shapely.geometry import Point
+from shapely.geometry import Point, Polygon
 # import make_gif
 import os
+from scipy.spatial import Voronoi
+
+
+def voronoi_regions(vor, radius=1000):
+    from collections import defaultdict
+
+    new_regions = []
+    new_vertices = vor.vertices.tolist()
+    center = vor.points.mean(axis=0)
+
+    # Map ridge vertices to all ridges for a point
+    all_ridges = defaultdict(list)
+    for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
+        all_ridges[p1].append((p2, v1, v2))
+        all_ridges[p2].append((p1, v1, v2))
+
+    # Construct new regions
+    for p1, region_idx in enumerate(vor.point_region):
+        region = vor.regions[region_idx]
+        if all(v >= 0 for v in region):
+            new_regions.append([vor.vertices[i] for i in region])
+            continue
+
+        # Reconstruct non-finite region
+        ridges = all_ridges[p1]
+        new_region = [vor.vertices[v] for v in region if v >= 0]
+
+        for p2, v1, v2 in ridges:
+            if v2 < 0:
+                v1, v2 = v2, v1
+            if v1 >= 0:
+                continue
+
+            # Calculate direction and extend
+            t = vor.points[p2] - vor.points[p1]
+            t /= np.linalg.norm(t)
+            n = np.array([-t[1], t[0]])
+            midpoint = vor.points[[p1, p2]].mean(axis=0)
+            direction = np.sign(np.dot(midpoint - center, n)) * n
+            far_point = vor.vertices[v2] + direction * radius
+            new_region.append(far_point.tolist())
+
+        new_regions.append(new_region)
+
+    return [Polygon(r) for r in new_regions if len(r) > 2]
 
 
 # # Set global variables, directories for map creation and site locations
@@ -27,7 +73,7 @@ import os
 # EXTENT=[6, 47, 15, 55]
 # CENTRAL_LONGITUDE=10.5
 # CENTRAL_LATITUDE=51
-# LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
@@ -76,8 +122,10 @@ import os
 #     plt.savefig(f'plots/temp/{MAP_NAME}_{counter}.png')
 #     plt.close()
 
-# # CSV into DataFrame
-# df = pd.read_table(LOCATION_CSV, delimiter =",")
+# CSV into DataFrame
+df = pd.read_table(LOCATION_CSV, delimiter =",")
+filtered_rows = df[df['designation'] == 'BY']
+points = df[['latitude', 'longitude']].values
 
 # # Iterate through sites visited
 # for index, row in df.iterrows():
@@ -130,20 +178,29 @@ import os
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
 
 
+# Compute the Voronoi diagram
+vor = Voronoi(points)
+
+# Create Voronoi polygons
+polygons = voronoi_regions(vor)
+
+# Combine into GeoDataFrame
+voronoi_gdf = gpd.GeoDataFrame(geometry=polygons)
+points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
+
 # Path to the folder containing shapefiles
 shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states"  # adjust as needed
 
 # List all .shp files
-shapefiles = [os.path.join(shapefile_dir, f)
-              for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
+shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
 # Load each shapefile into a list of GeoDataFrames
 gdfs = [gpd.read_file(shp) for shp in shapefiles]
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
-for gdf in gdfs:
-    gdf.plot(ax=ax, edgecolor="black", alpha=0.7)
+# for gdf in gdfs:
+voronoi_gdf.plot(ax=ax, edgecolor="black", alpha=0.7)
 
 plt.title("All German States")
 plt.axis("off")
