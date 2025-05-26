@@ -125,7 +125,7 @@ LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 # CSV into DataFrame
 df = pd.read_table(LOCATION_CSV, delimiter =",")
 filtered_rows = df[df['designation'] == 'BY']
-points = df[['latitude', 'longitude']].values
+points = df[['longitude', 'latitude']].values
 
 # # Iterate through sites visited
 # for index, row in df.iterrows():
@@ -187,9 +187,14 @@ polygons = voronoi_regions(vor)
 # Combine into GeoDataFrame
 voronoi_gdf = gpd.GeoDataFrame(geometry=polygons)
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
+points_gdf.set_crs(epsg=4326, inplace=True)
+
+# Path for main outline
+main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
+main_gdf = gpd.read_file(main_shp)
 
 # Path to the folder containing shapefiles
-shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states"  # adjust as needed
+shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
 # List all .shp files
 shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
@@ -197,10 +202,14 @@ shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) 
 # Load each shapefile into a list of GeoDataFrames
 gdfs = [gpd.read_file(shp) for shp in shapefiles]
 
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, ax = plt.subplots(figsize=(10, 15))
 
-# for gdf in gdfs:
-voronoi_gdf.plot(ax=ax, edgecolor="black", alpha=0.7)
+main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
+
+for gdf in gdfs:
+    gdf.plot(ax=ax, edgecolor="black", alpha=0.2,linewidth=1)
+
+points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
 
 plt.title("All German States")
 plt.axis("off")
