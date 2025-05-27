@@ -14,6 +14,29 @@ from scipy.spatial import Voronoi
 from collections import defaultdict
 
 
+# # Set global variables, directories for map creation and site locations
+
+# # National Park Data
+# # MAP_NAME = "national_parks"
+# # EXTENT=[-120, 25, -73, 49]
+# # CENTRAL_LONGITUDE=-98
+# # CENTRAL_LATITUDE=39.5
+# # LOCATION_CSV = "National_Parks/nps_list.csv"
+# # GEO_DATA_DIR = "National_Parks/cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
+# # COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
+# # FIG_SIZE = (20,14)
+
+# # Germany Sites
+# MAP_NAME = "germany_sites"
+# EXTENT=[6, 47, 15, 55]
+# CENTRAL_LONGITUDE=10.5
+# CENTRAL_LATITUDE=51
+LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+# GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
+# COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
+# FIG_SIZE = (14,18)
+
+
 def voronoi_regions(vor, boundary_polygon):
 
     new_regions = []
@@ -107,32 +130,10 @@ def make_voronoi_for_state(state_gdf, points_gdf):
 
     return clipped
 
-# # Set global variables, directories for map creation and site locations
-
-# # National Park Data
-# # MAP_NAME = "national_parks"
-# # EXTENT=[-120, 25, -73, 49]
-# # CENTRAL_LONGITUDE=-98
-# # CENTRAL_LATITUDE=39.5
-# # LOCATION_CSV = "National_Parks/nps_list.csv"
-# # GEO_DATA_DIR = "National_Parks/cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
-# # COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
-# # FIG_SIZE = (20,14)
-
-# # Germany Sites
-# MAP_NAME = "germany_sites"
-# EXTENT=[6, 47, 15, 55]
-# CENTRAL_LONGITUDE=10.5
-# CENTRAL_LATITUDE=51
-LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
-# GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
-# COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
-# FIG_SIZE = (14,18)
-
 
 # CSV into DataFrame
 df = pd.read_table(LOCATION_CSV, delimiter =",")
-filtered_rows = df[df['designation'] == 'BY']
+# filtered_rows = df[df['designation'] == 'BY']
 points = df[['longitude', 'latitude']].values
 
 # Combine into GeoDataFrame
@@ -140,39 +141,46 @@ points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
-# Extract only the points for Bavaria
-by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
+# Make list of submaps
+submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 
-# Path for main outline
-main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
-main_gdf = gpd.read_file(main_shp)
+# iterate through submaps
+for submap in submaps:
+    # Extract only the points for Bavaria
+    # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
+    by_points_gdf = points_gdf[points_gdf['designation'] == f'{submap}']
 
-# Path to the folder containing shapefiles
-shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
+    # Path for main outline
+    main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
+    main_gdf = gpd.read_file(main_shp)
 
-# Load state GeoDataFrame (e.g., Bayern)
-bayern = gpd.read_file("Sehenswuerdigkeiten/geoboundaries_states/BY.shp")
-bayern = bayern[bayern["shapeISO"] == "DE-BY"]  # if using geoBoundaries
-bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
+    # Path to the folder containing shapefiles
+    shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
-# Create Voronoi diagram within Bavaria
-# bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
-# bayern_voronoi_clipped = make_voronoi_for_state(bayern, points_gdf)
+    # Load state GeoDataFrame (e.g., Bayern)
+    bayern = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap}.shp")
+    bayern = bayern[bayern["shapeISO"] == f"DE-{submap}"]  # if using geoBoundaries
+    bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
 
-# List all .shp files
-# shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
+    # Create Voronoi diagram within Bavaria
+    # bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
+    # bayern_voronoi_clipped = make_voronoi_for_state(bayern, points_gdf)
 
-fig, ax = plt.subplots(figsize=(10, 15))
+    # List all .shp files
+    # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
-main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
-bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-# bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    fig, ax = plt.subplots(figsize=(10, 15))
 
-by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
+    # main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
+    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
-plt.title("All German States")
-plt.axis("off")
-plt.show()
+    by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
+
+    plt.title("All German States")
+    plt.axis("off")
+    plt.savefig(f"./plots/temp/{submap}.png")
+    # plt.show()
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
