@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 # Import Geopandas modules
 import geopandas as gpd
-import geoplot
+# import geoplot
 # Import shapely to convert string lat-longs to Point objects
 from shapely.geometry import Point, Polygon
 # import make_gif
@@ -12,7 +12,7 @@ import os
 from scipy.spatial import Voronoi
 
 
-def voronoi_regions(vor, radius=1000):
+def voronoi_regions(vor):
     from collections import defaultdict
 
     new_regions = []
@@ -36,6 +36,9 @@ def voronoi_regions(vor, radius=1000):
         ridges = all_ridges[p1]
         new_region = [vor.vertices[v] for v in region if v >= 0]
 
+        bounds = vor.points.total_bounds
+        radius = np.linalg.norm([bounds[2] - bounds[0], bounds[3] - bounds[1]]) * 2
+
         for p2, v1, v2 in ridges:
             if v2 < 0:
                 v1, v2 = v2, v1
@@ -55,6 +58,38 @@ def voronoi_regions(vor, radius=1000):
 
     return [Polygon(r) for r in new_regions if len(r) > 2]
 
+
+def make_voronoi_for_state(state_gdf, points_gdf):
+    """
+    Generate and clip Voronoi polygons within a given state.
+    
+    Args:
+        state_gdf (GeoDataFrame or GeoSeries): A GeoDataFrame or GeoSeries with one polygon representing the state.
+        points_gdf (GeoDataFrame): A GeoDataFrame with point geometries within the state.
+        radius (float): Radius to extend infinite Voronoi edges.
+
+    Returns:
+        GeoDataFrame: Clipped Voronoi regions.
+    """
+    # Ensure both are in the same projected CRS (UTM Zone 32N is typical for Germany)
+    projected_crs = "EPSG:4326"
+    state_proj = state_gdf.to_crs(projected_crs)
+    points_proj = points_gdf.to_crs(projected_crs)
+
+    # Extract point coordinates
+    coords = np.array([[geom.x, geom.y] for geom in points_proj.geometry])
+
+    # Compute Voronoi diagram
+    vor = Voronoi(coords)
+    
+    # Create regions
+    polygons = voronoi_regions(vor)
+    voronoi_gdf = gpd.GeoDataFrame(geometry=polygons, crs=projected_crs)
+
+    # Clip Voronoi to the state boundary
+    clipped = gpd.overlay(voronoi_gdf, state_proj, how="intersection")
+
+    return clipped
 
 # # Set global variables, directories for map creation and site locations
 
@@ -122,11 +157,6 @@ LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 #     plt.savefig(f'plots/temp/{MAP_NAME}_{counter}.png')
 #     plt.close()
 
-# CSV into DataFrame
-df = pd.read_table(LOCATION_CSV, delimiter =",")
-filtered_rows = df[df['designation'] == 'BY']
-points = df[['longitude', 'latitude']].values
-
 # # Iterate through sites visited
 # for index, row in df.iterrows():
 #     df.at[index,'values'] = COLOR_VALUES[0]
@@ -175,19 +205,18 @@ points = df[['longitude', 'latitude']].values
 # # print(counter)
 # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
 
-# # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
-
-
-# Compute the Voronoi diagram
-vor = Voronoi(points)
-
-# Create Voronoi polygons
-polygons = voronoi_regions(vor)
+# CSV into DataFrame
+df = pd.read_table(LOCATION_CSV, delimiter =",")
+filtered_rows = df[df['designation'] == 'BY']
+points = df[['longitude', 'latitude']].values
 
 # Combine into GeoDataFrame
-voronoi_gdf = gpd.GeoDataFrame(geometry=polygons)
+# voronoi_gdf = gpd.GeoDataFrame(geometry=polygons)
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
+
+# Extract only the points for Bavaria
+by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
 
 # Path for main outline
 main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
@@ -196,21 +225,35 @@ main_gdf = gpd.read_file(main_shp)
 # Path to the folder containing shapefiles
 shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
+# Load state GeoDataFrame (e.g., Bayern)
+bayern = gpd.read_file("Sehenswuerdigkeiten/geoboundaries_states/BY.shp")
+bayern = bayern[bayern["shapeISO"] == "DE-BY"]  # if using geoBoundaries
+bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
+
+# Create Voronoi diagram within Bavaria
+bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
+# bayern_voronoi_clipped = make_voronoi_for_state(bayern, points_gdf)
+
 # List all .shp files
-shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
+# shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
 # Load each shapefile into a list of GeoDataFrames
-gdfs = [gpd.read_file(shp) for shp in shapefiles]
+# gdfs = [gpd.read_file(shp) for shp in shapefiles]
 
 fig, ax = plt.subplots(figsize=(10, 15))
 
-main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
+# main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
+# bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
-for gdf in gdfs:
-    gdf.plot(ax=ax, edgecolor="black", alpha=0.2,linewidth=1)
+# for gdf in gdfs:
+#     gdf.plot(ax=ax, edgecolor="black", alpha=0.2,linewidth=1)
 
-points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
+by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
 
 plt.title("All German States")
 plt.axis("off")
 plt.show()
+
+# Create gif from produced plots
+# # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
