@@ -6,57 +6,73 @@ import numpy as np
 import geopandas as gpd
 # import geoplot
 # Import shapely to convert string lat-longs to Point objects
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon, LineString
+from shapely.ops import unary_union, polygonize
 # import make_gif
 import os
 from scipy.spatial import Voronoi
+from collections import defaultdict
 
 
-def voronoi_regions(vor):
-    from collections import defaultdict
+def voronoi_regions(vor, boundary_polygon):
 
     new_regions = []
-    new_vertices = vor.vertices.tolist()
     center = vor.points.mean(axis=0)
-
-    # Map ridge vertices to all ridges for a point
     all_ridges = defaultdict(list)
+
+    # Build a mapping from point to its ridges
     for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
         all_ridges[p1].append((p2, v1, v2))
         all_ridges[p2].append((p1, v1, v2))
 
-    # Construct new regions
     for p1, region_idx in enumerate(vor.point_region):
         region = vor.regions[region_idx]
-        if all(v >= 0 for v in region):
-            new_regions.append([vor.vertices[i] for i in region])
+
+        # Skip empty or invalid regions
+        if len(region) == 0:
             continue
 
-        # Reconstruct non-finite region
-        ridges = all_ridges[p1]
-        new_region = [vor.vertices[v] for v in region if v >= 0]
+        # If the region is finite, just take its vertices
+        if all(v >= 0 for v in region):
+            polygon = Polygon([vor.vertices[v] for v in region])
+            clipped = polygon.intersection(boundary_polygon)
+            if not clipped.is_empty:
+                new_regions.append(clipped)
+            continue
 
-        bounds = vor.points.total_bounds
-        radius = np.linalg.norm([bounds[2] - bounds[0], bounds[3] - bounds[1]]) * 2
+        # Reconstruct infinite region
+        ridges = all_ridges[p1]
+        region_coords = []
 
         for p2, v1, v2 in ridges:
-            if v2 < 0:
-                v1, v2 = v2, v1
-            if v1 >= 0:
-                continue
+            if v1 >= 0 and v2 >= 0:
+                region_coords.append((vor.vertices[v1], vor.vertices[v2]))
+            else:
+                # Extend infinite ridge until it intersects the boundary
+                if v1 == -1:
+                    v_finite = vor.vertices[v2]
+                else:
+                    v_finite = vor.vertices[v1]
 
-            # Calculate direction and extend
-            t = vor.points[p2] - vor.points[p1]
-            t /= np.linalg.norm(t)
-            n = np.array([-t[1], t[0]])
-            midpoint = vor.points[[p1, p2]].mean(axis=0)
-            direction = np.sign(np.dot(midpoint - center, n)) * n
-            far_point = vor.vertices[v2] + direction * radius
-            new_region.append(far_point.tolist())
+                t = vor.points[p2] - vor.points[p1]
+                t /= np.linalg.norm(t)
+                n = np.array([-t[1], t[0]])
+                midpoint = vor.points[[p1, p2]].mean(axis=0)
+                direction = np.sign(np.dot(midpoint - center, n)) * n
 
-        new_regions.append(new_region)
+                # Create a far away point in that direction
+                far_point = v_finite + direction * 1e5
+                region_coords.append((v_finite, far_point))
 
-    return [Polygon(r) for r in new_regions if len(r) > 2]
+        # Turn edges into a polygon
+        polygon = polygonize(LineString(pair) for pair in region_coords)
+        merged = unary_union(list(polygon))
+        clipped = merged.intersection(boundary_polygon)
+
+        if not clipped.is_empty:
+            new_regions.append(clipped)
+
+    return new_regions
 
 
 def make_voronoi_for_state(state_gdf, points_gdf):
@@ -83,7 +99,7 @@ def make_voronoi_for_state(state_gdf, points_gdf):
     vor = Voronoi(coords)
     
     # Create regions
-    polygons = voronoi_regions(vor)
+    polygons = voronoi_regions(vor, state_proj)
     voronoi_gdf = gpd.GeoDataFrame(geometry=polygons, crs=projected_crs)
 
     # Clip Voronoi to the state boundary
@@ -231,7 +247,7 @@ bayern = bayern[bayern["shapeISO"] == "DE-BY"]  # if using geoBoundaries
 bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
 
 # Create Voronoi diagram within Bavaria
-bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
+# bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
 # bayern_voronoi_clipped = make_voronoi_for_state(bayern, points_gdf)
 
 # List all .shp files
@@ -242,9 +258,9 @@ bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
 
 fig, ax = plt.subplots(figsize=(10, 15))
 
-# main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
-# bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
+bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+# bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
 # for gdf in gdfs:
 #     gdf.plot(ax=ax, edgecolor="black", alpha=0.2,linewidth=1)
