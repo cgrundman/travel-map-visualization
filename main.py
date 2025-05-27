@@ -129,97 +129,6 @@ LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
 
-# def plot_voronoi(counter, geodf, basemap, projection, site):
-#     # Setup the Voronoi axes; this creates the Voronoi regions
-#     ax = geoplot.voronoi(
-#         geodf, # Define the GeoPandas DataFrame
-#         figsize=FIG_SIZE, # Define resolution of figure
-#         hue='values', # df column used to color regions
-#         clip=basemap,  # Define the voronoi clipping (map edge)
-#         projection=projection, # Define the Projection
-#         cmap='tab20b', # color set
-#         # k=None, # No. of discretized buckets to create
-#         legend=False, # Dont create a legend
-#         edgecolor='#000000', # Color of the voronoi boundaries
-#         linewidth=1 # width of the voronoi boundary lines
-#     )
-
-#     # Render the plot with a base map
-#     geoplot.polyplot(
-#         basemap,  # Base Map
-#         ax=ax,  # Axis attribute we created above
-#         extent=EXTENT, # Set plotting boundaries to base map boundaries
-#         edgecolor='black',  # Color of base map's edges
-#         linewidth=3,  # Width of base map's edge lines
-#         zorder=0.5  # Plot base map edges above the voronoi regions
-#     )
-    
-#     # Format date
-#     date_list = list(map(str, str(site['date'])))
-#     year_list, month_list, day_list = date_list[:4], date_list[4:6], date_list[6:] 
-#     year = map(str, year_list)
-#     year = ''.join(year)
-#     month = map(str, month_list)
-#     month = ''.join(month)
-#     day = map(str, day_list)
-#     day = ''.join(day)
-#     # year = ''.join(date_list[:4])
-#     # if math.isnan(site['designation']):
-#     if type(site['designation']) == type(0.0):
-#         plt.title(f'{site['name']}, {month}/{day}/{year}', fontsize=36, loc='right')
-#     elif type(site['designation']) == type("string"):
-#         plt.title(f'{site['name']} {site['designation']}, {month}/{day}/{year}', fontsize=36, loc='right')
-#     print(f"Saving plot: {MAP_NAME}_{counter}")
-#     plt.savefig(f'plots/temp/{MAP_NAME}_{counter}.png')
-#     plt.close()
-
-# # Iterate through sites visited
-# for index, row in df.iterrows():
-#     df.at[index,'values'] = COLOR_VALUES[0]
-
-# # Add min and max points
-# max_row = [len(df),"Max Point","not a point",34.593218347568765,69.17071209340384,1.0,0]
-# df.loc[len(df)] = max_row # append to dataframe
-# min_row = [len(df),"Min Point","not a point",39.043989815673996,125.76231588440946,0.0,0]
-# df.loc[len(df)] = min_row # append to dataframe
-
-# # Sort the dataframe by date
-# df = df.sort_values(by=['date'])
-
-# # Import USA data for region clipping
-# base_map = geopandas.read_file(GEO_DATA_DIR)
-# base_map = base_map[base_map["shapeISO"] == "DE-BY"]
-
-# # Set the map projection
-# proj = geoplot.crs.AlbersEqualArea(
-#     central_longitude=CENTRAL_LONGITUDE, 
-#     central_latitude=CENTRAL_LATITUDE
-# )
-
-# # Iterate through sites visited
-# counter = 0
-# for index, row in df.iterrows():
-#     # if not np.isnan(row['date']):
-#     if row['date'] != 0:
-#         # Set current region to active
-#         df.at[index,'values'] = COLOR_VALUES[1]
-
-#         # Convert df to gdf (GeoPandas DataFrame)
-#         geometry = [Point(xy) for xy in zip(df.longitude, df.latitude)]
-#         # df['geometry'] = geometry
-#         gdf = geopandas.GeoDataFrame(df, geometry=geometry)
-
-#         # Plot the current map state
-#         counter += 1
-#         # plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
-#         print(df.at[index,'name'])
-        
-#         # Set current region to inactive
-#         df.at[index,'values'] = COLOR_VALUES[2]
-
-# # Toubleshooting Map
-# # print(counter)
-# plot_voronoi(counter, geodf=gdf, basemap=base_map, projection=proj, site=row)
 
 # CSV into DataFrame
 df = pd.read_table(LOCATION_CSV, delimiter =",")
@@ -253,17 +162,11 @@ bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
 # List all .shp files
 # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
-# Load each shapefile into a list of GeoDataFrames
-# gdfs = [gpd.read_file(shp) for shp in shapefiles]
-
 fig, ax = plt.subplots(figsize=(10, 15))
 
 main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
 bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-
-# for gdf in gdfs:
-#     gdf.plot(ax=ax, edgecolor="black", alpha=0.2,linewidth=1)
 
 by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
 
