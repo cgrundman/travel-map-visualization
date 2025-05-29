@@ -6,7 +6,7 @@ import numpy as np
 import geopandas as gpd
 # import geoplot
 # Import shapely to convert string lat-longs to Point objects
-from shapely.geometry import Point, Polygon, LineString
+from shapely.geometry import Point, Polygon, LineString, MultiPolygon
 from shapely.ops import unary_union, polygonize
 # import make_gif
 import os
@@ -37,7 +37,26 @@ LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 # FIG_SIZE = (14,18)
 
 
-def voronoi_regions(vor, boundary_polygon):
+def max_bounds(bounds):
+
+    # Define the corner points of the rectangle
+    bounding_box_coords = [
+        (bounds.minx, bounds.miny),  # lower left
+        (bounds.minx, bounds.maxy),  # upper left
+        (bounds.maxx, bounds.maxy),  # upper right
+        (bounds.maxx, bounds.miny),  # lower right
+        (bounds.minx, bounds.miny)   # close the polygon
+    ]
+
+    # Create the polygon
+    bounding_box_polygon = Polygon(bounding_box_coords)
+
+    gdf = gpd.GeoDataFrame(geometry=[bounding_box_polygon])
+
+    return gdf
+
+
+def voronoi_regions(vor):#, boundary_polygon):
 
     new_regions = []
     center = vor.points.mean(axis=0)
@@ -58,10 +77,10 @@ def voronoi_regions(vor, boundary_polygon):
         # If the region is finite, just take its vertices
         if all(v >= 0 for v in region):
             polygon = Polygon([vor.vertices[v] for v in region])
-            clipped = polygon.intersection(boundary_polygon)
-            if not clipped.is_empty:
-                new_regions.append(clipped)
-            continue
+            # clipped = polygon.intersection(boundary_polygon)
+            # if not clipped.is_empty:
+            #     new_regions.append(clipped)
+            # continue
 
         # Reconstruct infinite region
         ridges = all_ridges[p1]
@@ -90,15 +109,15 @@ def voronoi_regions(vor, boundary_polygon):
         # Turn edges into a polygon
         polygon = polygonize(LineString(pair) for pair in region_coords)
         merged = unary_union(list(polygon))
-        clipped = merged.intersection(boundary_polygon)
+        # clipped = merged.intersection(boundary_polygon)
 
-        if not clipped.is_empty:
-            new_regions.append(clipped)
+        # if not clipped.is_empty:
+        #     new_regions.append(clipped)
 
-    return new_regions
+    return merged
 
 
-def make_voronoi_for_state(state_gdf, points_gdf):
+def make_voronoi_for_state(points_gdf):
     """
     Generate and clip Voronoi polygons within a given state.
     
@@ -112,7 +131,7 @@ def make_voronoi_for_state(state_gdf, points_gdf):
     """
     # Ensure both are in the same projected CRS (UTM Zone 32N is typical for Germany)
     projected_crs = "EPSG:4326"
-    state_proj = state_gdf.to_crs(projected_crs)
+    # state_proj = state_gdf.to_crs(projected_crs)
     points_proj = points_gdf.to_crs(projected_crs)
 
     # Extract point coordinates
@@ -122,13 +141,13 @@ def make_voronoi_for_state(state_gdf, points_gdf):
     vor = Voronoi(coords)
     
     # Create regions
-    polygons = voronoi_regions(vor, state_proj)
+    polygons = voronoi_regions(vor) #, state_proj)
     voronoi_gdf = gpd.GeoDataFrame(geometry=polygons, crs=projected_crs)
 
     # Clip Voronoi to the state boundary
-    clipped = gpd.overlay(voronoi_gdf, state_proj, how="intersection")
+    # clipped = gpd.overlay(voronoi_gdf, state_proj, how="intersection")
 
-    return clipped
+    return voronoi_gdf
 
 
 # CSV into DataFrame
@@ -162,9 +181,13 @@ for submap in submaps:
     bayern = bayern[bayern["shapeISO"] == f"DE-{submap}"]  # if using geoBoundaries
     bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
 
+    bayern_bounds = bayern.geometry.bounds
+
+    bayern_bounding_region = max_bounds(bayern_bounds)
+
     # Create Voronoi diagram within Bavaria
     # bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
-    # bayern_voronoi_clipped = make_voronoi_for_state(bayern, points_gdf)
+    # bayern_voronoi_clipped = make_voronoi_for_state(points_gdf)
 
     # List all .shp files
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
@@ -173,7 +196,10 @@ for submap in submaps:
 
     # main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
     bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    bayern_bounding_region.plot(facecolor='lightblue', edgecolor='blue', alpha=0.5)
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+
 
     by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
 
