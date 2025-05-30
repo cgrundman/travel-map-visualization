@@ -195,13 +195,16 @@ for submap in submaps:
     fig, ax = plt.subplots(figsize=(10, 15))
 
     # main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
-    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    # by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
+
+    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    
     bayern_bounding_region.plot(facecolor='lightblue', edgecolor='blue', alpha=0.5)
+
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
-
-    by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
+    by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", alpha=0.5)
 
     plt.title("All German States")
     plt.axis("off")
