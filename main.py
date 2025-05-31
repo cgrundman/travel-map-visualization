@@ -56,98 +56,6 @@ def max_bounds(bounds):
     return gdf
 
 
-def voronoi_regions(vor):#, boundary_polygon):
-
-    new_regions = []
-    center = vor.points.mean(axis=0)
-    all_ridges = defaultdict(list)
-
-    # Build a mapping from point to its ridges
-    for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
-        all_ridges[p1].append((p2, v1, v2))
-        all_ridges[p2].append((p1, v1, v2))
-
-    for p1, region_idx in enumerate(vor.point_region):
-        region = vor.regions[region_idx]
-
-        # Skip empty or invalid regions
-        if len(region) == 0:
-            continue
-
-        # If the region is finite, just take its vertices
-        if all(v >= 0 for v in region):
-            polygon = Polygon([vor.vertices[v] for v in region])
-            # clipped = polygon.intersection(boundary_polygon)
-            # if not clipped.is_empty:
-            #     new_regions.append(clipped)
-            # continue
-
-        # Reconstruct infinite region
-        ridges = all_ridges[p1]
-        region_coords = []
-
-        for p2, v1, v2 in ridges:
-            if v1 >= 0 and v2 >= 0:
-                region_coords.append((vor.vertices[v1], vor.vertices[v2]))
-            else:
-                # Extend infinite ridge until it intersects the boundary
-                if v1 == -1:
-                    v_finite = vor.vertices[v2]
-                else:
-                    v_finite = vor.vertices[v1]
-
-                t = vor.points[p2] - vor.points[p1]
-                t /= np.linalg.norm(t)
-                n = np.array([-t[1], t[0]])
-                midpoint = vor.points[[p1, p2]].mean(axis=0)
-                direction = np.sign(np.dot(midpoint - center, n)) * n
-
-                # Create a far away point in that direction
-                far_point = v_finite + direction * 1e5
-                region_coords.append((v_finite, far_point))
-
-        # Turn edges into a polygon
-        polygon = polygonize(LineString(pair) for pair in region_coords)
-        merged = unary_union(list(polygon))
-        # clipped = merged.intersection(boundary_polygon)
-
-        # if not clipped.is_empty:
-        #     new_regions.append(clipped)
-
-    return merged
-
-
-def make_voronoi_for_state(points_gdf):
-    """
-    Generate and clip Voronoi polygons within a given state.
-    
-    Args:
-        state_gdf (GeoDataFrame or GeoSeries): A GeoDataFrame or GeoSeries with one polygon representing the state.
-        points_gdf (GeoDataFrame): A GeoDataFrame with point geometries within the state.
-        radius (float): Radius to extend infinite Voronoi edges.
-
-    Returns:
-        GeoDataFrame: Clipped Voronoi regions.
-    """
-    # Ensure both are in the same projected CRS (UTM Zone 32N is typical for Germany)
-    projected_crs = "EPSG:4326"
-    # state_proj = state_gdf.to_crs(projected_crs)
-    points_proj = points_gdf.to_crs(projected_crs)
-
-    # Extract point coordinates
-    coords = np.array([[geom.x, geom.y] for geom in points_proj.geometry])
-
-    # Compute Voronoi diagram
-    vor = Voronoi(coords)
-    
-    # Create regions
-    polygons = voronoi_regions(vor) #, state_proj)
-    voronoi_gdf = gpd.GeoDataFrame(geometry=polygons, crs=projected_crs)
-
-    # Clip Voronoi to the state boundary
-    # clipped = gpd.overlay(voronoi_gdf, state_proj, how="intersection")
-
-    return voronoi_gdf
 
 
 # CSV into DataFrame
@@ -193,17 +101,15 @@ for submap in submaps:
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
     fig, ax = plt.subplots(figsize=(10, 15))
-
-    # main_gdf.plot(ax=ax, edgecolor="black", alpha=1, linewidth=3)
-    # by_points_gdf.plot(ax=ax, edgecolor="red", color="red", alpha=0.8)
-
-    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     
+    # Plot outside region
     bayern_bounding_region.plot(facecolor='lightblue', edgecolor='blue', alpha=0.5)
 
+    # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
+    # Plot points of interest in region
     by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", alpha=0.5)
 
     plt.title("All German States")
