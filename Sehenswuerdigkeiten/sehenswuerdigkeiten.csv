@@ -1,4 +1,4 @@
-,name,designation,latitude,longitude,values,date
+number,name,designation,latitude,longitude,values,date
 0,Schloss Glücksburg,SH,54.83226050475118,9.543389307126942,0.0,20220805
 1,Nationalpark Jasmund,MV,54.551938324067685,13.647389577509045,0.0,0
 2,Schloss Gottorf,SH,54.51180723120294,9.540365320681607,0.0,20220522
