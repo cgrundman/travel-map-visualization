@@ -56,6 +56,43 @@ def max_bounds(bounds):
     return gdf
 
 
+def voronoi_polygons(vor, bbox):
+    """
+    vor: scipy.spatial.Voronoi object
+    bbox: shapely Polygon representing the bounding box
+    """
+    lines = []
+    center = vor.points.mean(axis=0)
+    radius = 1000  # a large number to ensure the lines extend far enough
+
+    # Loop through ridges
+    for pointidx, simplex in zip(vor.ridge_points, vor.ridge_vertices):
+        simplex = np.asarray(simplex)
+        if np.all(simplex >= 0):
+            # Finite ridge: get the segment
+            lines.append(LineString(vor.vertices[simplex]))
+        else:
+            # Infinite ridge: compute the direction and extend it
+            i, j = pointidx
+            p0 = vor.points[i]
+            p1 = vor.points[j]
+            # Midpoint
+            midpoint = (p0 + p1) / 2
+            # Direction perpendicular to the line between p0 and p1
+            direction = np.array([p1[1] - p0[1], -(p1[0] - p0[0])])
+            direction = direction / np.linalg.norm(direction)
+            # Extend the line
+            far_point = midpoint + direction * radius
+            segment = LineString([midpoint, far_point])
+            lines.append(segment)
+
+    # Polygonize lines
+    polygons = list(polygonize(lines))
+
+    # Clip with bounding box
+    clipped_polygons = [poly.intersection(bbox) for poly in polygons]
+
+    return clipped_polygons
 
 
 # CSV into DataFrame
@@ -77,6 +114,16 @@ for submap in submaps:
     # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
     by_points_gdf = points_gdf[points_gdf['designation'] == f'{submap}']
 
+    points_coords = np.array([
+        (point.x, point.y) for point in by_points_gdf.geometry
+    ])
+
+    if len(points_coords) >= 4:
+        vor = Voronoi(points_coords)
+        # proceed with Voronoi analysis
+    else:
+        print("Not enough points to compute a Voronoi diagram.")
+
     # Path for main outline
     main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
     main_gdf = gpd.read_file(main_shp)
@@ -94,6 +141,11 @@ for submap in submaps:
     bayern_bounding_region = max_bounds(bayern_bounds)
 
     # Create Voronoi diagram within Bavaria
+    bbox_polygon = bayern_bounding_region.iloc[0].geometry
+
+    voronoi_cells = voronoi_polygons(vor, bbox_polygon)
+    voronoi_gdf = gpd.GeoDataFrame(geometry=voronoi_cells)
+    # print([poly.is_empty for poly in voronoi_gdf])
     # bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
     # bayern_voronoi_clipped = make_voronoi_for_state(points_gdf)
 
@@ -101,16 +153,21 @@ for submap in submaps:
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
     fig, ax = plt.subplots(figsize=(10, 15))
+
+    # Plot Overall Map
+    # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     
     # Plot outside region
     bayern_bounding_region.plot(facecolor='lightblue', edgecolor='blue', alpha=0.5)
 
     # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
     # Plot points of interest in region
     by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", alpha=0.5)
+
+    # voronoi_gdf.plot(ax=ax, cmap='tab20', alpha=0.4, edgecolor='grey')
 
     plt.title("All German States")
     plt.axis("off")
