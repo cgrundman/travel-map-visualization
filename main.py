@@ -36,6 +36,48 @@ LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
 
+def augment_points(points, bounds):
+    minx, miny, maxx, maxy = bounds.values[0]
+
+    buffer = 1 * max(maxx - minx, maxy - miny)
+    minx -= buffer
+    miny -= buffer
+    maxx += buffer
+    maxy += buffer
+
+    # Perimeter points
+    perimeter_points = [
+        Point(minx, miny),
+        Point(minx, maxy),
+        Point(maxx, miny),
+        Point(maxx, maxy),
+        Point((minx + maxx)/2, miny),
+        Point((minx + maxx)/2, maxy),
+        Point(minx, (miny + maxy)/2),
+        Point(maxx, (miny + maxy)/2)
+    ]
+
+    # Create a list of dicts for perimeter metadata
+    perimeter_data = []
+
+    for idx, point in enumerate(perimeter_points):
+        perimeter_data.append({
+            'number': 300 + idx,    # or just idx
+            'name': 'Perimeter',
+            'designation': None,
+            'latitude': point[0],
+            'longitude': point[1],
+        })
+
+    # Convert to GeoDataFrame
+    perimeter_gdf = gpd.GeoDataFrame(perimeter_data, geometry='geometry', crs=points.crs)
+
+    # Combine with your real points
+    # original_points = [Point(x, y) for x, y in zip(x_coords, y_coords)]
+    all_points = pd.concat([points, perimeter_gdf], ignore_index=True)
+
+    return all_points
+
 
 def max_bounds(bounds):
 
@@ -105,8 +147,13 @@ points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
+# Path for main outline
+main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
+main_gdf = gpd.read_file(main_shp)
+
 # Make list of submaps
-submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
+# submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
+submaps = ['BB']
 
 # iterate through submaps
 for submap in submaps:
@@ -118,16 +165,6 @@ for submap in submaps:
         (point.x, point.y) for point in by_points_gdf.geometry
     ])
 
-    if len(points_coords) >= 4:
-        vor = Voronoi(points_coords)
-        # proceed with Voronoi analysis
-    else:
-        print("Not enough points to compute a Voronoi diagram.")
-
-    # Path for main outline
-    main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
-    main_gdf = gpd.read_file(main_shp)
-
     # Path to the folder containing shapefiles
     shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
@@ -138,7 +175,16 @@ for submap in submaps:
 
     bayern_bounds = bayern.geometry.bounds
 
+    # Augment points
+    all_points = augment_points(by_points_gdf, bayern_bounds)
+
     bayern_bounding_region = max_bounds(bayern_bounds)
+
+    # if len(points_coords) >= 4:
+    vor = Voronoi(all_points)
+        # proceed with Voronoi analysis
+    # else:
+        # print("Not enough points to compute a Voronoi diagram.")
 
     # Create Voronoi diagram within Bavaria
     bbox_polygon = bayern_bounding_region.iloc[0].geometry
@@ -158,7 +204,7 @@ for submap in submaps:
     # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     
     # Plot outside region
-    bayern_bounding_region.plot(facecolor='lightblue', edgecolor='blue', alpha=0.5)
+    bayern_bounding_region.plot(ax=plt.gca(), facecolor='lightblue', edgecolor='blue', alpha=0.5)
 
     # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
@@ -167,12 +213,106 @@ for submap in submaps:
     # Plot points of interest in region
     by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", alpha=0.5)
 
-    # voronoi_gdf.plot(ax=ax, cmap='tab20', alpha=0.4, edgecolor='grey')
+    voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
 
     plt.title("All German States")
     plt.axis("off")
     plt.savefig(f"./plots/temp/{submap}.png")
-    # plt.show()
+    plt.show()
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
+
+# import numpy as np
+# import geopandas as gpd
+# import matplotlib.pyplot as plt
+# from shapely.geometry import Point, Polygon, LineString
+# from scipy.spatial import Voronoi
+# from shapely.ops import polygonize, unary_union
+
+# # Step 1. Generate fake point data
+# np.random.seed(0)
+# num_points = 10
+# x_coords = np.random.uniform(0, 10, num_points)
+# y_coords = np.random.uniform(0, 10, num_points)
+
+# points = [Point(x, y) for x, y in zip(x_coords, y_coords)]
+# points_gdf = gpd.GeoDataFrame(geometry=points)
+
+# # Step 2. Create a bounding box polygon
+# bounding_box = Polygon([
+#     (0, 0),
+#     (0, 10),
+#     (10, 10),
+#     (10, 0),
+#     (0, 0)
+# ])
+# bounding_box_gdf = gpd.GeoDataFrame(geometry=[bounding_box])
+
+# # Step 2.5
+
+# # Suppose your area_gdf is defined already
+# bounds = bounding_box_gdf.total_bounds
+# minx, miny, maxx, maxy = bounds
+
+# buffer = 1 * max(maxx - minx, maxy - miny)
+# minx -= buffer
+# miny -= buffer
+# maxx += buffer
+# maxy += buffer
+
+# # Perimeter points
+# perimeter_points = [
+#     Point(minx, miny),
+#     Point(minx, maxy),
+#     Point(maxx, miny),
+#     Point(maxx, maxy),
+#     Point((minx + maxx)/2, miny),
+#     Point((minx + maxx)/2, maxy),
+#     Point(minx, (miny + maxy)/2),
+#     Point(maxx, (miny + maxy)/2)
+# ]
+
+# # Combine with your real points
+# original_points = [Point(x, y) for x, y in zip(x_coords, y_coords)]
+# all_points = original_points + perimeter_points
+
+# # Convert to numpy for Voronoi
+# all_coords = np.array([(point.x, point.y) for point in all_points])
+# vor = Voronoi(all_coords)
+
+# # # Step 3. Create Voronoi diagram
+# # coords = np.array([(point.x, point.y) for point in points])
+# # vor = Voronoi(coords)
+
+# # Step 4. Create Voronoi polygons
+# lines = []
+# for ridge_vertices in vor.ridge_vertices:
+#     if -1 not in ridge_vertices:
+#         p1 = vor.vertices[ridge_vertices[0]]
+#         p2 = vor.vertices[ridge_vertices[1]]
+#         lines.append(LineString([p1, p2]))
+
+# # Polygonize the lines
+# vor_polygons = list(polygonize(lines))
+
+# # Step 5. Clip Voronoi polygons with bounding box
+# clipped_polygons = []
+# for poly in vor_polygons:
+#     clipped = poly.intersection(bounding_box)
+#     if not clipped.is_empty and clipped.is_valid:
+#         clipped_polygons.append(clipped)
+
+# voronoi_gdf = gpd.GeoDataFrame(geometry=clipped_polygons)
+
+# # Step 6. Plot the results
+# fig, ax = plt.subplots(figsize=(8, 8))
+# bounding_box_gdf.boundary.plot(ax=ax, color='black', linewidth=2)
+# points_gdf.plot(ax=ax, color='red', markersize=50, label='Points')
+# voronoi_gdf.plot(ax=ax, cmap='tab20', alpha=0.5, edgecolor='grey', label='Voronoi Cells')
+
+# plt.xlabel('X')
+# plt.ylabel('Y')
+# plt.title('Voronoi Diagram with Bounding Box')
+# plt.legend()
+# plt.show()
