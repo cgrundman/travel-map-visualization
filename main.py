@@ -152,8 +152,10 @@ main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM
 main_gdf = gpd.read_file(main_shp)
 
 # Make list of submaps
-# submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
-submaps = ['BB']
+submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
+# submaps = ['BB']
+
+fig, ax = plt.subplots(figsize=(10, 15))
 
 # iterate through submaps
 for submap in submaps:
@@ -175,6 +177,8 @@ for submap in submaps:
 
     bayern_bounds = bayern.geometry.bounds
 
+    '''
+
     # Augment points
     all_points = augment_points(by_points_gdf, bayern_bounds)
 
@@ -195,30 +199,40 @@ for submap in submaps:
     # bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
     # bayern_voronoi_clipped = make_voronoi_for_state(points_gdf)
 
+    '''
+
     # List all .shp files
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
 
-    fig, ax = plt.subplots(figsize=(10, 15))
+    # fig, ax = plt.subplots(figsize=(10, 15))
 
     # Plot Overall Map
     # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     
     # Plot outside region
-    bayern_bounding_region.plot(ax=plt.gca(), facecolor='lightblue', edgecolor='blue', alpha=0.5)
+    # bayern_bounding_region.plot(ax=plt.gca(), facecolor='lightblue', edgecolor='blue', alpha=0.5)
 
     # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
     bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
 
     # Plot points of interest in region
-    by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", alpha=0.5)
+    by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", markersize=20, alpha=0.5)
 
-    voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
+    # voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
 
-    plt.title("All German States")
-    plt.axis("off")
-    plt.savefig(f"./plots/temp/{submap}.png")
-    plt.show()
+    # Plotr current submap
+    # plt.title(f"{submap}")
+    # plt.axis("off")
+    # plt.savefig(f"./plots/temp/{submap}.png")
+    # plt.show()
+
+# Plot all states
+plt.title("All German States", fontsize=25)
+plt.axis("off")
+plt.savefig(f"./plots/temp/de.png")
+print("Figure created.")
+# plt.show()
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
