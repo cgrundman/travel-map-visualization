@@ -1,6 +1,7 @@
 # Import pandas, numpy, and matplotlib
 import pandas as pd
 from matplotlib import pyplot as plt
+import matplotlib as mpl
 import numpy as np
 # Import Geopandas modules
 import geopandas as gpd
@@ -153,12 +154,15 @@ main_gdf = gpd.read_file(main_shp)
 
 # Make list of submaps
 submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
+
+cmap = mpl.colormaps['tab20b']
+colors = cmap(np.linspace(0, 0.19, len(submaps)))
 # submaps = ['BB']
 
 fig, ax = plt.subplots(figsize=(10, 15))
 
 # iterate through submaps
-for submap in submaps:
+for i, submap in enumerate(submaps):
     # Extract only the points for Bavaria
     # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
     by_points_gdf = points_gdf[points_gdf['designation'] == f'{submap}']
@@ -214,14 +218,14 @@ for submap in submaps:
 
     # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
+    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, color=colors[i], alpha=0.6)
 
     # Plot points of interest in region
-    by_points_gdf.plot(ax=plt.gca(), edgecolor="red", color="red", markersize=20, alpha=0.5)
+    by_points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="khaki", markersize=15, alpha=1)
 
     # voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
 
-    # Plotr current submap
+    # Plot current submap
     # plt.title(f"{submap}")
     # plt.axis("off")
     # plt.savefig(f"./plots/temp/{submap}.png")
