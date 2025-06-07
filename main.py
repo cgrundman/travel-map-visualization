@@ -218,10 +218,10 @@ for i, submap in enumerate(submaps):
 
     # Plot Region Border
     # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, color=colors[i], alpha=0.6)
+    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, color=colors[i], alpha=1)
 
     # Plot points of interest in region
-    by_points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="khaki", markersize=15, alpha=1)
+    by_points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
 
     # voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
 
