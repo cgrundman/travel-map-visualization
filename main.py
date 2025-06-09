@@ -235,6 +235,16 @@ for i, submap in enumerate(submaps):
 
 points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
 
+text_list = ['a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e']
+row, column = 0, 0
+for i, location in enumerate(text_list):
+    plt.text(5 + column, 46.5 - 0.17*row , "Try this", fontsize=10, color='black')
+    row += 1
+    if row % 7 == 0:
+        column += 1
+        row = 0
+    
+
 # Plot all states
 plt.title("All German States", fontsize=25)
 plt.axis("off")
