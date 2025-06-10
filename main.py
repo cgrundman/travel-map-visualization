@@ -13,6 +13,7 @@ from shapely.ops import unary_union, polygonize
 import os
 from scipy.spatial import Voronoi
 from collections import defaultdict
+from PIL import Image
 
 
 # # Set global variables, directories for map creation and site locations
@@ -27,12 +28,13 @@ from collections import defaultdict
 # # COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
 # # FIG_SIZE = (20,14)
 
-# # Germany Sites
+# Germany Sites
 # MAP_NAME = "germany_sites"
 # EXTENT=[6, 47, 15, 55]
 # CENTRAL_LONGITUDE=10.5
 # CENTRAL_LATITUDE=51
 LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+SUBMAPS = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
@@ -149,22 +151,22 @@ points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
 # Path for main outline
-main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
-main_gdf = gpd.read_file(main_shp)
+#main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
+# main_gdf = gpd.read_file(main_shp)
 
 # Make list of submaps
-submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
+# submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 
 cmap = mpl.colormaps['tab20b']
-colors = cmap(np.linspace(0, 0.19, len(submaps)))
+colors = cmap(np.linspace(0, 0.19, len(SUBMAPS)))
 # submaps = ['BB']
 
 fig, ax = plt.subplots(figsize=(10, 15))
 
-main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
+# main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
 
 # iterate through submaps
-for i, submap in enumerate(submaps):
+for i, submap in enumerate(SUBMAPS):
     # Extract only the points for Bavaria
     # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
     by_points_gdf = points_gdf[points_gdf['designation'] == f'{submap}']
@@ -235,22 +237,36 @@ for i, submap in enumerate(submaps):
 
 points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
 
-text_list = ['a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e']
+text_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o']
+
 row, column = 0, 0
 for i, location in enumerate(text_list):
-    plt.text(5 + column, 46.5 - 0.17*row , "Try this", fontsize=10, color='black')
+    plt.text(5 + 2*column, 47 - 0.1*row , text_list[i], fontsize=6, color='black')
     row += 1
-    if row % 7 == 0:
+    if row % 15 == 0:
         column += 1
         row = 0
     
 
 # Plot all states
-plt.title("All German States", fontsize=25)
+plt.title("Deutschland", fontsize=25)
 plt.axis("off")
 plt.savefig(f"./plots/temp/de.png")
 print("Figure created.")
 # plt.show()
+
+# Resize Plot
+image = Image.open('./plots/temp/de.png') # load the image
+crop_height = 150  # define crop 
+width, height = image.size # pull image size
+crop_box = (0, crop_height, width, height)  # x1, y1, x2, y2
+cropped_image = image.crop(crop_box) # crop image
+cropped_image.save('./plots/temp/de.png') # save
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
