@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Paths for CSV files
-OLD_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv" # old path
+OLD_CSV = "Europe/europe_sites.csv" # old path
 NEW_CSV = OLD_CSV.replace(".csv", "_new.csv") # new path
 
 # Read the CSV file using pandas
