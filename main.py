@@ -33,7 +33,7 @@ from PIL import Image
 # EXTENT=[6, 47, 15, 55]
 # CENTRAL_LONGITUDE=10.5
 # CENTRAL_LATITUDE=51
-LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten_new.csv"
+LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 SUBMAPS = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
@@ -161,7 +161,7 @@ cmap = mpl.colormaps['tab20b']
 colors = cmap(np.linspace(0, 0.19, len(SUBMAPS)))
 # submaps = ['BB']
 
-fig, ax = plt.subplots(figsize=(12, 17))
+fig, ax = plt.subplots(figsize=(12, 18))
 
 # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
 
@@ -169,7 +169,7 @@ fig, ax = plt.subplots(figsize=(12, 17))
 for i, submap in enumerate(SUBMAPS):
     # Extract only the points for Bavaria
     # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
-    by_points_gdf = points_gdf[points_gdf['designation'] == f'{submap}']
+    by_points_gdf = points_gdf[points_gdf['submap'] == f'{submap}']
 
     points_coords = np.array([
         (point.x, point.y) for point in by_points_gdf.geometry
@@ -256,7 +256,7 @@ print("Figure created.")
 
 # Resize Plot
 image = Image.open('./plots/temp/de.png') # load the image
-crop_height = 150  # define crop 
+crop_height = 200  # define crop 
 width, height = image.size # pull image size
 crop_box = (0, crop_height, width, height)  # x1, y1, x2, y2
 cropped_image = image.crop(crop_box) # crop image
