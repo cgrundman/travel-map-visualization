@@ -33,7 +33,7 @@ from PIL import Image
 # EXTENT=[6, 47, 15, 55]
 # CENTRAL_LONGITUDE=10.5
 # CENTRAL_LATITUDE=51
-LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten_new.csv"
 SUBMAPS = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
@@ -161,7 +161,7 @@ cmap = mpl.colormaps['tab20b']
 colors = cmap(np.linspace(0, 0.19, len(SUBMAPS)))
 # submaps = ['BB']
 
-fig, ax = plt.subplots(figsize=(10, 15))
+fig, ax = plt.subplots(figsize=(12, 17))
 
 # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
 
@@ -237,18 +237,12 @@ for i, submap in enumerate(SUBMAPS):
 
 points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
 
-text_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
-             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
-             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
-             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
-             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
-             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o']
-
+loc_names = points_gdf['name'].tolist()
 row, column = 0, 0
-for i, location in enumerate(text_list):
-    plt.text(5 + 2*column, 47 - 0.1*row , text_list[i], fontsize=6, color='black')
+for i, location in enumerate(loc_names):
+    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5, color='black')
     row += 1
-    if row % 15 == 0:
+    if row % 26 == 0:
         column += 1
         row = 0
     
