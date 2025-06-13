@@ -181,6 +181,7 @@ colors = cmap(colors, len(SUBMAPS))
 # submaps = ['BB']
 
 fig, ax = plt.subplots(figsize=(12, 18))
+fig.patch.set_facecolor('#3C4048')
 
 # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
 
@@ -259,7 +260,7 @@ points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersiz
 loc_names = points_gdf['name'].tolist()
 row, column = 0, 0
 for i, location in enumerate(loc_names):
-    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5, color='black')
+    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5, color='#EAEAEA')
     row += 1
     if row % 26 == 0:
         column += 1
@@ -267,7 +268,7 @@ for i, location in enumerate(loc_names):
     
 
 # Plot all states
-plt.title("Deutschland", fontsize=25)
+plt.title("Deutschland", fontsize=25, color='#EAEAEA')
 plt.axis("off")
 plt.savefig(f"./plots/temp/de.png")
 print("Figure created.")
