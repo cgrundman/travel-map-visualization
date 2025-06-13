@@ -34,8 +34,24 @@ from PIL import Image
 # CENTRAL_LONGITUDE=10.5
 # CENTRAL_LATITUDE=51
 LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
-SUBMAPS = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
-COLORS = [0.6, 0.4, 0.0, 0.4, 0.0, 0.2, 0.8, 0.2, 0.4, 0.6, 0.8, 0.0, 0.4, 0.2, 0.8, 0.0]
+SUBMAPS = [{"name": 'BB', "color": 0.6},
+           {"name": 'BE', "color": 0.4},
+           {"name": 'BW', "color": 0.0},
+           {"name": 'BY', "color": 0.4},
+           {"name": 'HB', "color": 0.0},
+           {"name": 'HE', "color": 0.2},
+           {"name": 'HH', "color": 0.8},
+           {"name": 'MV', "color": 0.2},
+           {"name": 'NI', "color": 0.4},
+           {"name": 'NW', "color": 0.6},
+           {"name": 'RP', "color": 0.8},
+           {"name": 'SH', "color": 0.0},
+           {"name": 'SL', "color": 0.4},
+           {"name": 'SN', "color": 0.2},
+           {"name": 'ST', "color": 0.8},
+           {"name": 'TH', "color": 0.0}]
+
+# COLORS = [, , 0.0, 0.4, 0.0, 0.2, 0.8, 0.2, 0.4, 0.6, 0.8, 0.0, 0.4, 0.2, 0.8, 0.0]
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
@@ -158,8 +174,9 @@ points_gdf.set_crs(epsg=4326, inplace=True)
 # Make list of submaps
 # submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
 
+colors = list(map(lambda d: d.get('color'), filter(lambda d: 'color' in d, SUBMAPS)))
 cmap = mpl.colormaps['tab20b']
-colors = cmap(COLORS, len(SUBMAPS))
+colors = cmap(colors, len(SUBMAPS))
 # submaps = ['BB']
 
 fig, ax = plt.subplots(figsize=(12, 18))
@@ -170,7 +187,7 @@ fig, ax = plt.subplots(figsize=(12, 18))
 for i, submap in enumerate(SUBMAPS):
     # Extract only the points for Bavaria
     # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
-    by_points_gdf = points_gdf[points_gdf['submap'] == f'{submap}']
+    by_points_gdf = points_gdf[points_gdf['submap'] == f'{submap['name']}']
 
     points_coords = np.array([
         (point.x, point.y) for point in by_points_gdf.geometry
@@ -180,8 +197,8 @@ for i, submap in enumerate(SUBMAPS):
     shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
     # Load state GeoDataFrame (e.g., Bayern)
-    bayern = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap}.shp")
-    bayern = bayern[bayern["shapeISO"] == f"DE-{submap}"]  # if using geoBoundaries
+    bayern = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap['name']}.shp")
+    bayern = bayern[bayern["shapeISO"] == f"DE-{submap['name']}"]  # if using geoBoundaries
     bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
 
     bayern_bounds = bayern.geometry.bounds
