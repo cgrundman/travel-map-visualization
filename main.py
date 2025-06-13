@@ -50,6 +50,7 @@ SUBMAPS = [{"name": 'BB', "color": 0.6},
            {"name": 'SN', "color": 0.2},
            {"name": 'ST', "color": 0.8},
            {"name": 'TH', "color": 0.0}]
+CROP_HEIGHT = 200  # define crop 
 
 # COLORS = [, , 0.0, 0.4, 0.0, 0.2, 0.8, 0.2, 0.4, 0.6, 0.8, 0.0, 0.4, 0.2, 0.8, 0.0]
 # GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
@@ -274,9 +275,8 @@ print("Figure created.")
 
 # Resize Plot
 image = Image.open('./plots/temp/de.png') # load the image
-crop_height = 200  # define crop 
 width, height = image.size # pull image size
-crop_box = (0, crop_height, width, height)  # x1, y1, x2, y2
+crop_box = (0, CROP_HEIGHT, width, height)  # x1, y1, x2, y2
 cropped_image = image.crop(crop_box) # crop image
 cropped_image.save('./plots/temp/de.png') # save
 
