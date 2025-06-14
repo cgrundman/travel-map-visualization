@@ -17,6 +17,7 @@ from PIL import Image
 
 
 # # Set global variables, directories for map creation and site locations
+SCALE = 1
 
 # # National Park Data
 # # MAP_NAME = "national_parks"
@@ -29,10 +30,6 @@ from PIL import Image
 # # FIG_SIZE = (20,14)
 
 # Germany Sites
-# MAP_NAME = "germany_sites"
-# EXTENT=[6, 47, 15, 55]
-# CENTRAL_LONGITUDE=10.5
-# CENTRAL_LATITUDE=51
 LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
 SUBMAPS = [{"name": 'BB', "color": 0.6},
            {"name": 'BE', "color": 0.4},
@@ -51,9 +48,6 @@ SUBMAPS = [{"name": 'BB', "color": 0.6},
            {"name": 'ST', "color": 0.8},
            {"name": 'TH', "color": 0.0}]
 CROP_HEIGHT = 200  # define crop 
-
-# COLORS = [, , 0.0, 0.4, 0.0, 0.2, 0.8, 0.2, 0.4, 0.6, 0.8, 0.0, 0.4, 0.2, 0.8, 0.0]
-# GEO_DATA_DIR = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM1_simplified.shp" # "Sehenswuerdigkeiten/Germany_Boundary/germany_Germany_Country_Boundary.shp"
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 # FIG_SIZE = (14,18)
 
@@ -168,19 +162,13 @@ points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
-# Path for main outline
-#main_shp = "Sehenswuerdigkeiten/geoBoundaries-DEU-ADM1-all/geoBoundaries-DEU-ADM0.shp"
-# main_gdf = gpd.read_file(main_shp)
-
-# Make list of submaps
-# submaps = ['BB', 'BE', 'BW', 'BY', 'HB', 'HE', 'HH', 'MV', 'NI', 'NW', 'RP', 'SH', 'SL', 'SN', 'ST', 'TH']
-
+# Define Map Colors
 colors = list(map(lambda d: d.get('color'), filter(lambda d: 'color' in d, SUBMAPS)))
 cmap = mpl.colormaps['tab20b']
 colors = cmap(colors, len(SUBMAPS))
 # submaps = ['BB']
 
-fig, ax = plt.subplots(figsize=(12, 18))
+fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
 fig.patch.set_facecolor('#3C4048')
 
 # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
@@ -255,12 +243,12 @@ for i, submap in enumerate(SUBMAPS):
     # plt.savefig(f"./plots/temp/{submap}.png")
     # plt.show()
 
-points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=50, alpha=1)
+points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
 
 loc_names = points_gdf['name'].tolist()
 row, column = 0, 0
 for i, location in enumerate(loc_names):
-    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5, color='#EAEAEA')
+    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5*SCALE, color='#EAEAEA')
     row += 1
     if row % 26 == 0:
         column += 1
@@ -268,7 +256,7 @@ for i, location in enumerate(loc_names):
     
 
 # Plot all states
-plt.title("Deutschland", fontsize=25, color='#EAEAEA')
+plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
 plt.axis("off")
 plt.savefig(f"./plots/temp/de.png")
 print("Figure created.")
@@ -277,7 +265,7 @@ print("Figure created.")
 # Resize Plot
 image = Image.open('./plots/temp/de.png') # load the image
 width, height = image.size # pull image size
-crop_box = (0, CROP_HEIGHT, width, height)  # x1, y1, x2, y2
+crop_box = (0, CROP_HEIGHT*SCALE, width, height)  # x1, y1, x2, y2
 cropped_image = image.crop(crop_box) # crop image
 cropped_image.save('./plots/temp/de.png') # save
 
