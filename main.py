@@ -168,6 +168,7 @@ cmap = mpl.colormaps['tab20b']
 colors = cmap(colors, len(SUBMAPS))
 # submaps = ['BB']
 
+# Initiate Plot
 fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
 fig.patch.set_facecolor('#3C4048')
 
@@ -243,18 +244,32 @@ for i, submap in enumerate(SUBMAPS):
     # plt.savefig(f"./plots/temp/{submap}.png")
     # plt.show()
 
-points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
+# Plot Points
 
-loc_names = points_gdf['name'].tolist()
+# Create a mask for points with and without a date
+has_date = points_gdf['date'].notnull()
+no_date = points_gdf['date'].isnull()
+
+# Plot points not visited
+points_gdf[no_date].plot(ax=plt.gca(), edgecolor="darkred", color="red", linewidth=1*SCALE, markersize=100*SCALE, alpha=1)
+# Plot points visited
+points_gdf[has_date].plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=100*SCALE, alpha=1)
+
+# for index, row in points_gdf.iterrows():
+#     point = points_gdf.iloc[index]
+#     point.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
+
+#points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
+
+# Plot Location Names
 row, column = 0, 0
-for i, location in enumerate(loc_names):
-    plt.text(4.1 + 1.59*column, 47 - 0.074*row , loc_names[i], fontsize=5.5*SCALE, color='#EAEAEA')
+for index, location in enumerate(points_gdf['name']):
+    plt.text(4.1 + 1.59*column, 47 - 0.074*row , location, fontsize=5.5*SCALE, color='#EAEAEA')
     row += 1
     if row % 26 == 0:
         column += 1
         row = 0
     
-
 # Plot all states
 plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
 plt.axis("off")
