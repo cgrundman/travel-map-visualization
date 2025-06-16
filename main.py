@@ -30,7 +30,7 @@ SCALE = 1
 # # FIG_SIZE = (20,14)
 
 # Germany Sites
-LOCATION_CSV = "Sehenswuerdigkeiten/sehenswuerdigkeiten.csv"
+PATH = "Sehenswuerdigkeiten/"
 SUBMAPS = [{"name": 'BB', "color": 0.6},
            {"name": 'BE', "color": 0.4},
            {"name": 'BW', "color": 0.0},
@@ -49,116 +49,12 @@ SUBMAPS = [{"name": 'BB', "color": 0.6},
            {"name": 'TH', "color": 0.0}]
 CROP_HEIGHT = 200  # define crop 
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
-# FIG_SIZE = (14,18)
-
-def augment_points(points, bounds):
-    minx, miny, maxx, maxy = bounds.values[0]
-
-    buffer = 1 * max(maxx - minx, maxy - miny)
-    minx -= buffer
-    miny -= buffer
-    maxx += buffer
-    maxy += buffer
-
-    # Perimeter points
-    perimeter_points = [
-        Point(minx, miny),
-        Point(minx, maxy),
-        Point(maxx, miny),
-        Point(maxx, maxy),
-        Point((minx + maxx)/2, miny),
-        Point((minx + maxx)/2, maxy),
-        Point(minx, (miny + maxy)/2),
-        Point(maxx, (miny + maxy)/2)
-    ]
-
-    # Create a list of dicts for perimeter metadata
-    perimeter_data = []
-
-    for idx, point in enumerate(perimeter_points):
-        perimeter_data.append({
-            'number': 300 + idx,    # or just idx
-            'name': 'Perimeter',
-            'designation': None,
-            'latitude': point[0],
-            'longitude': point[1],
-        })
-
-    # Convert to GeoDataFrame
-    perimeter_gdf = gpd.GeoDataFrame(perimeter_data, geometry='geometry', crs=points.crs)
-
-    # Combine with your real points
-    # original_points = [Point(x, y) for x, y in zip(x_coords, y_coords)]
-    all_points = pd.concat([points, perimeter_gdf], ignore_index=True)
-
-    return all_points
-
-
-def max_bounds(bounds):
-
-    # Define the corner points of the rectangle
-    bounding_box_coords = [
-        (bounds.minx, bounds.miny),  # lower left
-        (bounds.minx, bounds.maxy),  # upper left
-        (bounds.maxx, bounds.maxy),  # upper right
-        (bounds.maxx, bounds.miny),  # lower right
-        (bounds.minx, bounds.miny)   # close the polygon
-    ]
-
-    # Create the polygon
-    bounding_box_polygon = Polygon(bounding_box_coords)
-
-    gdf = gpd.GeoDataFrame(geometry=[bounding_box_polygon])
-
-    return gdf
-
-
-def voronoi_polygons(vor, bbox):
-    """
-    vor: scipy.spatial.Voronoi object
-    bbox: shapely Polygon representing the bounding box
-    """
-    lines = []
-    center = vor.points.mean(axis=0)
-    radius = 1000  # a large number to ensure the lines extend far enough
-
-    # Loop through ridges
-    for pointidx, simplex in zip(vor.ridge_points, vor.ridge_vertices):
-        simplex = np.asarray(simplex)
-        if np.all(simplex >= 0):
-            # Finite ridge: get the segment
-            lines.append(LineString(vor.vertices[simplex]))
-        else:
-            # Infinite ridge: compute the direction and extend it
-            i, j = pointidx
-            p0 = vor.points[i]
-            p1 = vor.points[j]
-            # Midpoint
-            midpoint = (p0 + p1) / 2
-            # Direction perpendicular to the line between p0 and p1
-            direction = np.array([p1[1] - p0[1], -(p1[0] - p0[0])])
-            direction = direction / np.linalg.norm(direction)
-            # Extend the line
-            far_point = midpoint + direction * radius
-            segment = LineString([midpoint, far_point])
-            lines.append(segment)
-
-    # Polygonize lines
-    polygons = list(polygonize(lines))
-
-    # Clip with bounding box
-    clipped_polygons = [poly.intersection(bbox) for poly in polygons]
-
-    return clipped_polygons
-
 
 # CSV into DataFrame
-df = pd.read_table(LOCATION_CSV, delimiter =",")
-# filtered_rows = df[df['designation'] == 'BY']
+df = pd.read_table(PATH + 'locations.csv', delimiter =",")
 points = df[['longitude', 'latitude']].values
 
 # Combine into GeoDataFrame
-# voronoi_gdf = gpd.GeoDataFrame(geometry=polygons)
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
@@ -166,7 +62,6 @@ points_gdf.set_crs(epsg=4326, inplace=True)
 colors = list(map(lambda d: d.get('color'), filter(lambda d: 'color' in d, SUBMAPS)))
 cmap = mpl.colormaps['tab20b']
 colors = cmap(colors, len(SUBMAPS))
-# submaps = ['BB']
 
 # Initiate Plot
 fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
@@ -176,47 +71,19 @@ fig.patch.set_facecolor('#3C4048')
 
 # iterate through submaps
 for i, submap in enumerate(SUBMAPS):
-    # Extract only the points for Bavaria
-    # by_points_gdf = points_gdf[points_gdf['designation'] == 'BY']
-    by_points_gdf = points_gdf[points_gdf['submap'] == f'{submap['name']}']
+    submap_points_gdf = points_gdf[points_gdf['submap'] == f'{submap['name']}']
 
     points_coords = np.array([
-        (point.x, point.y) for point in by_points_gdf.geometry
+        (point.x, point.y) for point in submap_points_gdf.geometry
     ])
 
     # Path to the folder containing shapefiles
     shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
     # Load state GeoDataFrame (e.g., Bayern)
-    bayern = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap['name']}.shp")
-    bayern = bayern[bayern["shapeISO"] == f"DE-{submap['name']}"]  # if using geoBoundaries
-    bayern = bayern.to_crs("EPSG:4326")  # or other projected CRS
-
-    bayern_bounds = bayern.geometry.bounds
-
-    '''
-
-    # Augment points
-    all_points = augment_points(by_points_gdf, bayern_bounds)
-
-    bayern_bounding_region = max_bounds(bayern_bounds)
-
-    # if len(points_coords) >= 4:
-    vor = Voronoi(all_points)
-        # proceed with Voronoi analysis
-    # else:
-        # print("Not enough points to compute a Voronoi diagram.")
-
-    # Create Voronoi diagram within Bavaria
-    bbox_polygon = bayern_bounding_region.iloc[0].geometry
-
-    voronoi_cells = voronoi_polygons(vor, bbox_polygon)
-    voronoi_gdf = gpd.GeoDataFrame(geometry=voronoi_cells)
-    # print([poly.is_empty for poly in voronoi_gdf])
-    # bayern_voronoi_clipped = make_voronoi_for_state(bayern, by_points_gdf)
-    # bayern_voronoi_clipped = make_voronoi_for_state(points_gdf)
-
-    '''
+    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap['name']}.shp")
+    submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap['name']}"]  # if using geoBoundaries
+    submap_gdf = submap_gdf.to_crs("EPSG:4326")  # or other projected CRS
 
     # List all .shp files
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
@@ -230,13 +97,10 @@ for i, submap in enumerate(SUBMAPS):
     # bayern_bounding_region.plot(ax=plt.gca(), facecolor='lightblue', edgecolor='blue', alpha=0.5)
 
     # Plot Region Border
-    # bayern_voronoi_clipped.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
+    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
 
     # Plot points of interest in region
     # by_points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
-
-    # voronoi_gdf.plot(ax=plt.gca(), cmap='tab20', alpha=0.4, edgecolor='grey')
 
     # Plot current submap
     # plt.title(f"{submap}")
@@ -244,22 +108,26 @@ for i, submap in enumerate(SUBMAPS):
     # plt.savefig(f"./plots/temp/{submap}.png")
     # plt.show()
 
-# Plot Points
+    submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
 
+# Plot Points
 # Create a mask for points with and without a date
 has_date = points_gdf['date'].notnull()
 no_date = points_gdf['date'].isnull()
-
 # Plot points not visited
-points_gdf[no_date].plot(ax=plt.gca(), edgecolor="darkred", color="red", linewidth=1*SCALE, markersize=100*SCALE, alpha=1)
+points_gdf[no_date].plot(ax=plt.gca(), 
+                         edgecolor="darkred", 
+                         color="red", 
+                         linewidth=1*SCALE, 
+                         markersize=100*SCALE, 
+                         alpha=1)
 # Plot points visited
-points_gdf[has_date].plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=100*SCALE, alpha=1)
-
-# for index, row in points_gdf.iterrows():
-#     point = points_gdf.iloc[index]
-#     point.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
-
-#points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", linewidth=1*SCALE, markersize=125*SCALE, alpha=1)
+points_gdf[has_date].plot(ax=plt.gca(), 
+                          edgecolor="darkgoldenrod", 
+                          color="gold", 
+                          linewidth=1*SCALE, 
+                          markersize=100*SCALE, 
+                          alpha=1)
 
 # Plot Location Names
 row, column = 0, 0
