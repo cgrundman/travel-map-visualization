@@ -31,37 +31,25 @@ SCALE = 1
 
 # Germany Sites
 PATH = "Sehenswuerdigkeiten/"
-SUBMAPS = [{"name": 'BB', "color": 0.6},
-           {"name": 'BE', "color": 0.4},
-           {"name": 'BW', "color": 0.0},
-           {"name": 'BY', "color": 0.4},
-           {"name": 'HB', "color": 0.0},
-           {"name": 'HE', "color": 0.2},
-           {"name": 'HH', "color": 0.8},
-           {"name": 'MV', "color": 0.2},
-           {"name": 'NI', "color": 0.4},
-           {"name": 'NW', "color": 0.6},
-           {"name": 'RP', "color": 0.8},
-           {"name": 'SH', "color": 0.0},
-           {"name": 'SL', "color": 0.4},
-           {"name": 'SN', "color": 0.2},
-           {"name": 'ST', "color": 0.8},
-           {"name": 'TH', "color": 0.0}]
 CROP_HEIGHT = 200  # define crop 
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 
-# CSV into DataFrame
-df = pd.read_table(PATH + 'locations.csv', delimiter =",")
-points = df[['longitude', 'latitude']].values
+# Meta-Data CSV into list
+md = pd.read_table(PATH + 'meta_data.csv', delimiter =",")
 
-# Combine into GeoDataFrame
-points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
-points_gdf.set_crs(epsg=4326, inplace=True)
+# Make List of Submap Names
+submaps = list(md['name'])
 
 # Define Map Colors
-colors = list(map(lambda d: d.get('color'), filter(lambda d: 'color' in d, SUBMAPS)))
+color_list = list(md['color'])
 cmap = mpl.colormaps['tab20b']
-colors = cmap(colors, len(SUBMAPS))
+colors = cmap(color_list, len(color_list))
+
+# CSV into GeoDataFrame
+df = pd.read_table(PATH + 'locations.csv', delimiter =",")
+points = df[['longitude', 'latitude']].values
+points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
+points_gdf.set_crs(epsg=4326, inplace=True)
 
 # Initiate Plot
 fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
@@ -70,8 +58,8 @@ fig.patch.set_facecolor('#3C4048')
 # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
 
 # iterate through submaps
-for i, submap in enumerate(SUBMAPS):
-    submap_points_gdf = points_gdf[points_gdf['submap'] == f'{submap['name']}']
+for i, submap in enumerate(submaps):
+    submap_points_gdf = points_gdf[points_gdf['submap'] == f'{submap}']
 
     points_coords = np.array([
         (point.x, point.y) for point in submap_points_gdf.geometry
@@ -81,9 +69,9 @@ for i, submap in enumerate(SUBMAPS):
     shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
 
     # Load state GeoDataFrame (e.g., Bayern)
-    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap['name']}.shp")
-    submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap['name']}"]  # if using geoBoundaries
-    submap_gdf = submap_gdf.to_crs("EPSG:4326")  # or other projected CRS
+    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap}.shp")
+    submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"] # if using geoBoundaries
+    submap_gdf = submap_gdf.to_crs("EPSG:4326") # or other projected CRS
 
     # List all .shp files
     # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
