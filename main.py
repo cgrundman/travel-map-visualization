@@ -30,12 +30,12 @@ SCALE = 1
 # # FIG_SIZE = (20,14)
 
 # Germany Sites
-PATH = "Sehenswuerdigkeiten/"
+PATH = "de"
 CROP_HEIGHT = 200  # define crop 
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 
 # Meta-Data CSV into list
-md = pd.read_table(PATH + 'meta_data.csv', delimiter =",")
+md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
 
 # Make List of Submap Names
 submaps = list(md['name'])
@@ -46,7 +46,7 @@ cmap = mpl.colormaps['tab20b']
 colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
-df = pd.read_table(PATH + 'locations.csv', delimiter =",")
+df = pd.read_table(PATH + '/locations.csv', delimiter =",")
 points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
@@ -64,10 +64,10 @@ for i, submap in enumerate(submaps):
     ])
 
     # Path to the folder containing shapefiles
-    shapefile_dir = "Sehenswuerdigkeiten/submaps/"  # adjust as needed
+    shapefile_dir = PATH + '/submaps/'  # adjust as needed
 
     # Load state GeoDataFrame (e.g., Bayern)
-    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/submaps/{submap}.shp")
+    submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
     submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"] # if using geoBoundaries
     submap_gdf = submap_gdf.to_crs("EPSG:4326") # or other projected CRS
 
@@ -136,7 +136,7 @@ image = Image.open('./plots/temp/de.png') # load the image
 width, height = image.size # pull image size
 crop_box = (0, CROP_HEIGHT*SCALE, width, height)  # x1, y1, x2, y2
 cropped_image = image.crop(crop_box) # crop image
-cropped_image.save('./plots/temp/de.png') # save
+cropped_image.save(f'./plots/temp/{PATH}.png') # save
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
