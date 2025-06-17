@@ -10,7 +10,7 @@ from PIL import Image
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # # US National Park Global Variables
 # # MAP_NAME = "national_parks"
@@ -114,7 +114,7 @@ else:
     x1, y1, x2, y2 = crop_borders[-4:]
 crop_box = (width*x1, height*y1, width*x2, height*y2)
 cropped_image = image.crop(crop_box) # crop image
-cropped_image.save(f'./plots/temp/{PATH}_{SCALE}.png') # save
+cropped_image.save(f'./plots/{PATH}_{SCALE}.png') # save
 print("Figure cropped.")
 
 # Create gif from produced plots
