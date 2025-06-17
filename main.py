@@ -16,10 +16,10 @@ from collections import defaultdict
 from PIL import Image
 
 
-# # Set global variables, directories for map creation and site locations
+# Set global variables, directories for map creation and site locations
 SCALE = 1
 
-# # National Park Data
+# # US National Park Global Variables
 # # MAP_NAME = "national_parks"
 # # EXTENT=[-120, 25, -73, 49]
 # # CENTRAL_LONGITUDE=-98
@@ -29,7 +29,7 @@ SCALE = 1
 # # COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
 # # FIG_SIZE = (20,14)
 
-# Germany Sites
+# Germany Global Variables
 PATH = "de"
 CROP_HEIGHT = 200  # define crop 
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
@@ -63,51 +63,26 @@ for i, submap in enumerate(submaps):
         (point.x, point.y) for point in submap_points_gdf.geometry
     ])
 
-    # Path to the folder containing shapefiles
-    shapefile_dir = PATH + '/submaps/'  # adjust as needed
+    # Path to submap shapefiles
+    shapefile_dir = PATH + '/submaps/'
 
-    # Load state GeoDataFrame (e.g., Bayern)
+    # Load submap
     submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
-    submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"] # if using geoBoundaries
-    submap_gdf = submap_gdf.to_crs("EPSG:4326") # or other projected CRS
+    submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
+    submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
-    # List all .shp files
-    # shapefiles = [os.path.join(shapefile_dir, f) for f in os.listdir(shapefile_dir) if f.endswith(".shp")]
-
-    # fig, ax = plt.subplots(figsize=(10, 15))
-
-    # Plot Overall Map
-    # main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=0.5, cmap="tab20b", alpha=0.6)
-    
-    # Plot outside region
-    # bayern_bounding_region.plot(ax=plt.gca(), facecolor='lightblue', edgecolor='blue', alpha=0.5)
-
-    # Plot Region Border
-    # bayern.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
-
-    # Plot points of interest in region
-    # by_points_gdf.plot(ax=plt.gca(), edgecolor="darkgoldenrod", color="gold", markersize=15, alpha=1)
-
-    # Plot current submap
-    # plt.title(f"{submap}")
-    # plt.axis("off")
-    # plt.savefig(f"./plots/temp/{submap}.png")
-    # plt.show()
-
+    # Plot submap
     submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
 
 # Plot Points
-# Create a mask for points with and without a date
-has_date = points_gdf['date'].notnull()
-no_date = points_gdf['date'].isnull()
-# Plot points not visited
+has_date = points_gdf['date'].notnull() # mask for points with date
+no_date = points_gdf['date'].isnull() # mask for points without date
 points_gdf[no_date].plot(ax=plt.gca(), 
                          edgecolor="darkred", 
                          color="red", 
                          linewidth=1*SCALE, 
                          markersize=100*SCALE, 
                          alpha=1)
-# Plot points visited
 points_gdf[has_date].plot(ax=plt.gca(), 
                           edgecolor="darkgoldenrod", 
                           color="gold", 
@@ -124,7 +99,7 @@ for index, location in enumerate(points_gdf['name']):
         column += 1
         row = 0
     
-# Plot all states
+# Add Plot Data and Save
 plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
 plt.axis("off")
 plt.savefig(f"./plots/temp/de.png")
