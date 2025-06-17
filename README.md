@@ -54,6 +54,7 @@ Resources:
 
 Map Data and Shapefiles:
  - [census.gov](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html)
+ - [geoBoundaries](https://www.geoboundaries.org/)
  - [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/germany-shapefile)
 
 ## License

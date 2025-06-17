@@ -55,8 +55,6 @@ points_gdf.set_crs(epsg=4326, inplace=True)
 fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
 fig.patch.set_facecolor('#3C4048')
 
-# main_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=4, alpha=1)
-
 # iterate through submaps
 for i, submap in enumerate(submaps):
     submap_points_gdf = points_gdf[points_gdf['submap'] == f'{submap}']
@@ -66,10 +64,10 @@ for i, submap in enumerate(submaps):
     ])
 
     # Path to the folder containing shapefiles
-    shapefile_dir = "Sehenswuerdigkeiten/geoboundaries_states/"  # adjust as needed
+    shapefile_dir = "Sehenswuerdigkeiten/submaps/"  # adjust as needed
 
     # Load state GeoDataFrame (e.g., Bayern)
-    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/geoboundaries_states/{submap}.shp")
+    submap_gdf = gpd.read_file(f"Sehenswuerdigkeiten/submaps/{submap}.shp")
     submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"] # if using geoBoundaries
     submap_gdf = submap_gdf.to_crs("EPSG:4326") # or other projected CRS
 
