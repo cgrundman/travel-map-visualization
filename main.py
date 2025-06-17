@@ -24,7 +24,6 @@ SCALE = 5
 
 # Germany Global Variables
 PATH = "de"
-CROP_HEIGHT = [[0.150, 0.175, 0.890, 0.830],[0.000, 0.111, 1.000, 1.000]]  # define crop for large plots
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 
 # Meta-Data CSV into list
@@ -40,6 +39,12 @@ colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
 df = pd.read_table(PATH + '/locations.csv', delimiter =",")
+df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
+df = df.sort_values('date')
+print(df)
+for index, row in df.iterrows():
+    if not pd.isna(row['date']):
+        print(row['name'], row['date'])
 points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
