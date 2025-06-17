@@ -1,23 +1,16 @@
-# Import pandas, numpy, and matplotlib
 import pandas as pd
 from matplotlib import pyplot as plt
 import matplotlib as mpl
 import numpy as np
-# Import Geopandas modules
 import geopandas as gpd
-# import geoplot
-# Import shapely to convert string lat-longs to Point objects
-from shapely.geometry import Point, Polygon, LineString, MultiPolygon
-from shapely.ops import unary_union, polygonize
+from shapely.geometry import Point
 # import make_gif
 import os
-from scipy.spatial import Voronoi
-from collections import defaultdict
 from PIL import Image
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 5
 
 # # US National Park Global Variables
 # # MAP_NAME = "national_parks"
@@ -31,7 +24,7 @@ SCALE = 1
 
 # Germany Global Variables
 PATH = "de"
-CROP_HEIGHT = 200  # define crop 
+CROP_HEIGHT = [[0.150, 0.175, 0.890, 0.830],[0.000, 0.111, 1.000, 1.000]]  # define crop for large plots
 # COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 
 # Meta-Data CSV into list
@@ -80,14 +73,14 @@ no_date = points_gdf['date'].isnull() # mask for points without date
 points_gdf[no_date].plot(ax=plt.gca(), 
                          edgecolor="darkred", 
                          color="red", 
-                         linewidth=1*SCALE, 
-                         markersize=100*SCALE, 
+                         linewidth=0, 
+                         markersize=75*(SCALE*SCALE), 
                          alpha=1)
 points_gdf[has_date].plot(ax=plt.gca(), 
                           edgecolor="darkgoldenrod", 
                           color="gold", 
-                          linewidth=1*SCALE, 
-                          markersize=100*SCALE, 
+                          linewidth=0, 
+                          markersize=75*(SCALE*SCALE), 
                           alpha=1)
 
 # Plot Location Names
@@ -102,16 +95,22 @@ for index, location in enumerate(points_gdf['name']):
 # Add Plot Data and Save
 plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
 plt.axis("off")
-plt.savefig(f"./plots/temp/de.png")
+plt.savefig(f"./plots/temp/{PATH}_{SCALE}.png")
 print("Figure created.")
 # plt.show()
 
 # Resize Plot
-image = Image.open('./plots/temp/de.png') # load the image
+image = Image.open(f'./plots/temp/{PATH}_{SCALE}.png') # load the image
 width, height = image.size # pull image size
-crop_box = (0, CROP_HEIGHT*SCALE, width, height)  # x1, y1, x2, y2
+crop_borders = list(md['cropping'])[0:8]
+if SCALE < 3:
+    x1, y1, x2, y2 = crop_borders[0:4]
+else:
+    x1, y1, x2, y2 = crop_borders[-4:]
+crop_box = (width*x1, height*y1, width*x2, height*y2)
 cropped_image = image.crop(crop_box) # crop image
-cropped_image.save(f'./plots/temp/{PATH}.png') # save
+cropped_image.save(f'./plots/temp/{PATH}_{SCALE}.png') # save
+print("Figure cropped.")
 
 # Create gif from produced plots
 # # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
