@@ -45,9 +45,10 @@ points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
+counter = 0
 # Iterate through dates
 for index, row in points_gdf.iterrows():
-    print(points_gdf)
+    # print(points_gdf)
 
     # Add current date for plot
     current_date = row['date']
@@ -158,6 +159,9 @@ for index, row in points_gdf.iterrows():
             # print("Figure cropped.")
 
         plt.close(fig)
+
+        counter += 1
+        print(counter)
 
     # Update Current Date into Old Date 
     old_date = current_date
