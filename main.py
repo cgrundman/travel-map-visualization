@@ -46,7 +46,7 @@ points = df[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
-counter = 0
+# counter = 0
 # Iterate through dates
 for index, row in points_gdf.iterrows():
     # print(points_gdf)
@@ -61,7 +61,7 @@ for index, row in points_gdf.iterrows():
         pass
     else:
         if row['date']:
-            print(str(row['date']) + " - " + str(row['value']) + " - " + row['name'])
+            print(str(row['date']) + " - " + row['name'])
         # Initialize Plot
         fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
         fig.patch.set_facecolor('#3C4048')
@@ -86,7 +86,8 @@ for index, row in points_gdf.iterrows():
             submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
 
         # Plot All Points
-        points_gdf.plot(
+        visited = points_gdf['value'] != 0.0 # mask for visited points
+        points_gdf[visited].plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
             color="red", 
@@ -96,7 +97,7 @@ for index, row in points_gdf.iterrows():
         )
         
         # Plot Points Not Visited
-        not_visited = points_gdf['value'] == 0.0 # mask for points without date
+        not_visited = points_gdf['value'] == 0.0 # mask for non-visted points
         points_gdf[not_visited].plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
@@ -140,14 +141,14 @@ for index, row in points_gdf.iterrows():
         # Add Plot Data and Save
         plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
         plt.axis("off")
-        plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png")
+        plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
         # print("Figure created.")
         # plt.show()
 
         # points_gdf.at[index, 'value'] = 0.5
 
         # Resize Plot
-        with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png') as image: # load the image
+        with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
             width, height = image.size # pull image size
             crop_borders = list(md['cropping'])[0:8]
             if SCALE < 3:
@@ -156,13 +157,13 @@ for index, row in points_gdf.iterrows():
                 x1, y1, x2, y2 = crop_borders[-4:]
             crop_box = (width*x1, height*y1, width*x2, height*y2)
             cropped_image = image.crop(crop_box) # crop image
-            cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png') # save
+            cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
             # print("Figure cropped.")
 
         plt.close(fig)
 
-        counter += 1
-        print(counter)
+        # counter += 1
+        # print(counter)
 
     # Update Current Date into Old Date 
     old_date = current_date
