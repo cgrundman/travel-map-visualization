@@ -33,8 +33,9 @@ md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
 submaps = list(md['name'])
 
 # Define Map Colors
-color_list = list(md['color'])
-cmap = mpl.colormaps['tab20b']
+color_list = list(md['color']*0.2 + 0.3)
+# cmap = mpl.colormaps['tab20b']
+cmap = mpl.colormaps['copper']
 colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
