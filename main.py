@@ -140,14 +140,14 @@ for index, row in points_gdf.iterrows():
         # Add Plot Data and Save
         plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
         plt.axis("off")
-        plt.savefig(f"./plots/temp/{PATH}_{current_date}.png")
+        plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png")
         # print("Figure created.")
         # plt.show()
 
         # points_gdf.at[index, 'value'] = 0.5
 
         # Resize Plot
-        with Image.open(f'./plots/temp/{PATH}_{current_date}.png') as image: # load the image
+        with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png') as image: # load the image
             width, height = image.size # pull image size
             crop_borders = list(md['cropping'])[0:8]
             if SCALE < 3:
@@ -156,7 +156,7 @@ for index, row in points_gdf.iterrows():
                 x1, y1, x2, y2 = crop_borders[-4:]
             crop_box = (width*x1, height*y1, width*x2, height*y2)
             cropped_image = image.crop(crop_box) # crop image
-            cropped_image.save(f'./plots/temp/{PATH}_{current_date}.png') # save
+            cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y-%m-%d")}.png') # save
             # print("Figure cropped.")
 
         plt.close(fig)
