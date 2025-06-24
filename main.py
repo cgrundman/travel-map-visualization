@@ -57,9 +57,6 @@ for index, row in points_gdf.iterrows():
     # Add current date for plot
     current_date = row['date']
 
-    # Activate Current Location
-    points_gdf.at[index, 'value'] = 1.0
-
     if pd.isna(row['date']):
         pass
     else:
@@ -88,49 +85,39 @@ for index, row in points_gdf.iterrows():
             # Plot submap
             submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
 
-        # Plot All Points
-        visited = points_gdf['value'] != 0.0 # mask for visited points
-        points_gdf[visited].plot(
+        # Plot Not Visited Points
+        points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
-            color="red", 
+            color="purple", 
             linewidth=0, 
             markersize=75*(SCALE*SCALE), 
             alpha=1
         )
         
-        # Plot Points Not Visited
-        not_visited = points_gdf['value'] == 0.0 # mask for non-visted points
-        points_gdf[not_visited].plot(
-            ax=plt.gca(), 
-            edgecolor="darkgoldenrod", 
-            color="gold", 
-            linewidth=0, 
-            markersize=100*(SCALE*SCALE), 
-            alpha=1
-        )
-        
-        # Plot Points Visited (Inactive)
-        #visited_inactive = points_gdf['value'] == 0.5 # mask for points with date
-        #points_gdf[visited_inactive].plot(
-        #    ax=plt.gca(), 
-        #    edgecolor="darkgoldenrod",
-        #    color="gold", 
-        #    linewidth=1, 
-        #    markersize=75*(SCALE*SCALE), 
-        #    alpha=1
-        #)
+        # Plot Visited Points
+        visited = points_gdf['date'] < current_date # mask for visited points
+        if visited.any():
+            points_gdf[visited].plot(
+                ax=plt.gca(), 
+                edgecolor="darkgoldenrod", 
+                color="green", 
+                linewidth=0, 
+                markersize=75*(SCALE*SCALE), 
+                alpha=1
+            )
 
-        # Plot Points Visited (Active)
-        #visited_active = points_gdf['value'] == 1.0 # mask for points with date
-        #points_gdf[visited_active].plot(
-        #    ax=plt.gca(), 
-        #    edgecolor="darkgoldenrod",
-        #    color="green", 
-        #    linewidth=0, 
-        #    markersize=200*(SCALE*SCALE), 
-        #    alpha=1
-        #)
+        # Plot Active Points
+        active = points_gdf['date'] == current_date # mask for active points
+        if active.any():
+            points_gdf[active].plot(
+                ax=plt.gca(), 
+                edgecolor="darkgoldenrod", 
+                color="red", 
+                linewidth=0, 
+                markersize=75*(SCALE*SCALE), 
+                alpha=1
+            )
 
         # Plot Location Names
         row, column = 0, 0
@@ -147,8 +134,6 @@ for index, row in points_gdf.iterrows():
         plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
         # print("Figure created.")
         # plt.show()
-
-        # points_gdf.at[index, 'value'] = 0.5
 
         # Resize Plot
         with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
