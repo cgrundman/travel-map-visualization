@@ -8,6 +8,8 @@ from shapely.geometry import Point
 import os
 from PIL import Image
 
+from colormap import custom_cmap
+
 
 # Set global variables, directories for map creation and site locations
 SCALE = 1
@@ -33,9 +35,10 @@ md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
 submaps = list(md['name'])
 
 # Define Map Colors
-color_list = list(md['color']*0.2 + 0.3)
+color_list = list(md['color'])
+cmap = custom_cmap()
 # cmap = mpl.colormaps['tab20b']
-cmap = mpl.colormaps['copper']
+#cmap = mpl.colormaps['copper']
 colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
