@@ -4,7 +4,7 @@ import matplotlib as mpl
 import numpy as np
 import geopandas as gpd
 from shapely.geometry import Point
-# import make_gif
+import make_gif
 import os
 from PIL import Image
 
@@ -14,19 +14,11 @@ from colormap import custom_cmap
 # Set global variables, directories for map creation and site locations
 SCALE = 1
 
-# # US National Park Global Variables
-# # MAP_NAME = "national_parks"
-# # EXTENT=[-120, 25, -73, 49]
-# # CENTRAL_LONGITUDE=-98
-# # CENTRAL_LATITUDE=39.5
-# # LOCATION_CSV = "National_Parks/nps_list.csv"
-# # GEO_DATA_DIR = "National_Parks/cb_2018_us_nation_5m/cb_2018_us_nation_5m.shp"
-# # COLOR_VALUES = [0.56,.21,0.26] # [unvisited,visited-active,visited-inactive]
-# # FIG_SIZE = (20,14)
+# US National Park Global Variables
+# PATH = "us"
 
 # Germany Global Variables
 PATH = "de"
-# COLOR_VALUES = [0.51,.61,0.66] # [unvisited,visited-active,visited-inactive]
 
 # Meta-Data CSV into list
 md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
@@ -37,8 +29,6 @@ submaps = list(md['name'])
 # Define Map Colors
 color_list = list(md['color'])
 cmap = custom_cmap()
-# cmap = mpl.colormaps['tab20b']
-#cmap = mpl.colormaps['copper']
 colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
@@ -157,6 +147,6 @@ for index, row in points_gdf.iterrows():
     old_date = current_date
 
 # Create gif from produced plots
-# # make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{MAP_NAME}.gif", duration=200)
+make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{PATH}_{SCALE}.gif", duration=200)
 
 # Clean temp directory
