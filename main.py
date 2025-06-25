@@ -74,8 +74,8 @@ for index, row in points_gdf.iterrows():
 
             # Plot submap
             submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
-
-        # Plot Not Visited Points
+        
+        # Plot All Points for Scaling
         points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
@@ -108,6 +108,16 @@ for index, row in points_gdf.iterrows():
                 markersize=75*(SCALE*SCALE), 
                 alpha=1
             )
+
+        # Plot All Points for Scaling
+        points_gdf.plot(
+            ax=plt.gca(), 
+            edgecolor="darkgoldenrod", 
+            color="purple", 
+            linewidth=0, 
+            markersize=75*(SCALE*SCALE), 
+            alpha=0
+        )
 
         # Plot Location Names
         row, column = 0, 0
