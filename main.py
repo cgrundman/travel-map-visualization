@@ -34,16 +34,13 @@ colors = cmap(color_list, len(color_list))
 # CSV into GeoDataFrame
 df = pd.read_table(PATH + '/locations.csv', delimiter =",")
 df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
-df = df.sort_values('date')
-points = df[['longitude', 'latitude']].values
-points_gdf = gpd.GeoDataFrame(df, geometry=[Point(xy) for xy in points])
+df_sorted = df.sort_values('date')
+points = df_sorted[['longitude', 'latitude']].values
+points_gdf = gpd.GeoDataFrame(df_sorted, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
-# counter = 0
 # Iterate through dates
 for index, row in points_gdf.iterrows():
-    # print(points_gdf)
-
     # Add current date for plot
     current_date = row['date']
 
@@ -79,7 +76,7 @@ for index, row in points_gdf.iterrows():
         points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
-            color="purple", 
+            color="#353535", 
             linewidth=0, 
             markersize=75*(SCALE*SCALE), 
             alpha=1
@@ -91,7 +88,7 @@ for index, row in points_gdf.iterrows():
             points_gdf[visited].plot(
                 ax=plt.gca(), 
                 edgecolor="darkgoldenrod", 
-                color="green", 
+                color="#00abb3", 
                 linewidth=0, 
                 markersize=75*(SCALE*SCALE), 
                 alpha=1
@@ -103,7 +100,7 @@ for index, row in points_gdf.iterrows():
             points_gdf[active].plot(
                 ax=plt.gca(), 
                 edgecolor="darkgoldenrod", 
-                color="red", 
+                color="#EAEAEA", 
                 linewidth=0, 
                 markersize=75*(SCALE*SCALE), 
                 alpha=1
@@ -113,7 +110,7 @@ for index, row in points_gdf.iterrows():
         points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
-            color="purple", 
+            color="#353535", 
             linewidth=0, 
             markersize=75*(SCALE*SCALE), 
             alpha=0
@@ -121,8 +118,13 @@ for index, row in points_gdf.iterrows():
 
         # Plot Location Names
         row, column = 0, 0
-        for index, location in enumerate(points_gdf['name']):
-            plt.text(4.1 + 1.59*column, 47 - 0.074*row , location, fontsize=5.5*SCALE, color='#EAEAEA')
+        for index, location in df.iterrows():
+            if location['date'] == current_date:
+                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#00abb3")
+            elif location['date'] < current_date:
+                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
+            else:
+                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#EAEAEA')
             row += 1
             if row % 26 == 0:
                 column += 1
@@ -149,9 +151,6 @@ for index, row in points_gdf.iterrows():
             # print("Figure cropped.")
 
         plt.close(fig)
-
-        # counter += 1
-        # print(counter)
 
     # Update Current Date into Old Date 
     old_date = current_date
