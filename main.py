@@ -76,7 +76,7 @@ for index, row in points_gdf.iterrows():
         points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
-            color="#353535", 
+            color="#e7ba52", 
             linewidth=0, 
             markersize=75*(SCALE*SCALE), 
             alpha=1
@@ -88,7 +88,7 @@ for index, row in points_gdf.iterrows():
             points_gdf[visited].plot(
                 ax=plt.gca(), 
                 edgecolor="darkgoldenrod", 
-                color="#00abb3", 
+                color="#353535", 
                 linewidth=0, 
                 markersize=75*(SCALE*SCALE), 
                 alpha=1
@@ -110,7 +110,7 @@ for index, row in points_gdf.iterrows():
         points_gdf.plot(
             ax=plt.gca(), 
             edgecolor="darkgoldenrod", 
-            color="#353535", 
+            color="black", 
             linewidth=0, 
             markersize=75*(SCALE*SCALE), 
             alpha=0
