@@ -27,9 +27,9 @@ md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
 submaps = list(md['name'])
 
 # Define Map Colors
-color_list = list(md['color'])
-cmap = custom_cmap()
-colors = cmap(color_list, len(color_list))
+#color_list = list(md['color'])
+#cmap = custom_cmap()
+#colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
 df = pd.read_table(PATH + '/locations.csv', delimiter =",")
@@ -55,7 +55,15 @@ for index, row in points_gdf.iterrows():
 
         # Plot each Submap
         for i, submap in enumerate(submaps):
-            submap_points_gdf = points_gdf[points_gdf['submap'] == f'{submap}']
+            submap_points_gdf = points_gdf[points_gdf['submap'] == submap]
+
+            # Count how many dates are less than current date
+            num_past_dates = (submap_points_gdf['date'] < current_date).sum()
+
+            # Calculate the ratio
+            ratio = num_past_dates / len(submap_points_gdf)
+
+            #submap_color = cmap(ratio)
 
             points_coords = np.array([
                 (point.x, point.y) for point in submap_points_gdf.geometry
@@ -70,7 +78,7 @@ for index, row in points_gdf.iterrows():
             submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
             # Plot submap
-            submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=colors[i], alpha=1)
+            submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=custom_cmap(ratio), alpha=1)
         
         # Plot All Points for Scaling
         points_gdf.plot(

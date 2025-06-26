@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 
-def custom_cmap():
+def custom_cmap(ratio):
     # Color Ranges
     color_1 = (132, 60, 57)
     color_2 = (214, 97, 107)
@@ -10,7 +10,9 @@ def custom_cmap():
     # Create a custom linear colormap
     cmap = LinearSegmentedColormap.from_list("custom_map", [tuple([x / 255 for x in (color_1)]), tuple([x / 255 for x in (color_2)])])
 
-    return cmap
+    color = cmap(ratio)
+
+    return color
 
 # Function to get color at position between 0 and 1
 #def get_color(value):
