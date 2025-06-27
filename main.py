@@ -1,11 +1,11 @@
 import pandas as pd
 from matplotlib import pyplot as plt
-import matplotlib as mpl
+# import matplotlib as mpl
 import numpy as np
 import geopandas as gpd
 from shapely.geometry import Point
 import make_gif
-import os
+# import os
 from PIL import Image
 
 from colormap import custom_cmap

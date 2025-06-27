@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
-import numpy as np
+# import numpy as np
 
 def custom_cmap(ratio):
     # Color Ranges
