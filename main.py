@@ -5,26 +5,31 @@ import numpy as np
 import geopandas as gpd
 from shapely.geometry import Point
 import make_gif
-# import os
+import os
 from PIL import Image
 
 from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 3
+SCALE = 1
 
 # US National Park Global Variables
 # PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+# PATH = "de"
+
+# Europe Global Variables
+PATH = "eu"
 
 # Meta-Data CSV into list
 md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
 
 # Make List of Submap Names
-submaps = list(md['name'])
+submap_files = os.listdir(PATH + '/submaps/')
+submaps = [submap.replace('.shp', '') for submap in submap_files if '.shp' in submap]
+submaps.sort()
 
 # Define Map Colors
 #color_list = list(md['color'])
