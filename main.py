@@ -18,7 +18,7 @@ SCALE = 1
 # PATH = "us"
 
 # Germany Global Variables
-# PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
 PATH = "eu"
@@ -78,8 +78,8 @@ for index, row in points_gdf.iterrows():
 
             # Load submap
             submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
-            submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
-            submap_gdf = submap_gdf.to_crs("EPSG:4326")
+            #submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
+            #submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
             # Plot submap
             submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=submap_color, alpha=1)
