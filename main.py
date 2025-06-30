@@ -129,18 +129,19 @@ for index, row in points_gdf.iterrows():
         )
 
         # Plot Location Names
-        row, column = 0, 0
-        for index, location in df.iterrows():
-            if location['date'] == current_date:
-                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
-            elif location['date'] < current_date:
-                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
-            else:
-                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
-            row += 1
-            if row % 26 == 0:
-                column += 1
-                row = 0
+        if SCALE > 3:
+            row, column = 0, 0
+            for index, location in df.iterrows():
+                if location['date'] == current_date:
+                    plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
+                elif location['date'] < current_date:
+                    plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
+                else:
+                    plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
+                row += 1
+                if row % 26 == 0:
+                    column += 1
+                    row = 0
             
         # Add Plot Data and Save
         plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
@@ -171,3 +172,7 @@ for index, row in points_gdf.iterrows():
 make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{PATH}_{SCALE}.gif", duration=200)
 
 # Clean temp directory
+temp_path = "plots/temp/"
+for f in os.listdir(temp_path):
+    print(f)
+    os.remove(os.path.join(temp_path, f))
