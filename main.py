@@ -12,7 +12,7 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 5
 
 # US National Park Global Variables
 # PATH = "us"
@@ -60,10 +60,9 @@ for index, row in points_gdf.iterrows():
             # Count how many dates are less than current date
             num_past_dates = (submap_points_gdf['date'] < current_date).sum()
 
-            # Calculate the ratio
+            # Calculate the ratio and associated color
             ratio = num_past_dates / len(submap_points_gdf)
-
-            #submap_color = cmap(ratio)
+            submap_color = custom_cmap(ratio)
 
             points_coords = np.array([
                 (point.x, point.y) for point in submap_points_gdf.geometry
@@ -78,7 +77,7 @@ for index, row in points_gdf.iterrows():
             submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
             # Plot submap
-            submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=custom_cmap(ratio), alpha=1)
+            submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=submap_color, alpha=1)
         
         # Plot All Points for Scaling
         points_gdf.plot(
