@@ -5,7 +5,8 @@ from matplotlib.colors import LinearSegmentedColormap
 def custom_cmap(ratio):
     # Color Ranges
     color_1 = (132, 60, 57)
-    color_2 = (214, 97, 107)
+    #color_2 = (214, 97, 107)
+    color_2 = (189, 158, 57)
 
     # Create a custom linear colormap
     cmap = LinearSegmentedColormap.from_list("custom_map", [tuple([x / 255 for x in (color_1)]), tuple([x / 255 for x in (color_2)])])

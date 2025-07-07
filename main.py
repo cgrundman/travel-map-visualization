@@ -12,7 +12,7 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 3
 
 # US National Park Global Variables
 # PATH = "us"
@@ -127,11 +127,11 @@ for index, row in points_gdf.iterrows():
         row, column = 0, 0
         for index, location in df.iterrows():
             if location['date'] == current_date:
-                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#00abb3")
+                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
             elif location['date'] < current_date:
                 plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
             else:
-                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#EAEAEA')
+                plt.text(4.1 + 1.59*column, 47 - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
             row += 1
             if row % 26 == 0:
                 column += 1
