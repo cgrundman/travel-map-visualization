@@ -1,5 +1,5 @@
-name,color,cropping
-AD,0.0,0.150
+name,color,cropping,marker size,label locations
+AD,0.0,0.150,2,33
 AL,0.0,0.175
 AM,0.0,0.890
 AT,0.0,0.830
