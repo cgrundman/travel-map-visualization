@@ -2,7 +2,7 @@ import geopandas as gpd
 import os
 
 # Load shapefile
-gdf = gpd.read_file("eu/submaps/Poland/geoBoundaries-POL-ADM0_simplified.shp")
+gdf = gpd.read_file("eu/submaps/Slovenia/geoBoundaries-SVN-ADM0_simplified.shp")
 
 # Create a directory for output shapefiles
 output_dir = "eu/submaps"
@@ -15,6 +15,6 @@ os.makedirs(output_dir, exist_ok=True)
 #     state_gdf.to_file(filename)
 #     print(f"Exported: {filename}")
 
-filename = os.path.join(output_dir, "PL.shp")
+filename = os.path.join(output_dir, "SI.shp")
 gdf.to_file(filename)
 print(f"Exported: {filename}")
