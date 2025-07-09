@@ -1,5 +1,5 @@
-name,color,cropping
-BB,0.6,0.150
+name,color,cropping,marker size,label locations
+BB,0.6,0.150,75,47
 BE,0.4,0.175
 BW,0.0,0.890
 BY,0.4,0.830
