@@ -12,16 +12,16 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
 
 # Europe Global Variables
-PATH = "eu"
+#PATH = "eu"
 
 # Meta-Data CSV into list
 md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
