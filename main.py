@@ -32,9 +32,9 @@ with open(PATH + '/meta_data.json', 'r') as f:
 title = meta_data["Title"]
 crop_s = meta_data["Cropping"]["small"]
 crop_l = meta_data["Cropping"]["large"]
-unvisited = meta_data["Colors"]["unvisited"]
-active = meta_data["Colors"]["active"]
-visited = meta_data["Colors"]["visited"]
+color_unvisited = meta_data["Colors"]["unvisited"]
+color_active = meta_data["Colors"]["active"]
+color_visited = meta_data["Colors"]["visited"]
 marker_size = meta_data["Marker Size"]
 label_loc = meta_data["Labels"]
 
@@ -42,11 +42,6 @@ label_loc = meta_data["Labels"]
 submap_files = os.listdir(PATH + '/submaps/')
 submaps = [submap.replace('.shp', '') for submap in submap_files if '.shp' in submap]
 submaps.sort()
-
-# Define Map Colors
-#color_list = list(md['color'])
-#cmap = custom_cmap()
-#colors = cmap(color_list, len(color_list))
 
 # CSV into GeoDataFrame
 df = pd.read_table(PATH + '/locations.csv', delimiter =",")
@@ -96,8 +91,6 @@ for index, row in points_gdf.iterrows():
 
                 # Load submap
                 submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
-                #submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
-                #submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
                 # Plot submap
                 submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=submap_color, alpha=1)
@@ -105,8 +98,7 @@ for index, row in points_gdf.iterrows():
             # Plot All Points for Scaling
             points_gdf.plot(
                 ax=plt.gca(), 
-                edgecolor="darkgoldenrod", 
-                color="#e7ba52", 
+                color=color_unvisited, 
                 linewidth=0, 
                 markersize=marker_size*(SCALE*SCALE), 
                 alpha=1
@@ -117,8 +109,7 @@ for index, row in points_gdf.iterrows():
             if visited.any():
                 points_gdf[visited].plot(
                     ax=plt.gca(), 
-                    edgecolor="darkgoldenrod", 
-                    color="#353535", 
+                    color=color_visited, 
                     linewidth=0, 
                     markersize=marker_size*(SCALE*SCALE), 
                     alpha=1
@@ -129,8 +120,7 @@ for index, row in points_gdf.iterrows():
             if active.any():
                 points_gdf[active].plot(
                     ax=plt.gca(), 
-                    edgecolor="darkgoldenrod", 
-                    color="#EAEAEA", 
+                    color=color_active, 
                     linewidth=0, 
                     markersize=marker_size*(SCALE*SCALE), 
                     alpha=1
@@ -139,7 +129,6 @@ for index, row in points_gdf.iterrows():
             # Plot All Points for Scaling
             points_gdf.plot(
                 ax=plt.gca(), 
-                edgecolor="darkgoldenrod", 
                 color="black", 
                 linewidth=0, 
                 markersize=marker_size*(SCALE*SCALE), 
