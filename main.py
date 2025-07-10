@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 from matplotlib import pyplot as plt
 # import matplotlib as mpl
 import numpy as np
@@ -12,23 +13,30 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 0.1
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
 
-# Meta-Data CSV into list
-md = pd.read_table(PATH + '/meta_data.csv', delimiter =",")
+# Load the JSON Meta-Data
+with open(PATH + '/meta_data.json', 'r') as f:
+    meta_data = json.load(f)
 
-# Extract Meta Data
-MARKER_SIZE = int(md['marker size'][0])
-LABEL_LOC = int(md['label locations'][0])
+# Access Meta-Data variables
+title = meta_data["Title"]
+crop_s = meta_data["Cropping"]["small"]
+crop_l = meta_data["Cropping"]["large"]
+unvisited = meta_data["Colors"]["unvisited"]
+active = meta_data["Colors"]["active"]
+visited = meta_data["Colors"]["visited"]
+marker_size = meta_data["Marker Size"]
+label_loc = meta_data["Labels"]
 
 # Make List of Submap Names
 submap_files = os.listdir(PATH + '/submaps/')
@@ -71,7 +79,7 @@ for index, row in points_gdf.iterrows():
 
             # Calculate the ratio and associated color
             ratio = num_past_dates / len(submap_points_gdf)
-            submap_color = custom_cmap(ratio)
+            submap_color = custom_cmap(PATH, ratio)
 
             points_coords = np.array([
                 (point.x, point.y) for point in submap_points_gdf.geometry
@@ -94,7 +102,7 @@ for index, row in points_gdf.iterrows():
             edgecolor="darkgoldenrod", 
             color="#e7ba52", 
             linewidth=0, 
-            markersize=MARKER_SIZE*(SCALE*SCALE), 
+            markersize=marker_size*(SCALE*SCALE), 
             alpha=1
         )
         
@@ -106,7 +114,7 @@ for index, row in points_gdf.iterrows():
                 edgecolor="darkgoldenrod", 
                 color="#353535", 
                 linewidth=0, 
-                markersize=MARKER_SIZE*(SCALE*SCALE), 
+                markersize=marker_size*(SCALE*SCALE), 
                 alpha=1
             )
 
@@ -118,7 +126,7 @@ for index, row in points_gdf.iterrows():
                 edgecolor="darkgoldenrod", 
                 color="#EAEAEA", 
                 linewidth=0, 
-                markersize=MARKER_SIZE*(SCALE*SCALE), 
+                markersize=marker_size*(SCALE*SCALE), 
                 alpha=1
             )
 
@@ -128,7 +136,7 @@ for index, row in points_gdf.iterrows():
             edgecolor="darkgoldenrod", 
             color="black", 
             linewidth=0, 
-            markersize=MARKER_SIZE*(SCALE*SCALE), 
+            markersize=marker_size*(SCALE*SCALE), 
             alpha=0
         )
 
@@ -137,11 +145,11 @@ for index, row in points_gdf.iterrows():
             row, column = 0, 0
             for index, location in df.iterrows():
                 if location['date'] == current_date:
-                    plt.text(4.1 + 1.59*column, LABEL_LOC - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
+                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
                 elif location['date'] < current_date:
-                    plt.text(4.1 + 1.59*column, LABEL_LOC - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
+                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
                 else:
-                    plt.text(4.1 + 1.59*column, LABEL_LOC - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
+                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
                 row += 1
                 if row % 26 == 0:
                     column += 1
@@ -157,11 +165,10 @@ for index, row in points_gdf.iterrows():
         # Resize Plot
         with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
             width, height = image.size # pull image size
-            crop_borders = list(md['cropping'])[0:8]
             if SCALE < 3:
-                x1, y1, x2, y2 = crop_borders[0:4]
+                x1, y1, x2, y2 = crop_s
             else:
-                x1, y1, x2, y2 = crop_borders[-4:]
+                x1, y1, x2, y2 = crop_l
             crop_box = (width*x1, height*y1, width*x2, height*y2)
             cropped_image = image.crop(crop_box) # crop image
             cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
