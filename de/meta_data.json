@@ -23,12 +23,18 @@
         "big": [0.000, 0.111, 1.000, 1.000]
     },
     "Colors": {
-        "map_dark": [],
-        "map_light": [],
+        "map_dark": "#843c39",
+        "map_light": "#bd9e39",
         "unvisited": [],
         "active": [],
         "visited": []
     },
     "Marker Size": 75,
-    "Label Locations": 47
+    "Labels": {
+        "Start Longitude": 4.1, 
+        "Start Latitude": 47,
+        "Vertical Spacing": 0.074,
+        "Horizontal Spacing": 1.59,
+        "Font": 5.5
+    }
 }
