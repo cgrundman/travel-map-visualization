@@ -13,7 +13,7 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 0.1
+SCALE = 5
 
 # US National Park Global Variables
 #PATH = "us"
@@ -139,14 +139,14 @@ for index, row in points_gdf.iterrows():
             if SCALE > 3:
                 row, column = 0, 0
                 for index, location in df.iterrows():
-                    
+
                     if location['date'] == current_date:
-                        label_color = "#EAEAEA"
+                        label_color = color_active
                     elif location['date'] < current_date:
-                        label_color = "#353535"
+                        label_color = color_visited
                     else:
-                        label_color = "#e7ba52"
-                    pos_x = labels["Start Longitude"] + labels["Horizontal Longitude"]*column
+                        label_color = color_unvisited
+                    pos_x = labels["Start Longitude"] + labels["Horizontal Spacing"]*column
                     pos_y = labels["Start Latitude"] - labels["Vertical Spacing"]*row
 
                     # Plot the label text
@@ -158,11 +158,9 @@ for index, row in points_gdf.iterrows():
                         row = 0
                 
             # Add Plot Data and Save
-            plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
+            plt.title(title, fontsize=25*SCALE, color='#EAEAEA')
             plt.axis("off")
             plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
-            # print("Figure created.")
-            # plt.show()
 
             # Resize Plot
             with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
