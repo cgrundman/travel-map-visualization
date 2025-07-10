@@ -36,7 +36,7 @@ color_unvisited = meta_data["Colors"]["unvisited"]
 color_active = meta_data["Colors"]["active"]
 color_visited = meta_data["Colors"]["visited"]
 marker_size = meta_data["Marker Size"]
-label_loc = meta_data["Labels"]
+labels = meta_data["Labels"]
 
 # Make List of Submap Names
 submap_files = os.listdir(PATH + '/submaps/')
@@ -139,12 +139,19 @@ for index, row in points_gdf.iterrows():
             if SCALE > 3:
                 row, column = 0, 0
                 for index, location in df.iterrows():
+                    
                     if location['date'] == current_date:
-                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
+                        label_color = "#EAEAEA"
                     elif location['date'] < current_date:
-                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
+                        label_color = "#353535"
                     else:
-                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
+                        label_color = "#e7ba52"
+                    pos_x = labels["Start Longitude"] + labels["Horizontal Longitude"]*column
+                    pos_y = labels["Start Latitude"] - labels["Vertical Spacing"]*row
+
+                    # Plot the label text
+                    plt.text(pos_x, pos_y, location['name'], fontsize=5.5*SCALE, color=label_color)
+
                     row += 1
                     if row % 26 == 0:
                         column += 1
