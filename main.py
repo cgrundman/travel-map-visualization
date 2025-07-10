@@ -154,7 +154,7 @@ for index, row in points_gdf.iterrows():
                     plt.text(pos_x, pos_y, location['name'], fontsize=5.5*SCALE, color=label_color)
 
                     row += 1
-                    if row % 26 == 0:
+                    if row % labels["Splits"] == 0:
                         column += 1
                         row = 0
                 

@@ -57,10 +57,10 @@
         {"Name": "WV"},
         {"Name": "WY"}
     ],
-    "Figure Size": [18, 12],
+    "Figure Size": [18, 18],
     "Cropping": {
         "small": [0.150, 0.175, 0.890, 0.830],
-        "large": [0.000, 0.111, 1.000, 1.000]
+        "large": [0.000, 0.250, 1.000, 1.000]
     },
     "Colors": {
         "map_dark": "#843c39",
@@ -71,10 +71,11 @@
     },
     "Marker Size": 20,
     "Labels": {
-        "Start Longitude": -121, 
-        "Start Latitude": 33,
-        "Vertical Spacing": 0.074,
-        "Horizontal Spacing": 1.59,
-        "Font": 5.5
+        "Start Longitude": -131, 
+        "Start Latitude": 23.5,
+        "Vertical Spacing": 0.35,
+        "Horizontal Spacing": 7.85,
+        "Font": 5.5,
+        "Splits": 50
     }
 }
