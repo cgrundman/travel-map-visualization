@@ -16,10 +16,10 @@ from colormap import custom_cmap
 SCALE = 5
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
@@ -30,6 +30,7 @@ with open(PATH + '/meta_data.json', 'r') as f:
 
 # Access Meta-Data variables
 title = meta_data["Title"]
+fig_size = meta_data["Figure Size"]
 crop_s = meta_data["Cropping"]["small"]
 crop_l = meta_data["Cropping"]["large"]
 color_unvisited = meta_data["Colors"]["unvisited"]
@@ -68,7 +69,7 @@ for index, row in points_gdf.iterrows():
             if row['date']:
                 print(str(row['date']) + " - " + row['name'])
             # Initialize Plot
-            fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
+            fig, ax = plt.subplots(figsize=(fig_size[0]*SCALE, fig_size[1]*SCALE))
             fig.patch.set_facecolor('#3C4048')
 
             # Plot each Submap
