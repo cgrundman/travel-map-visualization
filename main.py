@@ -56,128 +56,134 @@ points = df_sorted[['longitude', 'latitude']].values
 points_gdf = gpd.GeoDataFrame(df_sorted, geometry=[Point(xy) for xy in points])
 points_gdf.set_crs(epsg=4326, inplace=True)
 
+# Create initial old date
+old_date = '1875-01-01 00:00:00'
+
 # Iterate through dates
 for index, row in points_gdf.iterrows():
+
     # Add current date for plot
     current_date = row['date']
 
-    if pd.isna(row['date']):
-        pass
-    else:
-        if row['date']:
-            print(str(row['date']) + " - " + row['name'])
-        # Initialize Plot
-        fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
-        fig.patch.set_facecolor('#3C4048')
+    if old_date != current_date:
 
-        # Plot each Submap
-        for i, submap in enumerate(submaps):
-            submap_points_gdf = points_gdf[points_gdf['submap'] == submap]
+        if pd.isna(row['date']):
+            pass
+        else:
+            if row['date']:
+                print(str(row['date']) + " - " + row['name'])
+            # Initialize Plot
+            fig, ax = plt.subplots(figsize=(12*SCALE, 18*SCALE))
+            fig.patch.set_facecolor('#3C4048')
 
-            # Count how many dates are less than current date
-            num_past_dates = (submap_points_gdf['date'] < current_date).sum()
+            # Plot each Submap
+            for i, submap in enumerate(submaps):
+                submap_points_gdf = points_gdf[points_gdf['submap'] == submap]
 
-            # Calculate the ratio and associated color
-            ratio = num_past_dates / len(submap_points_gdf)
-            submap_color = custom_cmap(PATH, ratio)
+                # Count how many dates are less than current date
+                num_past_dates = (submap_points_gdf['date'] < current_date).sum()
 
-            points_coords = np.array([
-                (point.x, point.y) for point in submap_points_gdf.geometry
-            ])
+                # Calculate the ratio and associated color
+                ratio = num_past_dates / len(submap_points_gdf)
+                submap_color = custom_cmap(PATH, ratio)
 
-            # Path to submap shapefiles
-            shapefile_dir = PATH + '/submaps/'
+                points_coords = np.array([
+                    (point.x, point.y) for point in submap_points_gdf.geometry
+                ])
 
-            # Load submap
-            submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
-            #submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
-            #submap_gdf = submap_gdf.to_crs("EPSG:4326")
+                # Path to submap shapefiles
+                shapefile_dir = PATH + '/submaps/'
 
-            # Plot submap
-            submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=submap_color, alpha=1)
-        
-        # Plot All Points for Scaling
-        points_gdf.plot(
-            ax=plt.gca(), 
-            edgecolor="darkgoldenrod", 
-            color="#e7ba52", 
-            linewidth=0, 
-            markersize=marker_size*(SCALE*SCALE), 
-            alpha=1
-        )
-        
-        # Plot Visited Points
-        visited = points_gdf['date'] < current_date # mask for visited points
-        if visited.any():
-            points_gdf[visited].plot(
-                ax=plt.gca(), 
-                edgecolor="darkgoldenrod", 
-                color="#353535", 
-                linewidth=0, 
-                markersize=marker_size*(SCALE*SCALE), 
-                alpha=1
-            )
+                # Load submap
+                submap_gdf = gpd.read_file(shapefile_dir + submap + ".shp")
+                #submap_gdf = submap_gdf[submap_gdf["shapeISO"] == f"DE-{submap}"]
+                #submap_gdf = submap_gdf.to_crs("EPSG:4326")
 
-        # Plot Active Points
-        active = points_gdf['date'] == current_date # mask for active points
-        if active.any():
-            points_gdf[active].plot(
-                ax=plt.gca(), 
-                edgecolor="darkgoldenrod", 
-                color="#EAEAEA", 
-                linewidth=0, 
-                markersize=marker_size*(SCALE*SCALE), 
-                alpha=1
-            )
-
-        # Plot All Points for Scaling
-        points_gdf.plot(
-            ax=plt.gca(), 
-            edgecolor="darkgoldenrod", 
-            color="black", 
-            linewidth=0, 
-            markersize=marker_size*(SCALE*SCALE), 
-            alpha=0
-        )
-
-        # Plot Location Names
-        if SCALE > 3:
-            row, column = 0, 0
-            for index, location in df.iterrows():
-                if location['date'] == current_date:
-                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
-                elif location['date'] < current_date:
-                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
-                else:
-                    plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
-                row += 1
-                if row % 26 == 0:
-                    column += 1
-                    row = 0
+                # Plot submap
+                submap_gdf.plot(ax=plt.gca(), edgecolor="black", linewidth=1, color=submap_color, alpha=1)
             
-        # Add Plot Data and Save
-        plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
-        plt.axis("off")
-        plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
-        # print("Figure created.")
-        # plt.show()
+            # Plot All Points for Scaling
+            points_gdf.plot(
+                ax=plt.gca(), 
+                edgecolor="darkgoldenrod", 
+                color="#e7ba52", 
+                linewidth=0, 
+                markersize=marker_size*(SCALE*SCALE), 
+                alpha=1
+            )
+            
+            # Plot Visited Points
+            visited = points_gdf['date'] < current_date # mask for visited points
+            if visited.any():
+                points_gdf[visited].plot(
+                    ax=plt.gca(), 
+                    edgecolor="darkgoldenrod", 
+                    color="#353535", 
+                    linewidth=0, 
+                    markersize=marker_size*(SCALE*SCALE), 
+                    alpha=1
+                )
 
-        # Resize Plot
-        with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
-            width, height = image.size # pull image size
-            if SCALE < 3:
-                x1, y1, x2, y2 = crop_s
-            else:
-                x1, y1, x2, y2 = crop_l
-            crop_box = (width*x1, height*y1, width*x2, height*y2)
-            cropped_image = image.crop(crop_box) # crop image
-            cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
-            # print("Figure cropped.")
+            # Plot Active Points
+            active = points_gdf['date'] == current_date # mask for active points
+            if active.any():
+                points_gdf[active].plot(
+                    ax=plt.gca(), 
+                    edgecolor="darkgoldenrod", 
+                    color="#EAEAEA", 
+                    linewidth=0, 
+                    markersize=marker_size*(SCALE*SCALE), 
+                    alpha=1
+                )
 
-            # Save the last plot in the general file
-            cropped_image.save(f'./plots/{PATH}_{SCALE}.png') # save
+            # Plot All Points for Scaling
+            points_gdf.plot(
+                ax=plt.gca(), 
+                edgecolor="darkgoldenrod", 
+                color="black", 
+                linewidth=0, 
+                markersize=marker_size*(SCALE*SCALE), 
+                alpha=0
+            )
 
-        plt.close(fig)
+            # Plot Location Names
+            if SCALE > 3:
+                row, column = 0, 0
+                for index, location in df.iterrows():
+                    if location['date'] == current_date:
+                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#EAEAEA")
+                    elif location['date'] < current_date:
+                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color="#353535")
+                    else:
+                        plt.text(4.1 + 1.59*column, label_loc - 0.074*row , location['name'], fontsize=5.5*SCALE, color='#e7ba52')
+                    row += 1
+                    if row % 26 == 0:
+                        column += 1
+                        row = 0
+                
+            # Add Plot Data and Save
+            plt.title("Deutschland", fontsize=25*SCALE, color='#EAEAEA')
+            plt.axis("off")
+            plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
+            # print("Figure created.")
+            # plt.show()
+
+            # Resize Plot
+            with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
+                width, height = image.size # pull image size
+                if SCALE < 3:
+                    x1, y1, x2, y2 = crop_s
+                else:
+                    x1, y1, x2, y2 = crop_l
+                crop_box = (width*x1, height*y1, width*x2, height*y2)
+                cropped_image = image.crop(crop_box) # crop image
+                cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
+                # print("Figure cropped.")
+
+                # Save the last plot in the general file
+                cropped_image.save(f'./plots/{PATH}_{SCALE}.png') # save
+
+            plt.close(fig)
 
     # Update Current Date into Old Date 
     old_date = current_date
