@@ -59,12 +59,12 @@
     ],
     "Figure Size": [18, 18],
     "Cropping": {
-        "small": [0.150, 0.175, 0.890, 0.830],
+        "small": [0.125, 0.250, 0.9, 0.720],
         "large": [0.000, 0.250, 1.000, 1.000]
     },
     "Colors": {
-        "map_dark": "#843c39",
-        "map_light": "#bd9e39",
+        "map_dark": "#bd9e39",
+        "map_light": "#8ca252",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
         "visited": "#353535"
