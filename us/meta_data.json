@@ -63,8 +63,8 @@
         "large": [0.000, 0.250, 1.000, 1.000]
     },
     "Colors": {
-        "map_dark": "#bd9e39",
-        "map_light": "#8ca252",
+        "map_dark": "#946e40",
+        "map_light": "#2c633d",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
         "visited": "#353535"
