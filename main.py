@@ -16,13 +16,13 @@ from colormap import custom_cmap
 SCALE = 5
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Load the JSON Meta-Data
 with open(PATH + '/meta_data.json', 'r') as f:

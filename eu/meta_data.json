@@ -52,19 +52,19 @@
         {"Name": "VA"},
         {"Name": "XK"}
     ],
-    "Figure Size": [12, 18],
+    "Figure Size": [12, 12],
     "Cropping": {
-        "small": [0.150, 0.120, 0.890, 0.830],
+        "small": [0.100, 0.100, 0.900, 0.850],
         "large": [0.000, 0.111, 1.000, 1.000]
     },
     "Colors": {
-        "map_dark": "#843c39",
-        "map_light": "#bd9e39",
+        "map_dark": "#1F271B",
+        "map_light": "#003399",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
         "visited": "#353535"
     },
-    "Marker Size": 75,
+    "Marker Size": 25,
     "Labels": {
         "Start Longitude": 4.1, 
         "Start Latitude": 47,
