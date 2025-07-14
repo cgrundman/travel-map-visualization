@@ -2,9 +2,9 @@
 
 This repo features visualization code for Regional/National travel. Using a base map from a shapefile and geopandas to create a voronoi segmented map, this code can create a timelapse of travels in a geographic region or country from a list of locations. An example can be seen below (national parks visited as of Sep 2024):
 
-<img src="https://github.com/cgrundman/np-map-visualization/blob/main/National_Parks/national_parks.png" width="300"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" width="300"/>
 
-<img src="https://github.com/cgrundman/np-map-visualization/blob/main/Sehenswuerdigkeiten/de_sites.png" width="200"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" width="200"/>
 
 These maps are voronoi segmented maps. The this takes given points and maps regions of least distance to them. The need was to better show the extent of travels. Points do not accuratly show the amounbt of distance and size of the area seen. 
 
@@ -47,15 +47,12 @@ As a fun fact, the locations seen on this maps are almost exclsivly through publ
 ## Acknowledgements
 
 Resources:
- - [wellsr.com](https://wellsr.com/python/python-voronoi-diagram-with-geopandas-and-geoplot/)
  - [GeoPandas](https://geopandas.org/en/latest/index.html)
  - [National Parks System](https://www.nps.gov/index.htm)
  - [Google Maps](https://maps.google.com/)
 
 Map Data and Shapefiles:
- - [census.gov](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html)
  - [geoBoundaries](https://www.geoboundaries.org/)
- - [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/germany-shapefile)
 
 ## License
 
