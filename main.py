@@ -13,7 +13,7 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 3
 
 # US National Park Global Variables
 #PATH = "us"
@@ -137,7 +137,7 @@ for index, row in points_gdf.iterrows():
             )
 
             # Plot Location Names
-            if SCALE > 3:
+            if SCALE >= 3:
                 row, column = 0, 0
                 for index, location in df.iterrows():
 
