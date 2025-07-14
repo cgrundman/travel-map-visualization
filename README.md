@@ -6,6 +6,8 @@ This repo features visualization code for Regional/National travel. Using a base
 
 <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" width="200"/>
 
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" width="250"/>
+
 These maps are voronoi segmented maps. The this takes given points and maps regions of least distance to them. The need was to better show the extent of travels. Points do not accuratly show the amounbt of distance and size of the area seen. 
 
 ## Run Locally
