@@ -66,11 +66,11 @@
     },
     "Marker Size": 5,
     "Labels": {
-        "Start Longitude": -25, 
-        "Start Latitude": 30,
-        "Vertical Spacing": 0.525,
+        "Start Longitude": -40, 
+        "Start Latitude": 33,
+        "Vertical Spacing": 0.3,
         "Horizontal Spacing": 15,
-        "Font": 5.5,
-        "Splits": 51
+        "Font": 3.0,
+        "Splits": 59
     }
 }
