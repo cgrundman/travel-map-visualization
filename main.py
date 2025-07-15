@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import geopandas as gpd
 from shapely.geometry import Point
-#import make_gif
+import make_gif
 import os
 from PIL import Image
 
@@ -13,7 +13,7 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
@@ -184,7 +184,7 @@ for index, row in points_gdf.iterrows():
     old_date = current_date
 
 # Create gif from produced plots
-#make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{PATH}_{SCALE}.gif", duration=200)
+make_gif.create_gif(input_folder='./plots/temp', output_gif=f"./gifs/{PATH}_{SCALE}.gif", duration=200)
 
 # Clean temp directory
 temp_path = "plots/temp/"
