@@ -55,7 +55,7 @@
     "Figure Size": [12, 12],
     "Cropping": {
         "small": [0.100, 0.100, 0.900, 0.850],
-        "large": [0.000, 0.111, 1.000, 1.000]
+        "large": [0.000, 0.10, 1.000, 0.950]
     },
     "Colors": {
         "map_dark": "#001f5c",
@@ -69,8 +69,8 @@
         "Start Longitude": -40, 
         "Start Latitude": 33,
         "Vertical Spacing": 0.3,
-        "Horizontal Spacing": 15,
+        "Horizontal Spacing": 11,
         "Font": 3.0,
-        "Splits": 59
+        "Splits": 41
     }
 }
