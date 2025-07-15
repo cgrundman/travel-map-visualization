@@ -64,7 +64,7 @@
         "active": "#EAEAEA",
         "visited": "#353535"
     },
-    "Marker Size": 25,
+    "Marker Size": 5,
     "Labels": {
         "Start Longitude": -25, 
         "Start Latitude": 30,
