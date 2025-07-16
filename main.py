@@ -19,10 +19,10 @@ SCALE = 1
 #PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
-PATH = "eu"
+#PATH = "eu"
 
 # Load the JSON Meta-Data
 with open(PATH + '/meta_data.json', 'r') as f:
