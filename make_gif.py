@@ -57,6 +57,24 @@ def create_gif(input_folder, output_gif, duration=200):
     print(f"GIF saved as {output_gif}")
 
 def create_gif_imageio(input_folder, output_gif, duration=0.2):
+    """
+    Creates an animated GIF from a folder of image files using imageio
+
+    Parameters:
+    -----------
+    input_folder : str
+        Path to the folder containing image files (JPG, JPEG, PNG).
+    output_gif : str
+        File path (including .gif extension) for the output animated GIF.
+    duration : int, optional
+        Duration between frames in milliseconds. Default is 200ms.
+
+    Raises:
+    -------
+    ValueError:
+        If no valid image files are found in the input folder.
+    """
+
     image_files = sorted([
         os.path.join(input_folder, f)
         for f in os.listdir(input_folder)
