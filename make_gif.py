@@ -89,6 +89,10 @@ def create_gif_imageio(input_folder, output_gif, duration=0.2):
             writer.append_data(image)
 
 def memory_used():
+    """
+    Displays used memory for creating GIF
+    """
+
     import os
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024 ** 2:.2f} MB")
