@@ -1,5 +1,7 @@
+import psutil
 import os
 from PIL import Image
+import imageio.v2 as imageio
 
 def create_gif(input_folder, output_gif, duration=200):
     """
@@ -26,6 +28,8 @@ def create_gif(input_folder, output_gif, duration=200):
         if f.lower().endswith(('.png', '.jpg', '.jpeg'))
     ])
 
+    print("Load images.")
+
     # If no image files were found, raise an error
     if not image_files:
         raise ValueError("No image files found in the folder.")
@@ -33,9 +37,13 @@ def create_gif(input_folder, output_gif, duration=200):
     # Open each image and convert to RGB to ensure consistency
     images = [Image.open(os.path.join(input_folder, file)).convert('RGB') for file in image_files]
 
+    print("Images loaded and created.")
+
     # Get the size of the first image and resize all images to match
     width, height = images[0].size
     images = [img.resize((width, height)) for img in images]
+
+    print("Images resized.")
 
     # Save the first image and append the rest to create the animated GIF
     images[0].save(
@@ -47,3 +55,53 @@ def create_gif(input_folder, output_gif, duration=200):
     )
 
     print(f"GIF saved as {output_gif}")
+
+def create_gif_imageio(input_folder, output_gif, duration=0.2):
+    image_files = sorted([
+        os.path.join(input_folder, f)
+        for f in os.listdir(input_folder)
+        if f.lower().endswith(('.png', '.jpg', '.jpeg'))
+    ])
+
+    with imageio.get_writer(output_gif, mode='I', duration=duration) as writer:
+        for filename in image_files:
+            image = imageio.imread(filename)
+            print(filename)
+            print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.2f} MB")
+            writer.append_data(image)
+
+def memory_used():
+    import os
+    process = psutil.Process(os.getpid())
+    print(f"Memory used: {process.memory_info().rss / 1024 ** 2:.2f} MB")
+
+def create_gif_streamed(input_folder, output_gif, duration=0.2):
+    image_files = sorted([
+        os.path.join(input_folder, f)
+        for f in os.listdir(input_folder)
+        if f.lower().endswith(('.png', '.jpg', '.jpeg'))
+    ])
+
+    with imageio.get_writer(output_gif, mode='I', duration=duration) as writer:
+        for idx, filename in enumerate(image_files):
+            print(f"Loading {filename}")
+            image = imageio.imread(filename)  # load
+            writer.append_data(image)        # write
+            del image                         # force delete reference
+            if idx % 10 == 0:                 # monitor memory every 10 images
+                memory_used()
+
+def get_folder_size(path):
+    total_size = 0
+    for dirpath, dirnames, filenames in os.walk(path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            # Skip broken symlinks
+            if os.path.isfile(fp):
+                total_size += os.path.getsize(fp)
+    return total_size
+
+#create_gif_streamed(
+#    input_folder='./plots/us', 
+#    output_gif='./gifs/us_5.gif'
+#)

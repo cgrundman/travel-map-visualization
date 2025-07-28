@@ -13,13 +13,13 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 3
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
