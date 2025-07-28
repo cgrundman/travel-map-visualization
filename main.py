@@ -33,6 +33,8 @@ title = meta_data["Title"]
 fig_size = meta_data["Figure Size"]
 crop_s = meta_data["Cropping"]["small"]
 crop_l = meta_data["Cropping"]["large"]
+xlims = meta_data["Plotting Area"]["xlims"]
+ylims = meta_data["Plotting Area"]["ylims"]
 color_unvisited = meta_data["Colors"]["unvisited"]
 color_active = meta_data["Colors"]["active"]
 color_visited = meta_data["Colors"]["visited"]
@@ -160,8 +162,8 @@ for index, row in points_gdf.iterrows():
                 
             # Add Plot Data and Save
             plt.title(title, fontsize=25*SCALE, color='#EAEAEA')
-            plt.xlim([-12, 52])
-            plt.ylim([34, 72])
+            plt.xlim(xlims)
+            plt.ylim(ylims)
             plt.axis("off")
             plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
 
