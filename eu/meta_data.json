@@ -52,10 +52,10 @@
         {"Name": "VA"},
         {"Name": "XK"}
     ],
-    "Figure Size": [12, 12],
+    "Figure Size": [12, 14],
     "Cropping": {
         "small": [0.090, 0.080, 0.900, 0.890],
-        "large": [0.000, 0.100, 1.000, 0.950]
+        "large": [0.100, 0.130, 0.900, 1.000]
     },
     "Plotting Area": {
         "xlims": [-12, 52],
@@ -70,11 +70,11 @@
     },
     "Marker Size": 5,
     "Labels": {
-        "Start Longitude": -40, 
-        "Start Latitude": 33,
+        "Start Longitude": -13, 
+        "Start Latitude": 34,
         "Vertical Spacing": 0.3,
-        "Horizontal Spacing": 11,
+        "Horizontal Spacing": 5,
         "Font": 3.0,
-        "Splits": 41
+        "Splits": 32
     }
 }
