@@ -13,16 +13,16 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
-PATH = "eu"
+#PATH = "eu"
 
 # Load the JSON Meta-Data
 with open(PATH + '/meta_data.json', 'r') as f:
@@ -170,6 +170,7 @@ for index, row in points_gdf.iterrows():
             # Resize Plot
             with Image.open(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') as image: # load the image
                 width, height = image.size # pull image size
+                #x1, y1, x2, y2 = 0, 0, 1, 1
                 if SCALE < 3:
                     x1, y1, x2, y2 = crop_s
                 else:
