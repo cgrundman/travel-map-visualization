@@ -13,16 +13,16 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Load the JSON Meta-Data
 with open(PATH + '/meta_data.json', 'r') as f:
@@ -160,6 +160,8 @@ for index, row in points_gdf.iterrows():
                 
             # Add Plot Data and Save
             plt.title(title, fontsize=25*SCALE, color='#EAEAEA')
+            plt.xlim([-12, 52])
+            plt.ylim([34, 72])
             plt.axis("off")
             plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
 
