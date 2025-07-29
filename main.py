@@ -13,13 +13,13 @@ from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 3
+SCALE = 5
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
@@ -79,7 +79,7 @@ for index, row in points_gdf.iterrows():
                 submap_points_gdf = points_gdf[points_gdf['submap'] == submap]
 
                 # Count how many dates are less than current date
-                num_past_dates = (submap_points_gdf['date'] < current_date).sum()
+                num_past_dates = (submap_points_gdf['date'] <= current_date).sum()
 
                 # Calculate the ratio and associated color
                 ratio = num_past_dates / len(submap_points_gdf)
