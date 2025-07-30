@@ -2,11 +2,7 @@
 
 This repo features visualization code for Regional/National travel. Using a base map from a shapefile and geopandas to create a voronoi segmented map, this code can create a timelapse of travels in a geographic region or country from a list of locations. An example can be seen below (national parks visited as of Sep 2024):
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" width="300"/>
-
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" width="200"/>
-
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" width="250"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="250"/>
 
 These maps are voronoi segmented maps. The this takes given points and maps regions of least distance to them. The need was to better show the extent of travels. Points do not accuratly show the amounbt of distance and size of the area seen. 
 
