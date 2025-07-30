@@ -16,10 +16,10 @@ from colormap import custom_cmap
 SCALE = 1
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
