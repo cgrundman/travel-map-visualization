@@ -28,19 +28,25 @@ Install libraries
 
 ## Demo
 
-The following are limited gifs made with [ezgif.com](https://ezgif.com/maker). Full gifs can be seen in the subdirectories.
+.
 
 US National Parks:
 
 <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="250"/>
 
-I drove to most of these parks with my own car (2012 Chevrolet Sonic), sometimes taking a free weekend or holiday to see the sites. I was also able to do this between jobs and committed all of vacation time for 6 years to this pursuit.
+[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_3.gif)
 
 Germany cities and sites:
 
 <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="250"/>
 
-As a fun fact, the locations seen on this maps are almost exclsivly through public transportation and train travel. This makes seeing these cities and places much more difficult.
+[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_5.gif)
+
+European cities and sites:
+
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="250"/>
+
+[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_5.gif)
 
 ## Acknowledgements
 
