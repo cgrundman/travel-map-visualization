@@ -1,10 +1,10 @@
 # Travel Map Visualization
 
-This repo features visualization code for Regional/National travel. Using a base map from a shapefile and geopandas to create a voronoi segmented map, this code can create a timelapse of travels in a geographic region or country from a list of locations. An example can be seen below (national parks visited as of Sep 2024):
+This repo features visualization code for travel. Using a collection of submaps and meta data, plots are created with location goals. THe submaps are colored based on "completion" and the points are highlighted in 3 modes: unvisited, active (latest data), and visited. Examples of images can be seen below:
 
 <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="250"/>
 
-These maps are voronoi segmented maps. The this takes given points and maps regions of least distance to them. The need was to better show the extent of travels. Points do not accuratly show the amounbt of distance and size of the area seen. 
+All visited locations have data data included. For all dates present in the location files, an image is plotted. These images are then compiled into a gif.
 
 ## Run Locally
 
@@ -27,8 +27,6 @@ Install libraries
 ```
 
 ## Demo
-
-.
 
 US National Parks:
 
