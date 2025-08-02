@@ -1,5 +1,5 @@
 import pandas as pd
-import json
+#import json
 from matplotlib import pyplot as plt
 # import matplotlib as mpl
 import numpy as np
@@ -9,24 +9,28 @@ import make_gif
 import os
 from PIL import Image
 
+from metadata.meta_loader import MetaLoader
+
 from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 0.1
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
 #PATH = "eu"
 
 # Load the JSON Meta-Data
-with open(PATH + '/meta_data.json', 'r') as f:
-    meta_data = json.load(f)
+#with open(PATH + '/meta_data.json', 'r') as f:
+#    meta_data = json.load(f)
+
+meta_data = MetaLoader(PATH).load()
 
 # Access Meta-Data variables
 title = meta_data["Title"]
