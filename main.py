@@ -10,8 +10,9 @@ import os
 from PIL import Image
 
 from metadata.meta_loader import MetaLoader
+from colormap.cmap_maker import CustomCmap
 
-from colormap import custom_cmap
+#from colormap import custom_cmap
 
 
 # Set global variables, directories for map creation and site locations
@@ -44,6 +45,11 @@ color_active = meta_data["Colors"]["active"]
 color_visited = meta_data["Colors"]["visited"]
 marker_size = meta_data["Marker Size"]
 labels = meta_data["Labels"]
+map_dark = meta_data["Colors"]["map_dark"]
+map_light = meta_data["Colors"]["map_light"]
+
+# Create custom color map
+cmap = CustomCmap(color_1=map_dark, color_2=map_light)
 
 # Make List of Submap Names
 submap_files = os.listdir(PATH + '/submaps/')
@@ -87,7 +93,7 @@ for index, row in points_gdf.iterrows():
 
                 # Calculate the ratio and associated color
                 ratio = num_past_dates / len(submap_points_gdf)
-                submap_color = custom_cmap(PATH, ratio)
+                submap_color = cmap.value(ratio)
 
                 points_coords = np.array([
                     (point.x, point.y) for point in submap_points_gdf.geometry
