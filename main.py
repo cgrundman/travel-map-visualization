@@ -11,6 +11,7 @@ from colormap.cmap_maker import CustomCmap
 from data.points_loader import PointsLoader
 from data.submaps_loader import SubmapsLoader
 
+#import utils.file_utils as file_utils
 
 # Set global variables, directories for map creation and site locations
 SCALE = 0.1
