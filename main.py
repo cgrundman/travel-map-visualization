@@ -1,18 +1,15 @@
 import pandas as pd
-#import json
 from matplotlib import pyplot as plt
-# import matplotlib as mpl
 import numpy as np
 import geopandas as gpd
-from shapely.geometry import Point
 import make_gif
 import os
 from PIL import Image
 
 from metadata.meta_loader import MetaLoader
 from colormap.cmap_maker import CustomCmap
-
-#from colormap import custom_cmap
+from data.points_loader import PointsLoader
+from data.submaps_loader import SubmapsLoader
 
 
 # Set global variables, directories for map creation and site locations
@@ -28,41 +25,29 @@ PATH = "de"
 #PATH = "eu"
 
 # Load the JSON Meta-Data
-#with open(PATH + '/meta_data.json', 'r') as f:
-#    meta_data = json.load(f)
-
 meta_data = MetaLoader(PATH).load()
 
-# Access Meta-Data variables
-title = meta_data["Title"]
-fig_size = meta_data["Figure Size"]
-crop_s = meta_data["Cropping"]["small"]
-crop_l = meta_data["Cropping"]["large"]
-xlims = meta_data["Plotting Area"]["xlims"]
-ylims = meta_data["Plotting Area"]["ylims"]
-color_unvisited = meta_data["Colors"]["unvisited"]
-color_active = meta_data["Colors"]["active"]
-color_visited = meta_data["Colors"]["visited"]
-marker_size = meta_data["Marker Size"]
-labels = meta_data["Labels"]
-map_dark = meta_data["Colors"]["map_dark"]
-map_light = meta_data["Colors"]["map_light"]
-
 # Create custom color map
-cmap = CustomCmap(color_1=map_dark, color_2=map_light)
+cmap = CustomCmap(
+    color_1=meta_data["Colors"]["map_dark"], 
+    color_2=meta_data["Colors"]["map_light"]
+)
+
+points_gdf = PointsLoader(PATH).load()
+submaps = SubmapsLoader(PATH).load()
 
 # Make List of Submap Names
-submap_files = os.listdir(PATH + '/submaps/')
-submaps = [submap.replace('.shp', '') for submap in submap_files if '.shp' in submap]
-submaps.sort()
+#submap_files = os.listdir(PATH + '/submaps/')
+#submaps = [submap.replace('.shp', '') for submap in submap_files if '.shp' in submap]
+#submaps.sort()
 
 # CSV into GeoDataFrame
-df = pd.read_table(PATH + '/locations.csv', delimiter =",")
-df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
-df_sorted = df.sort_values('date')
-points = df_sorted[['longitude', 'latitude']].values
-points_gdf = gpd.GeoDataFrame(df_sorted, geometry=[Point(xy) for xy in points])
-points_gdf.set_crs(epsg=4326, inplace=True)
+#df = pd.read_table(PATH + '/locations.csv', delimiter =",")
+#df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
+#df_sorted = df.sort_values('date')
+#points = df_sorted[['longitude', 'latitude']].values
+#points_gdf = gpd.GeoDataFrame(df_sorted, geometry=[Point(xy) for xy in points])
+#points_gdf.set_crs(epsg=4326, inplace=True)
 
 # Create initial old date
 old_date = '1875-01-01 00:00:00'
@@ -81,7 +66,8 @@ for index, row in points_gdf.iterrows():
             if row['date']:
                 print(str(row['date']) + " - " + row['name'])
             # Initialize Plot
-            fig, ax = plt.subplots(figsize=(fig_size[0]*SCALE, fig_size[1]*SCALE))
+            fig, ax = plt.subplots(figsize=(meta_data["Figure Size"][0]*SCALE, 
+                                            meta_data["Figure Size"][1]*SCALE))
             fig.patch.set_facecolor('#3C4048')
 
             # Plot each Submap
@@ -111,9 +97,9 @@ for index, row in points_gdf.iterrows():
             # Plot All Points for Scaling
             points_gdf.plot(
                 ax=plt.gca(), 
-                color=color_unvisited, 
+                color=meta_data["Colors"]["unvisited"], 
                 linewidth=0, 
-                markersize=marker_size*(SCALE*SCALE), 
+                markersize=meta_data["Marker Size"]*(SCALE*SCALE), 
                 alpha=1
             )
             
@@ -122,9 +108,9 @@ for index, row in points_gdf.iterrows():
             if visited.any():
                 points_gdf[visited].plot(
                     ax=plt.gca(), 
-                    color=color_visited, 
+                    color=meta_data["Colors"]["visited"], 
                     linewidth=0, 
-                    markersize=marker_size*(SCALE*SCALE), 
+                    markersize=meta_data["Marker Size"]*(SCALE*SCALE), 
                     alpha=1
                 )
 
@@ -133,9 +119,9 @@ for index, row in points_gdf.iterrows():
             if active.any():
                 points_gdf[active].plot(
                     ax=plt.gca(), 
-                    color=color_active, 
+                    color=meta_data["Colors"]["active"], 
                     linewidth=0, 
-                    markersize=marker_size*(SCALE*SCALE), 
+                    markersize=meta_data["Marker Size"]*(SCALE*SCALE), 
                     alpha=1
                 )
 
@@ -144,36 +130,36 @@ for index, row in points_gdf.iterrows():
                 ax=plt.gca(), 
                 color="black", 
                 linewidth=0, 
-                markersize=marker_size*(SCALE*SCALE), 
+                markersize=meta_data["Marker Size"]*(SCALE*SCALE), 
                 alpha=0
             )
 
             # Plot Location Names
             if SCALE >= 3:
                 row, column = 0, 0
-                for index, location in df.iterrows():
+                for index, location in points_gdf.iterrows():
 
                     if location['date'] == current_date:
-                        label_color = color_active
+                        label_color = meta_data["Colors"]["active"]
                     elif location['date'] < current_date:
-                        label_color = color_visited
+                        label_color = meta_data["Colors"]["visited"]
                     else:
-                        label_color = color_unvisited
-                    pos_x = labels["Start Longitude"] + labels["Horizontal Spacing"]*column
-                    pos_y = labels["Start Latitude"] - labels["Vertical Spacing"]*row
+                        label_color = meta_data["Colors"]["unvisited"]
+                    pos_x = meta_data["Labels"]["Start Longitude"] + meta_data["Labels"]["Horizontal Spacing"]*column
+                    pos_y = meta_data["Labels"]["Start Latitude"] - meta_data["Labels"]["Vertical Spacing"]*row
 
                     # Plot the label text
-                    plt.text(pos_x, pos_y, location['name'], fontsize=labels["Font"]*SCALE, color=label_color)
+                    plt.text(pos_x, pos_y, location['name'], fontsize=meta_data["Labels"]["Font"]*SCALE, color=label_color)
 
                     row += 1
-                    if row % labels["Splits"] == 0:
+                    if row % meta_data["Labels"]["Splits"] == 0:
                         column += 1
                         row = 0
                 
             # Add Plot Data and Save
-            plt.title(title, fontsize=25*SCALE, color='#EAEAEA')
-            plt.xlim(xlims)
-            plt.ylim(ylims)
+            plt.title(meta_data["Title"], fontsize=25*SCALE, color='#EAEAEA')
+            plt.xlim(meta_data["Plotting Area"]["xlims"])
+            plt.ylim(meta_data["Plotting Area"]["ylims"])
             plt.axis("off")
             plt.savefig(f"./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png")
 
@@ -182,9 +168,9 @@ for index, row in points_gdf.iterrows():
                 width, height = image.size # pull image size
                 #x1, y1, x2, y2 = 0, 0, 1, 1
                 if SCALE < 3:
-                    x1, y1, x2, y2 = crop_s
+                    x1, y1, x2, y2 = meta_data["Cropping"]["small"]
                 else:
-                    x1, y1, x2, y2 = crop_l
+                    x1, y1, x2, y2 = meta_data["Cropping"]["large"]
                 crop_box = (width*x1, height*y1, width*x2, height*y2)
                 cropped_image = image.crop(crop_box) # crop image
                 cropped_image.save(f'./plots/temp/{PATH}_{current_date.strftime("%y%m%d")}.png') # save
