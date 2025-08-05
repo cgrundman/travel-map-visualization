@@ -25,7 +25,7 @@ def cleanup_directory(directory: str, verbose: bool = False):
             os.remove(file_path)
 
 
-def crop_and_save_image(input_path: str, output_path: str, crop_box: tuple):
+def crop_and_save_image(input_path: str, output_path: str, crop_box: tuple = (.5,.5,1,1)):
     """
     Crop an image and save it.
 

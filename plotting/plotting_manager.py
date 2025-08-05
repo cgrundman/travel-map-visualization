@@ -7,6 +7,8 @@ from utils.file_utils import (
     crop_and_save_image,
     get_image_dimensions,
 )
+from plotting.plotting_helpers import plot_location_labels
+
 
 from colormap.cmap_maker import CustomCmap
 
@@ -31,6 +33,8 @@ class PlotManager:
         self.color_visited = meta_data["Colors"]["visited"]
         self.marker_size = meta_data["Marker Size"]
         self.labels = meta_data["Labels"]
+        self.map_dark = meta_data["Colors"]["map_dark"]
+        self.map_light = meta_data["Colors"]["map_light"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -61,7 +65,7 @@ class PlotManager:
             submap_points = self.points_gdf[self.points_gdf['submap'] == submap]
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
-            color = CustomCmap(self.path, ratio)
+            color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
@@ -87,27 +91,36 @@ class PlotManager:
         self.points_gdf.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)
 
     def _plot_labels(self, ax, current_date):
-        if self.scale < 3:
-            return
+        if self.scale >= 3:
+            plot_location_labels(
+                ax,
+                self.points_gdf,
+                current_date,
+                self.labels,
+                self.scale,
+                self.color_unvisited,
+                self.color_visited,
+                self.color_active
+            )
 
-        row = column = 0
-        for _, location in self.points_gdf.iterrows():
-            date = location['date']
-            if date == current_date:
-                label_color = self.color_active
-            elif date < current_date:
-                label_color = self.color_visited
-            else:
-                label_color = self.color_unvisited
+            row = column = 0
+            for _, location in self.points_gdf.iterrows():
+                date = location['date']
+                if date == current_date:
+                    label_color = self.color_active
+                elif date < current_date:
+                    label_color = self.color_visited
+                else:
+                    label_color = self.color_unvisited
 
-            pos_x = self.labels["Start Longitude"] + self.labels["Horizontal Spacing"] * column
-            pos_y = self.labels["Start Latitude"] - self.labels["Vertical Spacing"] * row
-            ax.text(pos_x, pos_y, location['name'], fontsize=self.labels["Font"] * self.scale, color=label_color)
+                pos_x = self.labels["Start Longitude"] + self.labels["Horizontal Spacing"] * column
+                pos_y = self.labels["Start Latitude"] - self.labels["Vertical Spacing"] * row
+                ax.text(pos_x, pos_y, location['name'], fontsize=self.labels["Font"] * self.scale, color=label_color)
 
-            row += 1
-            if row % self.labels["Splits"] == 0:
-                column += 1
-                row = 0
+                row += 1
+                if row % self.labels["Splits"] == 0:
+                    column += 1
+                    row = 0
 
     def _finalize_and_save_plot(self, fig, current_date):
         filename = f"{self.path}_{current_date.strftime('%y%m%d')}.png"
@@ -123,8 +136,8 @@ class PlotManager:
 
         width, height = get_image_dimensions(full_temp_path)
         crop = self.crop_s if self.scale < 3 else self.crop_l
-        crop_box = (width * crop[0], height * crop[1], width * crop[2], height * crop[3])
+        crop_box = (width*crop[0], height*crop[1], width*crop[2], height*crop[3])
 
         # Crop for temp and final path
-        crop_and_save_image(full_temp_path, full_temp_path, crop_box)
         crop_and_save_image(full_temp_path, full_final_path, crop_box)
+        crop_and_save_image(full_temp_path, full_temp_path, crop_box)
