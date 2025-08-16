@@ -1,5 +1,4 @@
 import os
-import pandas as pd
 import matplotlib.pyplot as plt
 import geopandas as gpd
 
@@ -39,18 +38,13 @@ class PlotManager:
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
 
-    def generate_all_plots(self):
-        old_date = None
-        for _, row in self.points_gdf.iterrows():
-            current_date = row['date']
-            if pd.notna(current_date) and current_date != old_date:
-                print(f"{current_date.date()} - {row['name']}")
-                fig, ax = self._initialize_plot()
-                self._plot_submaps(ax, current_date)
-                self._plot_points(ax, current_date)
-                self._plot_labels(ax, current_date)
-                self._finalize_and_save_plot(fig, current_date)
-                old_date = current_date
+    def generate_plot(self, current_date, row):
+        print(f"{current_date.date()} - {row['name']}")
+        fig, ax = self._initialize_plot()
+        self._plot_submaps(ax, current_date)
+        self._plot_points(ax, current_date)
+        self._plot_labels(ax, current_date)
+        self._finalize_and_save_plot(fig, current_date)
 
     def _initialize_plot(self):
         fig, ax = plt.subplots(figsize=(

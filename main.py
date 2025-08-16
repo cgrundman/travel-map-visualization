@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
@@ -9,7 +10,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
@@ -30,7 +31,8 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = SubmapsLoader(PATH).load()
 
-# --- Generate plots ---
+# Generate plots
+old_date = None
 plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
@@ -38,7 +40,12 @@ plot_manager = PlotManager(
     path=PATH,
     scale=SCALE
 )
-plot_manager.generate_all_plots()
+for _, row in points_gdf.iterrows():
+    print(row['date'])
+    current_date = row['date']
+    if pd.notna(current_date) and current_date != old_date:
+        plot_manager.generate_plot(current_date, row)
+        old_date = current_date
 
 # Create gif from produced plots
 gif = GifGenerator(
