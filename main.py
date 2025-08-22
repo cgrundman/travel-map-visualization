@@ -31,6 +31,9 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = SubmapsLoader(PATH).load()
 
+# Create a sorted values df
+points_sorted = points_gdf.sort_values('date')
+
 # Generate plots
 old_date = None
 plot_manager = PlotManager(
@@ -40,8 +43,7 @@ plot_manager = PlotManager(
     path=PATH,
     scale=SCALE
 )
-for _, row in points_gdf.iterrows():
-    print(row['date'])
+for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
         plot_manager.generate_plot(current_date, row)

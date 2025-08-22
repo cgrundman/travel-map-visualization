@@ -97,24 +97,24 @@ class PlotManager:
                 self.color_active
             )
 
-            row = column = 0
-            for _, location in self.points_gdf.iterrows():
-                date = location['date']
-                if date == current_date:
-                    label_color = self.color_active
-                elif date < current_date:
-                    label_color = self.color_visited
-                else:
-                    label_color = self.color_unvisited
+            #row = column = 0
+            #for _, location in self.points_gdf.iterrows():
+                #date = location['date']
+                #if date == current_date:
+                #    label_color = self.color_active
+                #elif date < current_date:
+                #    label_color = self.color_visited
+                #else:
+                #    label_color = self.color_unvisited
 
-                pos_x = self.labels["Start Longitude"] + self.labels["Horizontal Spacing"] * column
-                pos_y = self.labels["Start Latitude"] - self.labels["Vertical Spacing"] * row
-                ax.text(pos_x, pos_y, location['name'], fontsize=self.labels["Font"] * self.scale, color=label_color)
+                #pos_x = self.labels["Start Longitude"] + self.labels["Horizontal Spacing"] * column
+                #pos_y = self.labels["Start Latitude"] - self.labels["Vertical Spacing"] * row
+                #ax.text(pos_x, pos_y, location['name'], fontsize=self.labels["Font"] * self.scale, color=label_color)
 
-                row += 1
-                if row % self.labels["Splits"] == 0:
-                    column += 1
-                    row = 0
+                #row += 1
+                #if row % self.labels["Splits"] == 0:
+                #    column += 1
+                #    row = 0
 
     def _finalize_and_save_plot(self, fig, current_date):
         filename = f"{self.path}_{current_date.strftime('%y%m%d')}.png"

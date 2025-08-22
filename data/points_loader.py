@@ -16,12 +16,9 @@ class PointsLoader:
         # Parse 'date' column; replace invalid (e.g., 0) with NaT
         df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
 
-        # Sort by date for consistency in plotting
-        df_sorted = df.sort_values('date')
-
         # Create geometry column
-        geometry = [Point(xy) for xy in df_sorted[['longitude', 'latitude']].values]
-        gdf = gpd.GeoDataFrame(df_sorted, geometry=geometry)
+        geometry = [Point(xy) for xy in df[['longitude', 'latitude']].values]
+        gdf = gpd.GeoDataFrame(df, geometry=geometry)
 
         # Set CRS to WGS84 (EPSG:4326)
         gdf.set_crs(epsg=4326, inplace=True)

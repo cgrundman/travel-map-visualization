@@ -78,8 +78,6 @@ class GifGenerator:
             loop=0                    # Loop forever
         )
 
-        print(f"GIF saved as {output_gif}")
-
     def create_gif_imageio(input_folder, output_gif, duration=0.2):
         image_files = sorted([
             os.path.join(input_folder, f)
