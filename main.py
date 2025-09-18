@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 from metadata.meta_loader import MetaLoader
@@ -10,7 +9,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
@@ -57,9 +56,3 @@ gif = GifGenerator(
 )
 gif.generate()
 gif.cleanup_temp()
-
-# Clean temp directory
-temp_path = "plots/temp/"
-for f in os.listdir(temp_path):
-    print(f)
-    os.remove(os.path.join(temp_path, f))
