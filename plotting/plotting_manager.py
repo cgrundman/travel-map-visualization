@@ -38,7 +38,8 @@ class PlotManager:
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
 
-    def generate_plot(self, current_date, row):
+    def generate_plot(self, current_date, row, copy=False):
+        self.copy = copy
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self._plot_submaps(ax, current_date)
@@ -97,36 +98,28 @@ class PlotManager:
                 self.color_active
             )
 
-            #row = column = 0
-            #for _, location in self.points_gdf.iterrows():
-                #date = location['date']
-                #if date == current_date:
-                #    label_color = self.color_active
-                #elif date < current_date:
-                #    label_color = self.color_visited
-                #else:
-                #    label_color = self.color_unvisited
-
-                #pos_x = self.labels["Start Longitude"] + self.labels["Horizontal Spacing"] * column
-                #pos_y = self.labels["Start Latitude"] - self.labels["Vertical Spacing"] * row
-                #ax.text(pos_x, pos_y, location['name'], fontsize=self.labels["Font"] * self.scale, color=label_color)
-
-                #row += 1
-                #if row % self.labels["Splits"] == 0:
-                #    column += 1
-                #    row = 0
-
     def _finalize_and_save_plot(self, fig, current_date):
-        filename = f"{self.path}_{current_date.strftime('%y%m%d')}.png"
-        full_temp_path = os.path.join(self.output_temp_path, filename)
-        full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.scale}.png")
-
         plt.title(self.title, fontsize=25 * self.scale, color='#EAEAEA')
         plt.xlim(self.xlims)
         plt.ylim(self.ylims)
         plt.axis("off")
-        plt.savefig(full_temp_path)
+
+        if self.copy:
+            for i in range(5):
+                filename = f"{self.path}_{current_date.strftime('%y%m%d')}_{i+1}.png"
+                full_temp_path = os.path.join(self.output_temp_path, filename)
+                full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.scale}.png")
+                plt.savefig(full_temp_path)
+                self.trim_image(full_temp_path, full_final_path)
+        else:
+            filename = f"{self.path}_{current_date.strftime('%y%m%d')}.png"
+            full_temp_path = os.path.join(self.output_temp_path, filename)
+            full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.scale}.png")
+            plt.savefig(full_temp_path)
+            self.trim_image(full_temp_path, full_final_path)
         plt.close(fig)
+
+    def trim_image(self, full_temp_path, full_final_path):
 
         width, height = get_image_dimensions(full_temp_path)
         crop = self.crop_s if self.scale < 3 else self.crop_l
