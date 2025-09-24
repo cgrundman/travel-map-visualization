@@ -1,4 +1,4 @@
-import pandas as pd
+#import pandas as pd
 import datetime
 
 from metadata.meta_loader import MetaLoader
@@ -43,15 +43,21 @@ plot_manager = PlotManager(
     path=PATH,
     scale=SCALE
 )
-for _, row in points_sorted.iterrows():
-    current_date = row['date']
-    if pd.notna(current_date) and current_date != old_date:
-        plot_manager.generate_plot(current_date, row)
-        old_date = current_date
 
-# Create Last Plot
-old_date += datetime.timedelta(days=1)
-plot_manager.generate_plot(old_date, row)
+# Add first plot
+current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
+plot_manager.generate_plot(current_date, points_sorted.iloc[0])
+
+## Plot all dates
+#for _, row in points_sorted.iterrows():
+#    current_date = row['date']
+#    if pd.notna(current_date) and current_date != old_date:
+#        plot_manager.generate_plot(current_date, row)
+#        old_date = current_date
+
+## Create Last Plot
+#old_date += datetime.timedelta(days=1)
+#plot_manager.generate_plot(old_date, row)
 
 # Create gif from produced plots
 gif = GifGenerator(
@@ -60,4 +66,4 @@ gif = GifGenerator(
     duration=200
 )
 gif.generate()
-gif.cleanup_temp()
+#gif.cleanup_temp()

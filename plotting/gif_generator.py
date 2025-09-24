@@ -2,6 +2,7 @@ from utils.file_utils import cleanup_directory
 import make_gif
 
 import psutil
+import shutil
 import os
 from PIL import Image
 import imageio.v2 as imageio
@@ -46,6 +47,15 @@ class GifGenerator:
             If no valid image files are found in the input folder.
         """
 
+        image_files = sorted(os.listdir(input_folder))
+        # Get First and Last Images
+        first_file, last_file = image_files[0], image_files[-1]
+
+        # Make Image Copies
+        for i in range(5):
+            shutil.copy(os.path.join(input_folder, first_file), os.path.join(input_folder, first_file + f"_{i+1}"))
+            shutil.copy(os.path.join(input_folder, last_file), os.path.join(input_folder, last_file + f"_{i+1}"))
+
         # List all files in the input folder and filter by valid image extensions
         image_files = sorted([
             f for f in os.listdir(input_folder)
@@ -77,20 +87,6 @@ class GifGenerator:
             duration=duration,        # Duration per frame in ms
             loop=0                    # Loop forever
         )
-
-    def create_gif_imageio(input_folder, output_gif, duration=0.2):
-        image_files = sorted([
-            os.path.join(input_folder, f)
-            for f in os.listdir(input_folder)
-            if f.lower().endswith(('.png', '.jpg', '.jpeg'))
-        ])
-
-        with imageio.get_writer(output_gif, mode='I', duration=duration) as writer:
-            for filename in image_files:
-                image = imageio.imread(filename)
-                print(filename)
-                print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.2f} MB")
-                writer.append_data(image)
 
     def memory_used():
         import os
