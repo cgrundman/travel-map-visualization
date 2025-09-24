@@ -75,7 +75,7 @@ class PlotManager:
         # Visited
         visited = self.points_gdf['date'] < current_date
         if visited.any():
-            self.points_gdf[visited].plot(ax=ax, color=self.color_visited, linewidth=0, markersize=scale_factor, alpha=1)
+            self.points_gdf[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
 
         # Active
         active = self.points_gdf['date'] == current_date

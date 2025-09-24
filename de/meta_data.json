@@ -32,7 +32,7 @@
         "map_light": "#bd9e39",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
-        "visited": "#353535"
+        "visited": "#b5524e"
     },
     "Marker Size": 75,
     "Labels": {
