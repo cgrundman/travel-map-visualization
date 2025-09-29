@@ -10,16 +10,16 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 4
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
