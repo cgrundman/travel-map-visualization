@@ -16,10 +16,10 @@ SCALE = 1
 #PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
