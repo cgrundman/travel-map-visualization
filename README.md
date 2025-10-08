@@ -38,7 +38,7 @@ Germany cities and sites:
 
 <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="250"/>
 
-[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_5.gif)
+[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_4.gif)
 
 European cities and sites:
 
