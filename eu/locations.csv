@@ -1,5 +1,5 @@
 submap,latitude,longitude,date,name,,,,,
-,,,,,NO,77.580414,023.694222,,Svalbard and Jan Mayen
+NO,77.580414,023.694222,,Svalbard and Jan Mayen
 NO,71.183368,025.786836,,North Cape
 FI,68.913132,027.027017,,Inari
 FI,68.649441,025.595900,,Lemmenjoki National Park
@@ -24,7 +24,7 @@ NO,61.654884,008.555692,,Glittertind
 NO,61.643890,008.314544,,Galdhøpiggen
 NO,61.561224,008.482538,,Jotunheimen National Park
 NO,60.395343,005.320554,,Bergen
-,,,,,RU,60.317440,059.182002,,Ural Mountains
+RU,60.317440,059.182002,,Ural Mountains
 SE,60.200732,019.920033,,Åland
 FI,60.185208,024.942345,,Helsinki
 NO,60.126281,006.739370,,Trolltunga
@@ -375,8 +375,8 @@ GR,37.973693,023.725530,,Acropolis
 TR,37.941012,027.341395,,Ephesus Ancient City
 TR,37.913722,029.118705,,Pamukkale
 ES,37.889327,-04.779260,,Cordoba
-,,,,,PT,37.761986,-25.474147,,Lagoa do Fogo
-,,,,,PT,37.741080,-25.675461,,Azores
+PT,37.761986,-25.474147,,Lagoa do Fogo
+PT,37.741080,-25.675461,,Azores
 IT,37.419433,014.656898,,Sicily
 ES,37.388992,-05.984513,20120101,Sevilla
 PT,37.255515,-08.396499,,Faro
@@ -406,5 +406,5 @@ CY,34.961893,034.083328,,Cape Greco
 CY,34.924826,033.619662,,Larnaca
 CY,34.775542,032.406990,,Tombs of the Kings
 CY,34.665335,032.882902,,Ancient Kourion
-,,,,,PT,32.759642,-16.963529,,Madiera
-,,,,,ES,28.247281,-16.840705,,Playa de los Guios
+PT,32.759642,-16.963529,,Madiera
+ES,28.247281,-16.840705,,Playa de los Guios
