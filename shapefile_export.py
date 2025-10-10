@@ -2,10 +2,10 @@ import geopandas as gpd
 import os
 
 # Load shapefile
-gdf = gpd.read_file("us/submaps/geoBoundaries-USA-ADM1-all/geoBoundaries-USA-ADM1_simplified.shp")
+gdf = gpd.read_file("eu/submaps/geoBoundaries-SRB-ADM0-all/geoBoundaries-SRB-ADM0_simplified.shp")
 
 # Create a directory for output shapefiles
-output_dir = "us/submaps"
+output_dir = "eu/submaps"
 os.makedirs(output_dir, exist_ok=True)
 
 # Group by state name and export each as its own shapefile
