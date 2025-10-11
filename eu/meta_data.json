@@ -66,7 +66,7 @@
         "map_light": "#2267b5",
         "unvisited": "#f0b42b",
         "active": "#EAEAEA",
-        "visited": "#353535"
+        "visited": "#1c589c"
     },
     "Marker Size": 10,
     "Labels": {
