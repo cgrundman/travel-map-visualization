@@ -2,7 +2,7 @@
 
 This repo features visualization code for travel. Using a collection of submaps and meta data, plots are created with location goals. THe submaps are colored based on "completion" and the points are highlighted in 3 modes: unvisited, active (latest data), and visited. Examples of images can be seen below:
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="250"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="250"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="200"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="200"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="200"/>
 
 All visited locations have data data included. For all dates present in the location files, an image is plotted. These images are then compiled into a gif.
 
