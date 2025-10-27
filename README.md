@@ -30,19 +30,19 @@ Install libraries
 
 US National Parks:
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="250"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="200"/>
 
 [Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_3.gif)
 
 Germany cities and sites:
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="250"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="200"/>
 
 [Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_4.gif)
 
 European cities and sites:
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="250"/>
+<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="200"/>
 
 [Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_5.gif)
 
