@@ -2,7 +2,36 @@
 
 This repo features visualization code for travel. Using a collection of submaps and meta data, plots are created with location goals. THe submaps are colored based on "completion" and the points are highlighted in 3 modes: unvisited, active (latest data), and visited. Examples of images can be seen below:
 
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="200"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="200"/> <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="200"/>
+<table style="width:100%; table-layout:fixed;">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_3.png">Full Image</a></b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_4.png">Full Image</a></b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_5.png">Full Image</a></b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_3.gif">Full gif</a></b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_4.gif">Full gif</a></b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="200"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_5.gif">Full gif</a></b>
+    </td>
+  </tr>
+</table>
 
 All visited locations have data data included. For all dates present in the location files, an image is plotted. These images are then compiled into a gif.
 
@@ -25,26 +54,6 @@ Install libraries
 ```bash
   pip install -r requirements.txt
 ```
-
-## Demo
-
-US National Parks:
-
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="200"/>
-
-[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_3.gif)
-
-Germany cities and sites:
-
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="200"/>
-
-[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_4.gif)
-
-European cities and sites:
-
-<img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="200"/>
-
-[Full-size gif](https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_5.gif)
 
 ## Acknowledgements
 
