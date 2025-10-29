@@ -99,7 +99,7 @@ class PlotManager:
             )
 
     def _finalize_and_save_plot(self, fig, current_date):
-        plt.title(self.title, fontsize=25 * self.scale, color='#EAEAEA')
+        #plt.title(self.title, fontsize=25 * self.scale, color='#EAEAEA')
         plt.xlim(self.xlims)
         plt.ylim(self.ylims)
         plt.axis("off")
