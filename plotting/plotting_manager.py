@@ -1,5 +1,7 @@
 import os
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
 
 from utils.file_utils import (
@@ -45,6 +47,7 @@ class PlotManager:
         self._plot_submaps(ax, current_date)
         self._plot_points(ax, current_date)
         self._plot_labels(ax, current_date)
+        self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
     def _initialize_plot(self):
@@ -98,8 +101,20 @@ class PlotManager:
                 self.color_active
             )
 
+    def _plot_flags(self, ax):
+        #img = mpimg.imread(f"./{self.path}/submaps/BW.svg")
+
+        #files = os.listdir(f"{self.path}/submaps")
+        png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
+        for f in png_files:
+            print(f)
+        img = mpimg.imread(f"./de/submaps/{png_files[0]}")
+
+        imagebox = OffsetImage(img, zoom=0.2)  # adjust size with zoom
+        ab = AnnotationBbox(imagebox, (0.95, 0.95), frameon=False, xycoords='axes fraction')
+        ax.add_artist(ab)
+
     def _finalize_and_save_plot(self, fig, current_date):
-        #plt.title(self.title, fontsize=25 * self.scale, color='#EAEAEA')
         plt.xlim(self.xlims)
         plt.ylim(self.ylims)
         plt.axis("off")
