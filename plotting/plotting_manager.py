@@ -1,5 +1,6 @@
 import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import matplotlib.image as mpimg
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
@@ -102,17 +103,25 @@ class PlotManager:
             )
 
     def _plot_flags(self, ax):
-        #img = mpimg.imread(f"./{self.path}/submaps/BW.svg")
-
-        #files = os.listdir(f"{self.path}/submaps")
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
-        for f in png_files:
-            print(f)
-        img = mpimg.imread(f"./de/submaps/{png_files[0]}")
+        for i, file in enumerate(png_files):
+            print(file)
+            img = mpimg.imread(f"./de/submaps/{file}")
 
-        imagebox = OffsetImage(img, zoom=0.2)  # adjust size with zoom
-        ab = AnnotationBbox(imagebox, (0.95, 0.95), frameon=False, xycoords='axes fraction')
-        ax.add_artist(ab)
+            imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
+            ab = AnnotationBbox(imagebox, (-0.075, i/len(png_files)*0.9 + 0.1), frameon=False, xycoords='axes fraction')
+            ax.add_artist(ab)
+
+            # rectangle params: (x, y), width, height
+            rect = patches.Rectangle(
+                (1, i/len(png_files)),   # bottom-left corner (x, y)
+                50, 50,     # width, height
+                linewidth=2,
+                edgecolor='r',
+                facecolor='b'
+            )
+
+            ax.add_patch(rect)
 
     def _finalize_and_save_plot(self, fig, current_date):
         plt.xlim(self.xlims)
