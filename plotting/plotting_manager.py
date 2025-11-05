@@ -125,13 +125,19 @@ class PlotManager:
             gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
             print(gray_rgb.shape)
 
+            img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
+
             imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
-            imagebox_img = AnnotationBbox(imagebox, (-0.075, i/len(png_files)*0.9 + 0.1), frameon=False, xycoords='axes fraction')
+            imagebox_img = AnnotationBbox(imagebox, img_position, frameon=False, xycoords='axes fraction')
             ax.add_artist(imagebox_img)
 
             imagebox = OffsetImage(gray_rgb, zoom=0.75)  # adjust size with zoom
-            ab = AnnotationBbox(imagebox, (-0.075, i/len(png_files)*0.9 + 0.1), frameon=False, xycoords='axes fraction')
+            ab = AnnotationBbox(imagebox, img_position, frameon=False, xycoords='axes fraction')
             ax.add_artist(ab)
+
+            #imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
+            #ac = AnnotationBbox(imagebox, (-0.075, 0.94 - i/len(png_files)*0.9), frameon=False, xycoords='axes fraction')
+            #ax.add_artist(ac)
 
 
     def _finalize_and_save_plot(self, fig, current_date):
