@@ -107,38 +107,55 @@ class PlotManager:
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
             #print(file)
+
+            # Create image
+            if i/len(png_files) > 0.5:
+                beta = i/len(png_files)*2 - 1
+            else:
+                beta = 0
             img = mpimg.imread(f"./de/submaps/{file}")
             if img.shape[-1] == 3:
                 img = np.dstack([img, np.ones(img.shape[:2])])
+            img[:,:,3] = img[:,:,3]*beta
 
-            #gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
-            #gray_rgb = np.stack((gray, gray, gray), axis=-1)
+            # Create grayscale image
+            if i/len(png_files) > 0.5:
+                alpha = 1
+            else:
+                alpha = i/len(png_files)*2
+            gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
+            gray_rgb = np.stack((gray, gray, gray), axis=-1)
+            if gray_rgb.shape[-1] == 3:
+                print(img.shape)
+                print(img.shape[:2])
+                gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
+            
+            # Create gray mask
+            gray_mask = np.ones((img.shape[0], img.shape[1],3))
+            gray_mask[:,:,0] = gray_mask[:,:,0]*60/255
+            gray_mask[:,:,1] = gray_mask[:,:,1]*64/255
+            gray_mask[:,:,2] = gray_mask[:,:,2]*72/255
 
-            gray_rgb = np.ones((img.shape[0], img.shape[1],3))
-            gray_rgb[:,:,0] = gray_rgb[:,:,0]*60/255
-            gray_rgb[:,:,1] = gray_rgb[:,:,1]*64/255
-            gray_rgb[:,:,2] = gray_rgb[:,:,2]*72/255
-
-            alpha = 1 - i/len(png_files)
-            #if gray_rgb.shape[-1] == 3:
-            #    gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
-            gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
-            print(gray_rgb.shape)
+            mask_level = 1.0 - i/len(png_files)
+            gray_mask = np.dstack([gray_mask, np.ones(gray_mask.shape[:2])*mask_level])
 
             img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
 
-            imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
-            imagebox_img = AnnotationBbox(imagebox, img_position, frameon=False, xycoords='axes fraction')
+            imagebox_gry = AnnotationBbox(
+                OffsetImage(gray_rgb, zoom=0.75), 
+                img_position, 
+                frameon=False, 
+                xycoords='axes fraction'
+            )
+            ax.add_artist(imagebox_gry)
+
+            imagebox_img = AnnotationBbox(
+                OffsetImage(img, zoom=0.75), 
+                img_position, 
+                frameon=False, 
+                xycoords='axes fraction'
+            )
             ax.add_artist(imagebox_img)
-
-            imagebox = OffsetImage(gray_rgb, zoom=0.75)  # adjust size with zoom
-            ab = AnnotationBbox(imagebox, img_position, frameon=False, xycoords='axes fraction')
-            ax.add_artist(ab)
-
-            #imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
-            #ac = AnnotationBbox(imagebox, (-0.075, 0.94 - i/len(png_files)*0.9), frameon=False, xycoords='axes fraction')
-            #ax.add_artist(ac)
-
 
     def _finalize_and_save_plot(self, fig, current_date):
         plt.xlim(self.xlims)
