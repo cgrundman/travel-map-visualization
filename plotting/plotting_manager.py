@@ -61,10 +61,12 @@ class PlotManager:
         return fig, ax
 
     def _plot_submaps(self, ax, current_date):
+        self.ratios = {}
         for submap in self.submaps:
             submap_points = self.points_gdf[self.points_gdf['submap'] == submap]
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
+            self.ratios[submap] = ratio
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
@@ -106,11 +108,13 @@ class PlotManager:
     def _plot_flags(self, ax):
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
-            #print(file)
+            #ratio = i/(len(png_files) - 1.0)
+
+            ratio = self.ratios[file[:2]]
 
             # Create image
-            if i/len(png_files) > 0.5:
-                beta = i/len(png_files)*2 - 1
+            if ratio > 0.5:
+                beta = ratio*2 - 1
             else:
                 beta = 0
             img = mpimg.imread(f"./de/submaps/{file}")
@@ -119,15 +123,13 @@ class PlotManager:
             img[:,:,3] = img[:,:,3]*beta
 
             # Create grayscale image
-            if i/len(png_files) > 0.5:
+            if ratio > 0.5:
                 alpha = 1
             else:
-                alpha = i/len(png_files)*2
+                alpha = ratio*2
             gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
             gray_rgb = np.stack((gray, gray, gray), axis=-1)
             if gray_rgb.shape[-1] == 3:
-                print(img.shape)
-                print(img.shape[:2])
                 gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
             
             # Create gray mask
@@ -136,7 +138,7 @@ class PlotManager:
             gray_mask[:,:,1] = gray_mask[:,:,1]*64/255
             gray_mask[:,:,2] = gray_mask[:,:,2]*72/255
 
-            mask_level = 1.0 - i/len(png_files)
+            mask_level = 1.0 - ratio
             gray_mask = np.dstack([gray_mask, np.ones(gray_mask.shape[:2])*mask_level])
 
             img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
