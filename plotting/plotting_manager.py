@@ -1,6 +1,7 @@
 import os
+import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
+#import matplotlib.patches as patches
 import matplotlib.image as mpimg
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
@@ -105,23 +106,33 @@ class PlotManager:
     def _plot_flags(self, ax):
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
-            print(file)
+            #print(file)
             img = mpimg.imread(f"./de/submaps/{file}")
+            if img.shape[-1] == 3:
+                img = np.dstack([img, np.ones(img.shape[:2])])
+
+            #gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
+            #gray_rgb = np.stack((gray, gray, gray), axis=-1)
+
+            gray_rgb = np.ones((img.shape[0], img.shape[1],3))
+            gray_rgb[:,:,0] = gray_rgb[:,:,0]*60/255
+            gray_rgb[:,:,1] = gray_rgb[:,:,1]*64/255
+            gray_rgb[:,:,2] = gray_rgb[:,:,2]*72/255
+
+            alpha = 1 - i/len(png_files)
+            #if gray_rgb.shape[-1] == 3:
+            #    gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
+            gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
+            print(gray_rgb.shape)
 
             imagebox = OffsetImage(img, zoom=0.75)  # adjust size with zoom
+            imagebox_img = AnnotationBbox(imagebox, (-0.075, i/len(png_files)*0.9 + 0.1), frameon=False, xycoords='axes fraction')
+            ax.add_artist(imagebox_img)
+
+            imagebox = OffsetImage(gray_rgb, zoom=0.75)  # adjust size with zoom
             ab = AnnotationBbox(imagebox, (-0.075, i/len(png_files)*0.9 + 0.1), frameon=False, xycoords='axes fraction')
             ax.add_artist(ab)
 
-            # rectangle params: (x, y), width, height
-            rect = patches.Rectangle(
-                (1, i/len(png_files)),   # bottom-left corner (x, y)
-                50, 50,     # width, height
-                linewidth=2,
-                edgecolor='r',
-                facecolor='b'
-            )
-
-            ax.add_patch(rect)
 
     def _finalize_and_save_plot(self, fig, current_date):
         plt.xlim(self.xlims)
