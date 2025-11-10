@@ -106,6 +106,14 @@ class PlotManager:
             )
 
     def _plot_flags(self, ax):
+        if self.scale >= 3:
+            flag_size = "large"
+        else:
+            flag_size = "small"
+        flag_scale = self.meta_data["Flags"]["Scale"][flag_size]
+        flag_radius = self.meta_data["Flags"]["Radius"][flag_size]
+        flag_linewidth = self.meta_data["Flags"]["Linewidth"][flag_size]
+        
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
             frameon = False
@@ -143,7 +151,7 @@ class PlotManager:
             img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
 
             imagebox_gry = AnnotationBbox(
-                OffsetImage(gray_rgba, zoom=0.2), 
+                OffsetImage(gray_rgba, zoom=flag_scale), 
                 img_position, 
                 frameon=False, 
                 xycoords='axes fraction'
@@ -151,20 +159,18 @@ class PlotManager:
             ax.add_artist(imagebox_gry)
 
             imagebox_img = AnnotationBbox(
-                #OffsetImage(img, zoom=0.75), 
-                OffsetImage(img, zoom=0.2), 
+                OffsetImage(img, zoom=flag_scale), 
                 img_position, 
                 frameon=frameon, 
                 xycoords='axes fraction',
-                pad=0.1,                     # space between image and border
+                pad=0.1,                      # space between image and border
                 bboxprops=dict(
-                    edgecolor='#e7ba52',     # border color
-                    #linewidth=10,             # border thickness
-                    linewidth=1,             # border thickness
-                    #boxstyle="round,pad=0.3,rounding_size=2.75",  # rounded corners
-                    boxstyle="round,pad=0.3,rounding_size=0.85",  # rounded corners
-                    facecolor='#e7ba52',       # background behind image
-                    alpha=1.0                # border opacity
+                    edgecolor='#e7ba52',    # border color
+                    linewidth=flag_linewidth, # border thickness
+                    boxstyle=f"round,pad=0.3,rounding_size={flag_radius}",  
+                                              # rounded corners
+                    facecolor='#e7ba52',    # background behind image
+                    alpha=1.0                 # border opacity
                 )
             )
             ax.add_artist(imagebox_img)
