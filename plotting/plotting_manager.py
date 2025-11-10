@@ -120,6 +120,7 @@ class PlotManager:
             else:
                 beta = 0
             img = mpimg.imread(f"./de/submaps/{file}")
+            rounded_mask = img[:, :, 3].copy()
             if img.shape[-1] == 3:
                 img = np.dstack([img, np.ones(img.shape[:2])])
             img[:,:,3] = img[:,:,3]*beta
@@ -131,22 +132,18 @@ class PlotManager:
                 alpha = ratio*2
             gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
             gray_rgb = np.stack((gray, gray, gray), axis=-1)
-            if gray_rgb.shape[-1] == 3:
-                gray_rgb = np.dstack([gray_rgb, np.ones(gray_rgb.shape[:2])*alpha])
-            
-            # Create gray mask
-            gray_mask = np.ones((img.shape[0], img.shape[1],3))
-            gray_mask[:,:,0] = gray_mask[:,:,0]*60/255
-            gray_mask[:,:,1] = gray_mask[:,:,1]*64/255
-            gray_mask[:,:,2] = gray_mask[:,:,2]*72/255
 
-            mask_level = 1.0 - ratio
-            gray_mask = np.dstack([gray_mask, np.ones(gray_mask.shape[:2])*mask_level])
+            # Copy the alpha channel from original image (rounded corners)
+            alpha_channel = np.ones(gray_rgb.shape[:2]) * alpha  # preserve transparency and scale by alpha
+            alpha_channel = np.multiply(alpha_channel, rounded_mask)
+            
+            # Combine grayscale with rounded alpha
+            gray_rgba = np.dstack([gray_rgb, alpha_channel])
 
             img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
 
             imagebox_gry = AnnotationBbox(
-                OffsetImage(gray_rgb, zoom=0.75), 
+                OffsetImage(gray_rgba, zoom=0.75), 
                 img_position, 
                 frameon=False, 
                 xycoords='axes fraction'
@@ -161,9 +158,9 @@ class PlotManager:
                 pad=0.1,                     # space between image and border
                 bboxprops=dict(
                     edgecolor='#e7ba52',     # border color
-                    linewidth=3,             # border thickness
-                    boxstyle="round,pad=0.3,rounding_size=2",  # rounded corners
-                    facecolor='white',       # background behind image
+                    linewidth=10,             # border thickness
+                    boxstyle="round,pad=0.3,rounding_size=2.75",  # rounded corners
+                    facecolor='#e7ba52',       # background behind image
                     alpha=1.0                # border opacity
                 )
             )

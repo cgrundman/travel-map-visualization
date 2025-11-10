@@ -5,7 +5,7 @@ from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
 from data.submaps_loader import SubmapsLoader
 from plotting.plotting_manager import PlotManager
-#from plotting.gif_generator import GifGenerator
+from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
 
 
@@ -45,14 +45,14 @@ plot_manager = PlotManager(
 )
 
 # Add first plot
-#current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
+plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-#        plot_manager.generate_plot(current_date, row)
+        plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
@@ -60,10 +60,10 @@ old_date += datetime.timedelta(days=1)
 plot_manager.generate_plot(old_date, row, copy=True)
 
 # Create gif from produced plots
-#gif = GifGenerator(
-#    input_folder="./plots/temp",
-#    output_gif=f"./gifs/{PATH}_{SCALE}.gif",
-#    duration=200
-#)
-#gif.generate()
-#gif.cleanup_temp()
+gif = GifGenerator(
+    input_folder="./plots/temp",
+    output_gif=f"./gifs/{PATH}_{SCALE}.gif",
+    duration=200
+)
+gif.generate()
+gif.cleanup_temp()
