@@ -143,7 +143,7 @@ class PlotManager:
             img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
 
             imagebox_gry = AnnotationBbox(
-                OffsetImage(gray_rgba, zoom=0.75), 
+                OffsetImage(gray_rgba, zoom=0.2), 
                 img_position, 
                 frameon=False, 
                 xycoords='axes fraction'
@@ -151,15 +151,18 @@ class PlotManager:
             ax.add_artist(imagebox_gry)
 
             imagebox_img = AnnotationBbox(
-                OffsetImage(img, zoom=0.75), 
+                #OffsetImage(img, zoom=0.75), 
+                OffsetImage(img, zoom=0.2), 
                 img_position, 
                 frameon=frameon, 
                 xycoords='axes fraction',
                 pad=0.1,                     # space between image and border
                 bboxprops=dict(
                     edgecolor='#e7ba52',     # border color
-                    linewidth=10,             # border thickness
-                    boxstyle="round,pad=0.3,rounding_size=2.75",  # rounded corners
+                    #linewidth=10,             # border thickness
+                    linewidth=1,             # border thickness
+                    #boxstyle="round,pad=0.3,rounding_size=2.75",  # rounded corners
+                    boxstyle="round,pad=0.3,rounding_size=0.85",  # rounded corners
                     facecolor='#e7ba52',       # background behind image
                     alpha=1.0                # border opacity
                 )
