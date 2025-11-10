@@ -108,9 +108,11 @@ class PlotManager:
     def _plot_flags(self, ax):
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
-            #ratio = i/(len(png_files) - 1.0)
+            frameon = False
 
             ratio = self.ratios[file[:2]]
+            if ratio == 1:
+                frameon = True
 
             # Create image
             if ratio > 0.5:
@@ -154,8 +156,16 @@ class PlotManager:
             imagebox_img = AnnotationBbox(
                 OffsetImage(img, zoom=0.75), 
                 img_position, 
-                frameon=False, 
-                xycoords='axes fraction'
+                frameon=frameon, 
+                xycoords='axes fraction',
+                pad=0.1,                     # space between image and border
+                bboxprops=dict(
+                    edgecolor='#e7ba52',     # border color
+                    linewidth=3,             # border thickness
+                    boxstyle="round,pad=0.3,rounding_size=2",  # rounded corners
+                    facecolor='white',       # background behind image
+                    alpha=1.0                # border opacity
+                )
             )
             ax.add_artist(imagebox_img)
 
