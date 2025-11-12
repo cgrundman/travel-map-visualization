@@ -106,6 +106,7 @@ class PlotManager:
             )
 
     def _plot_flags(self, ax):
+
         if self.scale >= 3:
             flag_size = "large"
         else:
@@ -127,7 +128,7 @@ class PlotManager:
                 beta = ratio*2 - 1
             else:
                 beta = 0
-            img = mpimg.imread(f"./de/submaps/{file}")
+            img = mpimg.imread(f"./{self.path}/submaps/{file}")
             rounded_mask = img[:, :, 3].copy()
             if img.shape[-1] == 3:
                 img = np.dstack([img, np.ones(img.shape[:2])])

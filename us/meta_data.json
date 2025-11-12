@@ -81,5 +81,19 @@
         "Horizontal Spacing": 7.85,
         "Font": 5.5,
         "Splits": 47
+    },
+    "Flags": {
+        "Scale": {
+            "small": 0.20,
+            "large": 0.75
+        },
+        "Radius": {
+            "small": 0.85,
+            "large": 2.75
+        },
+        "Linewidth": {
+            "small": 1,
+            "large": 10
+        }
     }
 }
