@@ -55,6 +55,10 @@
         "Linewidth": {
             "small": 1,
             "large": 10
+        },
+        "Position": {
+            "x_start": -0.075,
+            "y_start": 0.94
         }
     }
 }

@@ -114,6 +114,7 @@ class PlotManager:
         flag_scale = self.meta_data["Flags"]["Scale"][flag_size]
         flag_radius = self.meta_data["Flags"]["Radius"][flag_size]
         flag_linewidth = self.meta_data["Flags"]["Linewidth"][flag_size]
+        flag_positon = self.meta_data["Flags"]["Position"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
@@ -149,7 +150,7 @@ class PlotManager:
             # Combine grayscale with rounded alpha
             gray_rgba = np.dstack([gray_rgb, alpha_channel])
 
-            img_position = (-0.075, 0.94 - i/len(png_files)*0.9)
+            img_position = (flag_positon["x_start"], flag_positon["y_start"] - i/len(png_files)*0.9)
 
             imagebox_gry = AnnotationBbox(
                 OffsetImage(gray_rgba, zoom=flag_scale), 
