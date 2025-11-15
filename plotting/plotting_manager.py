@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
@@ -150,7 +151,13 @@ class PlotManager:
             # Combine grayscale with rounded alpha
             gray_rgba = np.dstack([gray_rgb, alpha_channel])
 
-            img_position = (flag_positon["x_start"], flag_positon["y_start"] - i/len(png_files)*0.9)
+            row = math.floor(i / flag_positon["num_in_row"])
+            column = i - flag_positon["num_in_row"]*row
+
+            x_position = flag_positon["x_start"] + flag_positon["x_spacing"]*column
+            y_position = flag_positon["y_start"] - flag_positon["y_spacing"]*row
+
+            img_position = (x_position, y_position)
 
             imagebox_gry = AnnotationBbox(
                 OffsetImage(gray_rgba, zoom=flag_scale), 
