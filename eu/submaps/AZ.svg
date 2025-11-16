@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
+<rect width="900" height="600" fill="#509e2f"/>
+<rect width="900" height="400" fill="#ef3340"/>
+<rect width="900" height="200" fill="#00b5e2"/>
+<circle cx="430" cy="300" r="90" fill="#fff"/>
+<circle cx="450" cy="300" r="75" fill="#ef3340"/>
+<path d="M530 250l9.57 26.9 25.78-12.25-12.25 25.78L580 300l-26.9 9.57 12.25 25.8-25.78-12.27L530 350l-9.57-26.9-25.78 12.25 12.25-25.78L480 300l26.9-9.57-12.25-25.8 25.78 12.27L530 250z" fill="#fff"/>
+</svg>
