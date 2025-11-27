@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" fill="#f8e92e" version="1.1" viewBox="-140 -70 210 140" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<path d="m-140-70h210v140h-210z" fill="#d82126" stroke-width=".86602"/>
+<path d="m-140 14v-28l210 28v-28zm94.5-84h21l-10.5 55zm21 140h-21l10.5-55zm-115.5-140h31.5l83.145 77.72zm0 140h31.5l83.145-77.72zm210-140h-31.5l-83.145 77.72zm0 140h-31.5l-83.145-77.72z" stroke-width=".86602"/>
+<circle cx="-35" r="25" fill="#d82126"/>
+<circle cx="-35" r="20"/>
+</svg>
