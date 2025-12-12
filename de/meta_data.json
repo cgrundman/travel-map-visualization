@@ -59,7 +59,9 @@
         "Position": {
             "x_start": -0.075,
             "y_start": 0.94,
-            "y_spacing": 0.90
+            "x_spacing": 0.0825,
+            "y_spacing": 0.057,
+            "num_in_row": 1
         }
     }
 }
