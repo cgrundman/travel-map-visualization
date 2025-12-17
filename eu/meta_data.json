@@ -54,7 +54,7 @@
     ],
     "Figure Size": [12, 14],
     "Cropping": {
-        "small": [0.000, 0.000, 1.000, 1.000],
+        "small": [0.090, 0.000, 0.900, 0.835],
         "med": [0.090, 0.170, 0.900, 0.835],
         "large": [0.100, 0.170, 0.900, 1.000]
     },
@@ -92,11 +92,11 @@
             "large": 10
         },
         "Position": {
-            "x_start": -0.1,
-            "y_start": -0.1,
-            "x_spacing": 0.0825,
-            "y_spacing": 0.13,
-            "num_in_row": 12
+            "x_start": -0.075,
+            "y_start": 0.94,
+            "x_spacing": 0.01,
+            "y_spacing": 0.01,
+            "num_in_row": 10
         }
     }
 }
