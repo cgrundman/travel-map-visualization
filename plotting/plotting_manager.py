@@ -107,7 +107,6 @@ class PlotManager:
             )
 
     def _plot_flags(self, ax):
-        print("_plot_flags called")
 
         if self.scale >= 3:
             flag_size = "large"
@@ -119,12 +118,10 @@ class PlotManager:
         flag_positon = self.meta_data["Flags"]["Position"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
-        print("submaps path:", f"{self.path}/submaps")
-        print("png_files:", png_files)
         for i, file in enumerate(png_files):
             frameon = False
 
-            ratio = self.ratios[file[:2]]
+            ratio = 1 #self.ratios[file[:2]]
             if ratio == 1:
                 frameon = True
 
@@ -169,9 +166,6 @@ class PlotManager:
                 xycoords='axes fraction'
             )
             ax.add_artist(imagebox_gry)
-            ax.plot(x_position, y_position, 'ro', transform=ax.transAxes)
-            print(i, img_position)
-
 
             imagebox_img = AnnotationBbox(
                 OffsetImage(img, zoom=flag_scale), 

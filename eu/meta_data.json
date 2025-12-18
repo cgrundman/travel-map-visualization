@@ -92,10 +92,10 @@
             "large": 10
         },
         "Position": {
-            "x_start": -0.075,
-            "y_start": 0.94,
-            "x_spacing": 0.01,
-            "y_spacing": 0.01,
+            "x_start": 0.075,
+            "y_start": 1.00,
+            "x_spacing": 0.05,
+            "y_spacing": 0.05,
             "num_in_row": 10
         }
     }
