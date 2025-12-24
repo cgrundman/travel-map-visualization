@@ -1,0 +1,48 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" viewBox="0.1999999999999993 0.0 25.6 16.0" preserveAspectRatio="xMidYMid slice">
+<ns0:defs>
+
+<ns0:g id="s" fill="#fff" transform="translate(3.944272,0) scale(0.625)">
+<ns0:g id="f">
+<ns0:g id="t">
+<ns0:path id="o" d="M1,0H0V0.5z" transform="rotate(18,1,0)" />
+<ns0:use ns1:href="#o" transform="scale(1,-1)" />
+</ns0:g>
+<ns0:use ns1:href="#t" transform="rotate(72)" />
+</ns0:g>
+<ns0:use ns1:href="#t" transform="rotate(-72)" />
+<ns0:use ns1:href="#f" transform="rotate(144)" />
+</ns0:g>
+<ns0:clipPath id="c">
+<ns0:path d="M0,16V0L26,3 20,8 26,13z" />
+</ns0:clipPath>
+</ns0:defs>
+<ns0:g fill="#fff" stroke="#bf0a30" clip-path="url(#c)">
+<ns0:path d="M26,3 0,0V16L26,13" stroke-width="4" />
+<ns0:path d="M0,8H26" stroke-width="2" />
+</ns0:g>
+<ns0:path d="M0,0V16L16,8z" fill="#00205B" />
+
+<ns0:g transform="translate(4.944272,8)">
+<ns0:circle r="3" fill="#fff" />
+<ns0:circle r="2" fill="#bf0a30" />
+<ns0:use ns1:href="#s" x="4" />
+<ns0:g id="s3">
+<ns0:use ns1:href="#s" />
+
+<ns0:use ns1:href="#s" x="2" transform="rotate(-9.650225)" />
+<ns0:use ns1:href="#s" x="2" transform="rotate(9.650225)" />
+</ns0:g>
+<ns0:g id="s6">
+
+<ns0:use ns1:href="#s" transform="rotate(63.434949)" />
+
+<ns0:use ns1:href="#s" transform="rotate(92.576212)" />
+
+<ns0:use ns1:href="#s3" transform="rotate(121.717474)" />
+
+<ns0:use ns1:href="#s" transform="rotate(150.858737)" />
+</ns0:g>
+<ns0:use ns1:href="#s" transform="rotate(180)" />
+<ns0:use ns1:href="#s6" transform="scale(1,-1)" />
+</ns0:g>
+</ns0:svg>
