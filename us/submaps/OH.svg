@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="520" height="320" viewBox="0 0 26 16">
+  <rect x="0" y="0" height="320" width="520" fill="#fff"/>
 <defs>
 <!--                 8*tan(arctan(16/8)/2)-1  v  -->
 <g id="s" fill="#fff" transform="translate(3.944272,0) scale(0.625)">
