@@ -122,7 +122,7 @@ class PlotManager:
         for i, file in enumerate(png_files):
             frameon = False
 
-            ratio = 1#self.ratios[file[:2]]
+            ratio = self.ratios[file[:2]]
             if ratio == 1:
                 frameon = True
 
