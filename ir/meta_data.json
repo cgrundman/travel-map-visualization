@@ -1,0 +1,82 @@
+{
+    "Title": "Iran",
+    "Submaps": [
+        {"Name": "00"},
+        {"Name": "01"},
+        {"Name": "02"},
+        {"Name": "03"},
+        {"Name": "04"},
+        {"Name": "05"},
+        {"Name": "06"},
+        {"Name": "07"},
+        {"Name": "08"},
+        {"Name": "09"},
+        {"Name": "10"},
+        {"Name": "11"},
+        {"Name": "12"},
+        {"Name": "13"},
+        {"Name": "14"},
+        {"Name": "15"},
+        {"Name": "16"},
+        {"Name": "17"},
+        {"Name": "18"},
+        {"Name": "19"},
+        {"Name": "20"},
+        {"Name": "21"},
+        {"Name": "22"},
+        {"Name": "23"},
+        {"Name": "24"},
+        {"Name": "25"},
+        {"Name": "26"},
+        {"Name": "27"},
+        {"Name": "28"},
+        {"Name": "29"},
+        {"Name": "30"}
+    ],
+    "Figure Size": [12, 14],
+    "Cropping": {
+        "small": [0.090, 0.000, 0.900, 0.835],
+        "large": [0.100, 0.000, 0.900, 1.000]
+    },
+    "Plotting Area": {
+        "xlims": [24, 40],
+        "ylims": [43.5, 62.8]
+    },
+    "Colors": {
+        "map_dark": "#545454",
+        "map_light": "#2267b5",
+        "unvisited": "#f0b42b",
+        "active": "#EAEAEA",
+        "visited": "#1c589c"
+    },
+    "Marker Size": 10,
+    "Labels": {
+        "Start Longitude": -13, 
+        "Start Latitude": 34,
+        "Vertical Spacing": 0.3,
+        "Horizontal Spacing": 5,
+        "Font": 3.0,
+        "Splits": 32
+    },
+    "Flags": {
+        "Scale": {
+            "small": 0.13,
+            "large": 0.75
+        },
+        "Radius": {
+            "small": 0.85,
+            "large": 2.75
+        },
+        "Linewidth": {
+            "small": 1,
+            "large": 10
+        },
+        "Position": {
+            "x_start": 0.01,
+            "y_start": 1.23,
+            "x_spacing": 0.085,
+            "y_spacing": 0.065,
+            "num_in_row": 12
+        }
+    }
+}
