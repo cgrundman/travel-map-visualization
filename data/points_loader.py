@@ -16,6 +16,9 @@ class PointsLoader:
         # Parse 'date' column; replace invalid (e.g., 0) with NaT
         df['date'] = pd.to_datetime(df['date'], format='%Y%m%d', errors='coerce')
 
+        # Convert submap names to strings if needed
+        df["submap"] = df["submap"].astype(str).str.zfill(2)
+
         # Create geometry column
         geometry = [Point(xy) for xy in df[['longitude', 'latitude']].values]
         gdf = gpd.GeoDataFrame(df, geometry=geometry)
