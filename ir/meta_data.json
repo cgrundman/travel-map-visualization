@@ -45,18 +45,18 @@
     "Colors": {
         "map_dark": "#5B4E77",
         "map_light": "#C26AC4",
-        "unvisited": "#f0b42b",
+        "unvisited": "#0089fa",
         "active": "#EAEAEA",
-        "visited": "#1c589c"
+        "visited": "#5B4E77"
     },
     "Marker Size": 10,
     "Labels": {
-        "Start Longitude": -13, 
-        "Start Latitude": 34,
+        "Start Longitude": 44, 
+        "Start Latitude": 26,
         "Vertical Spacing": 0.3,
         "Horizontal Spacing": 5,
-        "Font": 3.0,
-        "Splits": 32
+        "Font": 6.0,
+        "Splits": 10
     },
     "Flags": {
         "Scale": {
@@ -65,11 +65,11 @@
         },
         "Radius": {
             "small": 0.85,
-            "large": 2.75
+            "large": 2.5
         },
         "Linewidth": {
             "small": 1,
-            "large": 10
+            "large": 20
         },
         "Position": {
             "x_start": 0.01,

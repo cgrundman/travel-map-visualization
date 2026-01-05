@@ -10,7 +10,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 1
+SCALE = 5
 
 # US National Park Global Variables
 #PATH = "us"
@@ -49,13 +49,13 @@ plot_manager = PlotManager(
 
 # Add first plot
 current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        plot_manager.generate_plot(current_date, row)
+        #plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
