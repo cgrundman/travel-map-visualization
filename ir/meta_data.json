@@ -43,8 +43,8 @@
         "ylims": [24, 40]
     },
     "Colors": {
-        "map_dark": "#545454",
-        "map_light": "#2267b5",
+        "map_dark": "#5B4E77",
+        "map_light": "#C26AC4",
         "unvisited": "#f0b42b",
         "active": "#EAEAEA",
         "visited": "#1c589c"
@@ -76,7 +76,7 @@
             "y_start": 1.23,
             "x_spacing": 0.085,
             "y_spacing": 0.065,
-            "num_in_row": 12
+            "num_in_row": 10
         }
     }
 }
