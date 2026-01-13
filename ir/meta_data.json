@@ -36,7 +36,7 @@
     "Figure Size": [12, 14],
     "Cropping": {
         "small": [0.100, 0.000, 0.950, 0.850],
-        "large": [0.000, 0.000, 1.000, 1.000]
+        "large": [0.090, 0.000, 0.950, 1.000]
     },
     "Plotting Area": {
         "xlims": [43.5, 62.8],
@@ -51,12 +51,12 @@
     },
     "Marker Size": 50,
     "Labels": {
-        "Start Longitude": 44, 
-        "Start Latitude": 26,
-        "Vertical Spacing": 0.3,
-        "Horizontal Spacing": 5,
+        "Start Longitude": 43, 
+        "Start Latitude": 25,
+        "Vertical Spacing": 0.2,
+        "Horizontal Spacing": 3.5,
         "Font": 6.0,
-        "Splits": 10
+        "Splits": 26
     },
     "Flags": {
         "Scale": {
