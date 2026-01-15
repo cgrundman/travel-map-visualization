@@ -35,7 +35,7 @@
     ],
     "Figure Size": [12, 14],
     "Cropping": {
-        "small": [0.100, 0.000, 0.950, 0.800],
+        "small": [0.090, 0.040, 0.955, 0.800],
         "large": [0.090, 0.000, 0.950, 1.000]
     },
     "Plotting Area": {
@@ -60,7 +60,7 @@
     },
     "Flags": {
         "Scale": {
-            "small": 0.15,
+            "small": 0.19,
             "large": 0.75
         },
         "Radius": {
@@ -73,9 +73,9 @@
         },
         "Position": {
             "x_start": 0.01,
-            "y_start": 1.23,
+            "y_start": 1.17,
             "x_spacing": 0.100,
-            "y_spacing": 0.077,
+            "y_spacing": 0.072,
             "num_in_row": 11
         }
     }
