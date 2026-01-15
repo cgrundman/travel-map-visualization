@@ -36,7 +36,7 @@
     "Figure Size": [12, 14],
     "Cropping": {
         "small": [0.090, 0.040, 0.955, 0.800],
-        "large": [0.090, 0.000, 0.950, 1.000]
+        "large": [0.090, 0.040, 0.950, 1.000]
     },
     "Plotting Area": {
         "xlims": [43.5, 62.8],
@@ -61,7 +61,7 @@
     "Flags": {
         "Scale": {
             "small": 0.19,
-            "large": 0.75
+            "large": 0.95
         },
         "Radius": {
             "small": 0.85,
