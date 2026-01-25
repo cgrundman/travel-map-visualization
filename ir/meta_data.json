@@ -54,8 +54,8 @@
         "Start Longitude": 43, 
         "Start Latitude": 25,
         "Vertical Spacing": 0.115,
-        "Horizontal Spacing": 1.0,
-        "Font": 4.0,
+        "Horizontal Spacing": 2.65,
+        "Font": 4.2,
         "Splits": 35
     },
     "Flags": {
