@@ -53,10 +53,10 @@
     "Labels": {
         "Start Longitude": 43, 
         "Start Latitude": 25,
-        "Vertical Spacing": 0.2,
-        "Horizontal Spacing": 3.5,
-        "Font": 6.0,
-        "Splits": 26
+        "Vertical Spacing": 0.115,
+        "Horizontal Spacing": 1.0,
+        "Font": 4.0,
+        "Splits": 35
     },
     "Flags": {
         "Scale": {
