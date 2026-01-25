@@ -60,7 +60,7 @@ for _, row in points_sorted.iterrows():
 
 # Create Last Plot
 old_date += datetime.timedelta(days=1)
-plot_manager.generate_plot(old_date, row, copy=True)
+plot_manager.generate_plot(old_date, row)#, copy=True)
 
 # Create gif from produced plots
 gif = GifGenerator(
