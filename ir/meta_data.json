@@ -43,10 +43,10 @@
         "ylims": [24, 40]
     },
     "Colors": {
-        "map_dark": "#5B4E77",
-        "map_light": "#C26AC4",
-        "unvisited": "#0089fa",
-        "active": "#EAEAEA",
+        "map_dark": "#0B174E",
+        "map_light": "#1c39bb",
+        "unvisited": "#00A693",
+        "active": "#D8CDAB",
         "visited": "#5B4E77"
     },
     "Marker Size": 50,
