@@ -13,8 +13,11 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
         else:
             label_color = color_unvisited
 
-        pos_x = labels_config["Start Longitude"] + labels_config["Horizontal Spacing"] * column
-        pos_y = labels_config["Start Latitude"] - labels_config["Vertical Spacing"] * row
+        #pos_x = labels_config["Start Longitude"] + labels_config["Horizontal Spacing"] * column
+        #pos_y = labels_config["Start Latitude"] - labels_config["Vertical Spacing"] * row
+
+        pos_x = location['longitude']
+        pos_y = location['latitude']
 
         ax.text(
             pos_x,
