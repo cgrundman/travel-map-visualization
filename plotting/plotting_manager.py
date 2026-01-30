@@ -48,8 +48,10 @@ class PlotManager:
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self._plot_submaps(ax, current_date)
-        self._plot_points(ax, current_date)
-        self._plot_labels(ax, current_date)
+        if self.scale >= 3:
+            self._plot_labels(ax, current_date)
+        else:
+            self._plot_points(ax, current_date)
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
