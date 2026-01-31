@@ -37,34 +37,22 @@ def spread_longitudes(locations_df_sorted, lon_threshold, lat_threshold, shift_s
 
     for pos, (i, loc) in enumerate(locations_df_sorted.iterrows()):
 
-        print(pos, "    ",loc["name"], "   ", loc["latitude"])
         lat = loc["latitude"]
         lon = loc["longitude"]
-
-        print(lat)
-
+        
         if i > 0:
 
             previous_rows = locations_df_sorted.loc[:pos-1]
 
-            for j, prev_loc in previous_rows.iterrows():
+            for _, prev_loc in previous_rows.iterrows():
 
                 prev_lat = prev_loc["latitude"]
                 prev_lon = prev_loc["longitude"]
                 
                 if abs(lat - prev_lat) < lat_threshold and abs(lon - prev_lon) < lon_threshold:
                     
-                    #print(pos, "    ",loc["name"], "   ", lat)
-                    #locations_df_sorted.loc[i, "latitude"] = prev_lat - shift_step
                     lat = prev_lat - shift_step
-                    
-                    #print(pos, "    ",loc["name"], "   ", lat)
-
-            print(lat)
+            
             locations_df_sorted.at[i, "latitude"] = lat
-            print(locations_df_sorted.at[i, "latitude"])# = lat
-            #locations_df_sorted.iloc[pos, locations_df_sorted.columns.get_loc("latitude")] = lat
-
-
 
     return locations_df_sorted

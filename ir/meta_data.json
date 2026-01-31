@@ -44,7 +44,7 @@
     },
     "Colors": {
         "map_dark": "#0C184E",
-        "map_light": "#CDD5F8",
+        "map_light": "#4260E3",
         "unvisited": "#D78A4E",
         "active": "#D8CDAB",
         "visited": "#583214"
