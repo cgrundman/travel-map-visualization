@@ -5,9 +5,9 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
 
     adjusted_df = spread_longitudes(
         locations_df_sorted,
-        lon_threshold=1.0,
-        lat_threshold=0.08,
-        shift_step=0.07
+        lon_threshold=labels_config["Longitude Threshold"],
+        lat_threshold=labels_config["Latitude THreshold"],
+        shift_step=labels_config["Shift Step"]
     )
 
     for _, location in adjusted_df.iterrows():
@@ -39,7 +39,7 @@ def spread_longitudes(locations_df_sorted, lon_threshold, lat_threshold, shift_s
 
         lat = loc["latitude"]
         lon = loc["longitude"]
-        
+
         if i > 0:
 
             previous_rows = locations_df_sorted.loc[:pos-1]
