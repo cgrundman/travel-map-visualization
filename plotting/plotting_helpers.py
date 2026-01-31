@@ -4,16 +4,16 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
     #SHIFT_STEP   = 0.3    # how much to move when overlap found
 
     # Sort Locations
-    locations_df_sorted = locations_df.sort_values("latitude", ascending=False)
+    locations_df_sorted = locations_df.sort_values("latitude", ascending=False).reset_index(drop=True)
 
-    adjusted_df = spread_latitudes(
+    adjusted_df = spread_longitudes(
         locations_df_sorted,
-        lon_threshold=0.15,
-        min_lat_gap=0.25,
-        shift_step=0.7
+        lon_threshold=1.0,
+        lat_threshold=0.08,
+        shift_step=0.07
     )
 
-    for _, location in adjusted_df:
+    for _, location in adjusted_df.iterrows():
 
         date = location['date']
         lon = location["longitude"]
@@ -36,28 +36,38 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
             va="center"
         )
 
-def spread_latitudes(locations_df, lon_threshold, min_lat_gap, shift_step):
-    adjusted_positions = []
+def spread_longitudes(locations_df_sorted, lon_threshold, lat_threshold, shift_step):
 
-    # Sort so we process nearby longitudes together
-    sorted_df = locations_df.sort_values(by="longitude")
+    for pos, (i, loc) in enumerate(locations_df_sorted.iterrows()):
 
-    for _, loc in sorted_df.iterrows():
+        print(pos, "    ",loc["name"], "   ", loc["latitude"])
         lat = loc["latitude"]
         lon = loc["longitude"]
 
-        new_lat = lat
+        print(lat)
 
-        # Compare with already placed points
-        for prev_lon, prev_lat in adjusted_positions:
+        if i > 0:
 
-            # Only care about points in same longitude band
-            if abs(lon - prev_lon) < lon_threshold:
+            previous_rows = locations_df_sorted.loc[:pos-1]
 
-                # If too close vertically → shift upward
-                while abs(new_lat - prev_lat) < min_lat_gap:
-                    new_lat += shift_step
+            for j, prev_loc in previous_rows.iterrows():
 
-        adjusted_positions.append((lon, new_lat))
+                prev_lat = prev_loc["latitude"]
+                prev_lon = prev_loc["longitude"]
+                
+                if abs(lat - prev_lat) < lat_threshold and abs(lon - prev_lon) < lon_threshold:
+                    
+                    #print(pos, "    ",loc["name"], "   ", lat)
+                    #locations_df_sorted.loc[i, "latitude"] = prev_lat - shift_step
+                    lat = prev_lat - shift_step
+                    
+                    #print(pos, "    ",loc["name"], "   ", lat)
 
-    return adjusted_positions
+            print(lat)
+            locations_df_sorted.at[i, "latitude"] = lat
+            print(locations_df_sorted.at[i, "latitude"])# = lat
+            #locations_df_sorted.iloc[pos, locations_df_sorted.columns.get_loc("latitude")] = lat
+
+
+
+    return locations_df_sorted
