@@ -119,12 +119,14 @@ class PlotManager:
         flag_radius = self.meta_data["Flags"]["Radius"][flag_size]
         flag_linewidth = self.meta_data["Flags"]["Linewidth"][flag_size]
         flag_positon = self.meta_data["Flags"]["Position"]
+        border_color = self.meta_data["Flags"]["Linewidth"]["color"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         for i, file in enumerate(png_files):
             frameon = False
 
-            ratio = self.ratios[file[:2]]
+            #ratio = self.ratios[file[:2]]
+            ratio=1
             if ratio == 1:
                 frameon = True
 
@@ -177,11 +179,11 @@ class PlotManager:
                 xycoords='axes fraction',
                 pad=0.1,                      # space between image and border
                 bboxprops=dict(
-                    edgecolor='#e7ba52',    # border color
+                    edgecolor=border_color,    # border color
                     linewidth=flag_linewidth, # border thickness
                     boxstyle=f"round,pad=0.3,rounding_size={flag_radius}",  
                                               # rounded corners
-                    facecolor='#e7ba52',    # background behind image
+                    facecolor=border_color,    # background behind image
                     alpha=1.0                 # border opacity
                 )
             )

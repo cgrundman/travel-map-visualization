@@ -72,7 +72,8 @@
         },
         "Linewidth": {
             "small": 1,
-            "large": 20
+            "large": 20,
+            "color": "#d99058"
         },
         "Position": {
             "x_start": 0.01,
