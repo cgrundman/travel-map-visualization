@@ -1,7 +1,4 @@
 def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active):    
-    #LAT_THRESHOLD = 0.1   # how close in latitude counts as "same row"
-    #MIN_LON_GAP  = 1.0    # minimum longitude separation
-    #SHIFT_STEP   = 0.3    # how much to move when overlap found
 
     # Sort Locations
     locations_df_sorted = locations_df.sort_values("latitude", ascending=False).reset_index(drop=True)
