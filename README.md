@@ -14,7 +14,7 @@ This repo features visualization code for travel. Using a collection of submaps 
     </td>
     <td align="center">
       <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="200"/>
-      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_5.png">Full Image</a></b>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_6.png">Full Image</a></b>
     </td>
   </tr>
   <tr>
@@ -28,7 +28,7 @@ This repo features visualization code for travel. Using a collection of submaps 
     </td>
     <td align="center">
       <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="200"/>
-      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_5.gif">Full gif</a></b>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_6.gif">Full gif</a></b>
     </td>
   </tr>
 </table>
