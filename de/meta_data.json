@@ -21,7 +21,7 @@
     "Figure Size": [12, 18],
     "Cropping": {
         "small": [0.000, 0.150, 0.890, 0.850],
-        "large": [0.000, 0.150, 1.000, 1.000]
+        "large": [0.000, 0.150, 1.000, 0.850]
     },
     "Plotting Area": {
         "xlims": [5.7, 15.3],
@@ -41,7 +41,10 @@
         "Vertical Spacing": 0.069,
         "Horizontal Spacing": 1.45,
         "Font": 5.5,
-        "Splits": 27
+        "Splits": 27,
+        "Longitude Threshold": 1.0,
+        "Latitude THreshold": 0.08,
+        "Shift Step": 0.06
     },
     "Flags": {
         "Scale": {
@@ -54,7 +57,8 @@
         },
         "Linewidth": {
             "small": 1,
-            "large": 10
+            "large": 10,
+            "color": "#d99058"
         },
         "Position": {
             "x_start": -0.075,
