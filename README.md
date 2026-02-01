@@ -6,7 +6,7 @@ This repo features visualization code for travel. Using a collection of submaps 
   <tr>
     <td align="center">
       <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="200"/>
-      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_3.png">Full Image</a></b>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_5.png">Full Image</a></b>
     </td>
     <td align="center">
       <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="200"/>
