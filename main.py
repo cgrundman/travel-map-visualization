@@ -10,16 +10,16 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 6
+SCALE = 5
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
 
 # Europe Global Variables
-PATH = "eu"
+#PATH = "eu"
 
 # Iran Global Variables
 #PATH = "ir"
@@ -63,10 +63,11 @@ old_date += datetime.timedelta(days=1)
 plot_manager.generate_plot(old_date, row, copy=False)
 
 # Create gif from produced plots
-gif = GifGenerator(
-    input_folder="./plots/temp",
-    output_gif=f"./gifs/{PATH}_{SCALE}.gif",
-    duration=200
-)
-gif.generate()
+if SCALE < 3:
+    gif = GifGenerator(
+        input_folder="./plots/temp",
+        output_gif=f"./gifs/{PATH}_{SCALE}.gif",
+        duration=200
+    )
+    gif.generate()
 gif.cleanup_temp()

@@ -9,7 +9,6 @@
         {"Name": "CA"},
         {"Name": "CO"},
         {"Name": "CT"},
-        {"Name": "DC"},
         {"Name": "DE"},
         {"Name": "FL"},
         {"Name": "GA"},
@@ -60,7 +59,7 @@
     "Figure Size": [18, 18],
     "Cropping": {
         "small": [0.050, 0.095, 0.950, 0.715],
-        "large": [0.050, 0.095, 0.950, 1.000]
+        "large": [0.050, 0.095, 0.950, 0.730]
     },
     "Plotting Area": {
         "xlims": [-126, -66],
@@ -79,28 +78,32 @@
         "Start Latitude": 23.7,
         "Vertical Spacing": 0.35,
         "Horizontal Spacing": 7.85,
-        "Font": 5.5,
-        "Splits": 47
+        "Font": 2.2,
+        "Splits": 47,
+        "Longitude Threshold": 1.9,
+        "Latitude Threshold": 0.1,
+        "Shift Step": 0.1
     },
     "Flags": {
         "Scale": {
             "small": 0.26,
-            "large": 0.75
+            "large": 1.35
         },
         "Radius": {
             "small": 0.85,
-            "large": 2.75
+            "large": 4.00
         },
         "Linewidth": {
             "small": 1,
-            "large": 10
+            "large": 10,
+            "color": "#e7ba52"
         },
         "Position": {
             "x_start": -0.04,
-            "y_start": 1.40,
-            "x_spacing": 0.095,
-            "y_spacing": 0.12,
-            "num_in_row": 12
+            "y_start": 1.33,
+            "x_spacing": 0.088,
+            "y_spacing": 0.10,
+            "num_in_row": 13
         }
     }
 }
