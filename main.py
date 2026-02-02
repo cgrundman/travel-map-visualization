@@ -63,11 +63,12 @@ old_date += datetime.timedelta(days=1)
 plot_manager.generate_plot(old_date, row, copy=False)
 
 # Create gif from produced plots
-if SCALE < 3:
-    gif = GifGenerator(
+gif = GifGenerator(
         input_folder="./plots/temp",
         output_gif=f"./gifs/{PATH}_{SCALE}.gif",
         duration=200
     )
+if SCALE < 3:
     gif.generate()
+
 gif.cleanup_temp()

@@ -81,8 +81,8 @@
         "Font": 2.2,
         "Splits": 47,
         "Longitude Threshold": 1.9,
-        "Latitude Threshold": 0.1,
-        "Shift Step": 0.1
+        "Latitude Threshold": 0.125,
+        "Shift Step": 0.125
     },
     "Flags": {
         "Scale": {
