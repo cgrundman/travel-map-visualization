@@ -30,7 +30,13 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
             fontsize=labels_config["Font"] * scale,
             color=label_color,
             ha="center",
-            va="center"
+            va="center",
+            bbox=dict(
+                boxstyle="round,pad=0.1",
+                facecolor="#545454",
+                #alpha=0.8,
+                edgecolor="none"
+            )
         )
 
 def spread_longitudes(locations_df_sorted, lon_threshold, lat_threshold, shift_step):

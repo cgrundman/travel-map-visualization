@@ -43,7 +43,7 @@
         "Font": 5.5,
         "Splits": 27,
         "Longitude Threshold": 1.0,
-        "Latitude THreshold": 0.08,
+        "Latitude Threshold": 0.08,
         "Shift Step": 0.06
     },
     "Flags": {
