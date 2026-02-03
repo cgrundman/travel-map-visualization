@@ -124,7 +124,7 @@ class PlotManager:
         border_color = self.meta_data["Flags"]["Linewidth"]["color"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
-        random.shuffle(png_files)
+        png_files.sort()
         for i, file in enumerate(png_files):
             frameon = False
 
