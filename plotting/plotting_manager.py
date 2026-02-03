@@ -2,6 +2,7 @@ import os
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import random
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
@@ -16,6 +17,7 @@ from plotting.plotting_helpers import plot_location_labels
 
 from colormap.cmap_maker import CustomCmap
 
+random.seed(5)
 
 class PlotManager:
     def __init__(self, points_gdf, submaps, meta_data, path, scale):
@@ -122,6 +124,7 @@ class PlotManager:
         border_color = self.meta_data["Flags"]["Linewidth"]["color"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
+        random.shuffle(png_files)
         for i, file in enumerate(png_files):
             frameon = False
 
