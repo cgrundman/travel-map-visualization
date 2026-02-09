@@ -6,5 +6,5 @@
     </g>
   </defs>
   <rect x="0" y="0" width="300" height="200" fill="#C81D11"/>
-    <use x="1.9" y="-3.8" href="#state-border" fill="url('#myGradient')" transform="translate(10, 0) scale(50, -50)"/>
+    <use x="3.3" y="-4.8" href="#state-border" fill="url('#myGradient')" transform="translate(10, 0) scale(40, -40)"/>
 </svg>
