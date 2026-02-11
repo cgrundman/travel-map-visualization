@@ -15,15 +15,18 @@ for feature in data["features"]:
 
 for state in coords_list:
     print(state['name'])
-    min_lat = min(pt[0] for pt in state['coordinates'])
-    min_lon = min(pt[1] for pt in state['coordinates'])
+    
     coords = ""
-    for i, point in enumerate(state["coordinates"]):
+    if len(state['coordinates']) < 20:
+        points = state['coordinates'][0]
+    else:
+        points = state['coordinates']
+    min_lat = min(pt[0] for pt in points)
+    min_lon = min(pt[1] for pt in points)
+    for i, point in enumerate(points):
+
         if i%10==0:
-            try:
-                string = str(round((point[0]-min_lat), 2)) + "," + str(round((point[1]-min_lon), 2)) + " "
-            except:
-                print(point)
+            string = str(round((point[0]-min_lat), 2)) + "," + str(round((point[1]-min_lon), 2)) + " "
 
             coords += string
 
