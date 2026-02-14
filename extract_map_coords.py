@@ -17,7 +17,7 @@ for state in coords_list:
     print(state['name'])
     
     coords = ""
-    if len(state['coordinates']) < 20:
+    if len(state['coordinates']) < 10:
         points = state['coordinates'][0]
     else:
         points = state['coordinates']
