@@ -1,6 +1,8 @@
 import json
 
-file = 'ir/submaps/reference/geoBoundaries-IRN-ADM1_simplified.geojson'
+IR_FILE = 'ir/submaps/reference/geoBoundaries-IRN-ADM1_simplified.geojson'
+
+file = IR_FILE
 
 with open(file, "r", encoding="utf-8") as f:
     data = json.load(f)
@@ -15,7 +17,7 @@ for feature in data["features"]:
 
 for state in coords_list:
     print(state['name'])
-    
+
     coords = ""
     if len(state['coordinates']) < 10:
         points = state['coordinates'][0]
