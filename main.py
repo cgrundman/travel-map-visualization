@@ -10,7 +10,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+SCALE = 1
 
 # US National Park Global Variables
 #PATH = "us"
