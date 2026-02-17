@@ -172,8 +172,9 @@ class PlotManager:
             row = math.floor(i / flag_positon["num_in_row"])
             column = i - flag_positon["num_in_row"]*row
 
-            x_position = flag_positon["x_start"] + flag_positon["x_spacing"]*column
-            y_position = flag_positon["y_start"] - flag_positon["y_spacing"]*row
+
+            x_position = flag_positon["x_start"][flag_size] + flag_positon["x_spacing"][flag_size]*column
+            y_position = flag_positon["y_start"][flag_size] - flag_positon["y_spacing"][flag_size]*row
 
             img_position = (x_position, y_position)
 

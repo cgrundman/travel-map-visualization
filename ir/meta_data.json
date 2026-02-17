@@ -81,7 +81,7 @@
     "Flags": {
         "Scale": {
             "small": 0.17,
-            "large": 0.95
+            "large": 0.88
         },
         "Radius": {
             "small": 0.85,
@@ -89,14 +89,26 @@
         },
         "Linewidth": {
             "small": 1,
-            "large": 20,
+            "large": 25,
             "color": "#d99058"
         },
         "Position": {
-            "x_start": 0.05,
-            "y_start": 1.18,
-            "x_spacing": 0.090,
-            "y_spacing": 0.070,
+            "x_start": {
+                "small": 0.05,
+                "large": 0.05
+            },
+            "y_start": {
+                "small": 1.18,
+                "large": 1.22
+            },
+            "x_spacing": {
+                "small": 0.090,
+                "large": 0.090
+            },
+            "y_spacing": {
+                "small": 0.070,
+                "large": 0.083
+            },
             "num_in_row": 11
         }
     }
