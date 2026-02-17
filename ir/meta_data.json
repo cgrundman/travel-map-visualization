@@ -34,7 +34,10 @@
         {"Name": "30"}
     ],
     "Backgound Maps": [
-        {"Name": "IQ"}
+        {"Name": "AM"},
+        {"Name": "AZ"},
+        {"Name": "IQ"},
+        {"Name": "TR"}
     ],
     "Figure Size": [12, 14],
     "Cropping": {
