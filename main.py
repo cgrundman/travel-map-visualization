@@ -44,6 +44,7 @@ old_date = None
 plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
+    bgmaps=bgmaps,
     meta_data=meta_data,
     path=PATH,
     scale=SCALE

@@ -20,9 +20,10 @@ from colormap.cmap_maker import CustomCmap
 random.seed(5)
 
 class PlotManager:
-    def __init__(self, points_gdf, submaps, meta_data, path, scale):
+    def __init__(self, points_gdf, submaps, bgmaps, meta_data, path, scale):
         self.points_gdf = points_gdf
         self.submaps = submaps
+        self.bgmaps = bgmaps
         self.meta_data = meta_data
         self.path = path
         self.scale = scale
@@ -41,6 +42,7 @@ class PlotManager:
         self.labels = meta_data["Labels"]
         self.map_dark = meta_data["Colors"]["map_dark"]
         self.map_light = meta_data["Colors"]["map_light"]
+        self.bg_land = meta_data["Colors"]["bg_land"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -68,6 +70,7 @@ class PlotManager:
 
     def _plot_submaps(self, ax, current_date):
         self.ratios = {}
+        # Submap Plotting
         for submap in self.submaps:
             submap_points = self.points_gdf[self.points_gdf['submap'] == submap]
             num_past_dates = (submap_points['date'] <= current_date).sum()
@@ -78,6 +81,17 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1, color=color, alpha=1)
+        # Background Plotting
+        for bgmap in self.bgmaps:
+            #bgmap_points = self.points_gdf[self.points_gdf['bgmap'] == bgmap]
+            #num_past_dates = (submap_points['date'] <= current_date).sum()
+            #ratio = num_past_dates / len(submap_points)
+            #self.ratios[submap] = ratio
+            color = self.bg_land
+
+            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
+            bgmap_gdf = gpd.read_file(shapefile_path)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size * (self.scale ** 2)
