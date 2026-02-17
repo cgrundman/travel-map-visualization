@@ -34,11 +34,14 @@
         {"Name": "30"}
     ],
     "Backgound Maps": [
+        {"Name": "AE"},
         {"Name": "AM"},
         {"Name": "AZ"},
         {"Name": "IQ"},
         {"Name": "KW"},
+        {"Name": "OM"},
         {"Name": "PK"},
+        {"Name": "QR"},
         {"Name": "SA"},
         {"Name": "TR"}
     ],
