@@ -35,15 +35,19 @@
     ],
     "Backgound Maps": [
         {"Name": "AE"},
+        {"Name": "AF"},
         {"Name": "AM"},
         {"Name": "AZ"},
+        {"Name": "BH"},
         {"Name": "IQ"},
         {"Name": "KW"},
         {"Name": "OM"},
         {"Name": "PK"},
         {"Name": "QR"},
         {"Name": "SA"},
-        {"Name": "TR"}
+        {"Name": "TM"},
+        {"Name": "TR"},
+        {"Name": "UZ"}
     ],
     "Figure Size": [12, 14],
     "Cropping": {
