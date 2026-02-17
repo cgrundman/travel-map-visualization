@@ -91,7 +91,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size * (self.scale ** 2)
