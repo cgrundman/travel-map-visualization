@@ -37,16 +37,18 @@
         {"Name": "AM"},
         {"Name": "AZ"},
         {"Name": "IQ"},
+        {"Name": "KW"},
+        {"Name": "SA"},
         {"Name": "TR"}
     ],
     "Figure Size": [12, 14],
     "Cropping": {
-        "small": [0.090, 0.040, 0.955, 0.800],
+        "small": [0.090, 0.000, 0.955, 0.9],
         "large": [0.090, 0.020, 0.950, 0.820]
     },
     "Plotting Area": {
         "xlims": [43.5, 63.3],
-        "ylims": [24, 40]
+        "ylims": [24.6, 39.9]
     },
     "Colors": {
         "bg_land": "#3d2100",
@@ -83,10 +85,10 @@
             "color": "#d99058"
         },
         "Position": {
-            "x_start": 0.01,
-            "y_start": 1.17,
+            "x_start": 0.05,
+            "y_start": 1.20,
             "x_spacing": 0.100,
-            "y_spacing": 0.072,
+            "y_spacing": 0.075,
             "num_in_row": 11
         }
     }

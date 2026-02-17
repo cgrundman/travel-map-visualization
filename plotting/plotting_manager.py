@@ -83,10 +83,6 @@ class PlotManager:
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1, color=color, alpha=1)
         # Background Plotting
         for bgmap in self.bgmaps:
-            #bgmap_points = self.points_gdf[self.points_gdf['bgmap'] == bgmap]
-            #num_past_dates = (submap_points['date'] <= current_date).sum()
-            #ratio = num_past_dates / len(submap_points)
-            #self.ratios[submap] = ratio
             color = self.bg_land
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
