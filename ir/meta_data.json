@@ -38,16 +38,17 @@
         {"Name": "AZ"},
         {"Name": "IQ"},
         {"Name": "KW"},
+        {"Name": "PK"},
         {"Name": "SA"},
         {"Name": "TR"}
     ],
     "Figure Size": [12, 14],
     "Cropping": {
-        "small": [0.090, 0.000, 0.955, 0.9],
+        "small": [0.120, 0.065, 0.905, 0.809],
         "large": [0.090, 0.020, 0.950, 0.820]
     },
     "Plotting Area": {
-        "xlims": [43.5, 63.3],
+        "xlims": [43.5, 63.5],
         "ylims": [24.6, 39.9]
     },
     "Colors": {
@@ -72,7 +73,7 @@
     },
     "Flags": {
         "Scale": {
-            "small": 0.19,
+            "small": 0.17,
             "large": 0.95
         },
         "Radius": {
@@ -86,9 +87,9 @@
         },
         "Position": {
             "x_start": 0.05,
-            "y_start": 1.20,
-            "x_spacing": 0.100,
-            "y_spacing": 0.075,
+            "y_start": 1.19,
+            "x_spacing": 0.090,
+            "y_spacing": 0.070,
             "num_in_row": 11
         }
     }
