@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import random
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
+import matplotlib.patches as patches
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
 
@@ -69,6 +70,20 @@ class PlotManager:
         return fig, ax
 
     def _plot_submaps(self, ax, current_date):
+        # Plot Region for water
+        min_lon, max_lon = self.xlims[0], self.xlims[1]
+        min_lat, max_lat = self.ylims[0], self.ylims[1]
+        width = max_lon - min_lon
+        height = max_lat - min_lat
+        rect = patches.Rectangle(
+            (min_lon, min_lat),   # bottom-left corner
+            width,
+            height,
+            facecolor="#006FB3",
+            alpha=1
+        )
+        ax.add_patch(rect)
+        
         self.ratios = {}
         # Submap Plotting
         for submap in self.submaps:
@@ -87,7 +102,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4, color=color, alpha=0.5)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size * (self.scale ** 2)

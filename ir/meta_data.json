@@ -59,7 +59,7 @@
         "ylims": [24.6, 39.9]
     },
     "Colors": {
-        "bg_land": "#3d2100",
+        "bg_land": "#002622",
         "map_dark": "#0C184E",
         "map_light": "#4260E3",
         "unvisited": "#D78A4E",
@@ -75,8 +75,8 @@
         "Font": 2.5,
         "Splits": 35,
         "Longitude Threshold": 1.0,
-        "Latitude Threshold": 0.09,
-        "Shift Step": 0.09
+        "Latitude Threshold": 0.10,
+        "Shift Step": 0.10
     },
     "Flags": {
         "Scale": {
@@ -90,7 +90,7 @@
         "Linewidth": {
             "small": 1,
             "large": 25,
-            "color": "#d99058"
+            "color": "#C56F2D"
         },
         "Position": {
             "x_start": {
