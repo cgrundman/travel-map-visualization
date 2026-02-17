@@ -51,7 +51,7 @@
     ],
     "Figure Size": [12, 14],
     "Cropping": {
-        "small": [0.120, 0.065, 0.905, 0.809],
+        "small": [0.120, 0.068, 0.905, 0.809],
         "large": [0.090, 0.020, 0.950, 0.820]
     },
     "Plotting Area": {
@@ -94,7 +94,7 @@
         },
         "Position": {
             "x_start": 0.05,
-            "y_start": 1.19,
+            "y_start": 1.18,
             "x_spacing": 0.090,
             "y_spacing": 0.070,
             "num_in_row": 11

@@ -64,7 +64,7 @@ class PlotManager:
             self.fig_size[0] * self.scale,
             self.fig_size[1] * self.scale
         ))
-        fig.patch.set_facecolor('#FF000000')
+        fig.patch.set_facecolor("#FF000000")
         #fig.patch.set_facecolor('#3C4048')
         return fig, ax
 
