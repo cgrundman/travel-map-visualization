@@ -61,7 +61,7 @@
     "Colors": {
         "bg_land": "#002622",
         "map_dark": "#0C184E",
-        "map_light": "#4260E3",
+        "map_light": "#1E3DC8",
         "unvisited": "#D78A4E",
         "active": "#D8CDAB",
         "visited": "#583214"
