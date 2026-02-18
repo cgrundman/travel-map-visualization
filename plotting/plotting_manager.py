@@ -32,8 +32,7 @@ class PlotManager:
         # Extract metadata fields for plotting
         self.title = meta_data["Title"]
         self.fig_size = meta_data["Figure Size"]
-        self.crop_s = meta_data["Cropping"]["small"]
-        self.crop_l = meta_data["Cropping"]["large"]
+        self.crop = meta_data["Cropping"]
         self.xlims = meta_data["Plotting Area"]["xlims"]
         self.ylims = meta_data["Plotting Area"]["ylims"]
         self.color_unvisited = meta_data["Colors"]["unvisited"]
@@ -56,16 +55,20 @@ class PlotManager:
         self._plot_submaps(ax, current_date)
         if self.scale >= 3:
             self._plot_labels(ax, current_date)
-        else:
-            self._plot_points(ax, current_date)
+        #else:
+        #    self._plot_points(ax, current_date)
+        self._plot_points(ax, current_date)
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
     def _initialize_plot(self):
-        fig, ax = plt.subplots(figsize=(
-            self.fig_size[0] * self.scale,
-            self.fig_size[1] * self.scale
-        ))
+        fig, ax = plt.subplots(
+            figsize=(
+                self.fig_size[0],
+                self.fig_size[1],
+            ), 
+            dpi=100*self.scale
+        )
         fig.patch.set_facecolor("#FF000000")
         #fig.patch.set_facecolor('#3C4048')
         return fig, ax
@@ -96,30 +99,31 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
         # Background Plotting
         for bgmap in self.bgmaps:
             color = self.bg_land
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date):
-        scale_factor = self.marker_size * (self.scale ** 2)
+        scale_factor = self.marker_size
 
-        # Unvisited
-        self.points_gdf.plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=scale_factor, alpha=1)
+        if self.scale < 3:
+            # Unvisited
+            self.points_gdf.plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=scale_factor, alpha=1)
 
-        # Visited
-        visited = self.points_gdf['date'] < current_date
-        if visited.any():
-            self.points_gdf[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
+            # Visited
+            visited = self.points_gdf['date'] < current_date
+            if visited.any():
+                self.points_gdf[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
 
-        # Active
-        active = self.points_gdf['date'] == current_date
-        if active.any():
-            self.points_gdf[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=scale_factor, alpha=1)
+            # Active
+            active = self.points_gdf['date'] == current_date
+            if active.any():
+                self.points_gdf[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=scale_factor, alpha=1)
 
         # Invisible layer to force map scaling
         self.points_gdf.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)
@@ -138,16 +142,11 @@ class PlotManager:
             )
 
     def _plot_flags(self, ax):
-
-        if self.scale >= 3:
-            flag_size = "large"
-        else:
-            flag_size = "small"
-        flag_scale = self.meta_data["Flags"]["Scale"][flag_size]
-        flag_radius = self.meta_data["Flags"]["Radius"][flag_size]
-        flag_linewidth = self.meta_data["Flags"]["Linewidth"][flag_size]
+        flag_scale = self.meta_data["Flags"]["Scale"]
+        flag_radius = self.meta_data["Flags"]["Radius"]
+        flag_linewidth = self.meta_data["Flags"]["Linewidth"]
         flag_positon = self.meta_data["Flags"]["Position"]
-        border_color = self.meta_data["Flags"]["Linewidth"]["color"]
+        border_color = self.meta_data["Flags"]["Linecolor"]
         
         png_files = [f for f in os.listdir(f"{self.path}/submaps") if f.lower().endswith(".png")]
         png_files.sort()
@@ -189,8 +188,8 @@ class PlotManager:
             column = i - flag_positon["num_in_row"]*row
 
 
-            x_position = flag_positon["x_start"][flag_size] + flag_positon["x_spacing"][flag_size]*column
-            y_position = flag_positon["y_start"][flag_size] - flag_positon["y_spacing"][flag_size]*row
+            x_position = flag_positon["x_start"] + flag_positon["x_spacing"]*column
+            y_position = flag_positon["y_start"] - flag_positon["y_spacing"]*row
 
             img_position = (x_position, y_position)
 
@@ -242,8 +241,12 @@ class PlotManager:
     def trim_image(self, full_temp_path, full_final_path):
 
         width, height = get_image_dimensions(full_temp_path)
-        crop = self.crop_s if self.scale < 3 else self.crop_l
-        crop_box = (width*crop[0], height*crop[1], width*crop[2], height*crop[3])
+        crop_box = (
+            width*self.crop[0], 
+            height*self.crop[1], 
+            width*self.crop[2], 
+            height*self.crop[3]
+        )
 
         # Crop for temp and final path
         crop_and_save_image(full_temp_path, full_final_path, crop_box)
