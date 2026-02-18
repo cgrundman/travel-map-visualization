@@ -14,7 +14,7 @@ from utils.file_utils import ensure_directory_exists
 SCALE = 1
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
@@ -23,7 +23,7 @@ SCALE = 1
 #PATH = "eu"
 
 # Iran Global Variables
-PATH = "ir"
+#PATH = "ir"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")

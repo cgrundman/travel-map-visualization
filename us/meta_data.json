@@ -56,6 +56,10 @@
         {"Name": "WV"},
         {"Name": "WY"}
     ],
+    "Backgound Maps": [
+        {"Name": "CA"},
+        {"Name": "MX"}
+    ],
     "Figure Size": [18, 18],
     "Cropping": {
         "small": [0.050, 0.095, 0.950, 0.715],
@@ -66,6 +70,7 @@
         "ylims": [24, 50]
     },
     "Colors": {
+        "bg_land": "#222222",
         "map_dark": "#8a7151",
         "map_light": "#647434",
         "unvisited": "#e7ba52",
@@ -99,10 +104,22 @@
             "color": "#e7ba52"
         },
         "Position": {
-            "x_start": -0.04,
-            "y_start": 1.33,
-            "x_spacing": 0.088,
-            "y_spacing": 0.10,
+            "x_start": {
+                "small": -0.04,
+                "large": -0.04
+            },
+            "y_start": {
+                "small": 1.33,
+                "large": 1.50
+            },
+            "x_spacing": {
+                "small": 0.088,
+                "large": 0.088
+            },
+            "y_spacing": {
+                "small": 0.10,
+                "large": 0.10
+            },
             "num_in_row": 13
         }
     }
