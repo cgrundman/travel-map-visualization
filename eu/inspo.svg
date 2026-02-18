@@ -1,0 +1,39 @@
+<svg width="900" height="300" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- 1 Deep Atlantic Blue -->
+  <rect x="0" y="0" width="300" height="100" fill="#1F3A5F"/>
+  <text x="150" y="55" font-size="16" text-anchor="middle" fill="white">Deep Atlantic Blue</text>
+
+  <!-- 2 Nordic Ice Blue -->
+  <rect x="300" y="0" width="300" height="100" fill="#A9C9E2"/>
+  <text x="450" y="55" font-size="16" text-anchor="middle" fill="black">Nordic Ice Blue</text>
+
+  <!-- 3 Scandinavian Forest Green -->
+  <rect x="600" y="0" width="300" height="100" fill="#2F5D50"/>
+  <text x="750" y="55" font-size="16" text-anchor="middle" fill="white">Forest Green</text>
+
+  <!-- 4 Mediterranean Turquoise -->
+  <rect x="0" y="100" width="300" height="100" fill="#1CA7A6"/>
+  <text x="150" y="155" font-size="16" text-anchor="middle" fill="white">Mediterranean Turquoise</text>
+
+  <!-- 5 Terracotta Red -->
+  <rect x="300" y="100" width="300" height="100" fill="#C65D3B"/>
+  <text x="450" y="155" font-size="16" text-anchor="middle" fill="white">Terracotta Red</text>
+
+  <!-- 6 Alpine White -->
+  <rect x="600" y="100" width="300" height="100" fill="#F2F4F7"/>
+  <text x="750" y="155" font-size="16" text-anchor="middle" fill="black">Alpine White</text>
+
+  <!-- 7 Imperial Gold -->
+  <rect x="0" y="200" width="300" height="100" fill="#C9A227"/>
+  <text x="150" y="255" font-size="16" text-anchor="middle" fill="black">Imperial Gold</text>
+
+  <!-- 8 Industrial Charcoal -->
+  <rect x="300" y="200" width="300" height="100" fill="#3B3B3B"/>
+  <text x="450" y="255" font-size="16" text-anchor="middle" fill="white">Industrial Charcoal</text>
+
+  <!-- 9 Royal Burgundy -->
+  <rect x="600" y="200" width="300" height="100" fill="#6E1E2A"/>
+  <text x="750" y="255" font-size="16" text-anchor="middle" fill="white">Royal Burgundy</text>
+
+</svg>
