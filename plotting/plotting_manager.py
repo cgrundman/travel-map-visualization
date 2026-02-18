@@ -44,6 +44,7 @@ class PlotManager:
         self.map_dark = meta_data["Colors"]["map_dark"]
         self.map_light = meta_data["Colors"]["map_light"]
         self.bg_land = meta_data["Colors"]["bg_land"]
+        self.bg_water = meta_data["Colors"]["bg_water"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -79,7 +80,7 @@ class PlotManager:
             (min_lon, min_lat),   # bottom-left corner
             width,
             height,
-            facecolor="#006FB3",
+            facecolor=self.bg_water,
             alpha=1
         )
         ax.add_patch(rect)

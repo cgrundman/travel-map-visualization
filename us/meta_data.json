@@ -71,6 +71,7 @@
     },
     "Colors": {
         "bg_land": "#222222",
+        "bg_water": "#006FB3",
         "map_dark": "#8a7151",
         "map_light": "#647434",
         "unvisited": "#e7ba52",
