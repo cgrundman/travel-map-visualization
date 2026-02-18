@@ -57,17 +57,18 @@
         {"Name": "WY"}
     ],
     "Backgound Maps": [
+        {"Name": "BS"},
         {"Name": "CA"},
         {"Name": "MX"}
     ],
-    "Figure Size": [18, 18],
+    "Figure Size": [20, 16],
     "Cropping": {
-        "small": [0.050, 0.095, 0.950, 0.715],
+        "small": [0.050, 0.095, 0.950, 0.900],
         "large": [0.050, 0.095, 0.950, 0.730]
     },
     "Plotting Area": {
-        "xlims": [-126, -66],
-        "ylims": [24, 50]
+        "xlims": [-140, -62],
+        "ylims": [20, 50]
     },
     "Colors": {
         "bg_land": "#222222",
