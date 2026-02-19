@@ -62,7 +62,7 @@
         {"Name": "MX"}
     ],
     "Figure Size": [20, 16],
-    "Cropping": [0.050, 0.095, 0.950, 0.900],
+    "Cropping": [0.118, 0.055, 0.907, 0.745],
     "Plotting Area": {
         "xlims": [-140, -62],
         "ylims": [20, 50]
@@ -89,15 +89,15 @@
         "Shift Step": 0.125
     },
     "Flags": {
-        "Scale": 0.26,
+        "Scale": 0.25,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#e7ba52",
         "Position": {
-            "x_start": -0.04,
-            "y_start": 1.50,
-            "x_spacing": 0.088,
-            "y_spacing": 0.10,
+            "x_start": 0.038,
+            "y_start": 1.4,
+            "x_spacing": 0.077,
+            "y_spacing": 0.112,
             "num_in_row": 13
         }
     }
