@@ -59,7 +59,10 @@
     "Backgound Maps": [
         {"Name": "BS"},
         {"Name": "CA"},
-        {"Name": "MX"}
+        {"Name": "CU"},
+        {"Name": "HT"},
+        {"Name": "MX"},
+        {"Name": "TC"}
     ],
     "Figure Size": [20, 16],
     "Cropping": [0.118, 0.055, 0.907, 0.745],
