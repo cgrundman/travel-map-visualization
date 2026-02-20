@@ -14,9 +14,8 @@ from utils.file_utils import (
     crop_and_save_image,
     get_image_dimensions,
 )
+
 from plotting.plotting_helpers import plot_location_labels
-
-
 from colormap.cmap_maker import CustomCmap
 
 random.seed(5)
@@ -46,6 +45,7 @@ class PlotManager:
         self.map_light = meta_data["Colors"]["map_light"]
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_water = meta_data["Colors"]["bg_water"]
+        self.bo_maps = meta_data["Breakout Maps"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -113,18 +113,21 @@ class PlotManager:
         for bomap in self.bomaps:
             color = "#888888"
 
+            map_i = next(d for d in self.bo_maps if d["Name"] == bomap)
+            scale = map_i["Scale"]
+            xoff = map_i["Long-Shift"]
+            yoff = map_i["Lat-Shift"]
+
             shapefile_path = os.path.join(self.path, "bo_maps", f"{bomap}.shp")
             bomap_gdf = gpd.read_file(shapefile_path)
             
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
-                lambda geom: affinity.scale(geom, xfact=40, yfact=40, origin="center"),
+                lambda geom: affinity.scale(geom, xfact=scale, yfact=scale, origin="center"),
             )
 
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
-                lambda geom: affinity.translate(geom, xoff=10, yoff=-13)
+                lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
             )
-
-
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 

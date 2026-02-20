@@ -56,10 +56,12 @@
         {"Name": "WV"},
         {"Name": "WY"}
     ],
-    "Rescaled Maps" : [
+    "Breakout Maps" : [
         {
             "Name": "DC",
-            "Scale": 10
+            "Scale": 40,
+            "Long-Shift": 10,
+            "Lat-Shift": -13
         }
     ],
     "Backgound Maps": [
