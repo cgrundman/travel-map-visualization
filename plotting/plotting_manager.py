@@ -8,6 +8,7 @@ import matplotlib.image as mpimg
 import matplotlib.patches as patches
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
+from shapely import affinity
 
 from utils.file_utils import (
     crop_and_save_image,
@@ -21,10 +22,11 @@ from colormap.cmap_maker import CustomCmap
 random.seed(5)
 
 class PlotManager:
-    def __init__(self, points_gdf, submaps, bgmaps, meta_data, path, scale):
+    def __init__(self, points_gdf, submaps, bgmaps, bomaps, meta_data, path, scale):
         self.points_gdf = points_gdf
         self.submaps = submaps
         self.bgmaps = bgmaps
+        self.bomaps = bomaps
         self.meta_data = meta_data
         self.path = path
         self.scale = scale
@@ -100,13 +102,31 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-        # Background Plotting
+        # Background Map Plotting
         for bgmap in self.bgmaps:
             color = self.bg_land
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
             bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
+        # Breakout Map Plotting
+        for bomap in self.bomaps:
+            color = "#888888"
+
+            shapefile_path = os.path.join(self.path, "bo_maps", f"{bomap}.shp")
+            bomap_gdf = gpd.read_file(shapefile_path)
+            
+            bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
+                lambda geom: affinity.scale(geom, xfact=40, yfact=40, origin="center"),
+            )
+
+            bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
+                lambda geom: affinity.translate(geom, xoff=10, yoff=-13)
+            )
+
+
+
+            bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size

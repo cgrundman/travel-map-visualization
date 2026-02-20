@@ -56,6 +56,12 @@
         {"Name": "WV"},
         {"Name": "WY"}
     ],
+    "Rescaled Maps" : [
+        {
+            "Name": "DC",
+            "Scale": 10
+        }
+    ],
     "Backgound Maps": [
         {"Name": "BS"},
         {"Name": "CA"},
