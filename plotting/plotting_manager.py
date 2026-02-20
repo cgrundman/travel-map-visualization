@@ -111,7 +111,7 @@ class PlotManager:
             bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
         # Breakout Map Plotting
         for bomap in self.bomaps:
-            color = "#888888"
+            color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
             map_i = next(d for d in self.bo_maps if d["Name"] == bomap)
             scale = map_i["Scale"]
@@ -122,7 +122,7 @@ class PlotManager:
             bomap_gdf = gpd.read_file(shapefile_path)
             
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
-                lambda geom: affinity.scale(geom, xfact=scale, yfact=scale, origin="center"),
+                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center"),
             )
 
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(

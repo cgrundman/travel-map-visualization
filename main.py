@@ -12,7 +12,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # Set global variables, directories for map creation and site locations
-SCALE = 5
+#SCALE = 5
 
 # US National Park Global Variables
 PATH = "us"
@@ -50,7 +50,7 @@ plot_manager = PlotManager(
     bomaps=bomaps,
     meta_data=meta_data,
     path=PATH,
-    scale=SCALE
+    scale=1
 )
 
 # Add first plot
@@ -71,10 +71,22 @@ plot_manager.generate_plot(old_date, row, copy=False)
 # Create gif from produced plots
 gif = GifGenerator(
         input_folder="./plots/temp",
-        output_gif=f"./gifs/{PATH}_{SCALE}.gif",
+        output_gif=f"./gifs/{PATH}_{1}.gif",
         duration=200
     )
-if SCALE < 3:
-    gif.generate()
+gif.generate()
+
+# Large Plot
+plot_manager = PlotManager(
+    points_gdf=points_gdf,
+    submaps=submaps,
+    bgmaps=bgmaps,
+    bomaps=bomaps,
+    meta_data=meta_data,
+    path=PATH,
+    scale=5
+)
+
+#plot_manager.generate_plot(old_date, row, copy=False)
 
 gif.cleanup_temp()
