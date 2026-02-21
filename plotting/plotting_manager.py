@@ -92,15 +92,23 @@ class PlotManager:
         
         self.ratios = {}
 
+        # Background Map Plotting
+        for bgmap in self.bgmaps:
+            color = self.bg_land
+
+            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
+            bgmap_gdf = gpd.read_file(shapefile_path)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
+
         # Submap Plotting
         for submap in self.submaps:
-            submap_points = self.points_gdf[self.points_gdf['submap'] == submap]
+            submap_points = self.points_gdf[self.points_gdf['submap'] == submap["Name"]]
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
-            self.ratios[submap] = ratio
+            self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
-            shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
+            shapefile_path = os.path.join(self.path, "submaps", f"{submap["Name"]}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
         
@@ -124,15 +132,7 @@ class PlotManager:
                 lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
             )
 
-            bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-        # Background Map Plotting
-        for bgmap in self.bgmaps:
-            color = self.bg_land
-
-            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
-            bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
-        
+            bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)  
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size

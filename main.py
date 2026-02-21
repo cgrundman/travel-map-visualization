@@ -3,7 +3,7 @@ import datetime
 
 from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
-from data.submaps_loader import SubmapsLoader
+#from data.submaps_loader import SubmapsLoader
 from data.bgmaps_loader import BGmapsLoader
 #from data.bomaps_loader import BOmapsLoader
 from plotting.plotting_manager import PlotManager
@@ -34,7 +34,8 @@ ensure_directory_exists("gifs")
 # Load the JSON Meta-Data, Points data, and map data
 meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
-submaps = SubmapsLoader(PATH).load()
+#submaps = SubmapsLoader(PATH).load()
+submaps = meta_data["Submaps"]
 bgmaps = BGmapsLoader(PATH).load()
 #bomaps = BOmapsLoader(PATH).load()
 bomaps = meta_data["Breakout Maps"]
