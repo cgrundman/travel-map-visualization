@@ -57,10 +57,9 @@ class PlotManager:
         self._plot_submaps(ax, current_date)
         if self.scale >= 3:
             self._plot_labels(ax, current_date)
-        #else:
-        #    self._plot_points(ax, current_date)
-        self._plot_points(ax, current_date)
+        self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_flags(ax)
+        #ax.set_aspect('auto')
         self._finalize_and_save_plot(fig, current_date)
 
     def _initialize_plot(self):
@@ -111,9 +110,13 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "submaps", f"{submap["Name"]}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
+
+            self._plot_points(ax, current_date, points=submap_points)
         
         # Breakout Map Plotting
         for bomap in self.bomaps:
+            #bomap_points = self.points_gdf[self.points_gdf['submap'] == bomap["Name"]]
+
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
             map_i = bomap["Name"]
@@ -124,35 +127,51 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "bo_maps", f"{map_i}.shp")
             bomap_gdf = gpd.read_file(shapefile_path)
             
+            # Scale and Shift Map
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
                 lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center"),
             )
-
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
                 lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
             )
 
+            # Scale and Shift Points
+            # scale
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0))
+            #)
+            # translate
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
+            #)
+
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)  
 
-    def _plot_points(self, ax, current_date):
+            #self._plot_points(ax, current_date, points=bomap_points)
+
+    def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size
 
-        if self.scale < 3:
+        #if self.scale < 3:
+            
+        
+        # Invisible layer to force map scaling
+        if type=="clear":
+            points.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)
+
+        else:
             # Unvisited
-            self.points_gdf.plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=scale_factor, alpha=1)
+            points.plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=scale_factor, alpha=1)
 
             # Visited
-            visited = self.points_gdf['date'] < current_date
+            visited = points['date'] < current_date
             if visited.any():
-                self.points_gdf[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
+                points[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
 
             # Active
-            active = self.points_gdf['date'] == current_date
+            active = points['date'] == current_date
             if active.any():
-                self.points_gdf[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=scale_factor, alpha=1)
-
-        # Invisible layer to force map scaling
-        self.points_gdf.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)
+                points[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=scale_factor, alpha=1)
 
     def _plot_labels(self, ax, current_date):
         if self.scale >= 3:
