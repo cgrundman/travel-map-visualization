@@ -115,7 +115,12 @@ class PlotManager:
         
         # Breakout Map Plotting
         for bomap in self.bomaps:
+            print(bomap["Name"])
             #bomap_points = self.points_gdf[self.points_gdf['submap'] == bomap["Name"]]
+
+            bomap_points = self.points_gdf.loc[
+                self.points_gdf['submap'] == bomap["Name"]
+            ].copy()
 
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
@@ -137,13 +142,13 @@ class PlotManager:
 
             # Scale and Shift Points
             # scale
-            #bomap_points["geometry"] = bomap_points["geometry"].apply(
-            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0))
-            #)
+            bomap_points["geometry"] = bomap_points["geometry"].apply(
+                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center")
+            )
             # translate
-            #bomap_points["geometry"] = bomap_points["geometry"].apply(
-            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            #)
+            bomap_points["geometry"] = bomap_points["geometry"].apply(
+                lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
+            )
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)  
 
@@ -152,9 +157,6 @@ class PlotManager:
     def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size
 
-        #if self.scale < 3:
-            
-        
         # Invisible layer to force map scaling
         if type=="clear":
             points.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)

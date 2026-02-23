@@ -51,11 +51,11 @@
         {"Name": "WY"}
     ],
     "Breakout Maps" : [
-        {"Name": "AK", "Scale": [0.3, 0.5], "Long-Shift": -85, "Lat-Shift": -35},
+        {"Name": "AK", "Scale": [0.4, 0.67], "Long-Shift": -68, "Lat-Shift": -34},
         {"Name": "AS", "Scale": [0.5, 0.5], "Long-Shift": 5, "Lat-Shift": -13},
         {"Name": "DC", "Scale": [30, 30], "Long-Shift": 10, "Lat-Shift": -10},
         {"Name": "GU", "Scale": [25, 25], "Long-Shift": 50, "Lat-Shift": 25},
-        {"Name": "HI", "Scale": [2, 1.7], "Long-Shift": 17, "Lat-Shift": 18},
+        {"Name": "HI", "Scale": [2, 1.7], "Long-Shift": 37, "Lat-Shift": 6},
         {"Name": "MP", "Scale": [0.5, 0.5], "Long-Shift": 10, "Lat-Shift": -13},
         {"Name": "NC", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "PR", "Scale": [2.5, 2.5], "Long-Shift": 0, "Lat-Shift": 5},
