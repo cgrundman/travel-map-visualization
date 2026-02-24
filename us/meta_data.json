@@ -51,7 +51,7 @@
         {"Name": "WY"}
     ],
     "Breakout Maps" : [
-        {"Name": "AK", "Scale": [0.4, 0.67], "Long-Shift": -68, "Lat-Shift": -34},
+        {"Name": "AK", "Scale": [0.4, 0.67], "Long-Shift": -68, "Lat-Shift": -12},
         {"Name": "AS", "Scale": [0.5, 0.5], "Long-Shift": 5, "Lat-Shift": -13},
         {"Name": "DC", "Scale": [30, 30], "Long-Shift": 10, "Lat-Shift": -10},
         {"Name": "GU", "Scale": [25, 25], "Long-Shift": 50, "Lat-Shift": 25},

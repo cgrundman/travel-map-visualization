@@ -118,9 +118,9 @@ class PlotManager:
             print(bomap["Name"])
             #bomap_points = self.points_gdf[self.points_gdf['submap'] == bomap["Name"]]
 
-            bomap_points = self.points_gdf.loc[
-                self.points_gdf['submap'] == bomap["Name"]
-            ].copy()
+            #bomap_points = self.points_gdf.loc[
+            #    self.points_gdf['submap'] == bomap["Name"]
+            #].copy()
 
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
@@ -142,13 +142,27 @@ class PlotManager:
 
             # Scale and Shift Points
             # scale
-            bomap_points["geometry"] = bomap_points["geometry"].apply(
-                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center")
-            )
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center")
+            #)
             # translate
-            bomap_points["geometry"] = bomap_points["geometry"].apply(
-                lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            )
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
+            #)
+
+            #a = scale[0]
+            #e = scale[1]
+            #b = d = 0
+
+            #matrix = [a, b, d, e, xoff, yoff]
+
+            #bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
+            #    lambda geom: affinity.affine_transform(geom, matrix)
+            #)
+
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.affine_transform(geom, matrix)
+            #)
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)  
 
