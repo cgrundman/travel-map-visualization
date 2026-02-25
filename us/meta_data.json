@@ -59,6 +59,7 @@
         {"Name": "MP", "Scale": [0.5, 0.5], "Long-Shift": 10, "Lat-Shift": -13},
         {"Name": "NC", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "PR", "Scale": [2.5, 2.5], "Long-Shift": 0, "Lat-Shift": 5},
+        {"Name": "TX", "Scale": [2, 2], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "VI", "Scale": [0.5, 0.5], "Long-Shift": 10, "Lat-Shift": -13}
     ],
     "Backgound Maps": [
