@@ -111,7 +111,7 @@ class PlotManager:
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 
-            self._plot_points(ax, current_date, points=submap_points)
+            #self._plot_points(ax, current_date, points=submap_points)
         
         # Breakout Map Plotting
         for bomap in self.bomaps:
@@ -146,7 +146,7 @@ class PlotManager:
             #union_geom = bomap_gdf.geometry.union_all()
             #minx, miny, maxx, maxy = union_geom.bounds
             #ox, oy = [(minx + maxx) / 2, (miny + maxy) / 2]
-            ox, oy = -100, 30
+            #ox, oy = -100, 30
 
             #dx = (scale[0] - 1) * (point.x - ox)
             #dy = (scale[1] - 1) * (point.y - oy)
@@ -168,12 +168,11 @@ class PlotManager:
                 lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
             )
             bomap_points["geometry"] = bomap_points["geometry"].apply(
-            lambda geom: affinity.translate(
-                geom,
-                xoff=(scale[0]) * (geom.x - ox) + xoff,
-                yoff=(scale[1]) * (geom.y - oy) + yoff
-            )
-)
+                lambda geom: affinity.translate(
+                    geom,
+                    xoff=xoff/180 + ((scale[0]) * (geom.x)),# + xoff,
+                    yoff=yoff/180 + ((scale[1]) * (geom.y)),# + yoff
+            ))
 
             #a = scale[0]
             #e = scale[1]
@@ -191,9 +190,11 @@ class PlotManager:
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 
-            print(len(bomap_points))  
+            print(len(bomap_points))
 
-            self._plot_points(ax, current_date, points=bomap_points)
+            #if map_i == "DC":  
+
+            #    self._plot_points(ax, current_date, points=bomap_points)
 
     def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size
