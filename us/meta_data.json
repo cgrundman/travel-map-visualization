@@ -57,24 +57,9 @@
         {"Name": "WY"}
     ],
     "Breakout Maps" : [
-        {
-            "Name": "AK",
-            "Scale": [0.3, 0.5],
-            "Long-Shift": -85,
-            "Lat-Shift": -35
-        },
-        {
-            "Name": "AS",
-            "Scale": [0.5, 0.5],
-            "Long-Shift": 5,
-            "Lat-Shift": -13
-        },
-        {
-            "Name": "DC",
-            "Scale": [30, 30],
-            "Long-Shift": 10,
-            "Lat-Shift": -10
-        },
+        {"Name": "AK", "Scale": [0.3, 0.5], "Long-Shift": -85, "Lat-Shift": -35},
+        {"Name": "AS", "Scale": [0.5, 0.5], "Long-Shift": 5, "Lat-Shift": -13},
+        {"Name": "DC", "Scale": [30, 30], "Long-Shift": 10, "Lat-Shift": -10},
         {
             "Name": "GU",
             "Scale": [100, 100],
@@ -92,6 +77,12 @@
             "Scale": [0.5, 0.5],
             "Long-Shift": 10,
             "Lat-Shift": -13
+        },
+        {
+            "Name": "NC",
+            "Scale": [1, 1],
+            "Long-Shift": 0,
+            "Lat-Shift": 0
         },
         {
             "Name": "PR",

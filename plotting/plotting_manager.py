@@ -91,6 +91,7 @@ class PlotManager:
         ax.add_patch(rect)
         
         self.ratios = {}
+
         # Submap Plotting
         for submap in self.submaps:
             submap_points = self.points_gdf[self.points_gdf['submap'] == submap]
@@ -102,23 +103,17 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "submaps", f"{submap}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-        # Background Map Plotting
-        for bgmap in self.bgmaps:
-            color = self.bg_land
-
-            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
-            bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
+        
         # Breakout Map Plotting
         for bomap in self.bomaps:
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
-            map_i = next(d for d in self.bo_maps if d["Name"] == bomap)
-            scale = map_i["Scale"]
-            xoff = map_i["Long-Shift"]
-            yoff = map_i["Lat-Shift"]
+            map_i = bomap["Name"]
+            scale = bomap["Scale"]
+            xoff = bomap["Long-Shift"]
+            yoff = bomap["Lat-Shift"]
 
-            shapefile_path = os.path.join(self.path, "bo_maps", f"{bomap}.shp")
+            shapefile_path = os.path.join(self.path, "bo_maps", f"{map_i}.shp")
             bomap_gdf = gpd.read_file(shapefile_path)
             
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
@@ -130,6 +125,14 @@ class PlotManager:
             )
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
+        # Background Map Plotting
+        for bgmap in self.bgmaps:
+            color = self.bg_land
+
+            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
+            bgmap_gdf = gpd.read_file(shapefile_path)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
+        
 
     def _plot_points(self, ax, current_date):
         scale_factor = self.marker_size

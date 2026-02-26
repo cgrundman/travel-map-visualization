@@ -5,7 +5,7 @@ from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
 from data.submaps_loader import SubmapsLoader
 from data.bgmaps_loader import BGmapsLoader
-from data.bomaps_loader import BOmapsLoader
+#from data.bomaps_loader import BOmapsLoader
 from plotting.plotting_manager import PlotManager
 from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
@@ -36,7 +36,9 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = SubmapsLoader(PATH).load()
 bgmaps = BGmapsLoader(PATH).load()
-bomaps = BOmapsLoader(PATH).load()
+#bomaps = BOmapsLoader(PATH).load()
+bomaps = meta_data["Breakout Maps"]
+
 
 # Create a sorted values df
 points_sorted = points_gdf.sort_values('date')
