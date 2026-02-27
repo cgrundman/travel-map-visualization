@@ -53,7 +53,7 @@
     "Breakout Maps" : [
         {"Name": "AK", "Scale": [0.4, 0.67], "Long-Shift": -68, "Lat-Shift": -14},
         {"Name": "AS", "Scale": [0.5, 0.5], "Long-Shift": 5, "Lat-Shift": -13},
-        {"Name": "DC", "Scale": [30, 30], "Long-Shift": 0, "Lat-Shift": 0, "Old": [10, -10]},
+        {"Name": "DC", "Scale": [30, 30], "Long-Shift": 2240, "Lat-Shift": -1140, "Old": [10, -10]},
         {"Name": "GU", "Scale": [5, 5], "Long-Shift": -860, "Lat-Shift": -30},
         {"Name": "HI", "Scale": [2, 1.7], "Long-Shift": 202, "Lat-Shift": -11},
         {"Name": "MP", "Scale": [0.5, 0.5], "Long-Shift": 10, "Lat-Shift": -13},

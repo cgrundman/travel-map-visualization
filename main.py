@@ -90,6 +90,6 @@ plot_manager = PlotManager(
     scale=5
 )
 
-#plot_manager.generate_plot(old_date, row, copy=False)
+plot_manager.generate_plot(old_date, row, copy=False)
 
 gif.cleanup_temp()

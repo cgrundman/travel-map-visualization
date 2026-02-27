@@ -116,11 +116,6 @@ class PlotManager:
         # Breakout Map Plotting
         for bomap in self.bomaps:
             print(bomap["Name"])
-            #bomap_points = self.points_gdf[self.points_gdf['submap'] == bomap["Name"]]
-
-            #bomap_points = self.points_gdf.loc[
-            #    self.points_gdf['submap'] == bomap["Name"]
-            #].copy()
 
             map_i = bomap["Name"]
             scale = bomap["Scale"]
@@ -130,26 +125,10 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "bo_maps", f"{map_i}.shp")
             bomap_gdf = gpd.read_file(shapefile_path)
 
-            #bomap_points = self.points_gdf[self.points_gdf['submap'] == bomap["Name"]]
             bomap_points = self.points_gdf.loc[
                 self.points_gdf['submap'] == bomap["Name"]
             ].copy()
             num_past_dates = (bomap_points['date'] <= current_date).sum()
-            #ratio = num_past_dates / len(bomap_points)
-            #self.ratios[bomap["Name"]] = ratio
-            #color = CustomCmap(self.map_dark, self.map_light).value(ratio)
-
-            #print("dtype:", bomap_gdf.geometry.dtype)
-            #print("nulls:", bomap_gdf.geometry.isna().sum())
-            #print("unique types:", bomap_gdf.geometry.apply(type).unique())
-
-            #union_geom = bomap_gdf.geometry.union_all()
-            #minx, miny, maxx, maxy = union_geom.bounds
-            #ox, oy = [(minx + maxx) / 2, (miny + maxy) / 2]
-            #ox, oy = -100, 30
-
-            #dx = (scale[0] - 1) * (point.x - ox)
-            #dy = (scale[1] - 1) * (point.y - oy)
                         
             # Scale and Shift Map
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
@@ -160,39 +139,16 @@ class PlotManager:
             )
 
             # Scale and Shift Points
-            # scale
-            #bomap_points["geometry"] = bomap_points["geometry"].apply(
-            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center")
-            #)
-            #bomap_points["geometry"] = bomap_points["geometry"].apply(
-            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            #)
             bomap_points["geometry"] = bomap_points["geometry"].apply(
                 lambda geom: affinity.translate(
-                    geom,
-                    #xoff=((scale[0]-1) * (geom.x)),
-                    #yoff=((scale[1]-1) * (geom.y))        
+                    geom,     
                     xoff=xoff + ((scale[0]-1) * (geom.x)),
                     yoff=yoff + ((scale[1]-1) * (geom.y)),
             ))
 
-            #a = scale[0]
-            #e = scale[1]
-            #b = d = 0
-
-            #matrix = [a, b, d, e, xoff, yoff]
-
-            #bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
-            #    lambda geom: affinity.affine_transform(geom, matrix)
-            #)
-
-            #bomap_points["geometry"] = bomap_points["geometry"].apply(
-            #    lambda geom: affinity.affine_transform(geom, matrix)
-            #)
-
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 
-            if map_i == "GU":
+            if map_i == "DC":
                 print(bomap_points["geometry"])
 
             self._plot_points(ax, current_date, points=bomap_points)
