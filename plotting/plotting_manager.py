@@ -54,7 +54,6 @@ class PlotManager:
         #print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self._plot_submaps(ax, current_date)
-        print(self.points_gdf)
         if self.plot_scale >= 3:
             self._plot_labels(ax, current_date, points=self.points_gdf)
             #self._plot_points(ax, current_date, points=self.points_gdf)
@@ -145,8 +144,8 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            #if map_i == "MP":
-            #    print(self.points_gdf.loc[mask, "geometry"])
+            if map_i == "VI":
+                print(self.points_gdf.loc[mask, "geometry"])
 
             #self._plot_points(ax, current_date, points=submap_points)
 

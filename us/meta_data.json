@@ -51,7 +51,7 @@
         {"Name": "TX", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "UT", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "VA", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
-        {"Name": "VI", "Scale": [0.5, 0.5], "Long-Shift": 10, "Lat-Shift": -13},
+        {"Name": "VI", "Scale": [6, 6], "Long-Shift": 317, "Lat-Shift": -84},
         {"Name": "VT", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "WA", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},
         {"Name": "WI", "Scale": [1, 1], "Long-Shift": 0, "Lat-Shift": 0},

@@ -63,10 +63,6 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
 #    return loc_df
 
 def adjust_overlapping_points(gdf, lat_thresh, lon_thresh, shift_step=0.01):
-    """
-    For each point, compare it to all previous points.
-    If within lat/lon threshold, shift it slightly.
-    """
 
     accepted_points = []
 
@@ -92,13 +88,15 @@ def adjust_overlapping_points(gdf, lat_thresh, lon_thresh, shift_step=0.01):
             new_point = translate(point, yoff=shift_step)
 
             print(gdf.iloc[i].submap)
-            print(prev_lat, prev_lon)
-            print(new_point)
+            print(gdf.iloc[i].geometry)
+            
         else:
             new_point = point
 
         # Update geometry in original dataframe
         gdf.iloc[i, gdf.columns.get_loc("geometry")] = new_point
+
+        print(gdf.iloc[i].geometry)
 
         accepted_points.append(new_point)
 
