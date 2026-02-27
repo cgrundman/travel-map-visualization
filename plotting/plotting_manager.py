@@ -21,14 +21,14 @@ from colormap.cmap_maker import CustomCmap
 random.seed(5)
 
 class PlotManager:
-    def __init__(self, points_gdf, submaps, bgmaps, bomaps, meta_data, path, scale):
+    def __init__(self, points_gdf, submaps, bgmaps, meta_data, path, scale):
         self.points_gdf = points_gdf
         self.submaps = submaps
         self.bgmaps = bgmaps
-        self.bomaps = bomaps
         self.meta_data = meta_data
         self.path = path
         self.scale = scale
+
 
         # Extract metadata fields for plotting
         self.title = meta_data["Title"]
@@ -45,7 +45,6 @@ class PlotManager:
         self.map_light = meta_data["Colors"]["map_light"]
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_water = meta_data["Colors"]["bg_water"]
-        self.bo_maps = meta_data["Breakout Maps"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -58,7 +57,7 @@ class PlotManager:
         if self.scale >= 3:
             self._plot_labels(ax, current_date)
         else: 
-            self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
+            self._plot_points(ax, current_date, points=self.points_gdf)
         self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
@@ -101,58 +100,73 @@ class PlotManager:
             bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
 
         # Submap Plotting
+        #for submap in self.submaps:
+        #    submap_points = self.points_gdf[self.points_gdf['submap'] == submap["Name"]]
+        #    num_past_dates = (submap_points['date'] <= current_date).sum()
+        #    ratio = num_past_dates / len(submap_points)
+        #    self.ratios[submap["Name"]] = ratio
+        #    color = CustomCmap(self.map_dark, self.map_light).value(ratio)
+
+        #    shapefile_path = os.path.join(self.path, "submaps", f"{submap["Name"]}.shp")
+        #    submap_gdf = gpd.read_file(shapefile_path)
+        #    submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
+
+            #self._plot_points(ax, current_date, points=submap_points)
+        
+        # Submap Plotting
         for submap in self.submaps:
-            submap_points = self.points_gdf[self.points_gdf['submap'] == submap["Name"]]
+            print(submap["Name"])
+
+            map_i = submap["Name"]
+            scale = submap["Scale"]
+            xoff = submap["Long-Shift"]
+            yoff = submap["Lat-Shift"]
+
+            shapefile_path = os.path.join(self.path, "submaps", f"{map_i}.shp")
+            submap_gdf = gpd.read_file(shapefile_path)
+
+            submap_points = self.points_gdf.loc[
+                self.points_gdf['submap'] == submap["Name"]
+            ].copy()
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
-
-            shapefile_path = os.path.join(self.path, "submaps", f"{submap["Name"]}.shp")
-            submap_gdf = gpd.read_file(shapefile_path)
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-
-            #self._plot_points(ax, current_date, points=submap_points)
-        
-        # Breakout Map Plotting
-        for bomap in self.bomaps:
-            print(bomap["Name"])
-
-            map_i = bomap["Name"]
-            scale = bomap["Scale"]
-            xoff = bomap["Long-Shift"]
-            yoff = bomap["Lat-Shift"]
-
-            shapefile_path = os.path.join(self.path, "bo_maps", f"{map_i}.shp")
-            bomap_gdf = gpd.read_file(shapefile_path)
-
-            bomap_points = self.points_gdf.loc[
-                self.points_gdf['submap'] == bomap["Name"]
-            ].copy()
-            num_past_dates = (bomap_points['date'] <= current_date).sum()
                         
             # Scale and Shift Map
-            bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
+            submap_gdf["geometry"] = submap_gdf["geometry"].apply(
                 lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
             )
-            bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
+            submap_gdf["geometry"] = submap_gdf["geometry"].apply(
                 lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
             )
 
             # Scale and Shift Points
-            bomap_points["geometry"] = bomap_points["geometry"].apply(
-                lambda geom: affinity.translate(
-                    geom,     
-                    xoff=xoff + ((scale[0]-1) * (geom.x)),
-                    yoff=yoff + ((scale[1]-1) * (geom.y)),
-            ))
+            mask = self.points_gdf['submap'] == submap["Name"]
 
-            bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
+            self.points_gdf.loc[mask, "geometry"] = (
+                self.points_gdf.loc[mask, "geometry"]
+                .apply(
+                    lambda geom: affinity.translate(
+                        geom,
+                        xoff=xoff + ((scale[0] - 1) * geom.x),
+                        yoff=yoff + ((scale[1] - 1) * geom.y),
+                    )
+                )
+            )
 
-            if map_i == "DC":
-                print(bomap_points["geometry"])
+            #submap_points["geometry"] = submap_points["geometry"].apply(
+            #    lambda geom: affinity.translate(
+            #        geom,     
+            #        xoff=xoff + ((scale[0]-1) * (geom.x)),
+            #        yoff=yoff + ((scale[1]-1) * (geom.y)),
+            #))
 
-                self._plot_points(ax, current_date, points=bomap_points)
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
+
+
+
+            #self._plot_points(ax, current_date, points=submap_points)
 
     def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size

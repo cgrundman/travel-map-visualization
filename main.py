@@ -38,7 +38,6 @@ points_gdf = PointsLoader(PATH).load()
 submaps = meta_data["Submaps"]
 bgmaps = BGmapsLoader(PATH).load()
 #bomaps = BOmapsLoader(PATH).load()
-bomaps = meta_data["Breakout Maps"]
 
 
 # Create a sorted values df
@@ -50,7 +49,6 @@ plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
     bgmaps=bgmaps,
-    bomaps=bomaps,
     meta_data=meta_data,
     path=PATH,
     scale=1
@@ -84,7 +82,6 @@ plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
     bgmaps=bgmaps,
-    bomaps=bomaps,
     meta_data=meta_data,
     path=PATH,
     scale=5
