@@ -11,9 +11,6 @@ from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
 
 
-# Set global variables, directories for map creation and site locations
-#SCALE = 5
-
 # US National Park Global Variables
 PATH = "us"
 
@@ -77,6 +74,8 @@ gif = GifGenerator(
     )
 gif.generate()
 
+# Reload Points
+points_gdf = PointsLoader(PATH).load()
 # Large Plot
 plot_manager = PlotManager(
     points_gdf=points_gdf,

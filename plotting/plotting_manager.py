@@ -27,7 +27,7 @@ class PlotManager:
         self.bgmaps = bgmaps
         self.meta_data = meta_data
         self.path = path
-        self.scale = scale
+        self.plot_scale = scale
 
 
         # Extract metadata fields for plotting
@@ -51,14 +51,16 @@ class PlotManager:
 
     def generate_plot(self, current_date, row, copy=False):
         self.copy = copy
-        print(f"{current_date.date()} - {row['name']}")
+        #print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self._plot_submaps(ax, current_date)
-        if self.scale >= 3:
-            self._plot_labels(ax, current_date)
-        else: 
+        print(self.points_gdf)
+        if self.plot_scale >= 3:
+            self._plot_labels(ax, current_date, points=self.points_gdf)
+            #self._plot_points(ax, current_date, points=self.points_gdf)
+        else:
             self._plot_points(ax, current_date, points=self.points_gdf)
-        self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
+        #self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
@@ -68,7 +70,7 @@ class PlotManager:
                 self.fig_size[0],
                 self.fig_size[1],
             ), 
-            dpi=100*self.scale
+            dpi=100*self.plot_scale
         )
         fig.patch.set_facecolor("#FF000000")
         #fig.patch.set_facecolor('#3C4048')
@@ -97,25 +99,11 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.scale, color=color, alpha=1)
-
-        # Submap Plotting
-        #for submap in self.submaps:
-        #    submap_points = self.points_gdf[self.points_gdf['submap'] == submap["Name"]]
-        #    num_past_dates = (submap_points['date'] <= current_date).sum()
-        #    ratio = num_past_dates / len(submap_points)
-        #    self.ratios[submap["Name"]] = ratio
-        #    color = CustomCmap(self.map_dark, self.map_light).value(ratio)
-
-        #    shapefile_path = os.path.join(self.path, "submaps", f"{submap["Name"]}.shp")
-        #    submap_gdf = gpd.read_file(shapefile_path)
-        #    submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-
-            #self._plot_points(ax, current_date, points=submap_points)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.plot_scale, color=color, alpha=1)
         
         # Submap Plotting
         for submap in self.submaps:
-            print(submap["Name"])
+            #print(submap["Name"])
 
             map_i = submap["Name"]
             scale = submap["Scale"]
@@ -155,52 +143,44 @@ class PlotManager:
                 )
             )
 
-            #submap_points["geometry"] = submap_points["geometry"].apply(
-            #    lambda geom: affinity.translate(
-            #        geom,     
-            #        xoff=xoff + ((scale[0]-1) * (geom.x)),
-            #        yoff=yoff + ((scale[1]-1) * (geom.y)),
-            #))
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
-
-
+            #if map_i == "MP":
+            #    print(self.points_gdf.loc[mask, "geometry"])
 
             #self._plot_points(ax, current_date, points=submap_points)
 
     def _plot_points(self, ax, current_date, points, type="normal"):
-        scale_factor = self.marker_size
 
         # Invisible layer to force map scaling
         if type=="clear":
-            points.plot(ax=ax, color="black", linewidth=0, markersize=scale_factor, alpha=0)
+            points.plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
 
         else:
             # Unvisited
-            points.plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=scale_factor, alpha=1)
+            points["geometry"].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=scale_factor, alpha=1)
+                points[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=scale_factor, alpha=1)
+                points[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=self.marker_size, alpha=1)
 
-    def _plot_labels(self, ax, current_date):
-        if self.scale >= 3:
-            plot_location_labels(
-                ax,
-                self.points_gdf,
-                current_date,
-                self.labels,
-                self.scale,
-                self.color_unvisited,
-                self.color_visited,
-                self.color_active
-            )
+    def _plot_labels(self, ax, current_date, points):
+        plot_location_labels(
+            ax,
+            points,
+            current_date,
+            self.labels,
+            self.plot_scale,
+            self.color_unvisited,
+            self.color_visited,
+            self.color_active
+        )
 
     def _plot_flags(self, ax):
         flag_scale = self.meta_data["Flags"]["Scale"]
@@ -288,13 +268,13 @@ class PlotManager:
             for i in range(5):
                 filename = f"{self.path}_{current_date.strftime('%y%m%d')}_{i+1}.png"
                 full_temp_path = os.path.join(self.output_temp_path, filename)
-                full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.scale}.png")
+                full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.plot_scale}.png")
                 plt.savefig(full_temp_path)
                 self.trim_image(full_temp_path, full_final_path)
         else:
             filename = f"{self.path}_{current_date.strftime('%y%m%d')}.png"
             full_temp_path = os.path.join(self.output_temp_path, filename)
-            full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.scale}.png")
+            full_final_path = os.path.join(self.output_final_path, f"{self.path}_{self.plot_scale}.png")
             plt.savefig(full_temp_path)
             self.trim_image(full_temp_path, full_final_path)
         plt.close(fig)
