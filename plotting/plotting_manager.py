@@ -153,7 +153,7 @@ class PlotManager:
                         
             # Scale and Shift Map
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
-                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center"),
+                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
             )
             bomap_gdf["geometry"] = bomap_gdf["geometry"].apply(
                 lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
@@ -164,14 +164,16 @@ class PlotManager:
             #bomap_points["geometry"] = bomap_points["geometry"].apply(
             #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin="center")
             #)
-            bomap_points["geometry"] = bomap_points["geometry"].apply(
-                lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            )
+            #bomap_points["geometry"] = bomap_points["geometry"].apply(
+            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
+            #)
             bomap_points["geometry"] = bomap_points["geometry"].apply(
                 lambda geom: affinity.translate(
                     geom,
-                    xoff=xoff/180 + ((scale[0]) * (geom.x)),# + xoff,
-                    yoff=yoff/180 + ((scale[1]) * (geom.y)),# + yoff
+                    #xoff=((scale[0]-1) * (geom.x)),
+                    #yoff=((scale[1]-1) * (geom.y))        
+                    xoff=xoff + ((scale[0]-1) * (geom.x)),
+                    yoff=yoff + ((scale[1]-1) * (geom.y)),
             ))
 
             #a = scale[0]
@@ -190,11 +192,10 @@ class PlotManager:
 
             bomap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.scale, color=color, alpha=1)
 
-            print(len(bomap_points))
+            if map_i == "GU":
+                print(bomap_points["geometry"])
 
-            #if map_i == "DC":  
-
-            #    self._plot_points(ax, current_date, points=bomap_points)
+            self._plot_points(ax, current_date, points=bomap_points)
 
     def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size
