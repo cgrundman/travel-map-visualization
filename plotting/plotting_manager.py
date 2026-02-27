@@ -57,9 +57,10 @@ class PlotManager:
         self._plot_submaps(ax, current_date)
         if self.scale >= 3:
             self._plot_labels(ax, current_date)
+        else: 
+            self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_flags(ax)
-        #ax.set_aspect('auto')
         self._finalize_and_save_plot(fig, current_date)
 
     def _initialize_plot(self):
@@ -151,7 +152,7 @@ class PlotManager:
             if map_i == "DC":
                 print(bomap_points["geometry"])
 
-            self._plot_points(ax, current_date, points=bomap_points)
+                self._plot_points(ax, current_date, points=bomap_points)
 
     def _plot_points(self, ax, current_date, points, type="normal"):
         scale_factor = self.marker_size
