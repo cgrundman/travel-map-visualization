@@ -1,20 +1,24 @@
+#from shapely.geometry import Point
+from shapely.affinity import translate
+
+
 def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active):    
 
     # Sort Locations
     locations_df_sorted = locations_df.sort_values("latitude", ascending=False).reset_index(drop=True)
 
-    adjusted_df = spread_longitudes(
+    adjusted_df = adjust_overlapping_points(
         locations_df_sorted,
-        lon_threshold=labels_config["Longitude Threshold"],
-        lat_threshold=labels_config["Latitude Threshold"],
+        lon_thresh=labels_config["Longitude Threshold"],
+        lat_thresh=labels_config["Latitude Threshold"],
         shift_step=labels_config["Shift Step"]
     )
 
     for _, location in adjusted_df.iterrows():
 
         date = location['date']
-        lon = location["longitude"]
-        lat = location["latitude"]
+        lon = location["geometry"].x
+        lat = location["geometry"].y
 
         if date == current_date:
             label_color = color_active
@@ -39,26 +43,63 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
             )
         )
 
-def spread_longitudes(locations_df_sorted, lon_threshold, lat_threshold, shift_step):
+#def spread_longitudes(loc_df, lon_threshold, lat_threshold, shift_step):
+#    for pos, (i, loc) in enumerate(loc_df.iloc[1:].iterrows()):
+#        lat = loc["geometry"].y
+#        lon = loc["geometry"].x
+#        previous_rows = loc_df.loc[:pos-1]
+#        for _, prev_loc in previous_rows.iterrows():
+#            prev_lat = prev_loc["geometry"].y
+#            prev_lon = prev_loc["geometry"].x
+#            if abs(lat - prev_lat) < lat_threshold or abs(lon - prev_lon) < lon_threshold:
+#                new_lat = prev_lat - shift_step
+#                old_point = loc_df.at[i, "geometry"]
+#                new_point = Point(old_point.x, new_lat)
+#                loc_df.at[i, "geometry"] = new_point
+#                if prev_loc["submap"] == "DC":
+#                    print(prev_loc["submap"])
+#                    print(prev_loc["geometry"].y, prev_loc["geometry"].x)
+#                    print(new_point)
+#    return loc_df
 
-    for pos, (i, loc) in enumerate(locations_df_sorted.iterrows()):
+def adjust_overlapping_points(gdf, lat_thresh, lon_thresh, shift_step=0.01):
+    """
+    For each point, compare it to all previous points.
+    If within lat/lon threshold, shift it slightly.
+    """
 
-        lat = loc["latitude"]
-        lon = loc["longitude"]
+    accepted_points = []
 
-        if i > 0:
+    for i in range(len(gdf)):
+        point = gdf.iloc[i].geometry
+        lat = point.y
+        lon = point.x
 
-            previous_rows = locations_df_sorted.loc[:pos-1]
+        needs_shift = False
 
-            for _, prev_loc in previous_rows.iterrows():
+        for prev_point in accepted_points:
+            prev_lat = prev_point.y
+            prev_lon = prev_point.x
 
-                prev_lat = prev_loc["latitude"]
-                prev_lon = prev_loc["longitude"]
+            if abs(lat - prev_lat) < lat_thresh and \
+               abs(lon - prev_lon) < lon_thresh:
+                needs_shift = True
                 
-                if abs(lat - prev_lat) < lat_threshold and abs(lon - prev_lon) < lon_threshold:
-                    
-                    lat = prev_lat - shift_step
-            
-            locations_df_sorted.at[i, "latitude"] = lat
+                break
 
-    return locations_df_sorted
+        if needs_shift:
+            # shift slightly (you can change logic here)
+            new_point = translate(point, yoff=shift_step)
+
+            print(gdf.iloc[i].submap)
+            print(prev_lat, prev_lon)
+            print(new_point)
+        else:
+            new_point = point
+
+        # Update geometry in original dataframe
+        gdf.iloc[i, gdf.columns.get_loc("geometry")] = new_point
+
+        accepted_points.append(new_point)
+
+    return gdf

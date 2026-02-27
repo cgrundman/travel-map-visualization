@@ -60,7 +60,7 @@ class PlotManager:
             #self._plot_points(ax, current_date, points=self.points_gdf)
         else:
             self._plot_points(ax, current_date, points=self.points_gdf)
-        #self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
+        self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
