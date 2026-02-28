@@ -1,20 +1,25 @@
 #from shapely.geometry import Point
 from shapely.affinity import translate
+from adjustText import adjust_text
+import numpy as np
+from scipy.spatial.distance import pdist, squareform
 
 
 def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active):    
 
     # Sort Locations
-    locations_df_sorted = locations_df.sort_values("latitude", ascending=False).reset_index(drop=True)
+    #locations_df_sorted = locations_df.sort_values("latitude", ascending=False).reset_index(drop=True)
+    locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
+    #adjusted_df = adjust_overlapping_points(
+    #    locations_df_sorted,
+    #    lon_thresh=labels_config["Longitude Threshold"],
+    #    lat_thresh=labels_config["Latitude Threshold"],
+    #    shift_step=labels_config["Shift Step"]
+    #)
 
-    adjusted_df = adjust_overlapping_points(
-        locations_df_sorted,
-        lon_thresh=labels_config["Longitude Threshold"],
-        lat_thresh=labels_config["Latitude Threshold"],
-        shift_step=labels_config["Shift Step"]
-    )
+    texts = []
 
-    for _, location in adjusted_df.iterrows():
+    for _, location in locations_df_sorted.iterrows():
 
         date = location['date']
         lon = location["geometry"].x
@@ -27,7 +32,7 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
         else:
             label_color = color_unvisited
 
-        ax.text(
+        txt = ax.text(
             lon,
             lat,
             location["name"],
@@ -42,6 +47,28 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
                 edgecolor="none"
             )
         )
+
+        texts.append(txt)
+
+    coords = np.array([(t.get_position()) for t in texts])
+    dist_matrix = squareform(pdist(coords))
+
+    threshold = 0.1  # depends on your CRS
+    cluster_indices = np.where((dist_matrix < threshold) & (dist_matrix > 0))
+    cluster_indices = np.unique(cluster_indices[0])
+
+    clustered_texts = [texts[i] for i in cluster_indices]
+
+    adjust_text(
+        clustered_texts,
+        ax=ax,
+        force_text=1.0,
+        force_points=0.05,
+        expand_text=(0.0, 10.0),
+        expand_points=(1.5, 1.5),
+        arrowprops=dict(arrowstyle="-", color="gray", lw=0.5),
+        lim=1000
+    )
 
 #def spread_longitudes(loc_df, lon_threshold, lat_threshold, shift_step):
 #    for pos, (i, loc) in enumerate(loc_df.iloc[1:].iterrows()):
