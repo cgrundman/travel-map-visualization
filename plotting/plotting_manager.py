@@ -106,8 +106,8 @@ class PlotManager:
 
             map_i = submap["Name"]
             scale = submap["Scale"]
-            xoff = submap["Long-Shift"]
-            yoff = submap["Lat-Shift"]
+            xoff = submap["Shift"][0]
+            yoff = submap["Shift"][1]
 
             shapefile_path = os.path.join(self.path, "submaps", f"{map_i}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
