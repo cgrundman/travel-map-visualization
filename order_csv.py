@@ -13,6 +13,9 @@ df = df.sort_values('latitude', ascending=False)
 # Resort the columns
 df = df[['submap','latitude','longitude','date','name']]
 
+df['latitude'] = df["latitude"].round(6)
+df['longitude'] = df["longitude"].round(6)
+
 # Reset the DataFrame index and drop the old index column
 df = df.reset_index(drop=True)
 

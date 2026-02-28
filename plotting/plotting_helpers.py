@@ -4,7 +4,6 @@ from adjustText import adjust_text
 import numpy as np
 from scipy.spatial.distance import pdist, squareform
 
-
 def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active):    
 
     # Sort Locations
@@ -69,6 +68,20 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
         arrowprops=dict(arrowstyle="-", color="gray", lw=0.5),
         lim=1000
     )
+
+    # Extract adjusted positions
+    adjusted_positions = []
+
+    for text, (_, row) in zip(texts, locations_df.iterrows()):
+        new_lon, new_lat = text.get_position()
+
+        adjusted_positions.append({
+            "name": row["name"],
+            "label_longitude": new_lon,
+            "label_latitude": new_lat
+        })
+
+    locations_df_sorted.to_csv("locations_with_labels.csv", index=False)
 
 #def spread_longitudes(loc_df, lon_threshold, lat_threshold, shift_step):
 #    for pos, (i, loc) in enumerate(loc_df.iloc[1:].iterrows()):
