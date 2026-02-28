@@ -9,6 +9,7 @@ import matplotlib.patches as patches
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import geopandas as gpd
 from shapely import affinity
+from shapely.geometry import Polygon
 
 from utils.file_utils import (
     crop_and_save_image,
@@ -102,7 +103,23 @@ class PlotManager:
         
         # Submap Plotting
         for submap in self.submaps:
-            #print(submap["Name"])
+
+            # Plot Backing to Shifted Submaps
+            if submap["Shift"][0] != 0 and submap["Shift"][1] != 0:
+            # If list is [[lon, lat], ...]
+                coords = [(p[0], p[1]) for p in submap["BG"]]
+
+                polygon = Polygon(coords)
+
+                gdf = gpd.GeoDataFrame(geometry=[polygon])
+
+                gdf.plot(
+                    ax=ax,
+                    color=self.bg_water,
+                    alpha=0.8,
+                    edgecolor="black",
+                    linewidth=4/self.plot_scale
+                )
 
             map_i = submap["Name"]
             scale = submap["Scale"]
