@@ -52,7 +52,7 @@ class PlotManager:
 
     def generate_plot(self, current_date, row, copy=False):
         self.copy = copy
-        #print(f"{current_date.date()} - {row['name']}")
+        print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self._plot_submaps(ax, current_date)
         if self.plot_scale >= 3:
@@ -60,7 +60,7 @@ class PlotManager:
             #self._plot_points(ax, current_date, points=self.points_gdf)
         else:
             self._plot_points(ax, current_date, points=self.points_gdf)
-        self._plot_points(ax, current_date, points=self.points_gdf, type="clear")
+        self._plot_points(ax, current_date, points=self.points_gdf, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
@@ -161,25 +161,22 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            if map_i == "VI":
-                print(self.points_gdf.loc[mask, "geometry"])
-
-            #self._plot_points(ax, current_date, points=submap_points)
-
-    def _plot_points(self, ax, current_date, points, type="normal"):
+    def _plot_points(self, ax, current_date, points, a_type="normal"):
 
         # Invisible layer to force map scaling
-        if type=="clear":
-            points.plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
+        if a_type=="clear":
+            points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
 
         else:
-            # Unvisited
-            points["geometry"].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
-
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color='#353535', linewidth=0, markersize=self.marker_size, alpha=1)
+                points[visited].plot(ax=ax, color=self.color_visited, linewidth=0, markersize=self.marker_size, alpha=1)
+
+            # Unvisited
+            unvisited = (points['date'] > current_date) | (points['date'].isna())
+            if unvisited.any():
+                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Active
             active = points['date'] == current_date

@@ -91,16 +91,16 @@
         "Splits": 47
     },
     "Flags": {
-        "Scale": 0.25,
+        "Scale": 0.23,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#e7ba52",
         "Position": {
             "x_start": 0.038,
-            "y_start": 1.465,
-            "x_spacing": 0.077,
-            "y_spacing": 0.132,
-            "num_in_row": 13
+            "y_start": 1.437,
+            "x_spacing": 0.071,
+            "y_spacing": 0.123,
+            "num_in_row": 14
         }
     }
 }

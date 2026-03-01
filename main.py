@@ -31,11 +31,8 @@ ensure_directory_exists("gifs")
 # Load the JSON Meta-Data, Points data, and map data
 meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
-#submaps = SubmapsLoader(PATH).load()
 submaps = meta_data["Submaps"]
 bgmaps = BGmapsLoader(PATH).load()
-#bomaps = BOmapsLoader(PATH).load()
-
 
 # Create a sorted values df
 points_sorted = points_gdf.sort_values('date')
@@ -53,7 +50,7 @@ plot_manager = PlotManager(
 
 # Add first plot
 current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=False)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
@@ -74,9 +71,11 @@ gif = GifGenerator(
     )
 gif.generate()
 
+# Large Plot
+
 # Reload Points
 points_gdf = PointsLoader(PATH).load()
-# Large Plot
+
 plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
@@ -88,4 +87,5 @@ plot_manager = PlotManager(
 
 plot_manager.generate_plot(old_date, row, copy=False)
 
+# File Cleanup
 gif.cleanup_temp()
