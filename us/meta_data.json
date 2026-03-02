@@ -67,7 +67,7 @@
         {"Name": "TC"}
     ],
     "Figure Size": [20, 16],
-    "Cropping": [0.118, 0.10, 0.907, 0.705],
+    "Cropping": [0.118, 0.105, 0.907, 0.710],
     "Plotting Area": {
         "xlims": [-140, -62],
         "ylims": [20, 50]

@@ -50,18 +50,18 @@ plot_manager = PlotManager(
 
 # Add first plot
 current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=False)
+plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        #plot_manager.generate_plot(current_date, row)
+        plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
 old_date += datetime.timedelta(days=1)
-plot_manager.generate_plot(old_date, row, copy=False)
+plot_manager.generate_plot(old_date, row, copy=True)
 
 # Create gif from produced plots
 gif = GifGenerator(
@@ -72,10 +72,6 @@ gif = GifGenerator(
 gif.generate()
 
 # Large Plot
-
-# Reload Points
-points_gdf = PointsLoader(PATH).load()
-
 plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,

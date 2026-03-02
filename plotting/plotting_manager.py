@@ -54,13 +54,13 @@ class PlotManager:
         self.copy = copy
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
+        self.points_working = self.points_gdf.copy(deep=True)
         self._plot_submaps(ax, current_date)
         if self.plot_scale >= 3:
-            self._plot_labels(ax, current_date, points=self.points_gdf)
-            #self._plot_points(ax, current_date, points=self.points_gdf)
+            self._plot_labels(ax, current_date, points=self.points_working)
         else:
-            self._plot_points(ax, current_date, points=self.points_gdf)
-        self._plot_points(ax, current_date, points=self.points_gdf, a_type="clear")
+            self._plot_points(ax, current_date, points=self.points_working)
+        self._plot_points(ax, current_date, points=self.points_working, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
@@ -146,18 +146,29 @@ class PlotManager:
             )
 
             # Scale and Shift Points
-            mask = self.points_gdf['submap'] == submap["Name"]
+            mask = self.points_working['submap'] == submap["Name"]
 
-            self.points_gdf.loc[mask, "geometry"] = (
-                self.points_gdf.loc[mask, "geometry"]
-                .apply(
-                    lambda geom: affinity.translate(
-                        geom,
-                        xoff=xoff + ((scale[0] - 1) * geom.x),
-                        yoff=yoff + ((scale[1] - 1) * geom.y),
-                    )
+            submap_points = self.points_working.loc[mask].copy()
+
+            submap_points["geometry"] = submap_points["geometry"].apply(
+                lambda geom: affinity.scale(
+                    geom,
+                    xfact=scale[0],
+                    yfact=scale[1],
+                    origin=(0, 0)
                 )
             )
+
+            submap_points["geometry"] = submap_points["geometry"].apply(
+                lambda geom: affinity.translate(
+                    geom,
+                    xoff=xoff,
+                    yoff=yoff
+                )
+            )
+
+            # Write transformed geometries back into working copy
+            self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
@@ -168,15 +179,15 @@ class PlotManager:
             points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
 
         else:
-            # Visited
-            visited = points['date'] < current_date
-            if visited.any():
-                points[visited].plot(ax=ax, color=self.color_visited, linewidth=0, markersize=self.marker_size, alpha=1)
-
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
                 points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
+
+            # Visited
+            visited = points['date'] < current_date
+            if visited.any():
+                points[visited].plot(ax=ax, color=self.color_visited, linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Active
             active = points['date'] == current_date
@@ -207,8 +218,8 @@ class PlotManager:
         for i, file in enumerate(png_files):
             frameon = False
 
-            #ratio = self.ratios[file[:2]]
-            ratio=1
+            ratio = self.ratios[file[:2]]
+            #ratio=1
             if ratio == 1:
                 frameon = True
 
