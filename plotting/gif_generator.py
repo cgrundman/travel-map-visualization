@@ -69,9 +69,20 @@ class GifGenerator:
             raise ValueError("No image files found in the folder.")
 
         # Open each image and convert to RGB to ensure consistency
-        images = [Image.open(os.path.join(input_folder, file)).convert('RGB') for file in image_files]
+        bg_color = (34, 34, 34)  # ← choose your background RGB
 
-        print("Images loaded and created.")
+        images = []
+        for file in image_files:
+            img = Image.open(os.path.join(input_folder, file)).convert("RGBA")
+
+            # Create background image
+            background = Image.new("RGBA", img.size, bg_color + (255,))
+            print(background)
+            # Composite image over background
+            composited = Image.alpha_composite(background, img)
+
+            # Convert to RGB for GIF
+            images.append(composited.convert("RGB"))
 
         # Get the size of the first image and resize all images to match
         width, height = images[0].size
