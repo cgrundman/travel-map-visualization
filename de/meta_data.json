@@ -31,7 +31,7 @@
         {"Name": "PL"}
     ],
     "Figure Size": [12, 18],
-    "Cropping": [0.000, 0.150, 0.890, 0.850],
+    "Cropping": [0.030, 0.153, 0.910, 0.860],
     "Plotting Area": {
         "xlims": [5.7, 15.3],
         "ylims": [47.1, 55.2]
@@ -58,15 +58,15 @@
         "Shift Step": 0.06
     },
     "Flags": {
-        "Scale": 0.20,
+        "Scale": 0.23,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#e7ba52",
         "Position": {
-            "x_start": -0.075,
-            "y_start": 0.94,
+            "x_start": -0.062,
+            "y_start": 0.97,
             "x_spacing": 0.0825,
-            "y_spacing": 0.057,
+            "y_spacing": 0.0625,
             "num_in_row": 1
         }
     }
