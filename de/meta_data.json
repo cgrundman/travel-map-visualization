@@ -1,33 +1,42 @@
 {
     "Title": "Deutschland",
     "Submaps": [
-        {"Name": "BB"},
+        {"Name": "BB", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "BE", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "BW", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "BY", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "HB", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "HE", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "HH", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "MV", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "NI", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "NW", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "RP", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "SH", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "SL", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "SN", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "ST", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "TH", "Scale": [1, 1], "Shift": [0,  0]}
+    ],
+    "Backgound Maps": [
+        {"Name": "AT"},
         {"Name": "BE"},
-        {"Name": "BW"},
-        {"Name": "BY"},
-        {"Name": "HB"},
-        {"Name": "HE"},
-        {"Name": "HH"},
-        {"Name": "MV"},
-        {"Name": "NI"},
-        {"Name": "NW"},
-        {"Name": "RP"},
-        {"Name": "SH"},
-        {"Name": "SL"},
-        {"Name": "SN"},
-        {"Name": "ST"},
-        {"Name": "TH"}
+        {"Name": "CH"},
+        {"Name": "CZ"},
+        {"Name": "DK"},
+        {"Name": "FR"},
+        {"Name": "NL"},
+        {"Name": "PL"}
     ],
     "Figure Size": [12, 18],
-    "Cropping": {
-        "small": [0.000, 0.150, 0.890, 0.850],
-        "large": [0.000, 0.150, 1.000, 0.850]
-    },
+    "Cropping": [0.000, 0.150, 0.890, 0.850],
     "Plotting Area": {
         "xlims": [5.7, 15.3],
         "ylims": [47.1, 55.2]
     },
     "Colors": {
+        "bg_land": "#222222",
+        "bg_water": "#006FB3",
         "map_dark": "#843c39",
         "map_light": "#bd9e39",
         "unvisited": "#e7ba52",
@@ -47,19 +56,10 @@
         "Shift Step": 0.06
     },
     "Flags": {
-        "Scale": {
-            "small": 0.20,
-            "large": 0.75
-        },
-        "Radius": {
-            "small": 0.85,
-            "large": 2.75
-        },
-        "Linewidth": {
-            "small": 1,
-            "large": 10,
-            "color": "#e7ba52"
-        },
+        "Scale": 0.20,
+        "Radius": 0.85,
+        "Linewidth": 1,
+        "Linecolor": "#e7ba52",
         "Position": {
             "x_start": -0.075,
             "y_start": 0.94,
