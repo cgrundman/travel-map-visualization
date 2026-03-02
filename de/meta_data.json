@@ -25,6 +25,7 @@
         {"Name": "CZ"},
         {"Name": "DK"},
         {"Name": "FR"},
+        {"Name": "LU"},
         {"Name": "NL"},
         {"Name": "PL"}
     ],
@@ -49,7 +50,7 @@
         "Start Latitude": 47.2,
         "Vertical Spacing": 0.069,
         "Horizontal Spacing": 1.45,
-        "Font": 5.5,
+        "Font": 1.5,
         "Splits": 27,
         "Longitude Threshold": 1.0,
         "Latitude Threshold": 0.08,

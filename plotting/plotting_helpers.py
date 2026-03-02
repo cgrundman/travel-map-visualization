@@ -51,6 +51,8 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
         )
 
         texts.append(txt)
+
+    #compute_adjusted_label_positions(ax=ax, texts=texts, loc_df=locations_df_sorted)
     
 
 def compute_adjusted_label_positions(ax, texts, loc_df):
