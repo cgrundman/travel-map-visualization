@@ -53,6 +53,10 @@
         {"Name": "XK", "Scale": [1, 1], "Shift": [0,  0]}
     ],
     "Backgound Maps": [
+        {"Name": "DZ"},
+        {"Name": "IQ"},
+        {"Name": "IR"},
+        {"Name": "KZ"}
     ],
     "Figure Size": [12, 14],
     "Cropping": [0.090, 0.000, 0.900, 0.835],
