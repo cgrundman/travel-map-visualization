@@ -62,8 +62,8 @@
         {"Name": "SY"},
         {"Name": "TN"}
     ],
-    "Figure Size": [12, 14],
-    "Cropping": [0.090, 0.000, 0.900, 0.835],
+    "Figure Size": [12, 16],
+    "Cropping": [0.120, 0.000, 0.905, 0.795],
     "Plotting Area": {
         "xlims": [-12, 52],
         "ylims": [34, 72]
@@ -90,15 +90,15 @@
         "Shift Step": 0.2
     },
     "Flags": {
-        "Scale": 0.13,
+        "Scale": 0.18,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#e7ba52",
         "Position": {
-            "x_start": 0.025,
-            "y_start": 1.40,
-            "x_spacing": 0.102,
-            "y_spacing": 0.090,
+            "x_start": 0.050,
+            "y_start": 1.33,
+            "x_spacing": 0.100,
+            "y_spacing": 0.072,
             "num_in_row": 10
         }
     }
