@@ -5,27 +5,34 @@ This repo features visualization code for travel. Using a collection of submaps 
 <table style="width:100%; table-layout:fixed;">
   <tr>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="200"/>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_1.png" height="150"/>
       <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/us_5.png">Full Image</a></b>
     </td>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="200"/>
-      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_4.png">Full Image</a></b>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_1.png" height="150"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/de_5.png">Full Image</a></b>
     </td>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="200"/>
-      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_6.png">Full Image</a></b>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_1.png" height="150"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/eu_5.png">Full Image</a></b>
     </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/ir_1.png" height="150"/>
+      <br><b><a href="https://github.com/cgrundman/travel-map-visualization/blob/main/plots/ir_5.png">Full Image</a></b>
+    </td
   </tr>
   <tr>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="200"/>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/us_1.gif" height="150"/>
     </td>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="200"/>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/de_1.gif" height="150"/>
     </td>
     <td align="center">
-      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="200"/>
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/eu_1.gif" height="150"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/cgrundman/travel-map-visualization/blob/main/gifs/ir_1.gif" height="150"/>
     </td>
   </tr>
 </table>
