@@ -56,7 +56,11 @@
         {"Name": "DZ"},
         {"Name": "IQ"},
         {"Name": "IR"},
-        {"Name": "KZ"}
+        {"Name": "KZ"},
+        {"Name": "LB"},
+        {"Name": "MA"},
+        {"Name": "SY"},
+        {"Name": "TN"}
     ],
     "Figure Size": [12, 14],
     "Cropping": [0.090, 0.000, 0.900, 0.835],
