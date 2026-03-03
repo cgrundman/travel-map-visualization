@@ -24,7 +24,7 @@
         {"Name": "HR", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "HU", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "IR", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "IS", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "IS", "Scale": [1, 1], "Shift": [15,  0]},
         {"Name": "IT", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "LI", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "LT", "Scale": [1, 1], "Shift": [0,  0]},
