@@ -69,13 +69,13 @@
         "ylims": [34, 72]
     },
     "Colors": {
-        "bg_land": "#222222",
-        "bg_water": "#006FB3",
-        "map_dark": "#545454",
-        "map_light": "#2267b5",
-        "unvisited": "#f0b42b",
-        "active": "#EAEAEA",
-        "visited": "#1c589c"
+        "bg_land": "#3B3B3B",
+        "bg_water": "#1F3A5F",
+        "map_dark": "#3B3B3B",
+        "map_light": "#1CA7A6",
+        "unvisited": "#C9A227",
+        "active": "#F2F4F7",
+        "visited": "#1F3A5F"
     },
     "Marker Size": 10,
     "Labels": {
