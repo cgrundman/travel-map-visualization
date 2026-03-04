@@ -37,8 +37,8 @@
         "ylims": [47.1, 55.2]
     },
     "Colors": {
-        "bg_land": "#222222",
-        "bg_water": "#006FB3",
+        "bg_land": "#0E3B43",
+        "bg_water": "#1C2541",
         "map_dark": "#843c39",
         "map_light": "#bd9e39",
         "unvisited": "#e7ba52",
@@ -61,7 +61,7 @@
         "Scale": 0.23,
         "Radius": 0.85,
         "Linewidth": 1,
-        "Linecolor": "#e7ba52",
+        "Linecolor": "#E4DEE4",
         "Position": {
             "x_start": -0.062,
             "y_start": 0.97,
