@@ -70,7 +70,7 @@
         "Start Latitude": 25,
         "Vertical Spacing": 0.115,
         "Horizontal Spacing": 2.65,
-        "Font": 2.5,
+        "Font": 1.0,
         "Splits": 35,
         "Longitude Threshold": 1.0,
         "Latitude Threshold": 0.10,
