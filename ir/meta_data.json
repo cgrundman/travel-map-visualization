@@ -1,37 +1,37 @@
 {
     "Title": "Iran",
     "Submaps": [
-        {"Name": "00"},
-        {"Name": "01"},
-        {"Name": "02"},
-        {"Name": "03"},
-        {"Name": "04"},
-        {"Name": "05"},
-        {"Name": "06"},
-        {"Name": "07"},
-        {"Name": "08"},
-        {"Name": "09"},
-        {"Name": "10"},
-        {"Name": "11"},
-        {"Name": "12"},
-        {"Name": "13"},
-        {"Name": "14"},
-        {"Name": "15"},
-        {"Name": "16"},
-        {"Name": "17"},
-        {"Name": "18"},
-        {"Name": "19"},
-        {"Name": "20"},
-        {"Name": "21"},
-        {"Name": "22"},
-        {"Name": "23"},
-        {"Name": "24"},
-        {"Name": "25"},
-        {"Name": "26"},
-        {"Name": "27"},
-        {"Name": "28"},
-        {"Name": "29"},
-        {"Name": "30"}
+        {"Name": "00", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "01", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "02", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "03", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "04", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "05", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "06", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "07", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "08", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "09", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "10", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "11", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "12", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "13", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "14", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "15", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "16", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "17", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "18", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "19", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "20", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "21", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "22", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "23", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "24", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "25", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "26", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "27", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "28", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "29", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "30", "Scale": [1, 1], "Shift": [0,  0]}
     ],
     "Backgound Maps": [
         {"Name": "AE"},
@@ -50,10 +50,7 @@
         {"Name": "UZ"}
     ],
     "Figure Size": [12, 14],
-    "Cropping": {
-        "small": [0.120, 0.068, 0.905, 0.809],
-        "large": [0.120, 0.110, 0.905, 0.764]
-    },
+    "Cropping": [0.120, 0.068, 0.905, 0.809],
     "Plotting Area": {
         "xlims": [43.5, 63.5],
         "ylims": [24.6, 39.9]
@@ -80,36 +77,15 @@
         "Shift Step": 0.10
     },
     "Flags": {
-        "Scale": {
-            "small": 0.17,
-            "large": 0.88
-        },
-        "Radius": {
-            "small": 0.85,
-            "large": 2.5
-        },
-        "Linewidth": {
-            "small": 1,
-            "large": 25,
-            "color": "#C56F2D"
-        },
+        "Scale": 0.17,
+        "Radius": 0.85,
+        "Linewidth": 1,
+        "Linecolor": "#C56F2D",
         "Position": {
-            "x_start": {
-                "small": 0.05,
-                "large": 0.05
-            },
-            "y_start": {
-                "small": 1.18,
-                "large": 1.22
-            },
-            "x_spacing": {
-                "small": 0.090,
-                "large": 0.090
-            },
-            "y_spacing": {
-                "small": 0.070,
-                "large": 0.083
-            },
+            "x_start": 0.05,
+            "y_start": 1.18,
+            "x_spacing": 0.090,
+            "y_spacing": 0.070,
             "num_in_row": 11
         }
     }
