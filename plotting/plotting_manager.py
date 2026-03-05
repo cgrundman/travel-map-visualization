@@ -22,9 +22,10 @@ from colormap.cmap_maker import CustomCmap
 random.seed(5)
 
 class PlotManager:
-    def __init__(self, points_gdf, submaps, bgmaps, meta_data, path, scale):
+    def __init__(self, points_gdf, submaps, expansions, bgmaps, meta_data, path, scale):
         self.points_gdf = points_gdf
         self.submaps = submaps
+        self.expansions = expansions
         self.bgmaps = bgmaps
         self.meta_data = meta_data
         self.path = path
@@ -99,7 +100,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=4/self.plot_scale, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=0, color=color, alpha=1)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -171,6 +172,33 @@ class PlotManager:
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+
+        #def expand_regions(gdf, expansions):
+
+        #gdf = gdf.copy()
+
+        #for city in self.expansions:
+        #    xmin, ymin, xmax, ymax = city["bbox"][0], city["bbox"][1], city["bbox"][2], city["bbox"][3]
+        #    scale = city["Scale"]
+        #    shiftx, shifty = city["Shift"]
+        #    shapefile_path = os.path.join(self.path, "submaps", f"{city["Name"]}.shp")
+        #    expansion_gdf = gpd.read_file(shapefile_path)
+        #    # bounding polygon
+        #    box_poly = Polygon([
+        #        (xmin, ymin),
+        #        (xmin, ymax),
+        #        (xmax, ymax),
+        #        (xmax, ymin)
+        #    ])
+        #    if not expansion_gdf.intersects(box_poly):
+        #        #return gdf
+        #        print("No expansion intersection")
+        #    # scale from box center
+        #    cx = (xmin + xmax) / 2
+        #    cy = (ymin + ymax) / 2
+        #    g = affinity.scale(expansion_gdf, xfact=scale, yfact=scale, origin=(cx, cy))
+        #    g = affinity.translate(g, xoff=shiftx, yoff=shifty)
+
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
@@ -273,11 +301,11 @@ class PlotManager:
                 xycoords='axes fraction',
                 pad=0.1,                      # space between image and border
                 bboxprops=dict(
-                    edgecolor=border_color,    # border color
+                    edgecolor=border_color,   # border color
                     linewidth=flag_linewidth, # border thickness
                     boxstyle=f"round,pad=0.3,rounding_size={flag_radius}",  
                                               # rounded corners
-                    facecolor=border_color,    # background behind image
+                    facecolor=border_color,   # background behind image
                     alpha=1.0                 # border opacity
                 )
             )

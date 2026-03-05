@@ -66,6 +66,10 @@
         {"Name": "MX"},
         {"Name": "TC"}
     ],
+    "Expansions" : [
+        {"Name": "NY", "bbox": [-74.5, 41.7, -76.4, 42.6], "Scale": [5, 5], "Shift": [300, -160]},
+        {"Name": "MA", "bbox": [-122.6, 37.6, -122.2, 37.9], "Scale": [3, 3], "Shift": [5, -2]}
+    ],
     "Figure Size": [20, 16],
     "Cropping": [0.118, 0.105, 0.907, 0.710],
     "Plotting Area": {

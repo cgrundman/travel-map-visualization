@@ -12,7 +12,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # US National Park Global Variables
-#PATH = "us"
+PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
@@ -21,7 +21,7 @@ from utils.file_utils import ensure_directory_exists
 #PATH = "eu"
 
 # Iran Global Variables
-PATH = "ir"
+#PATH = "ir"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
@@ -32,6 +32,7 @@ ensure_directory_exists("gifs")
 meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = meta_data["Submaps"]
+expansions = meta_data["Expansions"]
 bgmaps = BGmapsLoader(PATH).load()
 
 # Create a sorted values df
@@ -42,6 +43,7 @@ old_date = None
 plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
+    expansions=expansions,
     bgmaps=bgmaps,
     meta_data=meta_data,
     path=PATH,
@@ -50,13 +52,13 @@ plot_manager = PlotManager(
 
 # Add first plot
 current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        plot_manager.generate_plot(current_date, row)
+        #plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
@@ -69,19 +71,19 @@ gif = GifGenerator(
         output_gif=f"./gifs/{PATH}_{1}.gif",
         duration=200
     )
-gif.generate()
+#gif.generate()
 
 # Large Plot
-plot_manager = PlotManager(
-    points_gdf=points_gdf,
-    submaps=submaps,
-    bgmaps=bgmaps,
-    meta_data=meta_data,
-    path=PATH,
-    scale=5
-)
+#plot_manager = PlotManager(
+#    points_gdf=points_gdf,
+#    submaps=submaps,
+#    bgmaps=bgmaps,
+#    meta_data=meta_data,
+#    path=PATH,
+#    scale=5
+#)
 
-plot_manager.generate_plot(old_date, row, copy=False)
+#plot_manager.generate_plot(old_date, row, copy=False)
 
 # File Cleanup
 gif.cleanup_temp()
