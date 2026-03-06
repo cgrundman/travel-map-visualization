@@ -49,6 +49,7 @@
         {"Name": "TR"},
         {"Name": "UZ"}
     ],
+    "Expansions" : [],
     "Figure Size": [12, 14],
     "Cropping": [0.120, 0.068, 0.905, 0.809],
     "Plotting Area": {

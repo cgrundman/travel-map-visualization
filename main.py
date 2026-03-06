@@ -12,7 +12,7 @@ from utils.file_utils import ensure_directory_exists
 
 
 # US National Park Global Variables
-PATH = "us"
+#PATH = "us"
 
 # Germany Global Variables
 #PATH = "de"
@@ -21,7 +21,7 @@ PATH = "us"
 #PATH = "eu"
 
 # Iran Global Variables
-#PATH = "ir"
+PATH = "ir"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
@@ -74,16 +74,17 @@ gif = GifGenerator(
 gif.create_gif()
 
 # Large Plot
-#plot_manager = PlotManager(
-#    points_gdf=points_gdf,
-#    submaps=submaps,
-#    bgmaps=bgmaps,
-#    meta_data=meta_data,
-#    path=PATH,
-#    scale=5
-#)
+plot_manager = PlotManager(
+    points_gdf=points_gdf,
+    submaps=submaps,
+    expansions=expansions,
+    bgmaps=bgmaps,
+    meta_data=meta_data,
+    path=PATH,
+    scale=5
+)
 
-#plot_manager.generate_plot(old_date, row, copy=False)
+plot_manager.generate_plot(old_date, row, copy=False)
 
 # File Cleanup
 gif.cleanup_temp()
