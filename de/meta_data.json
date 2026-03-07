@@ -30,6 +30,7 @@
         {"Name": "NL"},
         {"Name": "PL"}
     ],
+    "Expansions" : [],
     "Figure Size": [12, 18],
     "Cropping": [0.030, 0.153, 0.910, 0.860],
     "Plotting Area": {
