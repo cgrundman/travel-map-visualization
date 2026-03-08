@@ -62,6 +62,7 @@
         {"Name": "SY"},
         {"Name": "TN"}
     ],
+    "Expansions" : [],
     "Figure Size": [12, 16],
     "Cropping": [0.120, 0.000, 0.905, 0.795],
     "Plotting Area": {

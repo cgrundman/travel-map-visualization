@@ -15,10 +15,10 @@ from utils.file_utils import ensure_directory_exists
 #PATH = "us"
 
 # Germany Global Variables
-PATH = "de"
+#PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Iran Global Variables
 #PATH = "ir"
