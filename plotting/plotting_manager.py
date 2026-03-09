@@ -106,7 +106,7 @@ class PlotManager:
         for submap in self.submaps:
 
             # Plot Backing to Shifted Submaps
-            if submap["Shift"][0] != 0 and submap["Shift"][1] != 0:
+            if submap["Shift"][0] != 0 or submap["Shift"][1] != 0:
             # If list is [[lon, lat], ...]
                 coords = [(p[0], p[1]) for p in submap["BG"]]
 
