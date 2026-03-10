@@ -34,7 +34,7 @@
         {"Name": "MD", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "ME", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "MK", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "MT", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "MT", "Scale": [7, 7], "Shift": [-91.7,  -215.5], "BG": [[12, 37.5],[5.5, 37.5],[5.5, 32],[12, 32]]},
         {"Name": "NL", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "NO", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "PL", "Scale": [1, 1], "Shift": [0,  0]},
