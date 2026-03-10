@@ -137,7 +137,10 @@ class PlotManager:
             ratio = num_past_dates / len(submap_points)
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
-                        
+
+            if submap["Retain"]:
+                submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
                 lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
