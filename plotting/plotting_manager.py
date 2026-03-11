@@ -138,8 +138,8 @@ class PlotManager:
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
-            if submap["Retain"]:
-                submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+            #if submap["Retain"]:
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
