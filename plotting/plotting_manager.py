@@ -176,7 +176,7 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            if submap["Name"] == "SM":
+            if submap["Name"] == "VA":
                 print(submap_points["geometry"])
 
         #def expand_regions(gdf, expansions):
