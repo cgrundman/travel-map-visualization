@@ -63,15 +63,15 @@ for _, row in points_sorted.iterrows():
 
 # Create Last Plot
 old_date += datetime.timedelta(days=1)
-plot_manager.generate_plot(old_date, row, copy=True)
+#plot_manager.generate_plot(old_date, row, copy=True)
 
 # Create gif from produced plots
-gif = GifGenerator(
-        input_folder="./plots/temp",
-        output_gif=f"./gifs/{PATH}_{1}.gif",
-        duration=200
-    )
-gif.create_gif()
+#gif = GifGenerator(
+#        input_folder="./plots/temp",
+#        output_gif=f"./gifs/{PATH}_{1}.gif",
+#        duration=200
+#    )
+#gif.create_gif()
 
 # Large Plot
 plot_manager = PlotManager(
@@ -87,4 +87,4 @@ plot_manager = PlotManager(
 plot_manager.generate_plot(old_date, row, copy=False)
 
 # File Cleanup
-gif.cleanup_temp()
+#gif.cleanup_temp()
