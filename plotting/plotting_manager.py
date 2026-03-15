@@ -176,8 +176,8 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            if submap["Name"] == "MT":
-                print("Malta")
+            if submap["Name"] == "SM":
+                print(submap_points["geometry"])
 
         #def expand_regions(gdf, expansions):
 

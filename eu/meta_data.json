@@ -45,7 +45,7 @@
         {"Name": "SE", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "SI", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "SK", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "SM", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "SM", "Scale": [10, 10], "Shift": [-121.8, -404], "BG": [[0, 32],[0, 36.8],[5.5, 36.8],[5.5, 32]]},
         {"Name": "TR", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "UA", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "UK", "Scale": [1, 1], "Shift": [0,  0]},
