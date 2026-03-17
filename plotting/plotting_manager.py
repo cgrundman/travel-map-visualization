@@ -171,13 +171,15 @@ class PlotManager:
                 )
             )
 
+            if submap["Name"] == "MC":
+                print(submap_points["geometry"])
+
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
 
-            if submap["Name"] == "LI":
-                print(submap_points["geometry"])
+            
 
         #def expand_regions(gdf, expansions):
 
