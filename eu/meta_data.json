@@ -1,7 +1,7 @@
 {
     "Title": "Europe",
     "Submaps": [
-        {"Name": "AD", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "AD", "Scale": [5, 5], "Shift": [-14,  -177.7], "BG": [[-9, 32],[-9, 35.9],[-4.5, 35.9],[-4.5, 32]]},
         {"Name": "AL", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "AM", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "AT", "Scale": [1, 1], "Shift": [0,  0]},
