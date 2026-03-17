@@ -1,7 +1,7 @@
 {
     "Title": "Europe",
     "Submaps": [
-        {"Name": "AD", "Scale": [5, 5], "Shift": [-14,  -177.7], "BG": [[-9, 32],[-9, 35.9],[-4.5, 35.9],[-4.5, 32]]},
+        {"Name": "AD", "Scale": [5, 5], "Shift": [-14.5,  -177.7], "BG": [[-9, 32],[-9, 35.9],[-4.5, 35.9],[-4.5, 32]]},
         {"Name": "AL", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "AM", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "AT", "Scale": [1, 1], "Shift": [0,  0]},
@@ -28,7 +28,7 @@
         {"Name": "IT", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "LI", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "LT", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "LU", "Scale": [1, 1], "Shift": [0,  0]},
+        {"Name": "LU", "Scale": [1.5, 1.5], "Shift": [-19.8,  -39.8], "BG": [[-9, 32],[-9, 35.9],[-14, 35.9],[-14, 32]]},
         {"Name": "LV", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "MC", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "MD", "Scale": [1, 1], "Shift": [0,  0]},
