@@ -171,7 +171,7 @@ class PlotManager:
                 )
             )
 
-            if submap["Name"] == "MC":
+            if submap["Name"] == "CH":
                 print(submap_points["geometry"])
 
             # Write transformed geometries back into working copy
