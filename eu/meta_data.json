@@ -64,7 +64,7 @@
     ],
     "Expansions" : [],
     "Figure Size": [12, 16],
-    "Cropping": [0.120, 0.000, 0.905, 0.795],
+    "Cropping": [0.120, 0.020, 0.905, 0.780],
     "Plotting Area": {
         "xlims": [-12, 52],
         "ylims": [34, 72]
@@ -97,9 +97,9 @@
         "Linecolor": "#e7ba52",
         "Position": {
             "x_start": 0.050,
-            "y_start": 1.33,
+            "y_start": 1.355,
             "x_spacing": 0.100,
-            "y_spacing": 0.072,
+            "y_spacing": 0.078,
             "num_in_row": 10
         }
     }
