@@ -100,7 +100,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=0, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=0.5)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -171,42 +171,13 @@ class PlotManager:
                 )
             )
 
-            if submap["Name"] == "ME":
-                print(submap_points["geometry"])
+            #if submap["Name"] == "ME":
+                #print(submap_points["geometry"])
 
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
             submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
-
-            
-
-        #def expand_regions(gdf, expansions):
-
-        #gdf = gdf.copy()
-
-        #for city in self.expansions:
-        #    xmin, ymin, xmax, ymax = city["bbox"][0], city["bbox"][1], city["bbox"][2], city["bbox"][3]
-        #    scale = city["Scale"]
-        #    shiftx, shifty = city["Shift"]
-        #    shapefile_path = os.path.join(self.path, "submaps", f"{city["Name"]}.shp")
-        #    expansion_gdf = gpd.read_file(shapefile_path)
-        #    # bounding polygon
-        #    box_poly = Polygon([
-        #        (xmin, ymin),
-        #        (xmin, ymax),
-        #        (xmax, ymax),
-        #        (xmax, ymin)
-        #    ])
-        #    if not expansion_gdf.intersects(box_poly):
-        #        #return gdf
-        #        print("No expansion intersection")
-        #    # scale from box center
-        #    cx = (xmin + xmax) / 2
-        #    cy = (ymin + ymax) / 2
-        #    g = affinity.scale(expansion_gdf, xfact=scale, yfact=scale, origin=(cx, cy))
-        #    g = affinity.translate(g, xoff=shiftx, yoff=shifty)
-
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
