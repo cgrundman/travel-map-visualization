@@ -38,13 +38,14 @@
         "ylims": [47.1, 55.2]
     },
     "Colors": {
-        "bg_land": "#0E3B43",
-        "bg_water": "#1C2541",
-        "map_dark": "#843c39",
+        "bg_land": "#3B4647",
+        "bg_water": "#4C5B5C",
+        "map_dark": "#702B2A",
         "map_light": "#bd9e39",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
-        "visited": "#b5524e"
+        "visited": "#A63F3B",
+        "label_bg": "#4A443A"
     },
     "Marker Size": 75,
     "Labels": {
@@ -62,7 +63,7 @@
         "Scale": 0.23,
         "Radius": 0.85,
         "Linewidth": 1,
-        "Linecolor": "#E4DEE4",
+        "Linecolor": "#96939B",
         "Position": {
             "x_start": -0.062,
             "y_start": 0.97,
