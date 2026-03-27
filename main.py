@@ -15,10 +15,10 @@ from utils.file_utils import ensure_directory_exists
 #PATH = "us"
 
 # Germany Global Variables
-#PATH = "de"
+PATH = "de"
 
 # Europe Global Variables
-PATH = "eu"
+#PATH = "eu"
 
 # Iran Global Variables
 #PATH = "ir"
@@ -58,7 +58,7 @@ plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        plot_manager.generate_plot(current_date, row)
+        #plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
@@ -67,11 +67,11 @@ plot_manager.generate_plot(old_date, row, copy=True)
 
 # Create gif from produced plots
 gif = GifGenerator(
-        input_folder="./plots/temp",
-        output_gif=f"./gifs/{PATH}_{1}.gif",
-        duration=200
-    )
-gif.create_gif()
+    input_folder="./plots/temp",
+    output_gif=f"./gifs/{PATH}_{1}.gif",
+    duration=200
+)
+#gif.create_gif()
 
 # Large Plot
 plot_manager = PlotManager(
