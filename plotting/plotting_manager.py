@@ -47,6 +47,7 @@ class PlotManager:
         self.map_light = meta_data["Colors"]["map_light"]
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_water = meta_data["Colors"]["bg_water"]
+        self.label_bg = meta_data["Colors"]["label_bg"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -100,7 +101,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=0.5)
+            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -139,7 +140,7 @@ class PlotManager:
             color = CustomCmap(self.map_dark, self.map_light).value(ratio)
 
             #if submap["Retain"]:
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=0.5/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
@@ -171,13 +172,13 @@ class PlotManager:
                 )
             )
 
-            #if submap["Name"] == "ME":
-                #print(submap_points["geometry"])
+            #if submap["Name"] == "MT":
+            #    print(submap_points["geometry"])
 
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=0.5/self.plot_scale, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
@@ -210,7 +211,8 @@ class PlotManager:
             self.plot_scale,
             self.color_unvisited,
             self.color_visited,
-            self.color_active
+            self.color_active,
+            self.label_bg
         )
 
     def _plot_flags(self, ax):
