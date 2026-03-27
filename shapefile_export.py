@@ -2,14 +2,15 @@ import geopandas as gpd
 import os
 #import json
 
-PATH = "false"# "us/submaps/"
-file_path = "geoBoundaries-USA-ADM1-all/geoBoundaries-USA-ADM1_simplified.shp"
+IMPORT_PATH = "masters/global/"
+EXPORT_PATH = "masters/SubMaps_ADM1/"
+file_path = "geoBoundariesCGAZ_ADM1.shp"
 
 # Load shapefile
-gdf = gpd.read_file(PATH + file_path)
+gdf = gpd.read_file(IMPORT_PATH + file_path)
 
 # Create a directory for output shapefiles
-os.makedirs(PATH, exist_ok=True)
+os.makedirs(EXPORT_PATH, exist_ok=True)
 
 #with open(f"{PATH}/map_translate.json", "r") as f:
 #    states_translate = json.load(f)
@@ -17,7 +18,7 @@ os.makedirs(PATH, exist_ok=True)
 # Group by state name and export each as its own shapefile
 for state_name in gdf["shapeName"].unique():
     state_gdf = gdf[gdf["shapeName"] == state_name]
-    filename = os.path.join(PATH, f"{state_name}.shp")
+    filename = os.path.join(EXPORT_PATH, f"{state_name}.shp")
     state_gdf.to_file(filename)
     print(f"Exported: {filename}")
 
