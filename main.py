@@ -58,7 +58,7 @@ plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        #plot_manager.generate_plot(current_date, row)
+        plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
