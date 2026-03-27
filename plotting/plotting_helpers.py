@@ -4,7 +4,7 @@ import numpy as np
 from scipy.spatial.distance import pdist, squareform
 import pandas as pd
 
-def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active):    
+def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg):    
 
     # Sort Locations
     locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
@@ -44,7 +44,7 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
             va="center",
             bbox=dict(
                 boxstyle="round,pad=0.1",
-                facecolor="#545454",
+                facecolor=label_bg,
                 #alpha=0.8,
                 edgecolor="none"
             )
