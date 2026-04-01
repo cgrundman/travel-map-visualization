@@ -3,25 +3,19 @@ import datetime
 
 from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
-#from data.submaps_loader import SubmapsLoader
 from data.bgmaps_loader import BGmapsLoader
-#from data.bomaps_loader import BOmapsLoader
 from plotting.plotting_manager import PlotManager
 from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
 
-
-# US National Park Global Variables
-#PATH = "us"
-
-# Germany Global Variables
-#PATH = "de"
-
-# Europe Global Variables
+# Map Directory
+# US NP | Germany | Europe | Iran |
+#  "us" |    "de" |   "eu" | "ir" |
 PATH = "eu"
 
-# Iran Global Variables
-#PATH = "ir"
+small_map = False
+small_gif = False
+large_map = True
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
@@ -50,41 +44,53 @@ plot_manager = PlotManager(
     scale=1
 )
 
-# Add first plot
-current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
-
-# Plot all dates
-for _, row in points_sorted.iterrows():
-    current_date = row['date']
-    if pd.notna(current_date) and current_date != old_date:
-        #plot_manager.generate_plot(current_date, row)
-        old_date = current_date
-
-# Create Last Plot
-old_date += datetime.timedelta(days=1)
-plot_manager.generate_plot(old_date, row, copy=True)
-
 # Create gif from produced plots
 gif = GifGenerator(
     input_folder="./plots/temp",
     output_gif=f"./gifs/{PATH}_{1}.gif",
     duration=200
 )
-#gif.create_gif()
+
+current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
+
+if small_gif:
+    # Add first plot
+    plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+
+# Plot all dates
+for _, row in points_sorted.iterrows():
+    current_date = row['date']
+    if pd.notna(current_date) and current_date != old_date:
+        if small_gif:
+            plot_manager.generate_plot(current_date, row)
+        old_date = current_date
+
+# Create Last Plot
+old_date += datetime.timedelta(days=1)
+
+if small_gif:
+    plot_manager.generate_plot(old_date, row, copy=True)
+
+    # Generate GIF
+    gif.create_gif()
+
+elif small_map:
+    plot_manager.generate_plot(old_date, row, copy=False)
+
 
 # Large Plot
-plot_manager = PlotManager(
-    points_gdf=points_gdf,
-    submaps=submaps,
-    expansions=expansions,
-    bgmaps=bgmaps,
-    meta_data=meta_data,
-    path=PATH,
-    scale=5
-)
+if large_map:
+    plot_manager = PlotManager(
+        points_gdf=points_gdf,
+        submaps=submaps,
+        expansions=expansions,
+        bgmaps=bgmaps,
+        meta_data=meta_data,
+        path=PATH,
+        scale=5
+    )
 
-plot_manager.generate_plot(old_date, row, copy=False)
+    plot_manager.generate_plot(old_date, row, copy=False)
 
 # File Cleanup
 gif.cleanup_temp()
