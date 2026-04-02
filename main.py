@@ -18,10 +18,10 @@ from utils.file_utils import ensure_directory_exists
 #PATH = "de"
 
 # Europe Global Variables
-#PATH = "eu"
+PATH = "eu"
 
 # Iran Global Variables
-PATH = "ir"
+#PATH = "ir"
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
@@ -52,13 +52,13 @@ plot_manager = PlotManager(
 
 # Add first plot
 current_date = points_sorted['date'].min() - datetime.timedelta(days=1)
-plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
+#plot_manager.generate_plot(current_date, points_sorted.iloc[0], copy=True)
 
 # Plot all dates
 for _, row in points_sorted.iterrows():
     current_date = row['date']
     if pd.notna(current_date) and current_date != old_date:
-        plot_manager.generate_plot(current_date, row)
+        #plot_manager.generate_plot(current_date, row)
         old_date = current_date
 
 # Create Last Plot
@@ -71,7 +71,7 @@ gif = GifGenerator(
     output_gif=f"./gifs/{PATH}_{1}.gif",
     duration=200
 )
-gif.create_gif()
+#gif.create_gif()
 
 # Large Plot
 plot_manager = PlotManager(
