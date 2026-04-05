@@ -232,7 +232,7 @@ class PlotManager:
             if ratio == 1:
                 frameon = True
 
-            # Create image
+            # Create color image
             if ratio > 0.5:
                 beta = ratio*2 - 1
             else:
