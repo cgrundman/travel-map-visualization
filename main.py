@@ -14,8 +14,8 @@ from utils.file_utils import ensure_directory_exists
 PATH = "eu"
 
 small_map = True
-small_gif = True
-large_map = True
+small_gif = False
+large_map = False
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")

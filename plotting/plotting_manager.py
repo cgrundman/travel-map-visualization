@@ -187,10 +187,10 @@ class PlotManager:
             points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
 
         else:
-            # Unvisited
-            unvisited = (points['date'] > current_date) | (points['date'].isna())
-            if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
+            ## Unvisited
+            #unvisited = (points['date'] > current_date) | (points['date'].isna())
+            #if unvisited.any():
+            #    points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Visited
             visited = points['date'] < current_date
@@ -234,7 +234,8 @@ class PlotManager:
 
             # Create color image
             if ratio > 0.5:
-                beta = ratio*2 - 1
+                #beta = ratio*2 - 1
+                beta = 1
             else:
                 beta = 0
             img = mpimg.imread(f"./{self.path}/submaps/{file}")
@@ -244,10 +245,11 @@ class PlotManager:
             img[:,:,3] = img[:,:,3]*beta
 
             # Create grayscale image
-            if ratio > 0.5:
-                alpha = 1
+            if ratio == 0:
+                alpha = 0
             else:
-                alpha = ratio*2
+                #alpha = ratio*2
+                alpha = 1
             gray = np.dot(img[...,:3], [0.587, 0.299, 0.114])
             gray_rgb = np.stack((gray, gray, gray), axis=-1)
 
