@@ -15,7 +15,7 @@ PATH = "eu"
 
 small_map = True
 small_gif = False
-large_map = False
+large_map = True
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")

@@ -48,6 +48,7 @@ class PlotManager:
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_water = meta_data["Colors"]["bg_water"]
         self.label_bg = meta_data["Colors"]["label_bg"]
+        self.grid_lines = meta_data["Colors"]["grid_lines"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -79,6 +80,7 @@ class PlotManager:
         return fig, ax
 
     def _plot_submaps(self, ax, current_date):
+
         # Plot Region for water
         min_lon, max_lon = self.xlims[0], self.xlims[1]
         min_lat, max_lat = self.ylims[0], self.ylims[1]
@@ -92,6 +94,16 @@ class PlotManager:
             alpha=1
         )
         ax.add_patch(rect)
+
+        # Plot longitude/latitude lines
+        self.xlims
+        self.ylims
+        lat_lines = np.arange(self.ylims[0], self.ylims[1], 4)
+        long_lines = np.arange(self.xlims[0], self.xlims[1], 4)
+        for lat_line in lat_lines:
+            ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
+        for long_line in long_lines:
+            ax.axvline(x=long_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
         
         self.ratios = {}
 

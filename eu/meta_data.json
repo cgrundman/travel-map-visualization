@@ -77,7 +77,8 @@
         "unvisited": "#D4AF37",
         "active": "#F2F6F3",
         "visited": "#1F2A24",
-        "label_bg": "#434343"
+        "label_bg": "#434343",
+        "grid_lines": "#444444"
     },
     "Marker Size": 10,
     "Labels": {
