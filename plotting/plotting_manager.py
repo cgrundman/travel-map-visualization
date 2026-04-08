@@ -199,10 +199,10 @@ class PlotManager:
             points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
 
         else:
-            ## Unvisited
-            #unvisited = (points['date'] > current_date) | (points['date'].isna())
-            #if unvisited.any():
-            #    points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
+            # Unvisited
+            unvisited = (points['date'] > current_date) | (points['date'].isna())
+            if unvisited.any():
+                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
 
             # Visited
             visited = points['date'] < current_date
