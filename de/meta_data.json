@@ -39,13 +39,14 @@
     },
     "Colors": {
         "bg_land": "#3B4647",
-        "bg_water": "#4C5B5C",
+        "bg_water": "#3c5c5e",
         "map_dark": "#702B2A",
         "map_light": "#bd9e39",
         "unvisited": "#e7ba52",
         "active": "#EAEAEA",
         "visited": "#A63F3B",
-        "label_bg": "#4A443A"
+        "label_bg": "#4A443A",
+        "grid_lines": "#2a4142"
     },
     "Marker Size": 75,
     "Labels": {

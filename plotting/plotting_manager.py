@@ -96,10 +96,9 @@ class PlotManager:
         ax.add_patch(rect)
 
         # Plot longitude/latitude lines
-        self.xlims
-        self.ylims
-        lat_lines = np.arange(self.ylims[0], self.ylims[1], 4)
-        long_lines = np.arange(self.xlims[0], self.xlims[1], 4)
+        intervals = int((self.xlims[1] - self.xlims[0])/4.5)
+        lat_lines = np.linspace(self.ylims[0], self.ylims[1], 15)
+        long_lines = np.linspace(self.xlims[0], self.xlims[1], 15)
         for lat_line in lat_lines:
             ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
         for long_line in long_lines:
