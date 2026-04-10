@@ -67,7 +67,8 @@
     "Cropping": [0.120, 0.020, 0.905, 0.780],
     "Plotting Area": {
         "xlims": [-12, 52],
-        "ylims": [34, 72]
+        "ylims": [34, 72],
+        "grids": [10, 15]
     },
     "Colors": {
         "bg_land": "#212121",

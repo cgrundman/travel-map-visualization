@@ -38,6 +38,7 @@ class PlotManager:
         self.crop = meta_data["Cropping"]
         self.xlims = meta_data["Plotting Area"]["xlims"]
         self.ylims = meta_data["Plotting Area"]["ylims"]
+        self.grids = meta_data["Plotting Area"]["grids"]
         self.color_unvisited = meta_data["Colors"]["unvisited"]
         self.color_active = meta_data["Colors"]["active"]
         self.color_visited = meta_data["Colors"]["visited"]
@@ -96,13 +97,13 @@ class PlotManager:
         ax.add_patch(rect)
 
         # Plot longitude/latitude lines
-        intervals = int((self.xlims[1] - self.xlims[0])/4.5)
-        lat_lines = np.linspace(self.ylims[0], self.ylims[1], 15)
-        long_lines = np.linspace(self.xlims[0], self.xlims[1], 15)
+        #intervals = int((self.xlims[1] - self.xlims[0])/4.5)
+        lat_lines = np.linspace(self.ylims[0], self.ylims[1], self.grids[0])
+        lon_lines = np.linspace(self.xlims[0], self.xlims[1], self.grids[1])
         for lat_line in lat_lines:
             ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
-        for long_line in long_lines:
-            ax.axvline(x=long_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
+        for lon_line in lon_lines:
+            ax.axvline(x=lon_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
         
         self.ratios = {}
 
