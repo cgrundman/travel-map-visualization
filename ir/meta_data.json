@@ -58,7 +58,7 @@
         "grids": [15, 15]
     },
     "Colors": {
-        "bg_land": "#002622",
+        "bg_land": "#003832",
         "bg_water": "#006FB3",
         "map_dark": "#0C184E",
         "map_light": "#1E3DC8",
