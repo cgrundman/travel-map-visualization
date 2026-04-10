@@ -11,7 +11,7 @@ from utils.file_utils import ensure_directory_exists
 # Map Directory
 # US NP | Germany | Europe | Iran |
 #  "us" |    "de" |   "eu" | "ir" |
-PATH = "us"
+PATH = "ir"
 
 small_map = True
 small_gif = False

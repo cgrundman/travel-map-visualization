@@ -54,7 +54,8 @@
     "Cropping": [0.120, 0.068, 0.905, 0.809],
     "Plotting Area": {
         "xlims": [43.5, 63.5],
-        "ylims": [24.6, 39.9]
+        "ylims": [24.6, 39.9],
+        "grids": [15, 15]
     },
     "Colors": {
         "bg_land": "#002622",
@@ -64,7 +65,8 @@
         "unvisited": "#D78A4E",
         "active": "#D8CDAB",
         "visited": "#583214",
-        "label_bg": "#4A443A"
+        "label_bg": "#4A443A",
+        "grid_lines": "#005f99"
     },
     "Marker Size": 50,
     "Labels": {
