@@ -39,17 +39,17 @@
         "grids": [15, 15]
     },
     "Colors": {
-        "bg_land": "#3B4647",
-        "bg_water": "#3c5c5e",
+        "bg_land": "#404747",
+        "bg_water": "#4e6061",
         "map_dark": "#702B2A",
         "map_light": "#bd9e39",
-        "unvisited": "#e7ba52",
+        "unvisited": "#e3bf6b",
         "active": "#EAEAEA",
-        "visited": "#A63F3B",
+        "visited": "#852d29",
         "label_bg": "#4A443A",
         "grid_lines": "#2a4142"
     },
-    "Marker Size": 75,
+    "Marker Size": 30,
     "Labels": {
         "Start Longitude": 4.7, 
         "Start Latitude": 47.2,
