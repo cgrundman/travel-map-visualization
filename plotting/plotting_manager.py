@@ -123,13 +123,18 @@ class PlotManager:
             # If list is [[lon, lat], ...]
                 coords = [(p[0], p[1]) for p in submap["BG"]]
 
+                if submap["C"] == "bg_land":
+                    color = self.bg_land
+                else:
+                    color = self.bg_water
+
                 polygon = Polygon(coords)
 
                 gdf = gpd.GeoDataFrame(geometry=[polygon])
 
                 gdf.plot(
                     ax=ax,
-                    color=self.bg_water,
+                    color=color,
                     alpha=0.8,
                     edgecolor="black",
                     linewidth=4/self.plot_scale
