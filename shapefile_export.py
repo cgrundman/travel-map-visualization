@@ -3,8 +3,8 @@ import os
 #import json
 
 IMPORT_PATH = "masters/global/"
-EXPORT_PATH = "masters/SubMaps_ADM1/"
-file_path = "geoBoundariesCGAZ_ADM1.shp"
+EXPORT_PATH = "masters/SubMaps_ADM0/"
+file_path = "geoBoundariesCGAZ_ADM0.shp"
 
 # Load shapefile
 gdf = gpd.read_file(IMPORT_PATH + file_path)
