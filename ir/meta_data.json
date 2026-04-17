@@ -62,10 +62,10 @@
         "bg_water": "#3086ba",
         "map_dark": "#0C184E",
         "map_light": "#1E3DC8",
-        "unvisited": "#D78A4E",
+        "unvisited": "#00c4ae",
         "active": "#D8CDAB",
-        "visited": "#583214",
-        "label_bg": "#4A443A",
+        "visited": "#ff1299",
+        "label_bg": "#212121",
         "grid_lines": "#2a719c"
     },
     "Marker Size": 50,
@@ -84,7 +84,7 @@
         "Scale": 0.17,
         "Radius": 0.85,
         "Linewidth": 1,
-        "Linecolor": "#C56F2D",
+        "Linecolor": "#916e82",
         "Position": {
             "x_start": 0.05,
             "y_start": 1.18,
