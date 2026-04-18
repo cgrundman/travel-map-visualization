@@ -189,8 +189,8 @@ class PlotManager:
                 )
             )
 
-            if submap["Name"] == "23":
-               print(submap_points["geometry"])
+            #if submap["Name"] == "23":
+            #   print(submap_points["geometry"])
 
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
