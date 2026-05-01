@@ -11,11 +11,11 @@ from utils.file_utils import ensure_directory_exists
 # Map Directory
 # US NP | Germany | Europe | Iran |
 #  "us" |    "de" |   "eu" | "ir" |
-PATH = "eu"
+PATH = "ir"
 
 small_map = True
-small_gif = True
-large_map = True
+small_gif = False
+large_map = False
 
 # Ensure output folders exist
 ensure_directory_exists("plots/temp")
@@ -31,7 +31,7 @@ bgmaps = BGmapsLoader(PATH).load()
 
 # Create a sorted values df
 points_sorted = points_gdf.sort_values('date')
-
+"#dd368a"
 # Generate plots
 old_date = None
 plot_manager = PlotManager(

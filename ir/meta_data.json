@@ -62,9 +62,9 @@
         "bg_water": "#3086ba",
         "map_dark": "#0C184E",
         "map_light": "#1E3DC8",
-        "unvisited": "#00c4ae",
+        "unvisited": "#65c5ba",
         "active": "#D8CDAB",
-        "visited": "#ff1299",
+        "visited": "#dd368a",
         "label_bg": "#212121",
         "grid_lines": "#2a719c"
     },
