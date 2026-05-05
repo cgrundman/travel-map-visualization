@@ -98,12 +98,12 @@ class PlotManager:
 
         # Plot longitude/latitude lines
         #intervals = int((self.xlims[1] - self.xlims[0])/4.5)
-        lat_lines = np.linspace(self.ylims[0], self.ylims[1], self.grids[0])
-        lon_lines = np.linspace(self.xlims[0], self.xlims[1], self.grids[1])
-        for lat_line in lat_lines:
-            ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
-        for lon_line in lon_lines:
-            ax.axvline(x=lon_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
+        #lat_lines = np.linspace(self.ylims[0], self.ylims[1], self.grids[0])
+        #lon_lines = np.linspace(self.xlims[0], self.xlims[1], self.grids[1])
+        #for lat_line in lat_lines:
+        #    ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
+        #for lon_line in lon_lines:
+        #    ax.axvline(x=lon_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
         
         self.ratios = {}
 
