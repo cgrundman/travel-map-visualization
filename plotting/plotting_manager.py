@@ -47,6 +47,7 @@ class PlotManager:
         self.map_dark = meta_data["Colors"]["map_dark"]
         self.map_light = meta_data["Colors"]["map_light"]
         self.bg_land = meta_data["Colors"]["bg_land"]
+        self.bg_land_border = meta_data["Colors"]["bg_land_border"]
         self.bg_water = meta_data["Colors"]["bg_water"]
         self.label_bg = meta_data["Colors"]["label_bg"]
         self.grid_lines = meta_data["Colors"]["grid_lines"]
@@ -113,7 +114,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor="black", linewidth=1/self.plot_scale, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=4/self.plot_scale, color=color, alpha=1)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -154,10 +155,10 @@ class PlotManager:
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
             self.ratios[submap["Name"]] = ratio
-            color = CustomCmap(self.map_dark, self.map_light).value(ratio)
+            color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
 
             #if submap["Retain"]:
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=0.5/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=2/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
