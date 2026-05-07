@@ -46,6 +46,7 @@ class PlotManager:
         self.labels = meta_data["Labels"]
         self.map_dark = meta_data["Colors"]["map_dark"]
         self.map_light = meta_data["Colors"]["map_light"]
+        self.map_border = meta_data["Colors"]["map_border"]
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_land_border = meta_data["Colors"]["bg_land_border"]
         self.bg_water = meta_data["Colors"]["bg_water"]
@@ -157,8 +158,7 @@ class PlotManager:
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
 
-            #if submap["Retain"]:
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=2/self.plot_scale, color=color, alpha=1)
+            #submap_gdf.plot(ax=ax, edgecolor="black", linewidth=2/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
@@ -196,7 +196,7 @@ class PlotManager:
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
-            submap_gdf.plot(ax=ax, edgecolor="black", linewidth=0.5/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=2/self.plot_scale, color=color, alpha=1)
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
