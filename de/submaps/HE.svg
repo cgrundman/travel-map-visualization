@@ -1,13 +1,119 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-	"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- This file is in the public domain (PD-Flag-Germany) -->
-<svg
-	width="1000"
-	height="600"
-	xmlns="http://www.w3.org/2000/svg"
-	viewBox="0 0 10 6">
-	<desc>Civil flag of Hesse</desc>
-	<rect height="3" width="10" fill="#E10000" x="0" y="0"/>
-	<rect height="3" width="10" fill="#FFF" x="0" y="3"/>
+<svg width="220" height="88" viewBox="0 0 220 88" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <!-- Reusable shield shape -->
+    <symbol id="shield-base" viewBox="0 0 48 65">
+      <path d="M0 0 H48 V29
+               C48 48 37 60 24 65
+               C11 60 0 48 0 29 Z"/>
+    </symbol>
+
+    <!-- Hessen shield artwork -->
+    <symbol id="hessen-shield" viewBox="0 0 48 65">
+
+      <!-- Base -->
+      <use href="#shield-base"
+           fill="#8B1E2D"
+           stroke="#D8C27A"
+           stroke-width="2"/>
+
+      <!-- Cream stripes -->
+      <g clip-path="url(#shieldClip)">
+        <rect x="0" y="9"  width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="23" width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="37" width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="51" width="48" height="7" fill="#F0E2B6"/>
+
+        <!-- Simplified lion -->
+        <path d="M22 10
+                 C15 12 12 17 13 24
+                 C9 26 8 32 12 35
+                 C9 41 13 48 20 48
+                 L20 56
+                 L25 56
+                 L25 47
+                 C33 45 37 38 34 31
+                 C39 29 39 22 34 19
+                 C35 14 30 10 22 10 Z"
+              fill="none"
+              stroke="#F0E2B6"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+
+        <!-- Lion extensions -->
+        <path d="M16 20 L8 14
+                 M31 21 L40 15
+                 M16 38 L8 46
+                 M31 38 L40 45"
+              fill="none"
+              stroke="#F0E2B6"
+              stroke-width="3"
+              stroke-linecap="round"/>
+      </g>
+
+      <!-- Inner highlight -->
+      <use href="#shield-base"
+           fill="none"
+           stroke="#F0E2B6"
+           stroke-width="1"
+           opacity="0.25"/>
+
+    </symbol>
+
+    <!-- Clip path -->
+    <clipPath id="shieldClip">
+      <path d="M0 0 H48 V29
+               C48 48 37 60 24 65
+               C11 60 0 48 0 29 Z"/>
+    </clipPath>
+
+  </defs>
+  <!-- Card background -->
+  <rect x="0" y="0" width="220" height="88" fill="#2B3134"/>
+  <rect x="2" y="2" width="216" height="84" rx="0" fill="#2B3134" stroke="#8F7A4F" stroke-width="1"/>
+
+  <!-- Shield shadow -->
+  <use href="#shield-base"
+       x="17"
+       y="14"
+       width="48"
+       height="65"
+       fill="#111315"
+       opacity="0.35"/>
+
+  <!-- Hessen shield -->
+  <use href="#hessen-shield"
+       x="15"
+       y="12"
+       width="48"
+       height="65"/>
+
+  <!-- Text -->
+  <text x="75" y="30"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="18"
+        font-weight="700"
+        letter-spacing="1.4"
+        fill="#F0E2B6">
+    NORDRHEIN-
+  </text>
+  <text x="75" y="50"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="18"
+        font-weight="700"
+        letter-spacing="1.4"
+        fill="#F0E2B6">
+    WESTFALIA
+  </text>
+
+  <text x="75" y="70"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="13"
+        font-weight="400"
+        letter-spacing="0.5"
+        fill="#CBB98A">
+    WIESBADEN
+  </text>
 </svg>

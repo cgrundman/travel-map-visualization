@@ -1,32 +1,119 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400">
-<rect width="600" height="400" fill="#da121a"/>
-<g stroke="#000">
-<g fill="#fff">
-<g stroke-width="1.2">
-<path d="m309.3 75.37s0.5078-8.848-7.287-10.24v-9.525h6.27v-4.067h-6.27v-5.204h-3.886v5.204h-6.27v4.067h6.27v9.525c-7.795 1.391-7.287 10.24-7.287 10.24"/>
-<path d="m277.9 94.91h44.14c1e-7 -11.98-11.11-21.58-22.07-21.58s-22.07 9.6-22.07 21.58z"/>
-<path d="m322.9 105.5 2.5-0.853v-9.747h-50.73v9.747l2.5 0.853z"/>
-<path d="m322.4 200.6v-95.11h-44.85v95.11"/>
-</g>
-<path d="m207.9 276.7c7.371-33.4 4.699-66.48 4.699-66.48h174.8s-2.672 33.08 4.699 66.48c7.999 36.26 15.17 48.8 15.17 48.8v14.59h-214.5l-0.019-14.59s7.148-12.54 15.15-48.8z"/>
-</g>
-<g id="b" fill="none">
-<g stroke-width="1.2" fill="#fff">
-<path d="m233.9 82.39h8.365v11.13h5.4v-11.13h8.688v11.13h5.717v-11.13h8.319v21.92l-2.792 1.205h-45.46l-3.361-1.205v-21.92h8.745v11.13h6.383z"/>
-<path d="m222.1 105.5h45.4v96.43h-45.4z"/>
-<path d="m232.6 69.3 4.12-7.13-4.12-7.13h8.24l4.12-7.13 4.12 7.13h8.24l-4.12 7.13 4.12 7.13h-8.24l-4.12 7.14-4.12-7.14z"/>
-<path d="m301 185.4h-8.031v13.06h-13.05v-13.06h-14.34v13.06h-11.96v-13.06h-13.88v13.06h-11.87v-13.06h-16.17v24.74l3.852 0.9395h85.45"/>
-</g>
-<path stroke-width="2" d="m222.1 106h45.36"/>
-<path stroke-width="2.5" d="m266.4 340.1v-73.78c0-6.687 9.045-30.81 33.6-30.81"/>
-<path d="m277 340.1v-69.84c0-11.39 9.074-24.43 23-24.43"/>
-<path id="a" fill="#000" d="m283.9 321.3c0-3.16 1.18-3.16 2.1-3.16 0.93 0-0.11 1.27-0.11 3s1 3.3 0.11 3.3-2.1-0.28-2.1-3.16zm-6.9-0.1h6.451"/>
-<path stroke-width="2" d="m193 325.5h73"/>
-<use xlink:href="#a" y="-50"/>
-</g>
-<use xlink:href="#b" transform="matrix(-1,0,0,1,600,0)"/>
-<path d="m212.2 210.2h175.6m-110-104.2h44.16" stroke-width="2"/>
-<path d="m300 245.8v94.27"/>
-</g>
+<svg width="220" height="88" viewBox="0 0 220 88" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <!-- Reusable shield shape -->
+    <symbol id="shield-base" viewBox="0 0 48 65">
+      <path d="M0 0 H48 V29
+               C48 48 37 60 24 65
+               C11 60 0 48 0 29 Z"/>
+    </symbol>
+
+    <!-- Hessen shield artwork -->
+    <symbol id="hessen-shield" viewBox="0 0 48 65">
+
+      <!-- Base -->
+      <use href="#shield-base"
+           fill="#8B1E2D"
+           stroke="#D8C27A"
+           stroke-width="2"/>
+
+      <!-- Cream stripes -->
+      <g clip-path="url(#shieldClip)">
+        <rect x="0" y="9"  width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="23" width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="37" width="48" height="7" fill="#F0E2B6"/>
+        <rect x="0" y="51" width="48" height="7" fill="#F0E2B6"/>
+
+        <!-- Simplified lion -->
+        <path d="M22 10
+                 C15 12 12 17 13 24
+                 C9 26 8 32 12 35
+                 C9 41 13 48 20 48
+                 L20 56
+                 L25 56
+                 L25 47
+                 C33 45 37 38 34 31
+                 C39 29 39 22 34 19
+                 C35 14 30 10 22 10 Z"
+              fill="none"
+              stroke="#F0E2B6"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+
+        <!-- Lion extensions -->
+        <path d="M16 20 L8 14
+                 M31 21 L40 15
+                 M16 38 L8 46
+                 M31 38 L40 45"
+              fill="none"
+              stroke="#F0E2B6"
+              stroke-width="3"
+              stroke-linecap="round"/>
+      </g>
+
+      <!-- Inner highlight -->
+      <use href="#shield-base"
+           fill="none"
+           stroke="#F0E2B6"
+           stroke-width="1"
+           opacity="0.25"/>
+
+    </symbol>
+
+    <!-- Clip path -->
+    <clipPath id="shieldClip">
+      <path d="M0 0 H48 V29
+               C48 48 37 60 24 65
+               C11 60 0 48 0 29 Z"/>
+    </clipPath>
+
+  </defs>
+  <!-- Card background -->
+  <rect x="0" y="0" width="220" height="88" fill="#2B3134"/>
+  <rect x="2" y="2" width="216" height="84" rx="0" fill="#2B3134" stroke="#8F7A4F" stroke-width="1"/>
+
+  <!-- Shield shadow -->
+  <use href="#shield-base"
+       x="17"
+       y="14"
+       width="48"
+       height="65"
+       fill="#111315"
+       opacity="0.35"/>
+
+  <!-- Hessen shield -->
+  <use href="#hessen-shield"
+       x="15"
+       y="12"
+       width="48"
+       height="65"/>
+
+  <!-- Text -->
+  <text x="75" y="30"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="18"
+        font-weight="700"
+        letter-spacing="1.4"
+        fill="#F0E2B6">
+    NORDRHEIN-
+  </text>
+  <text x="75" y="50"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="18"
+        font-weight="700"
+        letter-spacing="1.4"
+        fill="#F0E2B6">
+    WESTFALIA
+  </text>
+
+  <text x="75" y="70"
+        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-size="13"
+        font-weight="400"
+        letter-spacing="0.5"
+        fill="#CBB98A">
+    WIESBADEN
+  </text>
 </svg>

@@ -2,9 +2,9 @@ import os
 import cairosvg
 from PIL import Image, ImageDraw
 
-PATH = "ir"
-RADIUS = 30  # Corner rounding radius in pixels
-CROP_WIDTH, CROP_HEIGHT = 300, 200  # Desired output size
+PATH = "de"
+RADIUS = 0  # Corner rounding radius in pixels
+CROP_WIDTH, CROP_HEIGHT = 1000, 400  # Desired output size
 
 def round_corners(im: Image.Image, radius: int) -> Image.Image:
     """
@@ -33,7 +33,7 @@ for file in svg_files:
     cairosvg.svg2png(
         url=svg_path,
         write_to=png_path,
-        output_height=200
+        output_height=400
     )
 
     # Open image and crop from center

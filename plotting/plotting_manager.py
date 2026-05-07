@@ -47,6 +47,7 @@ class PlotManager:
         self.map_dark = meta_data["Colors"]["map_dark"]
         self.map_light = meta_data["Colors"]["map_light"]
         self.map_border = meta_data["Colors"]["map_border"]
+        self.bg = meta_data["Colors"]["bg"]
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_land_border = meta_data["Colors"]["bg_land_border"]
         self.bg_water = meta_data["Colors"]["bg_water"]
@@ -78,7 +79,7 @@ class PlotManager:
             ), 
             dpi=100*self.plot_scale
         )
-        fig.patch.set_facecolor("#FF000000")
+        fig.patch.set_facecolor(self.bg)
         #fig.patch.set_facecolor('#3C4048')
         return fig, ax
 
@@ -247,7 +248,7 @@ class PlotManager:
 
             ratio = self.ratios[file[:2]]
             #ratio=1
-            if ratio == 1:
+            if ratio > 1:
                 frameon = True
 
             # Create color image
