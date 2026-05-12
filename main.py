@@ -11,10 +11,10 @@ from utils.file_utils import ensure_directory_exists
 # Map Directory
 # US NP | Germany | Europe | Iran |
 #  "us" |    "de" |   "eu" | "ir" |
-PATH = "de"
+PATH = "eu"
 
-small_map = True
-small_gif = True
+small_map = False
+small_gif = False
 large_map = True
 
 # Ensure output folders exist
