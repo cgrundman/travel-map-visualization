@@ -97,7 +97,7 @@
         font-weight="700"
         letter-spacing="1.4"
         fill="#F0E2B6">
-    NORDRHEIN-
+    MECKLENBURG-
   </text>
   <text x="75" y="50"
         font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
@@ -105,7 +105,7 @@
         font-weight="700"
         letter-spacing="1.4"
         fill="#F0E2B6">
-    WESTFALIA
+    VORPOMMERN
   </text>
 
   <text x="75" y="70"
@@ -114,6 +114,6 @@
         font-weight="400"
         letter-spacing="0.5"
         fill="#CBB98A">
-    WIESBADEN
+    SCHWERIN
   </text>
 </svg>
