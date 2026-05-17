@@ -209,17 +209,17 @@ class PlotManager:
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=0, markersize=self.marker_size, alpha=1)
+                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color=self.color_visited, linewidth=0, markersize=self.marker_size, alpha=1)
+                points[visited].plot(ax=ax, color=self.color_visited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.color_active, linewidth=0, markersize=self.marker_size, alpha=1)
+                points[active].plot(ax=ax, color=self.color_active, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
 
     def _plot_labels(self, ax, current_date, points):
         plot_location_labels(
