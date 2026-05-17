@@ -92,24 +92,24 @@
 
   <!-- Text -->
   <text x="75" y="30"
-        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
-        font-size="18"
+        font-family="'D-DIN', 'DIN 1451', sans-serif"
+        font-size="16"
         font-weight="700"
-        letter-spacing="1.4"
+        letter-spacing="1"
         fill="#F0E2B6">
     SAARLAND
   </text>
   <text x="75" y="50"
-        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
-        font-size="18"
+        font-family="'D-DIN', 'DIN 1451', sans-serif"
+        font-size="16"
         font-weight="700"
-        letter-spacing="1.4"
+        letter-spacing="1"
         fill="#F0E2B6">
     
   </text>
 
   <text x="75" y="70"
-        font-family="Futura, 'Futura PT', 'Trebuchet MS', sans-serif"
+        font-family="'D-DIN', 'DIN 1451', sans-serif"
         font-size="13"
         font-weight="400"
         letter-spacing="0.5"
