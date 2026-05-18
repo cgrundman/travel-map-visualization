@@ -1,4 +1,4 @@
-submap,latitude,longitude,label_latitude,label_longitude,date,name
+submap,latitude,longitude,label_latitude,label_longitude,date,name,اسم
 04,39.092464,44.543674,39.092464,44.543674,,St. Thaddeus monastery
 03,38.978809,45.472961,38.928809,45.272961,20210904,Monastery of Saint Stepanos
 03,38.838861,46.978220,38.838861,46.978220,,Babak Fort
@@ -194,7 +194,7 @@ submap,latitude,longitude,label_latitude,label_longitude,date,name
 21,31.907291,54.368916,32.148188,54.608947,,Subterranean Persian Qanat Of Zarch
 21,31.905002,54.370494,32.147630,54.624005,,Alexander's Prison
 21,31.901820,54.353332,32.151370,54.382666,,Dowlat Abad Garden
-21,31.901708,54.370494,32.127531,54.385494,,Old City of Yazd
+21,31.901708,54.370494,32.127531,54.385494,,Old City of Yazd,بافت قدیم شهر یزد
 21,31.901262,54.368390,32.139997,54.625523,,Yazd Grand Mosque
 21,31.893629,54.369908,32.153659,54.624531,,Amir Chakhmagh Complex
 21,31.881163,54.373322,32.148077,54.382666,,Zoroastrian Fire Temple of Yazd
