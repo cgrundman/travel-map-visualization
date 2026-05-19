@@ -43,7 +43,7 @@
 
   <!-- Shield shadow -->
   <use href="#shield-base"
-       x="8"
+       x="7"
        y="8"
        width="48"
        height="65"
