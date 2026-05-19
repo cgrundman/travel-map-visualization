@@ -1,10 +1,5 @@
-<svg width="220" height="88" viewBox="0 0 220 88" xmlns="http://www.w3.org/2000/svg">
-
-  <defs>
-
-    <!-- Reusable shield shape -->
-    <symbol id="shield-base" viewBox="0 0 48 65" xmlns:xlink="http://www.w3.org/1999/xlink">
-     <use transform="matrix(-.2372 0 0 .2372 36.49 .1258)" xlink:href="#a"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 29.2 39">
+  <use transform="matrix(-.2372 0 0 .2372 36.49 .1258)" xlink:href="#a"/>
   <g id="c" transform="translate(-20.93 .1258) scale(.2372)">
     <g id="a">
       <path fill="#fd0" d="M136.6 37.66h-16.2l.5-36.74 1.42-.21627 1.28 1.2653.6 1.312 1.7.407.8 1.218v2.032l-1.7-.219-1.1.781-.2 1.313 1.5 1.437 1.6-.77.8-1.667h1.1l.9.781.4 1.706 1.7.33.9 2-.7 1.78-1.2.56-1 .06-.9 1.66-2.1.53v-1.72l-.7-1.16-1.4-.06-1.2 1.22.1 2.81.5 1.72 1.9 2.03 3.1.63h3l1.8-.25c.7-.67 1.7-2.36 1.7-2.36"/>
@@ -43,60 +38,4 @@
   <g fill="none" stroke="#000" stroke-width=".3019">
     <path id="b" d="M1.614 9.855v17.58s.031 2.02.113 2.8c.085.77.171 1.92.467 2.77.151.45.42 1.17.89 1.92.284.46.673.94 1.175 1.32.597.46.9.64 1.336.84.63.29.864.36 1.338.49.514.13.98.21 1.424.25.482.05.98.07 1.377.09.446.02 1.556.05 1.886.05h5.94c.33 0 1.43-.03 1.88-.05.39-.02.89-.04 1.37-.09.45-.04.91-.12 1.43-.25.47-.13.71-.19 1.34-.49.43-.2.74-.38 1.33-.84.5-.38.89-.86 1.18-1.32.47-.75.73-1.47.89-1.92.3-.85.38-2 .46-2.77.09-.78.12-2.8.12-2.8V9.855z"/>
   </g>
-    </symbol>
-
-    <!-- Clip path -->
-    <clipPath id="shieldClip">
-      <path d="M0 0 H48 V29
-               C48 48 37 60 24 65
-               C11 60 0 48 0 29 Z"/>
-    </clipPath>
-
-  </defs>
-  <!-- Card background -->
-  <rect x="0" y="0" width="220" height="88" fill="#2B3134"/>
-  <rect x="2" y="2" width="216" height="84" rx="0" fill="#2B3134" stroke="#8F7A4F" stroke-width="1"/>
-
-  <!-- Shield shadow -->
-  <use href="#shield-base"
-       x="7"
-       y="5"
-       width="48"
-       height="65"
-       fill="#111315"
-       transform="scale(1.8)"/>
-
-  <!-- Hessen shield -->
-  <use href="#hessen-shield"
-       x="15"
-       y="12"
-       width="48"
-       height="65"/>
-
-  <!-- Text -->
-  <text x="75" y="30"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="16"
-        font-weight="700"
-        letter-spacing="1"
-        fill="#F0E2B6">
-    BAYERN
-  </text>
-  <text x="75" y="50"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="16"
-        font-weight="700"
-        letter-spacing="1"
-        fill="#F0E2B6">
-    
-  </text>
-
-  <text x="75" y="70"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="13"
-        font-weight="400"
-        letter-spacing="0.5"
-        fill="#CBB98A">
-    MÜNCHEN
-  </text>
 </svg>
