@@ -63,6 +63,7 @@ class PlotManager:
         fig, ax = self._initialize_plot()
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_submaps(ax, current_date)
+        self._plot_title(ax)
         if self.plot_scale >= 3:
             self._plot_labels(ax, current_date, points=self.points_working)
         else:
@@ -80,8 +81,30 @@ class PlotManager:
             dpi=100*self.plot_scale
         )
         fig.patch.set_facecolor(self.bg)
-        #fig.patch.set_facecolor('#3C4048')
         return fig, ax
+    
+    def _plot_title(self, ax):
+
+        ax.text(
+            self.title[1],                     # x position in axes coords
+            self.title[2],                     # y position in axes coords
+            self.title[0],
+
+            transform=ax.transAxes,
+
+            fontsize=18,
+            fontfamily="EB Garamond",
+            fontweight=600,
+
+            color="#F0E2B6",
+
+            ha="left",
+            va="top",
+
+            zorder=1000,
+
+            alpha=0.95
+        )
 
     def _plot_submaps(self, ax, current_date):
 
@@ -98,15 +121,6 @@ class PlotManager:
             alpha=1
         )
         ax.add_patch(rect)
-
-        # Plot longitude/latitude lines
-        #intervals = int((self.xlims[1] - self.xlims[0])/4.5)
-        #lat_lines = np.linspace(self.ylims[0], self.ylims[1], self.grids[0])
-        #lon_lines = np.linspace(self.xlims[0], self.xlims[1], self.grids[1])
-        #for lat_line in lat_lines:
-        #    ax.axhline(y=lat_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
-        #for lon_line in lon_lines:
-        #    ax.axvline(x=lon_line, linewidth=2/math.sqrt(self.plot_scale), color=self.grid_lines, zorder=1)
         
         self.ratios = {}
 
@@ -159,7 +173,7 @@ class PlotManager:
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
 
-            #submap_gdf.plot(ax=ax, edgecolor="black", linewidth=2/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=2/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
