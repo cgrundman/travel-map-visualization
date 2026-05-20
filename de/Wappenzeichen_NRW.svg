@@ -1,10 +1,14 @@
-<svg width="220" height="88" viewBox="0 0 220 88" xmlns="http://www.w3.org/2000/svg">
-
-  <defs>
-
-    <!-- Reusable shield shape -->
-    <symbol id="shield-base" viewBox="0 0 400 450">
-      <defs
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.0"
+   width="406pt"
+   height="426pt"
+   viewBox="0 0 406 426"
+   id="svg2">
+  <defs
      id="defs4">
     <clipPath
        id="clip0">
@@ -95,53 +99,4 @@
          id="blume_s" />
     </g>
   </g>
-    </symbol>
-
-    <!-- Clip path -->
-    <clipPath id="shieldClip">
-      <path d="M0 0 H48 V29
-               C48 48 37 60 24 65
-               C11 60 0 48 0 29 Z"/>
-    </clipPath>
-
-  </defs>
-  <!-- Card background -->
-  <rect x="0" y="0" width="220" height="88" fill="#2B3134"/>
-  <rect x="2" y="2" width="216" height="84" rx="0" fill="#2B3134" stroke="#8F7A4F" stroke-width="1"/>
-
-  <!-- Shield shadow -->
-  <use href="#shield-base"
-       x="8"
-       y="6"
-       width="48"
-       height="65"
-       fill="#111315"
-       transform="scale(1.2)"/>
-
-  <!-- Text -->
-  <text x="75" y="30"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="16"
-        font-weight="700"
-        letter-spacing="1"
-        fill="#F0E2B6">
-    NORDRHEIN-
-  </text>
-  <text x="75" y="50"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="16"
-        font-weight="700"
-        letter-spacing="1"
-        fill="#F0E2B6">
-    WESTFALIA
-  </text>
-
-  <text x="75" y="70"
-        font-family="'D-DIN', 'DIN 1451', sans-serif"
-        font-size="13"
-        font-weight="400"
-        letter-spacing="0.5"
-        fill="#CBB98A">
-    DÜSSELDORF
-  </text>
 </svg>
