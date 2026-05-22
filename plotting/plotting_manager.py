@@ -96,7 +96,7 @@ class PlotManager:
             fontfamily="EB Garamond",
             fontweight=600,
 
-            color="#F0E2B6",
+            color=self.title[3],
 
             ha="left",
             va="top",
@@ -130,7 +130,7 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=4/self.plot_scale, color=color, alpha=1)
+            bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=1/self.plot_scale, color=color, alpha=1)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -173,7 +173,7 @@ class PlotManager:
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
 
-            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=2/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
 
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
@@ -211,7 +211,28 @@ class PlotManager:
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
-            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=2/self.plot_scale, color=color, alpha=1)
+            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
+
+            ax.text(
+                submap["Loc"][0], 
+                submap["Loc"][1],
+                submap["Label"],
+
+                transform=ax.transAxes,
+
+                fontsize=12,
+                fontfamily="EB Garamond",
+                fontweight=400,
+
+                color=self.title[3],
+
+                ha="left",
+                va="top",
+
+                zorder=1000,
+
+                alpha=0.95
+            )
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
