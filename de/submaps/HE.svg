@@ -4,7 +4,7 @@
     <symbol  id="shield-base"  viewBox="0 0 60 550">
       <pattern id="a" height="76.78" patternTransform="translate(10 151.5)" patternUnits="userSpaceOnUse" width="360">
         <path d="m.01 0h359.99l-.01 38.39h-359.99z" fill="#e10000"/>
-        <path d="m.01 38.39h359.99l-.01 38.39h-359.99z" fill="#fff"/>
+        <path d="m.01 38.39h359.99l-.01 38.39h-359.99z" fill="#F0E2B6"/>
       </pattern>
       <use stroke="#000" stroke-width="4.8" xlink:href="#e"/>
       <g fill="#00529f">
