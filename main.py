@@ -3,7 +3,7 @@ import datetime
 
 from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
-from data.bgmaps_loader import BGmapsLoader
+#from data.bgmaps_loader import BGmapsLoader
 from plotting.plotting_manager import PlotManager
 from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
@@ -27,7 +27,7 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = meta_data["Submaps"]
 expansions = meta_data["Expansions"]
-bgmaps = BGmapsLoader(PATH).load()
+bgmaps = meta_data["Backgound Maps"]
 
 # Create a sorted values df
 points_sorted = points_gdf.sort_values('date')

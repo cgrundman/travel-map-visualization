@@ -103,7 +103,7 @@ class PlotManager:
 
             zorder=1000,
 
-            alpha=0.95
+            alpha=1
         )
 
     def _plot_submaps(self, ax, current_date):
@@ -128,9 +128,28 @@ class PlotManager:
         for bgmap in self.bgmaps:
             color = self.bg_land
 
-            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
+            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap["Name"]}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
             bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=1/self.plot_scale, color=color, alpha=1)
+
+            ax.text(
+                bgmap["Label"][0], 
+                bgmap["Label"][1],
+                bgmap["Label"][2].upper(),
+
+                transform=ax.transAxes,
+
+                fontsize=15,
+                fontfamily="EB Garamond",
+                fontweight=600,
+
+                color="#4E4A42",
+
+                ha="left",
+                va="top",
+
+                zorder=1000
+            )
         
         # Submap Plotting
         for submap in self.submaps:
@@ -230,8 +249,6 @@ class PlotManager:
                 va="top",
 
                 zorder=1000,
-
-                alpha=0.95
             )
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
