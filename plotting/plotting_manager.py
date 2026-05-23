@@ -51,6 +51,7 @@ class PlotManager:
         self.bg_land = meta_data["Colors"]["bg_land"]
         self.bg_land_border = meta_data["Colors"]["bg_land_border"]
         self.bg_water = meta_data["Colors"]["bg_water"]
+        self.bg_water_border = meta_data["Colors"]["bg_water_border"]
         self.label_bg = meta_data["Colors"]["label_bg"]
         self.grid_lines = meta_data["Colors"]["grid_lines"]
 
@@ -130,7 +131,32 @@ class PlotManager:
 
             shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap["Name"]}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=1/self.plot_scale, color=color, alpha=1)
+            #bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=1/self.plot_scale, color=color, alpha=1)
+            # Base fill
+            bgmap_gdf.plot(
+                ax=ax,
+                facecolor=color,
+                edgecolor="none",
+                zorder=3
+            )
+
+            # Inward soft border layers
+            for lw, alpha in [
+                (5/self.plot_scale, 0.08),
+                (3/self.plot_scale, 0.14),
+                (1/self.plot_scale, 0.22),
+            ]:
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(0.05, 0.05, 0.05, alpha), linewidth=lw, zorder=4)
+
+            for lw, alpha in [
+                (16/self.plot_scale, 0.08),
+                (12/self.plot_scale, 0.13),
+                (8/self.plot_scale, 0.18),
+                (4/self.plot_scale, 0.35),
+                (2/self.plot_scale, 1.0),
+            ]:
+            # Crisp final border
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.bg_water_border, alpha), linewidth=lw, zorder=1)
 
             ax.text(
                 bgmap["Label"][0], 
@@ -175,7 +201,8 @@ class PlotManager:
                     color=color,
                     alpha=0.8,
                     edgecolor="black",
-                    linewidth=4/self.plot_scale
+                    linewidth=4,
+                    zorder=3
                 )
 
             map_i = submap["Name"]
@@ -226,13 +253,43 @@ class PlotManager:
                 )
             )
 
-            if submap["Name"] == "23":
-               print(submap_points["geometry"])
+            #if submap["Name"] == "23":
+            #   print(submap_points["geometry"])
 
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
-            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
+            #submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1, zorder=5)
+            # Base fill
+            submap_gdf.plot(
+                ax=ax,
+                facecolor=color,
+                edgecolor="none",
+                zorder=5
+            )
+
+            # Inward soft border layers
+            for lw, alpha in [
+                (3, 0.08),
+                (2, 0.18),
+                (1, 0.22),
+            ]:
+                submap_gdf.plot(
+                    ax=ax,
+                    facecolor="none",
+                    edgecolor=("#3A3126", alpha),
+                    linewidth=lw,
+                    zorder=5
+                )
+
+            # Crisp final border
+            submap_gdf.plot(
+                ax=ax,
+                facecolor="none",
+                edgecolor="#3A3126",
+                linewidth=1.2,
+                zorder=5
+            )
 
             for i, text in enumerate(submap["Label"]):
 
@@ -265,17 +322,17 @@ class PlotManager:
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
+                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=6)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color=self.color_visited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
+                points[visited].plot(ax=ax, color=self.color_visited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=6)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.color_active, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1)
+                points[active].plot(ax=ax, color=self.color_active, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=6)
 
     def _plot_labels(self, ax, current_date, points):
         plot_location_labels(
