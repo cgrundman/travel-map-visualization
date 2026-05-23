@@ -139,7 +139,9 @@ class PlotManager:
 
                 transform=ax.transAxes,
 
-                fontsize=15,
+                rotation=bgmap["Label"][3],
+
+                fontsize=12,
                 fontfamily="EB Garamond",
                 fontweight=600,
 
@@ -232,24 +234,26 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
 
-            ax.text(
-                submap["Loc"][0], 
-                submap["Loc"][1],
-                submap["Label"],
+            for i, text in enumerate(submap["Label"]):
 
-                transform=ax.transAxes,
+                ax.text(
+                    submap["Loc"][0], 
+                    submap["Loc"][1]-i*.015,
+                    text,
 
-                fontsize=12,
-                fontfamily="EB Garamond",
-                fontweight=400,
+                    transform=ax.transAxes,
 
-                color=self.title[3],
+                    fontsize=10,
+                    fontfamily="EB Garamond",
+                    fontweight=400,
 
-                ha="left",
-                va="top",
+                    color=self.title[3],
 
-                zorder=1000,
-            )
+                    ha="left",
+                    va="top",
+
+                    zorder=1000,
+                )
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
