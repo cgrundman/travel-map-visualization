@@ -223,6 +223,13 @@ class PlotManager:
 
             submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
 
+            submap_gdf.plot(
+                ax=ax,
+                facecolor=color,
+                edgecolor="none",
+                zorder=4
+            )
+
             # Scale and Shift Map
             submap_gdf["geometry"] = submap_gdf["geometry"].apply(
                 lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
