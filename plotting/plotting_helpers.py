@@ -31,7 +31,7 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
             [point_lat, lat],
             linewidth=0.5,
             color="gray",
-            zorder=1
+            zorder=6
         )
 
         txt = ax.text(
@@ -47,7 +47,8 @@ def plot_location_labels(ax, locations_df, current_date, labels_config, scale, c
                 facecolor=label_bg,
                 #alpha=0.8,
                 edgecolor="none"
-            )
+            ),
+            zorder=6
         )
 
         texts.append(txt)
