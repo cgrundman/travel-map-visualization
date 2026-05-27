@@ -94,7 +94,7 @@ class PlotManager:
             transform=ax.transAxes,
 
             fontsize=18,
-            fontfamily="EB Garamond",
+            fontfamily="DejaVu Sans",
             fontweight=600,
 
             color=self.title[3],
@@ -168,7 +168,7 @@ class PlotManager:
                 rotation=bgmap["Label"][3],
 
                 fontsize=12,
-                fontfamily="EB Garamond",
+                fontfamily="DejaVu Sans",
                 fontweight=600,
 
                 color="#4E4A42",
@@ -308,7 +308,7 @@ class PlotManager:
                     transform=ax.transAxes,
 
                     fontsize=10,
-                    fontfamily="EB Garamond",
+                    fontfamily="DejaVu Sans",
                     fontweight=400,
 
                     color=self.title[3],
