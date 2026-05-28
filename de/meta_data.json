@@ -19,7 +19,7 @@
         {"Name": "TH", "Color": "#5D6F6A", "Scale": [1, 1], "Shift": [0,  0], "Label": ["THURINGEN"], "Loc": [0.48, 0.44]}
     ],
     "Backgound Maps": [
-        {"Name": "AT", "Label": [0.7, 0.03, "Österreich", 0]},
+        {"Name": "AT", "Label": [0.81, 0.12, "Österreich", 0]},
         {"Name": "BE", "Label": [0.005, 0.45, "Belgien", 90]},
         {"Name": "CH", "Label": [0.23, 0.03, "Schweiz", 0]},
         {"Name": "CZ", "Label": [0.83, 0.25, "Czechia", 0]},
