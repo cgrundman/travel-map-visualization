@@ -93,9 +93,9 @@ class PlotManager:
 
             transform=ax.transAxes,
 
-            fontsize=18,
-            fontfamily="DejaVu Sans",
-            fontweight=600,
+            fontsize=self.title[4],
+            fontfamily=self.title[5],
+            fontweight=self.title[6],
 
             color=self.title[3],
 

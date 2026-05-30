@@ -1,5 +1,5 @@
 {
-    "Title": ["DEUTSCHLAND", 0.01, 0.99, "#1E1F1C"],
+    "Title": ["DEUTSCHLAND", 0.01, 0.99, "#1E1F1C", 18, "DejaVu Sans", 600],
     "Submaps": [
         {"Name": "BB", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0], "Label": ["BRANDENBURG"], "Loc": [0.74, 0.64]},
         {"Name": "BE", "Color": "#6F4A4A", "Scale": [3, 3], "Shift": [-26.1,  -107.6], "BG": [[15.5, 49.35],[13.1, 49.35],[13.1, 50.45],[15.5, 50.45]], "C": "bg_land", "Label": ["BERLIN"], "Loc": [0.85, 0.33]},
@@ -45,7 +45,7 @@
         "bg_land_border": "#1E1F1C",
         "bg_water": "#d6d6c3",
         "bg_water_border": "#6c8fa3",
-        "map_dark": "#968966",
+        "map_dark": "#c2b593",
         "map_light": "#bd9e39",
         "map_border": "#4B4335",
         "unvisited": "#D6B46A",
