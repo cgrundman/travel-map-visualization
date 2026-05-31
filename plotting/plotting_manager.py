@@ -33,7 +33,7 @@ class PlotManager:
 
 
         # Extract metadata fields for plotting
-        self.title = meta_data["Title"]
+        self.text = meta_data["Text"]
         self.fig_size = meta_data["Figure Size"]
         self.crop = meta_data["Cropping"]
         self.xlims = meta_data["Plotting Area"]["xlims"]
@@ -64,7 +64,8 @@ class PlotManager:
         fig, ax = self._initialize_plot()
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_submaps(ax, current_date)
-        self._plot_title(ax)
+        for text in self.text:
+            self._plot_title(ax, text)
         if self.plot_scale >= 3:
             self._plot_labels(ax, current_date, points=self.points_working)
         else:
@@ -84,20 +85,20 @@ class PlotManager:
         fig.patch.set_facecolor(self.bg)
         return fig, ax
     
-    def _plot_title(self, ax):
+    def _plot_title(self, ax, text):
 
         ax.text(
-            self.title[1],                     # x position in axes coords
-            self.title[2],                     # y position in axes coords
-            self.title[0],
+            text["x"],                     # x position in axes coords
+            text["y"],                     # y position in axes coords
+            text["text"],
 
             transform=ax.transAxes,
 
-            fontsize=self.title[4],
-            fontfamily=self.title[5],
-            fontweight=self.title[6],
+            fontsize=text["size"],
+            fontfamily=text["font"],
+            fontweight=text["weight"],
 
-            color=self.title[3],
+            color=text["color"],
 
             ha="left",
             va="top",
@@ -158,26 +159,20 @@ class PlotManager:
             # Crisp final border
                 bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.bg_water_border, alpha), linewidth=lw, zorder=1)
 
-            ax.text(
-                bgmap["Label"][0], 
-                bgmap["Label"][1],
-                bgmap["Label"][2].upper(),
-
-                transform=ax.transAxes,
-
-                rotation=bgmap["Label"][3],
-
-                fontsize=12,
-                fontfamily="DejaVu Sans",
-                fontweight=600,
-
-                color="#4E4A42",
-
-                ha="left",
-                va="top",
-
-                zorder=1000
-            )
+            #ax.text(
+            #    bgmap["Label"][0], 
+            #    bgmap["Label"][1],
+            #    bgmap["Label"][2].upper(),
+            #    transform=ax.transAxes,
+            #    rotation=bgmap["Label"][3],
+            #    fontsize=12,
+            #    fontfamily="DejaVu Sans",
+            #    fontweight=600,
+            #    color="#4E4A42",
+            #    ha="left",
+            #    va="top",
+            #    zorder=1000
+            #)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -311,7 +306,7 @@ class PlotManager:
                     fontfamily="DejaVu Sans",
                     fontweight=400,
 
-                    color=self.title[3],
+                    color="#1E1F1C",
 
                     ha="left",
                     va="top",
