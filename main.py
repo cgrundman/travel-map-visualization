@@ -27,7 +27,7 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = meta_data["Submaps"]
 expansions = meta_data["Expansions"]
-bgmaps = meta_data["Backgound Maps"]
+bgmaps = meta_data["Background Maps"]
 
 # Create a sorted values df
 points_sorted = points_gdf.sort_values('date')
