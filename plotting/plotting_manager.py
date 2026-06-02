@@ -24,6 +24,16 @@ from colormap.cmap_maker import CustomCmap
 
 random.seed(5)
 
+#1. background
+#2. background_maps
+#3. main_maps / submaps
+#4. expansions / insets
+#5. grid
+#6. points
+#7. state_labels
+#8. text_annotations
+#9. flags / legend / title
+
 class PlotManager:
     def __init__(self, points_gdf, submaps, expansions, bgmaps, meta_data, path, scale):
         self.points_gdf = points_gdf
@@ -33,7 +43,6 @@ class PlotManager:
         self.meta_data = meta_data
         self.path = path
         self.plot_scale = scale
-
 
         # Extract metadata fields for plotting
         self.text = meta_data["Text"]
@@ -67,10 +76,10 @@ class PlotManager:
         fig, ax = self._initialize_plot()
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_submaps(ax, current_date)
-        for text in self.text:
-            self._plot_title(ax, text)
+        
+        self._plot_text(ax, self.text, zorder=1000)
         if self.plot_scale >= 3:
-            self._plot_labels(ax, current_date, points=self.points_working)
+            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.color_unvisited, self.color_visited, self.color_active, self.label_bg)
         else:
             self._plot_points(ax, current_date, points=self.points_working)
         self._plot_points(ax, current_date, points=self.points_working, a_type="clear")
@@ -88,28 +97,24 @@ class PlotManager:
         fig.patch.set_facecolor(self.bg)
         return fig, ax
     
-    def _plot_title(self, ax, text):
+    def _plot_text(self, ax, text, zorder):
 
-        ax.text(
-            text["x"],                     # x position in axes coords
-            text["y"],                     # y position in axes coords
-            text["text"],
+        for text in self.text:
 
-            transform=ax.transAxes,
-
-            fontsize=text["size"],
-            fontfamily=text["font"],
-            fontweight=text["weight"],
-
-            color=text["color"],
-
-            ha="left",
-            va="top",
-
-            zorder=1000,
-
-            alpha=1
-        )
+            ax.text(
+                text["x"],                     # x position in axes coords
+                text["y"],                     # y position in axes coords
+                text["text"],
+                transform=ax.transAxes,
+                fontsize=text["size"],
+                fontfamily=text["font"],
+                fontweight=text["weight"],
+                color=text["color"],
+                ha="left",
+                va="top",
+                zorder=zorder,
+                alpha=1
+            )
 
     def _plot_submaps(self, ax, current_date):
 
@@ -296,26 +301,20 @@ class PlotManager:
                 zorder=5
             )
 
-            for i, text in enumerate(submap["Label"]):
-
-                ax.text(
-                    submap["Loc"][0], 
-                    submap["Loc"][1]-i*.015,
-                    text,
-
-                    transform=ax.transAxes,
-
-                    fontsize=10,
-                    fontfamily="DejaVu Sans",
-                    fontweight=400,
-
-                    color="#1E1F1C",
-
-                    ha="left",
-                    va="top",
-
-                    zorder=1000,
-                )
+            #for i, text in enumerate(submap["Label"]):
+            #    ax.text(
+            #        submap["Loc"][0], 
+            #        submap["Loc"][1]-i*.015,
+            #        text,
+            #        transform=ax.transAxes,
+            #        fontsize=10,
+            #        fontfamily="DejaVu Sans",
+            #        fontweight=400,
+            #        color="#1E1F1C",
+            #        ha="left",
+            #        va="top",
+            #        zorder=1000,
+            #    )
 
     def _plot_points(self, ax, current_date, points, a_type="normal"):
 
@@ -339,18 +338,7 @@ class PlotManager:
             if active.any():
                 points[active].plot(ax=ax, color=self.color_active, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=6)
 
-    def _plot_labels(self, ax, current_date, points):
-        self.plot_location_labels(
-            ax,
-            points,
-            current_date,
-            self.labels,
-            self.plot_scale,
-            self.color_unvisited,
-            self.color_visited,
-            self.color_active,
-            self.label_bg
-        )
+    
 
     def _plot_flags(self, ax):
         flag_scale = self.meta_data["Flags"]["Scale"]
