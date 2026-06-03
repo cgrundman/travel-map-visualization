@@ -93,6 +93,22 @@
         {"Name": "ST", "Color": "#59646A", "Scale": [1, 1], "Shift": [0,  0]},
         {"Name": "TH", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0]}
     ],
+    "Borders": {
+        "Water": 
+            [
+                [16, 0.08],
+                [12, 0.13],
+                [8, 0.18],
+                [4, 0.35],
+                [2, 1.0]
+            ],
+        "Background Map": 
+            [
+                [5, 0.08],
+                [3, 0.14],
+                [1, 0.22]
+            ]
+    },
     "Background Maps": [
         {"Name": "AT"},
         {"Name": "BE"},
@@ -117,7 +133,7 @@
     "Colors": {
         "bg": "#2B3134",
         "bg_land": "#d4c7a7",
-        "bg_land_border": "#1E1F1C",
+        "bg_land_border": "#575757",
         "bg_water": "#d6d6c3",
         "bg_water_border": "#6c8fa3",
         "map_dark": "#c2b593",
