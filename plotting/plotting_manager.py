@@ -77,8 +77,8 @@ class PlotManager:
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self.points_working = self.points_gdf.copy(deep=True)
-
-        self._plot_submaps(ax, current_date, zorder=2)
+        self._plot_background(ax, zorder=2)
+        self._plot_submaps(ax, current_date, zorder=4)
         self._plot_text(ax, self.text, zorder=1000)
         if self.plot_scale >= 3:
             self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.color_unvisited, self.color_visited, self.color_active, self.label_bg, zorder=6)
@@ -118,24 +118,7 @@ class PlotManager:
                 alpha=1
             )
 
-    def _plot_submaps(self, ax, current_date, zorder):
-
-        # Plot Region for water
-        min_lon, max_lon = self.xlims[0], self.xlims[1]
-        min_lat, max_lat = self.ylims[0], self.ylims[1]
-        width = max_lon - min_lon
-        height = max_lat - min_lat
-        rect = patches.Rectangle(
-            (min_lon, min_lat),   # bottom-left corner
-            width,
-            height,
-            facecolor=self.bg_water,
-            alpha=1
-        )
-        ax.add_patch(rect)
-        
-        self.ratios = {}
-
+    def _plot_background(self, ax, zorder):
         # Background Map Plotting
         for bgmap in self.bgmaps:
             color = self.bg_land
@@ -158,6 +141,27 @@ class PlotManager:
             # Water Borders
             for lw, alpha in self.borders["Water"]:
                 bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.bg_water_border, alpha), linewidth=lw/self.plot_scale, zorder=1)
+
+
+    def _plot_submaps(self, ax, current_date, zorder):
+
+        # Plot Region for water
+        min_lon, max_lon = self.xlims[0], self.xlims[1]
+        min_lat, max_lat = self.ylims[0], self.ylims[1]
+        width = max_lon - min_lon
+        height = max_lat - min_lat
+        rect = patches.Rectangle(
+            (min_lon, min_lat),   # bottom-left corner
+            width,
+            height,
+            facecolor=self.bg_water,
+            alpha=1
+        )
+        ax.add_patch(rect)
+        
+        self.ratios = {}
+
+        
 
             #ax.text(
             #    bgmap["Label"][0], 
@@ -197,7 +201,7 @@ class PlotManager:
                     alpha=0.8,
                     edgecolor="black",
                     linewidth=4,
-                    zorder=3
+                    zorder=zorder
                 )
 
             map_i = submap["Name"]
@@ -216,13 +220,11 @@ class PlotManager:
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
 
-            submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1)
-
             submap_gdf.plot(
                 ax=ax,
                 facecolor=color,
                 edgecolor="none",
-                zorder=4
+                zorder=zorder
             )
 
             # Scale and Shift Map
@@ -255,33 +257,25 @@ class PlotManager:
                 )
             )
 
-            #if submap["Name"] == "23":
-            #   print(submap_points["geometry"])
-
             # Write transformed geometries back into working copy
             self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
-            #submap_gdf.plot(ax=ax, edgecolor=self.map_border, linewidth=0.5/self.plot_scale, color=color, alpha=1, zorder=5)
             # Base fill
             submap_gdf.plot(
                 ax=ax,
                 facecolor=color,
                 edgecolor="none",
-                zorder=5
+                zorder=zorder+1
             )
 
             # Border Map Layers
-            for lw, alpha in [
-                (3, 0.08),
-                (2, 0.18),
-                (1, 0.22),
-            ]:
+            for lw, alpha in self.borders["Submap"]:
                 submap_gdf.plot(
                     ax=ax,
                     facecolor="none",
                     edgecolor=("#3A3126", alpha),
                     linewidth=lw,
-                    zorder=5
+                    zorder=zorder+2
                 )
 
             # Crisp final border
