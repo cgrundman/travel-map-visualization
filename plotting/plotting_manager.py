@@ -121,15 +121,14 @@ class PlotManager:
     def _plot_background(self, ax, zorder):
         # Background Map Plotting
         for bgmap in self.bgmaps:
-            color = self.bg_land
 
-            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap["Name"]}.shp")
+            shapefile_path = os.path.join(self.path, "bg_maps", f"{bgmap}.shp")
             bgmap_gdf = gpd.read_file(shapefile_path)
-            #bgmap_gdf.plot(ax=ax, edgecolor=self.bg_land_border, linewidth=1/self.plot_scale, color=color, alpha=1)
+
             # Base fill
             bgmap_gdf.plot(
                 ax=ax,
-                facecolor=color,
+                facecolor=self.bg_land,
                 edgecolor="none",
                 zorder=zorder
             )

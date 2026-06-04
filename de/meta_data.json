@@ -115,19 +115,6 @@
                 [1, 0.22]
             ]
     },
-    "Background Maps": [
-        {"Name": "AT"},
-        {"Name": "BE"},
-        {"Name": "CH"},
-        {"Name": "CZ"},
-        {"Name": "DK"},
-        {"Name": "DE"},
-        {"Name": "FR"},
-        {"Name": "LI"},
-        {"Name": "LU"},
-        {"Name": "NL"},
-        {"Name": "PL"}
-    ],
     "Expansions" : [],
     "Figure Size": [12, 14.5],
     "Cropping": [0.020, 0.120, 0.855, 0.890],
