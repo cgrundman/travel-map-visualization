@@ -65,14 +65,14 @@ class PlotManager:
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
         self.points_working = self.points_gdf.copy(deep=True)
-        self._plot_background(ax, zorder=2)
-        self._plot_submaps(ax, current_date, zorder=4)
-        self._plot_text(ax, self.text, zorder=6)
+        self._plot_background(ax, zorder=20)
+        self._plot_submaps(ax, current_date, zorder=30)
+        self._plot_text(ax, self.text, zorder=40)
         if self.plot_scale >= 3:
-            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=7)
+            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
         else:
-            self._plot_points(ax, current_date, points=self.points_working, zorder=7)
-        self._plot_points(ax, current_date, points=self.points_working, zorder=7, a_type="clear")
+            self._plot_points(ax, current_date, points=self.points_working, zorder=50)
+        self._plot_points(ax, current_date, points=self.points_working, zorder=50, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
@@ -256,6 +256,10 @@ class PlotManager:
                 linewidth=1.2,
                 zorder=zorder+1
             )
+
+            # Water Borders
+            for lw, alpha in self.borders["Water"]:
+                submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 
