@@ -52,21 +52,9 @@ class PlotManager:
         self.xlims = meta_data["Plotting Area"]["xlims"]
         self.ylims = meta_data["Plotting Area"]["ylims"]
         self.grids = meta_data["Plotting Area"]["grids"]
-        self.color_unvisited = meta_data["Colors"]["unvisited"]
-        self.color_active = meta_data["Colors"]["active"]
-        self.color_visited = meta_data["Colors"]["visited"]
+        self.colors = meta_data["Colors"]
         self.marker_size = meta_data["Marker Size"]
         self.labels = meta_data["Labels"]
-        self.map_dark = meta_data["Colors"]["map_dark"]
-        self.map_light = meta_data["Colors"]["map_light"]
-        self.map_border = meta_data["Colors"]["map_border"]
-        self.bg = meta_data["Colors"]["bg"]
-        self.bg_land = meta_data["Colors"]["bg_land"]
-        self.bg_land_border = meta_data["Colors"]["bg_land_border"]
-        self.bg_water = meta_data["Colors"]["bg_water"]
-        self.bg_water_border = meta_data["Colors"]["bg_water_border"]
-        self.label_bg = meta_data["Colors"]["label_bg"]
-        self.grid_lines = meta_data["Colors"]["grid_lines"]
         self.borders = meta_data["Borders"]
 
         self.output_temp_path = "./plots/temp/"
@@ -79,12 +67,12 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=2)
         self._plot_submaps(ax, current_date, zorder=4)
-        self._plot_text(ax, self.text, zorder=1000)
+        self._plot_text(ax, self.text, zorder=6)
         if self.plot_scale >= 3:
-            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.color_unvisited, self.color_visited, self.color_active, self.label_bg, zorder=6)
+            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=7)
         else:
-            self._plot_points(ax, current_date, points=self.points_working, zorder=6)
-        self._plot_points(ax, current_date, points=self.points_working, zorder=6, a_type="clear")
+            self._plot_points(ax, current_date, points=self.points_working, zorder=7)
+        self._plot_points(ax, current_date, points=self.points_working, zorder=7, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, current_date)
 
@@ -96,7 +84,7 @@ class PlotManager:
             ), 
             dpi=100*self.plot_scale
         )
-        fig.patch.set_facecolor(self.bg)
+        fig.patch.set_facecolor(self.colors["bg"])
         return fig, ax
     
     def _plot_text(self, ax, text, zorder):
@@ -128,18 +116,18 @@ class PlotManager:
             # Base fill
             bgmap_gdf.plot(
                 ax=ax,
-                facecolor=self.bg_land,
+                facecolor=self.colors["bg_land"],
                 edgecolor="none",
                 zorder=zorder
             )
 
             # BG Map Borders
             for lw, alpha in self.borders["Background Map"]:
-                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.bg_land_border, alpha), linewidth=lw/self.plot_scale, zorder=zorder+1)
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_land_border"], alpha), linewidth=lw/self.plot_scale, zorder=zorder+1)
 
             # Water Borders
             for lw, alpha in self.borders["Water"]:
-                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.bg_water_border, alpha), linewidth=lw/self.plot_scale, zorder=1)
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
 
     def _plot_submaps(self, ax, current_date, zorder):
@@ -153,29 +141,12 @@ class PlotManager:
             (min_lon, min_lat),   # bottom-left corner
             width,
             height,
-            facecolor=self.bg_water,
+            facecolor=self.colors["bg_water"],
             alpha=1
         )
         ax.add_patch(rect)
         
         self.ratios = {}
-
-        
-
-            #ax.text(
-            #    bgmap["Label"][0], 
-            #    bgmap["Label"][1],
-            #    bgmap["Label"][2].upper(),
-            #    transform=ax.transAxes,
-            #    rotation=bgmap["Label"][3],
-            #    fontsize=12,
-            #    fontfamily="DejaVu Sans",
-            #    fontweight=600,
-            #    color="#4E4A42",
-            #    ha="left",
-            #    va="top",
-            #    zorder=1000
-            #)
         
         # Submap Plotting
         for submap in self.submaps:
@@ -186,9 +157,9 @@ class PlotManager:
                 coords = [(p[0], p[1]) for p in submap["BG"]]
 
                 if submap["C"] == "bg_land":
-                    color = self.bg_land
+                    color = self.colors["bg_land"]
                 else:
-                    color = self.bg_water
+                    color = self.colors["bg_water"]
 
                 polygon = Polygon(coords)
 
@@ -217,7 +188,7 @@ class PlotManager:
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
             self.ratios[submap["Name"]] = ratio
-            color = CustomCmap(self.map_dark, submap["Color"]).value(ratio)
+            color = CustomCmap(self.colors["map_dark"], submap["Color"]).value(ratio)
 
             submap_gdf.plot(
                 ax=ax,
@@ -272,7 +243,7 @@ class PlotManager:
                 submap_gdf.plot(
                     ax=ax,
                     facecolor="none",
-                    edgecolor=("#3A3126", alpha),
+                    edgecolor=(self.colors["map_border"], alpha),
                     linewidth=lw,
                     zorder=zorder+2
                 )
@@ -281,9 +252,9 @@ class PlotManager:
             submap_gdf.plot(
                 ax=ax,
                 facecolor="none",
-                edgecolor="#3A3126",
+                edgecolor=self.colors["map_border"],
                 linewidth=1.2,
-                zorder=5
+                zorder=zorder+1
             )
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
@@ -296,17 +267,17 @@ class PlotManager:
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.color_unvisited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[unvisited].plot(ax=ax, color=self.colors["unvisited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color=self.color_visited, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[visited].plot(ax=ax, color=self.colors["visited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.color_active, linewidth=1, edgecolors=self.color_active, markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[active].plot(ax=ax, color=self.colors["active"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
 
     
 
