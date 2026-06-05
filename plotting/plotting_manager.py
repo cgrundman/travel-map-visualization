@@ -47,13 +47,8 @@ class PlotManager:
 
         # Extract metadata fields for plotting
         self.text = meta_data["Text"]
-        self.fig_size = meta_data["Figure Size"]
-        self.crop = meta_data["Cropping"]
-        self.xlims = meta_data["Plotting Area"]["xlims"]
-        self.ylims = meta_data["Plotting Area"]["ylims"]
-        self.grids = meta_data["Plotting Area"]["grids"]
+        self.plotting = meta_data["Plotting"]
         self.colors = meta_data["Colors"]
-        self.marker_size = meta_data["Marker Size"]
         self.labels = meta_data["Labels"]
         self.borders = meta_data["Borders"]
 
@@ -79,8 +74,8 @@ class PlotManager:
     def _initialize_plot(self):
         fig, ax = plt.subplots(
             figsize=(
-                self.fig_size[0],
-                self.fig_size[1],
+                self.plotting["Figure Size"][0],
+                self.plotting["Figure Size"][1],
             ), 
             dpi=100*self.plot_scale
         )
@@ -133,8 +128,8 @@ class PlotManager:
     def _plot_submaps(self, ax, current_date, zorder):
 
         # Plot Region for water
-        min_lon, max_lon = self.xlims[0], self.xlims[1]
-        min_lat, max_lat = self.ylims[0], self.ylims[1]
+        min_lon, max_lon = self.plotting["Plotting Area"]["xlims"][0], self.plotting["Plotting Area"]["xlims"][1]
+        min_lat, max_lat = self.plotting["Plotting Area"]["ylims"][0], self.plotting["Plotting Area"]["ylims"][1]
         width = max_lon - min_lon
         height = max_lat - min_lat
         rect = patches.Rectangle(
@@ -265,23 +260,23 @@ class PlotManager:
 
         # Invisible layer to force map scaling
         if a_type=="clear":
-            points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.marker_size, alpha=0)
+            points["geometry"].plot(ax=ax, color="black", linewidth=0, markersize=self.labels["Marker Size"], alpha=0)
 
         else:
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.colors["unvisited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[unvisited].plot(ax=ax, color=self.colors["unvisited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color=self.colors["visited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[visited].plot(ax=ax, color=self.colors["visited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.colors["active"], linewidth=1, edgecolors=self.colors["active"], markersize=self.marker_size, alpha=1, zorder=zorder)
+                points[active].plot(ax=ax, color=self.colors["active"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
     
 
@@ -365,8 +360,8 @@ class PlotManager:
             ax.add_artist(imagebox_img)
 
     def _finalize_and_save_plot(self, fig, current_date):
-        plt.xlim(self.xlims)
-        plt.ylim(self.ylims)
+        plt.xlim(self.plotting["Plotting Area"]["xlims"])
+        plt.ylim(self.plotting["Plotting Area"]["ylims"])
         plt.axis("off")
 
         if self.copy:
@@ -388,10 +383,10 @@ class PlotManager:
 
         width, height = get_image_dimensions(full_temp_path)
         crop_box = (
-            width*self.crop[0], 
-            height*self.crop[1], 
-            width*self.crop[2], 
-            height*self.crop[3]
+            width*self.plotting["Cropping"][0], 
+            height*self.plotting["Cropping"][1], 
+            width*self.plotting["Cropping"][2], 
+            height*self.plotting["Cropping"][3]
         )
 
         # Crop for temp and final path

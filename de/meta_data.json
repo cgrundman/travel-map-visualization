@@ -1,4 +1,13 @@
 {
+    "Plotting": {
+        "Figure Size": [12, 14.5],
+        "Cropping": [0.020, 0.120, 0.855, 0.890],
+        "Plotting Area": {
+            "xlims": [5.7, 15.3],
+            "ylims": [47.1, 55.2],
+            "grids": [15, 15]
+        }
+    },
     "Text": [
         {"text": "DEUTSCHLAND", 
             "x": 0.010, "y": 0.990, "color": "#1E1F1C", "size": 18, "font": "DejaVu Sans", "weight": 600},
@@ -102,13 +111,6 @@
             [[3, 0.08], [2, 0.18], [1, 0.22]]
     },
     "Expansions" : [],
-    "Figure Size": [12, 14.5],
-    "Cropping": [0.020, 0.120, 0.855, 0.890],
-    "Plotting Area": {
-        "xlims": [5.7, 15.3],
-        "ylims": [47.1, 55.2],
-        "grids": [15, 15]
-    },
     "Colors": {
         "bg": "#2B3134",
         "bg_land": "#d4c7a7",
@@ -123,7 +125,6 @@
         "label_bg": "#333332",
         "grid_lines": "#2a4142"
     },
-    "Marker Size": 50,
     "Labels": {
         "Start Longitude": 4.7, 
         "Start Latitude": 47.2,
@@ -133,7 +134,8 @@
         "Splits": 27,
         "Longitude Threshold": 1.0,
         "Latitude Threshold": 0.08,
-        "Shift Step": 0.06
+        "Shift Step": 0.06,
+        "Marker Size": 50
     },
     "Flags": {
         "Scale": 0.123,
