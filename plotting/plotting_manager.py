@@ -7,7 +7,9 @@ import random
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
+from matplotlib.patches import FancyBboxPatch
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
 from shapely import affinity
 from shapely.geometry import Polygon
@@ -62,6 +64,7 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
+        self._plot_expansions(ax, self.points_working)
         self._plot_text(ax, self.text, zorder=40)
         if self.plot_scale >= 3:
             self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
@@ -69,7 +72,7 @@ class PlotManager:
             self._plot_points(ax, current_date, points=self.points_working, zorder=50)
         self._plot_points(ax, current_date, points=self.points_working, zorder=50, a_type="clear")
         self._plot_flags(ax)
-        self._finalize_and_save_plot(fig, current_date)
+        self._finalize_and_save_plot(fig, ax, current_date)
 
     def _initialize_plot(self):
         fig, ax = plt.subplots(
@@ -256,6 +259,60 @@ class PlotManager:
             for lw, alpha in self.borders["Water"]:
                 submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
+    def _plot_expansions(self, ax, gdf):
+        # Create inset
+        ax_inset = inset_axes(
+        #inset_axes(
+            ax,
+            width="25%",
+            height="25%",
+            loc='lower left'
+        )
+
+        shapefile_path = os.path.join(self.path, "submaps/BE.shp")
+        submap_gdf = gpd.read_file(shapefile_path)
+
+        # Plot same data
+        submap_gdf.plot(
+            ax=ax_inset,
+            color="#6F4A4A",
+            linewidth=4,
+            edgecolor="black",
+            zorder=70)
+        
+        shapefile_path = os.path.join(self.path, "submaps/BB.shp")
+        submap_gdf = gpd.read_file(shapefile_path)
+
+        # Plot same data
+        submap_gdf.plot(
+            ax=ax_inset,
+            color="#9A8061",
+            linewidth=1,
+            edgecolor="black",
+            zorder=70)
+
+        frame = FancyBboxPatch(
+            (0, 0),
+            1,
+            1,
+            transform=ax_inset.transAxes,
+            boxstyle="round,pad=0.2",
+            linewidth=2,
+            edgecolor="black",#self.colors["map_border"],
+            facecolor=self.colors["bg_water"],
+            zorder=60
+        )
+
+        ax_inset.add_patch(frame)
+
+        # Zoom to Berlin
+        ax_inset.set_xlim(13.0, 13.8)
+        ax_inset.set_ylim(52.3, 52.7)
+
+        # Remove ticks
+        ax_inset.set_xticks([])
+        ax_inset.set_yticks([])
+
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 
         # Invisible layer to force map scaling
@@ -277,8 +334,6 @@ class PlotManager:
             active = points['date'] == current_date
             if active.any():
                 points[active].plot(ax=ax, color=self.colors["active"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
-
-    
 
     def _plot_flags(self, ax):
         flag_scale = self.meta_data["Flags"]["Scale"]
@@ -359,9 +414,9 @@ class PlotManager:
             )
             ax.add_artist(imagebox_img)
 
-    def _finalize_and_save_plot(self, fig, current_date):
-        plt.xlim(self.plotting["Plotting Area"]["xlims"])
-        plt.ylim(self.plotting["Plotting Area"]["ylims"])
+    def _finalize_and_save_plot(self, fig, ax, current_date):
+        ax.set_xlim(self.plotting["Plotting Area"]["xlims"])
+        ax.set_ylim(self.plotting["Plotting Area"]["ylims"])
         plt.axis("off")
 
         if self.copy:
