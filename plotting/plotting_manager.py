@@ -64,7 +64,7 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
-        #self._plot_expansions(ax, current_date, self.points_working)
+        self._plot_expansions(ax, current_date, self.points_working)
         self._plot_text(ax, self.text, zorder=40)
         if self.plot_scale >= 3:
             self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
@@ -125,7 +125,7 @@ class PlotManager:
 
             # Water Borders
             for lw, alpha in self.borders["Water"]:
-                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=3)
 
 
     def _plot_submaps(self, ax, current_date, zorder):
