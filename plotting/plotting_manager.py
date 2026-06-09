@@ -271,45 +271,29 @@ class PlotManager:
             loc="lower left"
         )
 
-        shapefile_path = os.path.join(self.path, "submaps/BE.shp")
-        submap_gdf = gpd.read_file(shapefile_path)
+        submaps = ["BB", "BE"]
 
-        # Plot same data
-        submap_gdf.plot(
-            ax=ax_inset,
-            color="#6F4A4A",
-            linewidth=0,
-            edgecolor="black",
-            zorder=70)
-        
-        for lw, alpha in self.borders["Submap"]:
+        for submap in submaps:
+
+            shapefile_path = os.path.join(self.path, f"submaps/{submap}.shp")
+            submap_gdf = gpd.read_file(shapefile_path)
+
+            # Plot same data
             submap_gdf.plot(
                 ax=ax_inset,
-                facecolor="none",
-                edgecolor=(self.colors["map_border"], alpha),
-                linewidth=lw,
-                zorder=71
-            )
+                color="#6F4A4A",
+                linewidth=0,
+                edgecolor="black",
+                zorder=70)
         
-        shapefile_path = os.path.join(self.path, "submaps/BB.shp")
-        submap_gdf = gpd.read_file(shapefile_path)
-
-        # Plot same data
-        submap_gdf.plot(
-            ax=ax_inset,
-            color="#9A8061",
-            linewidth=0,
-            edgecolor="black",
-            zorder=70)
-        
-        for lw, alpha in self.borders["Submap"]:
-            submap_gdf.plot(
-                ax=ax_inset,
-                facecolor="none",
-                edgecolor=(self.colors["map_border"], alpha),
-                linewidth=lw,
-                zorder=71
-            )
+            for lw, alpha in self.borders["Submap"]:
+                submap_gdf.plot(
+                    ax=ax_inset,
+                    facecolor="none",
+                    edgecolor=(self.colors["map_border"], alpha),
+                    linewidth=lw,
+                    zorder=71
+                )
 
         frame = FancyBboxPatch(
             (0, 0),
