@@ -64,7 +64,7 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
-        self._plot_expansions(ax, current_date, self.points_working)
+        #self._plot_expansions(ax, current_date, self.points_working)
         self._plot_text(ax, self.text, zorder=40)
         if self.plot_scale >= 3:
             self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
