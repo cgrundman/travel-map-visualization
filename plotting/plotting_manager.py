@@ -12,7 +12,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
 from shapely import affinity
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, box
 from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
 
@@ -64,7 +64,7 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
-        #self._plot_expansions(ax, current_date, self.points_working)
+        self._plot_expansions(ax, current_date, self.points_working)
         self._plot_text(ax, self.text, zorder=40)
         if self.plot_scale >= 3:
             self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
@@ -260,70 +260,91 @@ class PlotManager:
                 submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
     def _plot_expansions(self, ax, current_date, gdf):
-        # Create inset
-        ax_inset = inset_axes(
-        #inset_axes(
-            ax,
-            width="22%",
-            height="22%",
-            bbox_to_anchor=(0.77, 0.23, 1, 1),
-            bbox_transform=ax.transAxes,
-            loc="lower left"
-        )
 
-        submaps = ["BB", "BE"]
-
-        for submap in submaps:
-
-            shapefile_path = os.path.join(self.path, f"submaps/{submap}.shp")
-            submap_gdf = gpd.read_file(shapefile_path)
-
-            # Plot same data
-            submap_gdf.plot(
-                ax=ax_inset,
-                color="#6F4A4A",
-                linewidth=0,
-                edgecolor="black",
-                zorder=70)
+        for expansion in self.expansions:
         
-            for lw, alpha in self.borders["Submap"]:
+            xmin, xmax, ymin, ymax = expansion["Coords"]
+            bbox_to_anchor = expansion["bbox_to_anchor"]
+            height, width = expansion["height/width"]
+
+
+            # Create inset
+            ax_inset = inset_axes(
+                ax,
+                width=width,
+                height=height,
+                bbox_to_anchor=bbox_to_anchor,
+                bbox_transform=ax.transAxes,
+                loc="lower left"
+            )
+
+            expansion_box = box(xmin, ymin, xmax, ymax)
+
+            submaps_in_expansion = []
+
+            for submap in self.submaps:
+
+                name = submap["Name"]
+                shapefile_path = os.path.join(
+                    self.path,
+                    "submaps",
+                    f"{name}.shp"
+                )
+                gdf = gpd.read_file(shapefile_path)
+                if gdf.intersects(expansion_box).any():
+                    submaps_in_expansion.append(submap)
+
+            for submap in submaps_in_expansion:
+#
+                shapefile_path = os.path.join(self.path, f"submaps/{submap['Name']}.shp")
+                submap_gdf = gpd.read_file(shapefile_path)
+
+                # Plot same data
                 submap_gdf.plot(
                     ax=ax_inset,
-                    facecolor="none",
-                    edgecolor=(self.colors["map_border"], alpha),
-                    linewidth=lw,
-                    zorder=71
-                )
+                    color=submap["Color"],
+                    linewidth=0,
+                    edgecolor="black",
+                    zorder=70)
+            
+                for lw, alpha in self.borders["Submap"]:
+                    submap_gdf.plot(
+                        ax=ax_inset,
+                        facecolor="none",
+                        edgecolor=(self.colors["map_border"], alpha),
+                        linewidth=lw,
+                        zorder=71
+                    )
 
-        frame = FancyBboxPatch(
-            (0, 0),
-            1,
-            1,
-            transform=ax_inset.transAxes,
-            boxstyle="round,pad=0.2",
-            linewidth=4,
-            edgecolor="black",#self.colors["map_border"],
-            facecolor=self.colors["bg_water"],
-            zorder=60
-        )
+            #frame = FancyBboxPatch(
+            #    (0, 0),
+            #    1,
+            #    1,
+            #    transform=ax_inset.transAxes,
+            #    boxstyle="round,pad=0.2",
+            #    linewidth=4,
+            #    edgecolor="black",#self.colors["map_border"],
+            #    facecolor=self.colors["bg_water"],
+            #    zorder=60
+            #)
 
-        # bounds: xmin, xmax, ymin, ymax
-        xmin, xmax = 13.05, 13.8
-        ymin, ymax = 52.32, 52.7
+            ax_inset.set_facecolor(self.colors["bg_water"])
 
-        gdf_subset = gdf.cx[xmin:xmax, ymin:ymax].copy()
+            print(submaps_in_expansion)
 
-        self._plot_points(ax_inset, current_date, gdf_subset, 80)
+            #gdf_subset = gdf.cx[xmin:xmax, ymin:ymax].copy()
 
-        ax_inset.add_patch(frame)
+            #self._plot_points(ax_inset, current_date, gdf_subset, 80)
 
-        # Zoom to Berlin
-        ax_inset.set_xlim(xmin, xmax)
-        ax_inset.set_ylim(ymin, ymax)
+            #ax_inset.add_patch(frame)
 
-        # Remove ticks
-        ax_inset.set_xticks([])
-        ax_inset.set_yticks([])
+            # Zoom to Berlin
+            ax_inset.set_xlim(xmin, xmax)
+            ax_inset.set_ylim(ymin, ymax)
+
+            # Remove ticks
+            ax_inset.set_xticks([])
+            ax_inset.set_yticks([])
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 

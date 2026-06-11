@@ -110,7 +110,10 @@
         "Submap":
             [[3, 0.08], [2, 0.18], [1.2, 1]]
     },
-    "Expansions" : [],
+    "Expansions" : [
+        {"Coords": [9.5, 10.4, 53.32, 53.8], "bbox_to_anchor": [0.77, 0.23, 1, 1], "height/width": ["22%", "22%"]},
+        {"Coords": [5.5, 7.35, 48.00, 49.0], "bbox_to_anchor": [0.00, 0.23, 1, 1], "height/width": ["22%", "22%"]}
+    ],
     "Colors": {
         "bg": "#2B3134",
         "bg_land": "#d4c7a7",
