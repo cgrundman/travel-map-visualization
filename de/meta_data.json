@@ -39,8 +39,6 @@
             "x": 0.910, "y": 0.720, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},
         {"text": "BRANDENBURG", 
             "x": 0.740, "y": 0.640, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600},
-        {"text": "BERLIN", 
-            "x": 0.850, "y": 0.330, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600},
         {"text": "BADEN-", 
             "x": 0.280, "y": 0.210, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600},
         {"text": "WÜRTTEMBURG", 
@@ -111,8 +109,10 @@
             [[3, 0.08], [2, 0.18], [1.2, 1]]
     },
     "Expansions" : [        
-        {"Coords": [9.7, 10.4, 53.35, 53.75], "bbox_to_anchor": [-0.008, 0.08, 1, 1], "height/width": ["17%", "17%"]},
-        {"Coords": [13.01, 13.81, 52.31, 52.71], "bbox_to_anchor": [0.77, 0.23, 1, 1], "height/width": ["22%", "22%"]}
+        {"Coords": [9.7, 10.4, 53.35, 53.75], "bbox_to_anchor": [-0.008, 0.08, 1, 1], "height/width": ["17%", "17%"],
+        "Text": [{"text": "HAMBURG", "x": 0.030, "y": 0.155, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600}]},
+        {"Coords": [13.01, 13.81, 52.31, 52.71], "bbox_to_anchor": [0.77, 0.23, 1, 1], "height/width": ["22%", "22%"],
+        "Text": [{"text": "BERLIN", "x": 0.850, "y": 0.330, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600}]}
     ],
     "Colors": {
         "bg": "#2B3134",

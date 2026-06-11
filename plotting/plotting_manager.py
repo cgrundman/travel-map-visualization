@@ -11,8 +11,9 @@ import matplotlib.patches as patches
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
-from shapely import affinity
-from shapely.geometry import Polygon, box
+#from shapely import affinity
+#from shapely.geometry import Polygon, box
+from shapely.geometry import box
 from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
 
@@ -64,13 +65,13 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
-        self._plot_expansions(ax, current_date, self.points_working)
-        self._plot_text(ax, self.text, zorder=40)
+        self._plot_expansions(ax, current_date, self.points_working, zorder=40)
+        self._plot_text(ax, self.text, zorder=50)
         if self.plot_scale >= 3:
-            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=50)
+            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
         else:
-            self._plot_points(ax, current_date, points=self.points_working, zorder=50)
-        self._plot_points(ax, current_date, points=self.points_working, zorder=50, a_type="clear")
+            self._plot_points(ax, current_date, points=self.points_working, zorder=60)
+        self._plot_points(ax, current_date, points=self.points_working, zorder=60, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
 
@@ -149,33 +150,7 @@ class PlotManager:
         # Submap Plotting
         for submap in self.submaps:
 
-            # Plot Backing to Shifted Submaps
-            #if submap["Shift"][0] != 0 or submap["Shift"][1] != 0:
-            # If list is [[lon, lat], ...]
-            #    coords = [(p[0], p[1]) for p in submap["BG"]]
-
-            #    if submap["C"] == "bg_land":
-            #        color = self.colors["bg_land"]
-            #    else:
-            #        color = self.colors["bg_water"]
-
-            #    polygon = Polygon(coords)
-
-            #    gdf = gpd.GeoDataFrame(geometry=[polygon])
-
-            #    gdf.plot(
-            #        ax=ax,
-            #        color=color,
-            #        alpha=0.8,
-            #        edgecolor="black",
-            #        linewidth=4,
-            #        zorder=zorder
-            #    )
-
             name = submap["Name"]
-            #scale = submap["Scale"]
-            #xoff = submap["Shift"][0]
-            #yoff = submap["Shift"][1]
 
             shapefile_path = os.path.join(self.path, "submaps", f"{name}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
@@ -195,39 +170,6 @@ class PlotManager:
                 zorder=zorder
             )
 
-            ## Scale and Shift Map
-            #submap_gdf["geometry"] = submap_gdf["geometry"].apply(
-            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
-            #)
-            #submap_gdf["geometry"] = submap_gdf["geometry"].apply(
-            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            #)
-
-            # Scale and Shift Points
-            #mask = self.points_working['submap'] == submap["Name"]
-
-            #submap_points = self.points_working.loc[mask].copy()
-
-            #submap_points["geometry"] = submap_points["geometry"].apply(
-            #    lambda geom: affinity.scale(
-            #        geom,
-            #        xfact=scale[0],
-            #        yfact=scale[1],
-            #        origin=(0, 0)
-            #    )
-            #)
-
-            #submap_points["geometry"] = submap_points["geometry"].apply(
-            #    lambda geom: affinity.translate(
-            #        geom,
-            #        xoff=xoff,
-            #        yoff=yoff
-            #    )
-            #)
-
-            # Write transformed geometries back into working copy
-            #self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
-
             # Base fill
             submap_gdf.plot(
                 ax=ax,
@@ -246,20 +188,11 @@ class PlotManager:
                     zorder=zorder+2
                 )
 
-            # Crisp final border
-            #submap_gdf.plot(
-            #    ax=ax,
-            #    facecolor="none",
-            #    edgecolor=self.colors["map_border"],
-            #    linewidth=1.2,
-            #    zorder=zorder+1
-            #)
-
             # Water Borders
             for lw, alpha in self.borders["Water"]:
                 submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
-    def _plot_expansions(self, ax, current_date, points_gdf):
+    def _plot_expansions(self, ax, current_date, points_gdf, zorder):
 
         for expansion in self.expansions:
         
@@ -274,8 +207,7 @@ class PlotManager:
                 height=height,
                 bbox_to_anchor=bbox_to_anchor,
                 bbox_transform=ax.transAxes,
-                loc="lower left"
-            )
+                loc="lower left"            )
 
             expansion_box = box(xmin, ymin, xmax, ymax)
 
@@ -301,7 +233,7 @@ class PlotManager:
                         color=submap["Color"],
                         linewidth=0,
                         edgecolor="black",
-                        zorder=70)
+                        zorder=zorder)
                 
                     for lw, alpha in self.borders["Submap"]:
                         submap_gdf.plot(
@@ -309,37 +241,10 @@ class PlotManager:
                             facecolor="none",
                             edgecolor=(self.colors["map_border"], alpha),
                             linewidth=lw,
-                            zorder=71
+                            zorder=zorder+1
                         )
 
-            #for submap in submaps_in_expansion:
-#
-            #    shapefile_path = os.path.join(self.path, f"submaps/{submap['Name']}.shp")
-            #    submap_gdf = gpd.read_file(shapefile_path)
-
-                
-
-            #frame = FancyBboxPatch(
-            #    (0, 0),
-            #    1,
-            #    1,
-            #    transform=ax_inset.transAxes,
-            #    boxstyle="round,pad=0.2",
-            #    linewidth=4,
-            #    edgecolor="black",#self.colors["map_border"],
-            #    facecolor=self.colors["bg_water"],
-            #    zorder=60
-            #)
-
             ax_inset.set_facecolor(self.colors["bg_water"])
-
-            #print(submaps_in_expansion)
-
-            #gdf_subset = gdf.cx[xmin:xmax, ymin:ymax].copy()
-
-            #self._plot_points(ax_inset, current_date, gdf_subset, 80)
-
-            #ax_inset.add_patch(frame)
 
             # Zoom to Berlin
             ax_inset.set_xlim(xmin, xmax)
@@ -348,6 +253,21 @@ class PlotManager:
             # Remove ticks
             ax_inset.set_xticks([])
             ax_inset.set_yticks([])
+
+            for text in expansion["Text"]:
+                ax_inset.text(
+                    text["x"],
+                    text["y"],
+                    text["text"],
+                    transform=ax_inset.transAxes,
+                    color=text.get("color", "#1E1F1C"),
+                    fontsize=text.get("size", 10),
+                    fontfamily=text.get("font", "DejaVu Sans"),
+                    fontweight=text.get("weight", 600),
+                    ha=text.get("ha", "left"),
+                    va=text.get("va", "top"),
+                    zorder=zorder+2
+                )
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 
