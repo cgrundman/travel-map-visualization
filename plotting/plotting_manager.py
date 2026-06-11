@@ -7,7 +7,7 @@ import random
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
-from matplotlib.patches import FancyBboxPatch
+#from matplotlib.patches import FancyBboxPatch
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
@@ -259,14 +259,13 @@ class PlotManager:
             for lw, alpha in self.borders["Water"]:
                 submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
 
-    def _plot_expansions(self, ax, current_date, gdf):
+    def _plot_expansions(self, ax, current_date, points_gdf):
 
         for expansion in self.expansions:
         
             xmin, xmax, ymin, ymax = expansion["Coords"]
             bbox_to_anchor = expansion["bbox_to_anchor"]
             height, width = expansion["height/width"]
-
 
             # Create inset
             ax_inset = inset_axes(
@@ -280,8 +279,9 @@ class PlotManager:
 
             expansion_box = box(xmin, ymin, xmax, ymax)
 
-            submaps_in_expansion = []
+            #submaps_in_expansion = []
 
+            # Find contained submaps
             for submap in self.submaps:
 
                 name = submap["Name"]
@@ -291,30 +291,33 @@ class PlotManager:
                     f"{name}.shp"
                 )
                 gdf = gpd.read_file(shapefile_path)
+
                 if gdf.intersects(expansion_box).any():
-                    submaps_in_expansion.append(submap)
 
-            for submap in submaps_in_expansion:
-#
-                shapefile_path = os.path.join(self.path, f"submaps/{submap['Name']}.shp")
-                submap_gdf = gpd.read_file(shapefile_path)
-
-                # Plot same data
-                submap_gdf.plot(
-                    ax=ax_inset,
-                    color=submap["Color"],
-                    linewidth=0,
-                    edgecolor="black",
-                    zorder=70)
-            
-                for lw, alpha in self.borders["Submap"]:
+                    # Plot same data
+                    submap_gdf = gpd.read_file(shapefile_path)
                     submap_gdf.plot(
                         ax=ax_inset,
-                        facecolor="none",
-                        edgecolor=(self.colors["map_border"], alpha),
-                        linewidth=lw,
-                        zorder=71
-                    )
+                        color=submap["Color"],
+                        linewidth=0,
+                        edgecolor="black",
+                        zorder=70)
+                
+                    for lw, alpha in self.borders["Submap"]:
+                        submap_gdf.plot(
+                            ax=ax_inset,
+                            facecolor="none",
+                            edgecolor=(self.colors["map_border"], alpha),
+                            linewidth=lw,
+                            zorder=71
+                        )
+
+            #for submap in submaps_in_expansion:
+#
+            #    shapefile_path = os.path.join(self.path, f"submaps/{submap['Name']}.shp")
+            #    submap_gdf = gpd.read_file(shapefile_path)
+
+                
 
             #frame = FancyBboxPatch(
             #    (0, 0),
@@ -330,7 +333,7 @@ class PlotManager:
 
             ax_inset.set_facecolor(self.colors["bg_water"])
 
-            print(submaps_in_expansion)
+            #print(submaps_in_expansion)
 
             #gdf_subset = gdf.cx[xmin:xmax, ymin:ymax].copy()
 
