@@ -150,34 +150,34 @@ class PlotManager:
         for submap in self.submaps:
 
             # Plot Backing to Shifted Submaps
-            if submap["Shift"][0] != 0 or submap["Shift"][1] != 0:
+            #if submap["Shift"][0] != 0 or submap["Shift"][1] != 0:
             # If list is [[lon, lat], ...]
-                coords = [(p[0], p[1]) for p in submap["BG"]]
+            #    coords = [(p[0], p[1]) for p in submap["BG"]]
 
-                if submap["C"] == "bg_land":
-                    color = self.colors["bg_land"]
-                else:
-                    color = self.colors["bg_water"]
+            #    if submap["C"] == "bg_land":
+            #        color = self.colors["bg_land"]
+            #    else:
+            #        color = self.colors["bg_water"]
 
-                polygon = Polygon(coords)
+            #    polygon = Polygon(coords)
 
-                gdf = gpd.GeoDataFrame(geometry=[polygon])
+            #    gdf = gpd.GeoDataFrame(geometry=[polygon])
 
-                gdf.plot(
-                    ax=ax,
-                    color=color,
-                    alpha=0.8,
-                    edgecolor="black",
-                    linewidth=4,
-                    zorder=zorder
-                )
+            #    gdf.plot(
+            #        ax=ax,
+            #        color=color,
+            #        alpha=0.8,
+            #        edgecolor="black",
+            #        linewidth=4,
+            #        zorder=zorder
+            #    )
 
-            map_i = submap["Name"]
-            scale = submap["Scale"]
-            xoff = submap["Shift"][0]
-            yoff = submap["Shift"][1]
+            name = submap["Name"]
+            #scale = submap["Scale"]
+            #xoff = submap["Shift"][0]
+            #yoff = submap["Shift"][1]
 
-            shapefile_path = os.path.join(self.path, "submaps", f"{map_i}.shp")
+            shapefile_path = os.path.join(self.path, "submaps", f"{name}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
 
             submap_points = self.points_gdf.loc[
@@ -195,38 +195,38 @@ class PlotManager:
                 zorder=zorder
             )
 
-            # Scale and Shift Map
-            submap_gdf["geometry"] = submap_gdf["geometry"].apply(
-                lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
-            )
-            submap_gdf["geometry"] = submap_gdf["geometry"].apply(
-                lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
-            )
+            ## Scale and Shift Map
+            #submap_gdf["geometry"] = submap_gdf["geometry"].apply(
+            #    lambda geom: affinity.scale(geom, xfact=scale[0], yfact=scale[1], origin=(0, 0)),
+            #)
+            #submap_gdf["geometry"] = submap_gdf["geometry"].apply(
+            #    lambda geom: affinity.translate(geom, xoff=xoff, yoff=yoff)
+            #)
 
             # Scale and Shift Points
-            mask = self.points_working['submap'] == submap["Name"]
+            #mask = self.points_working['submap'] == submap["Name"]
 
-            submap_points = self.points_working.loc[mask].copy()
+            #submap_points = self.points_working.loc[mask].copy()
 
-            submap_points["geometry"] = submap_points["geometry"].apply(
-                lambda geom: affinity.scale(
-                    geom,
-                    xfact=scale[0],
-                    yfact=scale[1],
-                    origin=(0, 0)
-                )
-            )
+            #submap_points["geometry"] = submap_points["geometry"].apply(
+            #    lambda geom: affinity.scale(
+            #        geom,
+            #        xfact=scale[0],
+            #        yfact=scale[1],
+            #        origin=(0, 0)
+            #    )
+            #)
 
-            submap_points["geometry"] = submap_points["geometry"].apply(
-                lambda geom: affinity.translate(
-                    geom,
-                    xoff=xoff,
-                    yoff=yoff
-                )
-            )
+            #submap_points["geometry"] = submap_points["geometry"].apply(
+            #    lambda geom: affinity.translate(
+            #        geom,
+            #        xoff=xoff,
+            #        yoff=yoff
+            #    )
+            #)
 
             # Write transformed geometries back into working copy
-            self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
+            #self.points_working.loc[mask, "geometry"] = submap_points["geometry"]
 
             # Base fill
             submap_gdf.plot(

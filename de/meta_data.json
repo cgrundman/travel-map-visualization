@@ -85,22 +85,22 @@
             "x": 0.510, "y": 0.470, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600}
     ],
     "Submaps": [
-        {"Name": "BB", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "BE", "Color": "#6F4A4A", "Scale": [3, 3], "Shift": [-26.1,  -107.6], "BG": [[15.5, 49.35],[13.1, 49.35],[13.1, 50.45],[15.5, 50.45]], "C": "bg_land"},
-        {"Name": "BW", "Color": "#59646A", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "BY", "Color": "#6F4A4A", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "HB", "Color": "#A89368", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "HE", "Color": "#556B4F", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "HH", "Color": "#59646A", "Scale": [2.5, 2.5], "Shift": [-18.6,  -85.4], "BG": [[5.5, 48.0],[5.5, 49.0],[7.35, 49.0],[7.35, 48.0]], "C": "bg_land"},
-        {"Name": "MV", "Color": "#556B4F", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "NI", "Color": "#6F4A4A", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "NW", "Color": "#59646A", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "RP", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "SH", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "SL", "Color": "#556B4F", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "SN", "Color": "#556B4F", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "ST", "Color": "#59646A", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "TH", "Color": "#9A8061", "Scale": [1, 1], "Shift": [0,  0]}
+        {"Name": "BB", "Color": "#9A8061"},
+        {"Name": "BE", "Color": "#6F4A4A"},
+        {"Name": "BW", "Color": "#59646A"},
+        {"Name": "BY", "Color": "#6F4A4A"},
+        {"Name": "HB", "Color": "#A89368"},
+        {"Name": "HE", "Color": "#556B4F"},
+        {"Name": "HH", "Color": "#59646A"},
+        {"Name": "MV", "Color": "#556B4F"},
+        {"Name": "NI", "Color": "#6F4A4A"},
+        {"Name": "NW", "Color": "#59646A"},
+        {"Name": "RP", "Color": "#9A8061"},
+        {"Name": "SH", "Color": "#9A8061"},
+        {"Name": "SL", "Color": "#556B4F"},
+        {"Name": "SN", "Color": "#556B4F"},
+        {"Name": "ST", "Color": "#59646A"},
+        {"Name": "TH", "Color": "#9A8061"}
     ],
     "Borders": {
         "Water": 
