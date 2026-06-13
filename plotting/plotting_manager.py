@@ -99,8 +99,8 @@ class PlotManager:
                 fontfamily=text["font"],
                 fontweight=text["weight"],
                 color=text["color"],
-                ha="left",
-                va="top",
+                ha="center",
+                va="center",
                 zorder=zorder,
                 alpha=1
             )
@@ -207,7 +207,8 @@ class PlotManager:
                 height=height,
                 bbox_to_anchor=bbox_to_anchor,
                 bbox_transform=ax.transAxes,
-                loc="lower left"            )
+                loc="lower left"
+            )
 
             expansion_box = box(xmin, ymin, xmax, ymax)
 
@@ -246,6 +247,12 @@ class PlotManager:
 
             ax_inset.set_facecolor(self.colors["bg_water"])
 
+            for spine in ax_inset.spines.values():
+                spine.set_visible(True)
+                spine.set_color("black")
+                spine.set_linewidth(4)
+                spine.set_zorder(-1)
+
             # Zoom to Berlin
             ax_inset.set_xlim(xmin, xmax)
             ax_inset.set_ylim(ymin, ymax)
@@ -260,12 +267,12 @@ class PlotManager:
                     text["y"],
                     text["text"],
                     transform=ax_inset.transAxes,
-                    color=text.get("color", "#1E1F1C"),
-                    fontsize=text.get("size", 10),
+                    color=text.get("color", text["color"]),
+                    fontsize=text.get("size", text["size"]),
                     fontfamily=text.get("font", "DejaVu Sans"),
                     fontweight=text.get("weight", 600),
-                    ha=text.get("ha", "left"),
-                    va=text.get("va", "top"),
+                    ha=text.get("ha", "center"),
+                    va=text.get("va", "center"),
                     zorder=zorder+2
                 )
 
