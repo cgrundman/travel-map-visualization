@@ -227,31 +227,39 @@ class PlotManager:
 
                 if gdf.intersects(expansion_box).any():
 
+                    self._plot_submaps(ax_inset, current_date, zorder)
+
                     # Plot same data
-                    submap_gdf = gpd.read_file(shapefile_path)
-                    submap_gdf.plot(
-                        ax=ax_inset,
-                        color=submap["Color"],
-                        linewidth=0,
-                        edgecolor="black",
-                        zorder=zorder)
+                    #submap_gdf = gpd.read_file(shapefile_path)
+                    #submap_gdf.plot(
+                    #    ax=ax_inset,
+                    #    color=submap["Color"],
+                    #    linewidth=0,
+                    #    edgecolor="black",
+                    #    zorder=zorder)
                 
-                    for lw, alpha in self.borders["Submap"]:
-                        submap_gdf.plot(
-                            ax=ax_inset,
-                            facecolor="none",
-                            edgecolor=(self.colors["map_border"], alpha),
-                            linewidth=lw,
-                            zorder=zorder+1
-                        )
+                    #for lw, alpha in self.borders["Submap"]:
+                    #    submap_gdf.plot(
+                    #        ax=ax_inset,
+                    #        facecolor="none",
+                    #        edgecolor=(self.colors["map_border"], alpha),
+                    #        linewidth=lw,
+                    #        zorder=zorder+1
+                    #    )
+
+            # Find contained points
+            points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
+
+            self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
+
 
             ax_inset.set_facecolor(self.colors["bg_water"])
 
             for spine in ax_inset.spines.values():
-                spine.set_visible(True)
-                spine.set_color("black")
-                spine.set_linewidth(4)
-                spine.set_zorder(-1)
+                spine.set_visible(False)
+            #    spine.set_color("black")
+            #    spine.set_linewidth(4)
+            #    spine.set_zorder(zorder-1)
 
             # Zoom to Berlin
             ax_inset.set_xlim(xmin, xmax)
@@ -286,17 +294,17 @@ class PlotManager:
             # Unvisited
             unvisited = (points['date'] > current_date) | (points['date'].isna())
             if unvisited.any():
-                points[unvisited].plot(ax=ax, color=self.colors["unvisited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
+                points[unvisited].plot(ax=ax, color=self.colors["unvisited"], linewidth=self.labels["Marker Border"], edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
             # Visited
             visited = points['date'] < current_date
             if visited.any():
-                points[visited].plot(ax=ax, color=self.colors["visited"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
+                points[visited].plot(ax=ax, color=self.colors["visited"], linewidth=self.labels["Marker Border"], edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
             # Active
             active = points['date'] == current_date
             if active.any():
-                points[active].plot(ax=ax, color=self.colors["active"], linewidth=1, edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
+                points[active].plot(ax=ax, color=self.colors["active"], linewidth=self.labels["Marker Border"], edgecolors=self.colors["active"], markersize=self.labels["Marker Size"], alpha=1, zorder=zorder)
 
     def _plot_flags(self, ax):
         flag_scale = self.meta_data["Flags"]["Scale"]

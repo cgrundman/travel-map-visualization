@@ -138,7 +138,8 @@
         "Longitude Threshold": 1.0,
         "Latitude Threshold": 0.08,
         "Shift Step": 0.06,
-        "Marker Size": 50
+        "Marker Size": 50,
+        "Marker Border": 1
     },
     "Flags": {
         "Scale": 0.123,
