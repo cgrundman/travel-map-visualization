@@ -229,37 +229,15 @@ class PlotManager:
 
                     self._plot_submaps(ax_inset, current_date, zorder)
 
-                    # Plot same data
-                    #submap_gdf = gpd.read_file(shapefile_path)
-                    #submap_gdf.plot(
-                    #    ax=ax_inset,
-                    #    color=submap["Color"],
-                    #    linewidth=0,
-                    #    edgecolor="black",
-                    #    zorder=zorder)
-                
-                    #for lw, alpha in self.borders["Submap"]:
-                    #    submap_gdf.plot(
-                    #        ax=ax_inset,
-                    #        facecolor="none",
-                    #        edgecolor=(self.colors["map_border"], alpha),
-                    #        linewidth=lw,
-                    #        zorder=zorder+1
-                    #    )
-
             # Find contained points
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
 
             self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
 
-
             ax_inset.set_facecolor(self.colors["bg_water"])
 
             for spine in ax_inset.spines.values():
                 spine.set_visible(False)
-            #    spine.set_color("black")
-            #    spine.set_linewidth(4)
-            #    spine.set_zorder(zorder-1)
 
             # Zoom to Berlin
             ax_inset.set_xlim(xmin, xmax)
@@ -318,8 +296,8 @@ class PlotManager:
         for i, file in enumerate(png_files):
             frameon = False
 
-            #ratio = self.ratios[file[:2]]
-            ratio=1
+            ratio = self.ratios[file[:2]]
+            #ratio=1
             if ratio > 1:
                 frameon = True
 
