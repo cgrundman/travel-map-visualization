@@ -10,13 +10,13 @@
     },
     "Text": [
         {"text": "EUROPE", 
-            "x": 0.310, "y": 0.990, "color": "#1E1F1C", "size": 20, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.360, "y": 0.975, "color": "#bfbfbf", "size": 20, "font": "DejaVu Sans", "weight": 600},
         {"text": "NORTH SEA", 
-            "x": 0.180, "y": 0.600, "color": "#33576b", "size": 12, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.230, "y": 0.590, "color": "#33576b", "size": 12, "font": "DejaVu Sans", "weight": 600},
         {"text": "IRAN", 
-            "x": 0.930, "y": 0.050, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 800},
+            "x": 0.950, "y": 0.040, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 800},
         {"text": "GERMANY", 
-            "x": 0.320, "y": 0.470, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}
+            "x": 0.350, "y": 0.465, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}
     ],
     "Submaps": [
         {"Name": "AD", "Color": "#D4AF37", "Scale": [5, 5], "Shift": [-14.5,  -177.7], "BG": [[-9, 32],[-9, 35.9],[-4.5, 35.9],[-4.5, 32]], "C": "bg_land"},
