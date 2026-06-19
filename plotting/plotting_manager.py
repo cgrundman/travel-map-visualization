@@ -397,7 +397,7 @@ class PlotManager:
         crop_and_save_image(full_temp_path, full_final_path, crop_box)
         crop_and_save_image(full_temp_path, full_temp_path, crop_box)
 
-    def plot_location_labels(ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg, zorder):    
+    def plot_location_labels(self, ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg, zorder):    
 
         # Sort Locations
         locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
@@ -441,7 +441,7 @@ class PlotManager:
                     #alpha=0.8,
                     edgecolor="none"
                 ),
-                zorder=6
+                zorder=zorder
             )
 
             texts.append(txt)
