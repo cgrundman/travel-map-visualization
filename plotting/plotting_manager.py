@@ -7,6 +7,7 @@ import random
 #import matplotlib.patches as patches
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
+import matplotlib.patheffects as pe
 #from matplotlib.patches import FancyBboxPatch
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
@@ -122,11 +123,11 @@ class PlotManager:
 
             # BG Map Borders
             for lw, alpha in self.borders["Background Map"]:
-                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_land_border"], alpha), linewidth=lw/self.plot_scale, zorder=zorder+1)
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_land_border"], alpha), linewidth=lw, zorder=zorder+1)
 
             # Water Borders
             for lw, alpha in self.borders["Water"]:
-                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=3)
+                bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw, zorder=3)
 
 
     def _plot_submaps(self, ax, current_date, zorder):
@@ -427,20 +428,30 @@ class PlotManager:
                 zorder=zorder
             )
 
+            #txt = ax.text(
+            #    lon,
+            #    lat,
+            #    location["name"],
+            #    fontsize=labels_config["Font"] * scale,
+            #    color=label_color,
+            #    ha="center",
+            #    va="center",
+            #    bbox=dict(
+            #        boxstyle="round,pad=0.1",
+            #        facecolor=label_bg,
+            #        #alpha=0.8,
+            #        edgecolor="none"
+            #    ),
+            #    zorder=zorder
+            #)
+
             txt = ax.text(
-                lon,
-                lat,
-                location["name"],
-                fontsize=labels_config["Font"] * scale,
+                lon, lat, location["name"],
+                fontsize=5.5,
                 color=label_color,
                 ha="center",
                 va="center",
-                bbox=dict(
-                    boxstyle="round,pad=0.1",
-                    facecolor=label_bg,
-                    #alpha=0.8,
-                    edgecolor="none"
-                ),
+                path_effects=[pe.withStroke(linewidth=1, foreground="#8F8F8F52")],
                 zorder=zorder
             )
 
