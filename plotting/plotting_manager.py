@@ -191,7 +191,13 @@ class PlotManager:
 
             # Water Borders
             for lw, alpha in self.borders["Water"]:
-                submap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw/self.plot_scale, zorder=1)
+                submap_gdf.plot(
+                    ax=ax, 
+                    facecolor="none", 
+                    edgecolor=(self.colors["bg_water_border"], alpha), 
+                    linewidth=lw, 
+                    zorder=1
+                )
 
     def _plot_expansions(self, ax, current_date, points_gdf, zorder):
 
@@ -233,7 +239,10 @@ class PlotManager:
             # Find contained points
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
 
-            self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
+            if self.plot_scale >= 3:
+                self.plot_location_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
+            else:
+                self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
 
             ax_inset.set_facecolor(self.colors["bg_water"])
 
@@ -407,18 +416,18 @@ class PlotManager:
 
         for _, location in locations_df_sorted.iterrows():
 
-            date = location['date']
+            #date = location['date']
             lon = location["label_longitude"]
             lat = location["label_latitude"]
             point_lon = location["geometry"].x
             point_lat = location["geometry"].y
 
-            if date == current_date:
-                label_color = color_active
-            elif date < current_date:
-                label_color = color_visited
-            else:
-                label_color = color_unvisited
+            #if date == current_date:
+            #    label_color = color_active
+            #elif date < current_date:
+            #    label_color = color_visited
+            #else:
+            #    label_color = color_unvisited
 
             ax.plot(
                 [point_lon, lon],
@@ -448,10 +457,10 @@ class PlotManager:
             txt = ax.text(
                 lon, lat, location["name"],
                 fontsize=5.5,
-                color=label_color,
+                color='black',
                 ha="center",
                 va="center",
-                path_effects=[pe.withStroke(linewidth=1, foreground="#8F8F8F52")],
+                path_effects=[pe.withStroke(linewidth=1, foreground=self.colors["bg_land"])],
                 zorder=zorder
             )
 
