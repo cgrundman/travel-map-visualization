@@ -14,7 +14,7 @@ from utils.file_utils import ensure_directory_exists
 #  "us" |    "de" |   "eu" | "ir" |
 PATH = "de"
 
-small_map = True
+small_map = False
 small_gif = False
 large_map = True
 
