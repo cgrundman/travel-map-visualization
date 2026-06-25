@@ -419,38 +419,15 @@ class PlotManager:
             #date = location['date']
             lon = location["label_longitude"]
             lat = location["label_latitude"]
-            point_lon = location["geometry"].x
-            point_lat = location["geometry"].y
+            #point_lon = location["geometry"].x
+            #point_lat = location["geometry"].y
 
-            #if date == current_date:
-            #    label_color = color_active
-            #elif date < current_date:
-            #    label_color = color_visited
-            #else:
-            #    label_color = color_unvisited
-
-            ax.plot(
-                [point_lon, lon],
-                [point_lat, lat],
-                linewidth=0.5,
-                color="gray",
-                zorder=zorder
-            )
-
-            #txt = ax.text(
-            #    lon,
-            #    lat,
-            #    location["name"],
-            #    fontsize=labels_config["Font"] * scale,
-            #    color=label_color,
-            #    ha="center",
-            #    va="center",
-            #    bbox=dict(
-            #        boxstyle="round,pad=0.1",
-            #        facecolor=label_bg,
-            #        #alpha=0.8,
-            #        edgecolor="none"
-            #    ),
+            # Shifts Plot
+            #ax.plot(
+            #    [point_lon, lon],
+            #    [point_lat, lat],
+            #    linewidth=0.5,
+            #    color="gray",
             #    zorder=zorder
             #)
 
