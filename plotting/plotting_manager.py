@@ -23,7 +23,7 @@ from utils.file_utils import (
     get_image_dimensions,
 )
 
-#from plotting.plotting_helpers import plot_location_labels
+#from plotting.plotting_helpers import _plot_labels
 from colormap.cmap_maker import CustomCmap
 
 random.seed(5)
@@ -69,7 +69,7 @@ class PlotManager:
         self._plot_expansions(ax, current_date, self.points_working, zorder=40)
         self._plot_text(ax, self.text, zorder=50)
         if self.plot_scale >= 3:
-            self.plot_location_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
+            self._plot_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
         else:
             self._plot_points(ax, current_date, points=self.points_working, zorder=60)
         self._plot_points(ax, current_date, points=self.points_working, zorder=60, a_type="clear")
@@ -240,7 +240,7 @@ class PlotManager:
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
 
             if self.plot_scale >= 3:
-                self.plot_location_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
+                self._plot_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
             else:
                 self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
 
@@ -407,14 +407,17 @@ class PlotManager:
         crop_and_save_image(full_temp_path, full_final_path, crop_box)
         crop_and_save_image(full_temp_path, full_temp_path, crop_box)
 
-    def plot_location_labels(self, ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg, zorder):    
+    def _plot_labels(self, ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg, zorder):    
 
         # Sort Locations
         locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
 
+        # Filter for locations visited
+        locations_filtered = locations_df_sorted[locations_df_sorted["date"] <= current_date].copy()
+
         texts = []
 
-        for _, location in locations_df_sorted.iterrows():
+        for _, location in locations_filtered.iterrows():
 
             #date = location['date']
             lon = location["label_longitude"]
