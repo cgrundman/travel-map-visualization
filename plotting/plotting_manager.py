@@ -63,16 +63,34 @@ class PlotManager:
         self.copy = copy
         print(f"{current_date.date()} - {row['name']}")
         fig, ax = self._initialize_plot()
+
+        #Establish point df's
         self.points_working = self.points_gdf.copy(deep=True)
+        points_main = self._exclude_expansion_points(self.points_working)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, current_date, zorder=30)
+
+        # Inset still gets original/full points
         self._plot_expansions(ax, current_date, self.points_working, zorder=40)
         self._plot_text(ax, self.text, zorder=50)
+
         if self.plot_scale >= 3:
-            self._plot_labels(ax, self.points_working, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
+            self._plot_labels(
+                ax,
+                points_main,
+                current_date,
+                self.labels,
+                self.plot_scale,
+                self.colors["unvisited"],
+                self.colors["visited"],
+                self.colors["active"],
+                self.colors["label_bg"],
+                zorder=60
+            )
         else:
-            self._plot_points(ax, current_date, points=self.points_working, zorder=60)
-        self._plot_points(ax, current_date, points=self.points_working, zorder=60, a_type="clear")
+            self._plot_points(ax, current_date, points=points_main, zorder=60)
+
+        self._plot_points(ax, current_date, points=points_main, zorder=60, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
 
@@ -413,11 +431,11 @@ class PlotManager:
         locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
 
         # Filter for locations visited
-        locations_filtered = locations_df_sorted[locations_df_sorted["date"] <= current_date].copy()
+        locations_df_sorted = locations_df_sorted[locations_df_sorted["date"] <= current_date].copy()
 
         texts = []
 
-        for _, location in locations_filtered.iterrows():
+        for _, location in locations_df_sorted.iterrows():
 
             #date = location['date']
             lon = location["label_longitude"]
@@ -448,7 +466,15 @@ class PlotManager:
 
         #compute_adjusted_label_positions(ax=ax, texts=texts, loc_df=locations_df_sorted)
         
-
+    def _exclude_expansion_points(self, points_gdf):
+        points_filtered = points_gdf.copy()
+        for expansion in self.expansions:
+            xmin, xmax, ymin, ymax = expansion["Coords"]
+            inside_expansion = points_filtered.cx[xmin:xmax, ymin:ymax].index
+            points_filtered = points_filtered.drop(index=inside_expansion)
+        
+        return points_filtered
+    
     def compute_adjusted_label_positions(ax, texts, loc_df):
         """
         Run adjust_text and extract adjusted label positions.
