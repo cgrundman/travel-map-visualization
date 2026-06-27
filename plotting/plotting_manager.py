@@ -179,7 +179,7 @@ class PlotManager:
             ].copy()
             num_past_dates = (submap_points['date'] <= current_date).sum()
             ratio = num_past_dates / len(submap_points)
-            ratio = 1
+            #ratio = 1
             self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.colors["map_dark"], submap["Color"]).value(ratio)
 
