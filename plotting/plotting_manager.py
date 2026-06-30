@@ -8,13 +8,14 @@ import random
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
 import matplotlib.patheffects as pe
+from matplotlib.patches import Rectangle
 #from matplotlib.patches import FancyBboxPatch
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
 #from shapely import affinity
 #from shapely.geometry import Polygon, box
-from shapely.geometry import box
+#from shapely.geometry import box
 from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
 
@@ -55,6 +56,7 @@ class PlotManager:
         self.colors = meta_data["Colors"]
         self.labels = meta_data["Labels"]
         self.borders = meta_data["Borders"]
+        self.expansion_props = meta_data["Expanion Properties"]
 
         self.output_temp_path = "./plots/temp/"
         self.output_final_path = "./plots/"
@@ -68,11 +70,11 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         points_main = self._exclude_expansion_points(self.points_working)
         self._plot_background(ax, zorder=20)
-        self._plot_submaps(ax, current_date, zorder=30)
+        self._plot_submaps(ax, current_date, self.submaps, zorder=30)
 
         # Inset still gets original/full points
         self._plot_expansions(ax, current_date, self.points_working, zorder=40)
-        self._plot_text(ax, self.text, zorder=50)
+        #self._plot_text(ax, self.text, zorder=50)
 
         if self.plot_scale >= 3:
             self._plot_labels(
@@ -87,11 +89,11 @@ class PlotManager:
                 self.colors["label_bg"],
                 zorder=60
             )
-        else:
-            self._plot_points(ax, current_date, points=points_main, zorder=60)
+        #else:
+            #self._plot_points(ax, current_date, points=points_main, zorder=60)
 
         self._plot_points(ax, current_date, points=points_main, zorder=60, a_type="clear")
-        self._plot_flags(ax)
+        #self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
 
     def _initialize_plot(self):
@@ -148,7 +150,7 @@ class PlotManager:
                 bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw, zorder=3)
 
 
-    def _plot_submaps(self, ax, current_date, zorder):
+    def _plot_submaps(self, ax, current_date, submaps, zorder):
 
         # Plot Region for water
         min_lon, max_lon = self.plotting["Plotting Area"]["xlims"][0], self.plotting["Plotting Area"]["xlims"][1]
@@ -167,7 +169,7 @@ class PlotManager:
         self.ratios = {}
         
         # Submap Plotting
-        for submap in self.submaps:
+        for submap in submaps:
 
             name = submap["Name"]
 
@@ -236,24 +238,26 @@ class PlotManager:
                 loc="lower left"
             )
 
-            expansion_box = box(xmin, ymin, xmax, ymax)
+            #expansion_box = box(xmin, ymin, xmax, ymax)
 
             #submaps_in_expansion = []
 
-            # Find contained submaps
-            for submap in self.submaps:
+            # Plot relavent submaps
+            #for submap in expansion["Submaps"]:
 
-                name = submap["Name"]
-                shapefile_path = os.path.join(
-                    self.path,
-                    "submaps",
-                    f"{name}.shp"
-                )
-                gdf = gpd.read_file(shapefile_path)
+                #shapefile_path = os.path.join(
+                #    self.path,
+                #    "submaps",
+                #    f"{submap}.shp"
+                #)
 
-                if gdf.intersects(expansion_box).any():
+            submaps_filtered = [
+                submap.copy()
+                for submap in self.submaps
+                if submap["Name"] in expansion["Submaps"]
+            ]
 
-                    self._plot_submaps(ax_inset, current_date, zorder)
+            self._plot_submaps(ax_inset, current_date, submaps_filtered, zorder)
 
             # Find contained points
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
@@ -272,24 +276,37 @@ class PlotManager:
             ax_inset.set_xlim(xmin, xmax)
             ax_inset.set_ylim(ymin, ymax)
 
+            frame = Rectangle(
+                (0, 0),                  # Lower-left corner in axes coordinates
+                1,                       # Width (100% of inset)
+                1,                       # Height (100% of inset)
+                transform=ax_inset.transAxes,
+                facecolor="none",
+                edgecolor=self.colors["map_border"],
+                linewidth=2,
+                clip_on=False,
+                zorder=zorder+3
+            )
+
+            ax_inset.add_patch(frame)
+
             # Remove ticks
             ax_inset.set_xticks([])
             ax_inset.set_yticks([])
 
-            for text in expansion["Text"]:
-                ax_inset.text(
-                    text["x"],
-                    text["y"],
-                    text["text"],
-                    transform=ax_inset.transAxes,
-                    color=text.get("color", text["color"]),
-                    fontsize=text.get("size", text["size"]),
-                    fontfamily=text.get("font", "DejaVu Sans"),
-                    fontweight=text.get("weight", 600),
-                    ha=text.get("ha", "center"),
-                    va=text.get("va", "center"),
-                    zorder=zorder+2
-                )
+            ax_inset.text(
+                expansion["x"],
+                expansion["y"],
+                expansion["Text"],
+                transform=ax_inset.transAxes,
+                color=self.expansion_props["Text"].get("color", self.expansion_props["Text"]["color"]),
+                fontsize=self.expansion_props["Text"].get("size", self.expansion_props["Text"]["size"]),
+                fontfamily=self.expansion_props["Text"].get("font", "DejaVu Sans"),
+                fontweight=self.expansion_props["Text"].get("weight", 600),
+                ha=self.expansion_props["Text"].get("ha", "center"),
+                va=self.expansion_props["Text"].get("va", "center"),
+                zorder=zorder+2
+            )
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 

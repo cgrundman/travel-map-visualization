@@ -79,13 +79,20 @@
             [[3, 0.08], [2, 0.18], [1.2, 1]]
     },
     "Expansions" : [      
-        {"Coords": [-25.07, -12.59, 63.19, 67.03], "bbox_to_anchor": [0.001, 0.85, 1, 1], "height/width": ["13%", "13%"],
-        "Text": [{"text": "ICELAND", "x": 0.45, "y": 0.35, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}]},
-        {"Coords": [5.38, 10.76, 45.48, 48.02], "bbox_to_anchor": [0.001, 0.75, 1, 1], "height/width": ["13%", "13%"],
-        "Text": [{"text": "SWITZERLAND", "x": 0.5, "y": 0.330, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}]},
-        {"Coords": [18.13, 20.61, 41.78, 43.59], "bbox_to_anchor": [0.15, 0.85, 1, 1], "height/width": ["13%", "13%"],
-        "Text": [{"text": "MONTENERGRO", "x": 0.5, "y": 0.330, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}]}
+        {"Coords": [-25.07, -12.59, 63.19, 67.03], "bbox_to_anchor": [0.001, 0.855, 1, 1], "height/width": ["14.5%", "14.5%"],
+        "Submaps": ["IS"], 
+        "Text": "ICELAND", "x": 0.5, "y": 0.55},
+        {"Coords": [5.44, 10.74, 45.47, 48.02], "bbox_to_anchor": [0.001, 0.735, 1, 1], "height/width": ["14.5%", "14.5%"],
+        "Submaps": ["AT", "CH", "DE", "FR", "IT", "LI"], 
+        "Text": "SWITZERLAND", "x": 0.5, "y": 0.280},
+        {"Coords": [18.13, 20.61, 41.78, 43.59], "bbox_to_anchor": [0.15, 0.853, 1, 1], "height/width": ["13%", "13%"],
+        "Submaps": ["AL", "BA", "HR", "ME", "RS", "XK"], 
+        "Text": "MONTENERGRO", "x": 0.5, "y": 0.1}
     ],
+    "Expanion Properties" : {
+        "Text": {"color": "#1E1F1C", "size": 7, "font": "DejaVu Sans", "weight": 600},
+        "Borders": []
+    },
     "Colors": {
         "bg": "#2B3134",
         "bg_land": "#212121",
