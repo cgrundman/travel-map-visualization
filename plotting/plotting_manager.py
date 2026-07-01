@@ -283,7 +283,7 @@ class PlotManager:
                 transform=ax_inset.transAxes,
                 facecolor="none",
                 edgecolor=self.colors["map_border"],
-                linewidth=2,
+                linewidth=self.expansion_props["Borders"]["width"],
                 clip_on=False,
                 zorder=zorder+3
             )
