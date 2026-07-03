@@ -68,13 +68,14 @@ class PlotManager:
 
         #Establish point df's
         self.points_working = self.points_gdf.copy(deep=True)
+        self._find_ratios(current_date)
         points_main = self._exclude_expansion_points(self.points_working)
         self._plot_background(ax, zorder=20)
-        self._plot_submaps(ax, current_date, self.submaps, zorder=30)
+        self._plot_submaps(ax, self.submaps, zorder=30)
 
         # Inset still gets original/full points
         self._plot_expansions(ax, current_date, self.points_working, zorder=40)
-        #self._plot_text(ax, self.text, zorder=50)
+        self._plot_text(ax, self.text, zorder=50)
 
         if self.plot_scale >= 3:
             self._plot_labels(
@@ -89,11 +90,11 @@ class PlotManager:
                 self.colors["label_bg"],
                 zorder=60
             )
-        #else:
-            #self._plot_points(ax, current_date, points=points_main, zorder=60)
+        else:
+            self._plot_points(ax, current_date, points=points_main, zorder=60)
 
         self._plot_points(ax, current_date, points=points_main, zorder=60, a_type="clear")
-        #self._plot_flags(ax)
+        self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
 
     def _initialize_plot(self):
@@ -149,8 +150,24 @@ class PlotManager:
             for lw, alpha in self.borders["Water"]:
                 bgmap_gdf.plot(ax=ax, facecolor="none", edgecolor=(self.colors["bg_water_border"], alpha), linewidth=lw, zorder=3)
 
+    def _find_ratios(self, current_date):
+        self.ratios = {}
 
-    def _plot_submaps(self, ax, current_date, submaps, zorder):
+        for submap in self.submaps:
+            
+            submap_points = self.points_gdf.loc[
+                self.points_gdf['submap'] == submap["Name"]
+            ].copy()
+
+            num_past_dates = (submap_points['date'] <= current_date).sum()
+
+            ratio = num_past_dates / len(submap_points)
+
+
+            self.ratios[submap["Name"]] = ratio
+
+
+    def _plot_submaps(self, ax, submaps, zorder):
 
         # Plot Region for water
         min_lon, max_lon = self.plotting["Plotting Area"]["xlims"][0], self.plotting["Plotting Area"]["xlims"][1]
@@ -165,9 +182,7 @@ class PlotManager:
             alpha=1
         )
         ax.add_patch(rect)
-        
-        self.ratios = {}
-        
+                
         # Submap Plotting
         for submap in submaps:
 
@@ -176,13 +191,9 @@ class PlotManager:
             shapefile_path = os.path.join(self.path, "submaps", f"{name}.shp")
             submap_gdf = gpd.read_file(shapefile_path)
 
-            submap_points = self.points_gdf.loc[
-                self.points_gdf['submap'] == submap["Name"]
-            ].copy()
-            num_past_dates = (submap_points['date'] <= current_date).sum()
-            ratio = num_past_dates / len(submap_points)
+            
+            ratio = self.ratios[submap["Name"]]
             #ratio = 1
-            self.ratios[submap["Name"]] = ratio
             color = CustomCmap(self.colors["map_dark"], submap["Color"]).value(ratio)
 
             submap_gdf.plot(
@@ -238,26 +249,13 @@ class PlotManager:
                 loc="lower left"
             )
 
-            #expansion_box = box(xmin, ymin, xmax, ymax)
-
-            #submaps_in_expansion = []
-
-            # Plot relavent submaps
-            #for submap in expansion["Submaps"]:
-
-                #shapefile_path = os.path.join(
-                #    self.path,
-                #    "submaps",
-                #    f"{submap}.shp"
-                #)
-
             submaps_filtered = [
                 submap.copy()
                 for submap in self.submaps
                 if submap["Name"] in expansion["Submaps"]
             ]
 
-            self._plot_submaps(ax_inset, current_date, submaps_filtered, zorder)
+            self._plot_submaps(ax_inset, submaps_filtered, zorder)
 
             # Find contained points
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
