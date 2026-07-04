@@ -154,16 +154,16 @@ class PlotManager:
         self.ratios = {}
 
         for submap in self.submaps:
-            
+            # Copy points gdf
             submap_points = self.points_gdf.loc[
                 self.points_gdf['submap'] == submap["Name"]
             ].copy()
 
+            # Establish time frame
             num_past_dates = (submap_points['date'] <= current_date).sum()
 
+            # Caöculate Ratio and save to dictionary
             ratio = num_past_dates / len(submap_points)
-
-
             self.ratios[submap["Name"]] = ratio
 
 
