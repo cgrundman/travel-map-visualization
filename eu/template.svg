@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="600" height="800"
+     viewBox="0 0 600 800">
+
+  <!--
+    EDITABLE FLAG SHIELD TEMPLATE
+
+    How to use:
+    1. Replace the colors in the group id="flag-art".
+    2. Keep all flag artwork inside the shield clip-path.
+    3. Delete unused pattern examples.
+    4. Export as SVG or PNG.
+
+    Shield artwork area:
+      x = 150 to 450
+      y = 150 to 560
+  -->
+
+  <defs>
+    <!-- Main shield silhouette -->
+    <path id="shield-shape"
+          d="M100 150
+             L500 150
+             L500 380
+             C500 500 365 565 300 610
+             C235 565 100 500 100 380
+             Z"/>
+
+    <!-- Clip all flag artwork to the shield -->
+    <clipPath id="shield-clip">
+      <use href="#shield-shape"/>
+    </clipPath>
+
+    <!-- Subtle paper grain -->
+    <filter id="paper-grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise"
+                    baseFrequency="0.8"
+                    numOctaves="2"
+                    seed="7"
+                    result="noise"/>
+      <feColorMatrix in="noise"
+                     type="saturate"
+                     values="0"
+                     result="grayNoise"/>
+      <feComponentTransfer in="grayNoise" result="fadedNoise">
+        <feFuncA type="table" tableValues="0 0.08"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic"
+               in2="fadedNoise"
+               mode="multiply"/>
+    </filter>
+
+    <!-- Soft drop shadow -->
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="14"
+                    stdDeviation="12"
+                    flood-color="#000000"
+                    flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent background -->
+  <rect width="600" height="800" fill="none"/>
+
+  <!-- Decorative suspension bar -->
+  <g id="hanger">
+    <line x1="130" y1="120" x2="470" y2="120"
+          stroke="#b49352" stroke-width="12"
+          stroke-linecap="round"/>
+    <circle cx="130" cy="120" r="14"
+            fill="#d2b16e" stroke="#5e4928" stroke-width="5"/>
+    <circle cx="470" cy="120" r="14"
+            fill="#d2b16e" stroke="#5e4928" stroke-width="5"/>
+    <line x1="165" y1="120" x2="165" y2="150"
+          stroke="#b49352" stroke-width="8"/>
+    <line x1="435" y1="120" x2="435" y2="150"
+          stroke="#b49352" stroke-width="8"/>
+  </g>
+
+  <!-- Shadow behind shield -->
+  <use href="#shield-shape"
+       fill="#000000"
+       opacity="0.35"
+       filter="url(#shadow)"/>
+
+  <!-- FLAG ARTWORK -->
+  <g id="flag-art"
+     clip-path="url(#shield-clip)"
+     filter="url(#paper-grain)">
+
+    <!-- 
+    ACTIVE EXAMPLE: horizontal tricolor
+    <rect x="150" y="150" width="300" height="154" fill="#1f1f1f"/>
+    <rect x="150" y="304" width="300" height="153" fill="#f2f0e8"/>
+    <rect x="150" y="457" width="300" height="153" fill="#9a2f2f"/>
+    -->
+
+    <!--
+    VERTICAL TRICOLOR EXAMPLE:
+    <rect x="150" y="150" width="100" height="460" fill="#1f2b52"/>
+    <rect x="250" y="150" width="100" height="460" fill="#f4f1e7"/>
+    <rect x="350" y="150" width="100" height="460" fill="#9b2d2d"/>
+    -->
+
+    <!--
+    TWO-COLOR HORIZONTAL EXAMPLE:
+    <rect x="150" y="150" width="300" height="230" fill="#f2f0e8"/>
+    <rect x="150" y="380" width="300" height="230" fill="#b63131"/>
+    -->
+
+    <!--
+    NORDIC CROSS EXAMPLE: -->
+    <rect x="100" y="100" width="400" height="500" fill="#274b72"/>
+    <rect x="238" y="100" width="58" height="500" fill="#f2d16b"/>
+    <rect x="100" y="320" width="400" height="58" fill="#f2d16b"/>
+    
+
+    <!--
+    CENTRAL EMBLEM PLACEHOLDER:
+    <circle cx="300" cy="350" r="58"
+            fill="#f4f1e7"
+            stroke="#5a4528"
+            stroke-width="8"/>
+    <text x="300" y="370"
+          text-anchor="middle"
+          font-family="serif"
+          font-size="64"
+          font-weight="bold"
+          fill="#5a4528">✦</text>
+    -->
+  </g>
+
+  <!-- Inner highlight -->
+  <use href="#shield-shape"
+       fill="none"
+       stroke="#d7bb79"
+       stroke-width="8"
+       opacity="0.9"/>
+
+  <!-- Outer antique border -->
+  <use href="#shield-shape"
+       fill="none"
+       stroke="#4d3b22"
+       stroke-width="18"
+       stroke-linejoin="round"/>
+
+  <!-- Thin dark keyline -->
+  <use href="#shield-shape"
+       fill="none"
+       stroke="#17130e"
+       stroke-width="4"
+       stroke-linejoin="round"/>
+
+  <!-- Optional country label -->
+  <g id="label">
+    <text x="300" y="700"
+          text-anchor="middle"
+          font-family="Georgia, 'Times New Roman', serif"
+          font-size="42"
+          letter-spacing="5"
+          fill="#d8c28f">
+      COUNTRY
+    </text>
+  </g>
+</svg>
