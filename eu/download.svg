@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
+
+  <defs>
+    <!-- Antique brass border -->
+    <linearGradient id="antique-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c477"></stop>
+      <stop offset="28%" stop-color="#9d7937"></stop>
+      <stop offset="55%" stop-color="#d1ad5f"></stop>
+      <stop offset="78%" stop-color="#755526"></stop>
+      <stop offset="100%" stop-color="#c9a85d"></stop>
+    </linearGradient>
+
+    <!-- Dark inner edge -->
+    <linearGradient id="dark-edge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#40392f"></stop>
+      <stop offset="100%" stop-color="#171916"></stop>
+    </linearGradient>
+
+    <!-- Very subtle aged texture -->
+    <filter id="antique-texture" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="8" result="noise"></feTurbulence>
+
+      <feColorMatrix in="noise" type="saturate" values="0" result="grayNoise"></feColorMatrix>
+
+      <feComponentTransfer in="grayNoise" result="softNoise">
+        <feFuncA type="table" tableValues="0 0.08"></feFuncA>
+      </feComponentTransfer>
+
+      <feBlend in="SourceGraphic" in2="softNoise" mode="multiply"></feBlend>
+    </filter>
+
+    <!-- Shadow -->
+    <filter id="shield-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.38"></feDropShadow>
+    </filter>
+
+    <!-- Main shield shape for clipping flags or artwork -->
+    <clipPath id="shield-clip">
+      <path d="
+        M 118 112
+        Q 118 90 140 90
+        L 460 90
+        Q 482 90 482 112
+        L 482 350
+        C 482 470 410 566 300 630
+        C 190 566 118 470 118 350
+        Z"></path>
+    </clipPath>
+  </defs>
+
+  <!-- Complete shield group -->
+  <g id="shield" filter="url(#shield-shadow)">
+
+    <!-- Exterior brass frame -->
+    <path id="shield-outer" d="
+            M 104 100
+            Q 104 74 132 74
+            L 468 74
+            Q 496 74 496 100
+            L 496 354
+            C 496 488 416 590 300 660
+            C 184 590 104 488 104 354
+            Z" fill="url(#antique-brass)" stroke="#3b2b16" stroke-width="7" stroke-linejoin="round"></path>
+
+    <!-- Dark recessed border -->
+    <path id="shield-recess" d="
+            M 116 110
+            Q 116 88 140 88
+            L 460 88
+            Q 484 88 484 110
+            L 484 350
+            C 484 474 409 568 300 636
+            C 191 568 116 474 116 350
+            Z" fill="url(#dark-edge)" stroke="#dfc373" stroke-width="3" stroke-linejoin="round"></path>
+
+    <!-- Main shield field -->
+    <path id="shield-shape" d="
+            M 128 118
+            Q 128 102 146 102
+            L 454 102
+            Q 472 102 472 118
+            L 472 346
+            C 472 458 402 548 300 614
+            C 198 548 128 458 128 346
+            Z" fill="#66735f" stroke="#1b211c" stroke-width="6" stroke-linejoin="round" filter="url(#antique-texture)"></path>
+
+    <!-- Fine inner highlight -->
+    <path d="
+      M 140 126
+      Q 140 114 154 114
+      L 446 114
+      Q 460 114 460 126
+      L 460 342
+      C 460 448 394 532 300 596
+      C 206 532 140 448 140 342
+      Z" fill="none" stroke="#d8c485" stroke-width="2" stroke-opacity="0.55" stroke-linejoin="round"></path>
+
+    <!-- Top decorative divider -->
+    <path d="
+      M 148 137
+      C 218 147 382 147 452 137" fill="none" stroke="#e1c777" stroke-width="3" stroke-linecap="round" opacity="0.75"></path>
+
+    <!-- Small corner ornaments -->
+    <g fill="#d6b863" stroke="#4b351a" stroke-width="2">
+      <circle cx="145" cy="122" r="6"></circle>
+      <circle cx="455" cy="122" r="6"></circle>
+    </g>
+
+  </g>
+</svg>

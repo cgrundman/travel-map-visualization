@@ -1,90 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="600" height="800"
-     viewBox="0 0 600 800">
-
-  <!--
-    EDITABLE FLAG SHIELD TEMPLATE
-
-    How to use:
-    1. Replace the colors in the group id="flag-art".
-    2. Keep all flag artwork inside the shield clip-path.
-    3. Delete unused pattern examples.
-    4. Export as SVG or PNG.
-
-    Shield artwork area:
-      x = 150 to 450
-      y = 150 to 560
-  -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
 
   <defs>
-    <!-- Main shield silhouette -->
-    <path id="shield-shape"
-          d="M100 150
-             L500 150
-             L500 380
-             C500 500 365 565 300 610
-             C235 565 100 500 100 380
-             Z"/>
+    <!-- Antique brass border -->
+    <linearGradient id="antique-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c477"></stop>
+      <stop offset="28%" stop-color="#9d7937"></stop>
+      <stop offset="55%" stop-color="#d1ad5f"></stop>
+      <stop offset="78%" stop-color="#755526"></stop>
+      <stop offset="100%" stop-color="#c9a85d"></stop>
+    </linearGradient>
 
-    <!-- Clip all flag artwork to the shield -->
+    <!-- Dark inner edge -->
+    <linearGradient id="dark-edge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#40392f"></stop>
+      <stop offset="100%" stop-color="#171916"></stop>
+    </linearGradient>
+
+    <!-- Main shield shape for clipping flags or artwork -->
     <clipPath id="shield-clip">
-      <use href="#shield-shape"/>
+      <path d="
+        M 118 112
+        Q 118 90 140 90
+        L 460 90
+        Q 482 90 482 112
+        L 482 350
+        C 482 470 410 566 300 630
+        C 190 566 118 470 118 350
+        Z"></path>
     </clipPath>
-
-    <!-- Subtle paper grain -->
-    <filter id="paper-grain" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise"
-                    baseFrequency="0.8"
-                    numOctaves="2"
-                    seed="7"
-                    result="noise"/>
-      <feColorMatrix in="noise"
-                     type="saturate"
-                     values="0"
-                     result="grayNoise"/>
-      <feComponentTransfer in="grayNoise" result="fadedNoise">
-        <feFuncA type="table" tableValues="0 0.08"/>
-      </feComponentTransfer>
-      <feBlend in="SourceGraphic"
-               in2="fadedNoise"
-               mode="multiply"/>
-    </filter>
-
-    <!-- Soft drop shadow -->
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="14"
-                    stdDeviation="12"
-                    flood-color="#000000"
-                    flood-opacity="0.45"/>
-    </filter>
   </defs>
 
-  <!-- Transparent background -->
-  <rect width="600" height="800" fill="none"/>
+  <!-- Complete shield group -->
+  <g id="shield" filter="url(#shield-shadow)">
 
-  <!-- Decorative suspension bar -->
-  <g id="hanger">
-    <line x1="130" y1="120" x2="470" y2="120"
-          stroke="#b49352" stroke-width="12"
-          stroke-linecap="round"/>
-    <circle cx="130" cy="120" r="14"
-            fill="#d2b16e" stroke="#5e4928" stroke-width="5"/>
-    <circle cx="470" cy="120" r="14"
-            fill="#d2b16e" stroke="#5e4928" stroke-width="5"/>
-    <line x1="165" y1="120" x2="165" y2="150"
-          stroke="#b49352" stroke-width="8"/>
-    <line x1="435" y1="120" x2="435" y2="150"
-          stroke="#b49352" stroke-width="8"/>
-  </g>
+    <!-- Exterior brass frame -->
+    <path id="shield-outer" d="
+            M 104 100
+            Q 104 74 132 74
+            L 468 74
+            Q 496 74 496 100
+            L 496 354
+            C 496 488 416 590 300 660
+            C 184 590 104 488 104 354
+            Z" fill="url(#antique-brass)" stroke="#3b2b16" stroke-width="0" stroke-linejoin="round"></path>
 
-  <!-- Shadow behind shield -->
-  <use href="#shield-shape"
-       fill="#000000"
-       opacity="0.35"
-       filter="url(#shadow)"/>
+    <!-- Dark recessed border -->
+    <path id="shield-recess" d="
+            M 116 116
+            Q 116 88 140 88
+            L 460 88
+            Q 484 88 484 110
+            L 484 350
+            C 484 474 409 568 300 631
+            C 191 568 116 474 116 350
+            Z" fill="#00000000" stroke="#dfc373" stroke-width="3" stroke-linejoin="round"></path>
 
-  <!-- FLAG ARTWORK -->
+    <!-- FLAG ARTWORK -->
   <g id="flag-art"
      clip-path="url(#shield-clip)"
      filter="url(#paper-grain)">
@@ -111,9 +82,9 @@
 
     <!--
     NORDIC CROSS EXAMPLE: -->
-    <rect x="100" y="100" width="400" height="500" fill="#274b72"/>
-    <rect x="238" y="100" width="58" height="500" fill="#f2d16b"/>
-    <rect x="100" y="320" width="400" height="58" fill="#f2d16b"/>
+    <rect x="119" y="90" width="368" height="540" fill="#274b72"/>
+    <rect x="242" y="90" width="58" height="540" fill="#f2d16b"/>
+    <rect x="100" y="299" width="400" height="58" fill="#f2d16b"/>
     
 
     <!--
@@ -130,37 +101,12 @@
           fill="#5a4528">✦</text>
     -->
   </g>
+    
+    <!-- Small corner ornaments -->
+    <g fill="#d6b863" stroke="#4b351a" stroke-width="0">
+      <circle cx="145" cy="122" r="5"></circle>
+      <circle cx="455" cy="122" r="5"></circle>
+    </g>
 
-  <!-- Inner highlight -->
-  <use href="#shield-shape"
-       fill="none"
-       stroke="#d7bb79"
-       stroke-width="8"
-       opacity="0.9"/>
-
-  <!-- Outer antique border -->
-  <use href="#shield-shape"
-       fill="none"
-       stroke="#4d3b22"
-       stroke-width="18"
-       stroke-linejoin="round"/>
-
-  <!-- Thin dark keyline -->
-  <use href="#shield-shape"
-       fill="none"
-       stroke="#17130e"
-       stroke-width="4"
-       stroke-linejoin="round"/>
-
-  <!-- Optional country label -->
-  <g id="label">
-    <text x="300" y="700"
-          text-anchor="middle"
-          font-family="Georgia, 'Times New Roman', serif"
-          font-size="42"
-          letter-spacing="5"
-          fill="#d8c28f">
-      COUNTRY
-    </text>
   </g>
 </svg>
