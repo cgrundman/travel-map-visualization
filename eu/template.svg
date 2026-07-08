@@ -61,18 +61,18 @@
      filter="url(#paper-grain)">
 
     <!-- 
-    ACTIVE EXAMPLE: horizontal tricolor
-    <rect x="150" y="150" width="300" height="154" fill="#1f1f1f"/>
-    <rect x="150" y="304" width="300" height="153" fill="#f2f0e8"/>
-    <rect x="150" y="457" width="300" height="153" fill="#9a2f2f"/>
-    -->
+    ACTIVE EXAMPLE: horizontal tricolor -->
+    <rect x="118" y="90" width="365" height="180" fill="#1f1f1f"/>
+    <rect x="118" y="270" width="365" height="180" fill="#f2f0e8"/>
+    <rect x="118" y="450" width="365" height="180" fill="#9a2f2f"/>
+    
 
     <!--
-    VERTICAL TRICOLOR EXAMPLE: -->
+    VERTICAL TRICOLOR EXAMPLE: 
     <rect x="118" y="90" width="124" height="540" fill="#1f2b52"/>
     <rect x="360" y="90" width="124" height="540" fill="#9b2d2d"/>
     <rect x="238" y="90" width="124" height="540" fill="#f4f1e7"/>
-
+    -->
 
     <!--
     TWO-COLOR HORIZONTAL EXAMPLE: 
