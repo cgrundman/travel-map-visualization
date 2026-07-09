@@ -88,18 +88,18 @@
     -->
 
     <!--
-    CENTRAL EMBLEM PLACEHOLDER:
-    <circle cx="300" cy="350" r="58"
+    CENTRAL EMBLEM PLACEHOLDER: -->
+    <circle cx="300" cy="360" r="58"
             fill="#f4f1e7"
             stroke="#5a4528"
             stroke-width="8"/>
-    <text x="300" y="370"
+    <text x="300" y="385"
           text-anchor="middle"
           font-family="serif"
           font-size="64"
           font-weight="bold"
           fill="#5a4528">✦</text>
-    -->
+    
   </g>
     
     <!-- Small corner ornaments -->
