@@ -2,7 +2,7 @@ import os
 import cairosvg
 from PIL import Image, ImageDraw
 
-PATH = "de"
+PATH = "eu"
 RADIUS = 0  # Corner rounding radius in pixels
 CROP_WIDTH, CROP_HEIGHT = 1000, 400  # Desired output size
 
