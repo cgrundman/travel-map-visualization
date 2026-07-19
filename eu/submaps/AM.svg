@@ -1,64 +1,78 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1200"
-   height="600"
-   version="1.1"
-   id="svg8"
-   sodipodi:docname="Flag_of_Armenia (Soviet colors).svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)">
-  <metadata
-     id="metadata14">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs12" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     id="namedview10"
-     showgrid="false"
-     inkscape:zoom="0.94666667"
-     inkscape:cx="428.34507"
-     inkscape:cy="300"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg8" />
-  <path
-     fill="#F2A800"
-     d="M0 0h1200v600H0z"
-     id="path2"
-     style="fill:#fdb714;fill-opacity:1" />
-  <path
-     fill="#0033A0"
-     d="M0 0h1200v400H0z"
-     id="path4"
-     style="fill:#293399;fill-opacity:1" />
-  <path
-     fill="#D90012"
-     d="M0 0h1200v200H0z"
-     id="path6"
-     style="fill:#cc0000;fill-opacity:1" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
+
+  <defs>
+    <!-- Antique brass border -->
+    <linearGradient id="antique-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c477"></stop>
+      <stop offset="28%" stop-color="#9d7937"></stop>
+      <stop offset="55%" stop-color="#d1ad5f"></stop>
+      <stop offset="78%" stop-color="#755526"></stop>
+      <stop offset="100%" stop-color="#c9a85d"></stop>
+    </linearGradient>
+
+    <!-- Dark inner edge -->
+    <linearGradient id="dark-edge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#40392f"></stop>
+      <stop offset="100%" stop-color="#171916"></stop>
+    </linearGradient>
+
+    <!-- Main shield shape for clipping flags or artwork -->
+    <clipPath id="shield-clip">
+      <path d="
+        M 118 112
+        Q 118 90 140 90
+        L 460 90
+        Q 482 90 482 112
+        L 482 350
+        C 482 470 410 566 300 630
+        C 190 566 118 470 118 350
+        Z"></path>
+    </clipPath>
+  </defs>
+
+  <!-- Complete shield group -->
+  <g id="shield" filter="url(#shield-shadow)">
+
+    <!-- Exterior brass frame -->
+    <path id="shield-outer" d="
+            M 104 100
+            Q 104 74 132 74
+            L 468 74
+            Q 496 74 496 100
+            L 496 354
+            C 496 488 416 590 300 660
+            C 184 590 104 488 104 354
+            Z" fill="url(#antique-brass)" stroke="#3b2b16" stroke-width="0" stroke-linejoin="round"></path>
+
+    <!-- Dark recessed border -->
+    <path id="shield-recess" d="
+            M 116 116
+            Q 116 88 140 88
+            L 460 88
+            Q 484 88 484 110
+            L 484 350
+            C 484 474 409 568 300 631
+            C 191 568 116 474 116 350
+            Z" fill="#00000000" stroke="#dfc373" stroke-width="3" stroke-linejoin="round"></path>
+
+    <!-- FLAG ARTWORK -->
+  <g id="flag-art"
+     clip-path="url(#shield-clip)"
+     filter="url(#paper-grain)">
+
+    <!-- 
+    ACTIVE EXAMPLE: horizontal tricolor -->
+    <rect x="118" y="90" width="365" height="180" fill="#D90012"/>
+    <rect x="118" y="270" width="365" height="180" fill="#0033A0"/>
+    <rect x="118" y="450" width="365" height="180" fill="#F2A800"/>
+
+  </g>
+    
+    <!-- Small corner ornaments -->
+    <g fill="#d6b863" stroke="#4b351a" stroke-width="0">
+      <circle cx="145" cy="122" r="5"></circle>
+      <circle cx="455" cy="122" r="5"></circle>
+    </g>
+
+  </g>
 </svg>
