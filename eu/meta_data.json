@@ -151,7 +151,7 @@
         "Marker Border": 0.3
     },
     "Flags": {
-        "Scale": 0.07,
+        "Scale": 0.1,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#D4AF37",

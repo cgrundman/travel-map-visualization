@@ -4,7 +4,10 @@ from PIL import Image, ImageDraw
 
 PATH = "eu"
 RADIUS = 0  # Corner rounding radius in pixels
-CROP_WIDTH, CROP_HEIGHT = 1000, 400  # Desired output size
+if PATH == "eu":
+    CROP_WIDTH, CROP_HEIGHT = 300, 400  # Desired output size
+else:
+    CROP_WIDTH, CROP_HEIGHT = 1000, 400  # Desired output size
 
 def round_corners(im: Image.Image, radius: int) -> Image.Image:
     """
@@ -37,7 +40,7 @@ for file in svg_files:
     )
 
     # Open image and crop from center
-    img = Image.open(png_path)
+    img = Image.open(png_path).convert("RGBA")
     w, h = img.size
     left   = (w - CROP_WIDTH)  // 2
     upper  = (h - CROP_HEIGHT) // 2
@@ -50,4 +53,7 @@ for file in svg_files:
     rounded = round_corners(cropped, radius=RADIUS)
 
     # Save (preserves transparency)
-    rounded.save(png_path, format="PNG")
+    if PATH == "eu":
+        cropped.save(png_path, format="PNG")
+    else:
+        rounded.save(png_path, format="PNG")
