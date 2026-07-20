@@ -151,16 +151,16 @@
         "Marker Border": 0.3
     },
     "Flags": {
-        "Scale": 0.1,
+        "Scale": 0.13,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#D4AF37",
         "Position": {
-            "x_start": 0.050,
-            "y_start": 1.355,
-            "x_spacing": 0.100,
-            "y_spacing": 0.078,
-            "num_in_row": 10
+            "x_start": 0.030,
+            "y_start": 1.210,
+            "x_spacing": 0.059,
+            "y_spacing": 0.080,
+            "num_in_row": 17
         }
     }
 }

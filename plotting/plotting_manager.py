@@ -192,8 +192,8 @@ class PlotManager:
             submap_gdf = gpd.read_file(shapefile_path)
 
             
-            #ratio = self.ratios[submap["Name"]]
-            ratio = 1
+            ratio = self.ratios[submap["Name"]]
+            #ratio = 1
             color = CustomCmap(self.colors["map_dark"], submap["Color"]).value(ratio)
 
             submap_gdf.plot(
@@ -340,8 +340,8 @@ class PlotManager:
         for i, file in enumerate(png_files):
             frameon = False
 
-            #ratio = self.ratios[file[:2]]
-            ratio=1
+            ratio = self.ratios[file[:2]]
+            #ratio=1
             if ratio > 1:
                 frameon = True
 
