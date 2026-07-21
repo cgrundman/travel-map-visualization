@@ -1,7 +1,7 @@
 {
     "Plotting": {
         "Figure Size": [12, 17],
-        "Cropping": [0.120, 0.020, 0.905, 0.780],
+        "Cropping": [0.120, 0.087, 0.905, 0.780],
         "Plotting Area": {
             "xlims": [-13, 52],
             "ylims": [33.5, 72],
