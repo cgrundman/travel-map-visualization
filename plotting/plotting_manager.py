@@ -74,7 +74,7 @@ class PlotManager:
         self._plot_submaps(ax, self.submaps, zorder=30)
 
         # Inset still gets original/full points
-        self._plot_expansions(ax, current_date, self.points_working, zorder=40)
+        #self._plot_expansions(ax, current_date, self.points_working, zorder=40)
         self._plot_text(ax, self.text, zorder=50)
 
         if self.plot_scale >= 3:

@@ -12,11 +12,21 @@
         {"text": "EUROPE", 
             "x": 0.360, "y": 0.975, "color": "#bfbfbf", "size": 20, "font": "DejaVu Sans", "weight": 600},
         {"text": "NORTH SEA", 
-            "x": 0.230, "y": 0.590, "color": "#33576b", "size": 12, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.250, "y": 0.580, "color": "#33576b", "size": 8, "font": "DejaVu Sans", "weight": 600},
+        {"text": "BLACK SEA", 
+            "x": 0.725, "y": 0.260, "color": "#33576b", "size": 8, "font": "DejaVu Sans", "weight": 600},
         {"text": "IRAN", 
-            "x": 0.950, "y": 0.040, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 800},
+            "x": 0.950, "y": 0.040, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 400},
+        {"text": "SYRIA", 
+            "x": 0.790, "y": 0.040, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 400},
+        {"text": "IRAQ", 
+            "x": 0.865, "y": 0.020, "color": "#706853", "size": 12, "font": "DejaVu Sans", "weight": 400},
         {"text": "GERMANY", 
-            "x": 0.350, "y": 0.465, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}
+            "x": 0.360, "y": 0.465, "color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600},
+        {"text": "FRANCE", 
+            "x": 0.240, "y": 0.330, "color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600},
+        {"text": "SPAIN", 
+            "x": 0.130, "y": 0.160, "color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600}
     ],
     "Submaps": [
         {"Name": "AD", "Color": "#71443a"},
@@ -109,7 +119,7 @@
         {"Coords": [1.35, 1.85, 42.39, 42.68], "bbox_to_anchor": [0.151, -0.013, 1, 1], "height/width": ["7.5%", "7.5%"],
         "Submaps": ["AD", "ES", "FR"], 
         "Text": "ANDORRA", "x": 0.5, "y": 0.8},
-        {"Coords": [-31.88, -23.64, 36.46, 39.73], "bbox_to_anchor": [-0.010, 0.296, 1, 1], "height/width": ["10%", "10%"],
+        {"Coords": [-31.88, -23.64, 36.46, 39.73], "bbox_to_anchor": [-0.005, 0.296, 1, 1], "height/width": ["10%", "10%"],
         "Submaps": ["PT"], 
         "Text": "AZORES (PT)", "x": 0.5, "y": 0.8},
         {"Coords": [-17.56, -16.10, 32.27, 33.26], "bbox_to_anchor": [-0.005, 0.364, 1, 1], "height/width": ["10%", "10%"],
@@ -147,8 +157,8 @@
         "Longitude Threshold": 1.5,
         "Latitude Threshold": 0.2,
         "Shift Step": 0.2,
-        "Marker Size": 20,
-        "Marker Border": 0.3
+        "Marker Size": 10,
+        "Marker Border": 0.01
     },
     "Flags": {
         "Scale": 0.13,
