@@ -73,8 +73,8 @@
     <!-- 
     ACTIVE EXAMPLE: horizontal tricolor -->
     <rect x="118" y="90" width="365" height="180" fill="#fff"/>
-    <rect x="118" y="270" width="365" height="180" fill="#00f"/>
-    <rect x="118" y="450" width="365" height="180" fill="#f00"/>
+    <rect x="118" y="270" width="365" height="180" fill="#254aa5"/>
+    <rect x="118" y="450" width="365" height="180" fill="#ed1c24"/>
     <use href="#emblem" transform="translate(250 390) scale(1.6)" />
     
   </g>

@@ -4,18 +4,13 @@ import pandas as pd
 import math
 import matplotlib.pyplot as plt
 import random
-#import matplotlib.patches as patches
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
 import matplotlib.patheffects as pe
 from matplotlib.patches import Rectangle
-#from matplotlib.patches import FancyBboxPatch
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import geopandas as gpd
-#from shapely import affinity
-#from shapely.geometry import Polygon, box
-#from shapely.geometry import box
 from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
 
@@ -24,7 +19,6 @@ from utils.file_utils import (
     get_image_dimensions,
 )
 
-#from plotting.plotting_helpers import _plot_labels
 from colormap.cmap_maker import CustomCmap
 
 random.seed(5)
@@ -74,7 +68,7 @@ class PlotManager:
         self._plot_submaps(ax, self.submaps, zorder=30)
 
         # Inset still gets original/full points
-        #self._plot_expansions(ax, current_date, self.points_working, zorder=40)
+        self._plot_expansions(ax, current_date, self.points_working, zorder=40)
         self._plot_text(ax, self.text, zorder=50)
 
         if self.plot_scale >= 3:
