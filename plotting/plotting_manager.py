@@ -86,7 +86,6 @@ class PlotManager:
             )
         else:
             self._plot_points(ax, current_date, points=points_main, zorder=60)
-
         self._plot_points(ax, current_date, points=points_main, zorder=60, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
@@ -106,6 +105,12 @@ class PlotManager:
 
         for text in self.text:
 
+            if "outline" in text:
+                pass
+            else:
+                text["outline"] = 0
+                text["outline_c"] = "black"
+
             ax.text(
                 text["x"],                     # x position in axes coords
                 text["y"],                     # y position in axes coords
@@ -118,7 +123,8 @@ class PlotManager:
                 ha="center",
                 va="center",
                 zorder=zorder,
-                alpha=1
+                alpha=1,
+                path_effects=[pe.withStroke(linewidth=text["outline"], foreground=text["outline_c"])]
             )
 
     def _plot_background(self, ax, zorder):
@@ -286,6 +292,12 @@ class PlotManager:
             ax_inset.set_xticks([])
             ax_inset.set_yticks([])
 
+            if "outline" in expansion:
+                pass
+            else:
+                expansion["outline"] = 0
+                expansion["outline_c"] = "black"
+
             ax_inset.text(
                 expansion["x"],
                 expansion["y"],
@@ -297,7 +309,8 @@ class PlotManager:
                 fontweight=self.expansion_props["Text"].get("weight", 600),
                 ha=self.expansion_props["Text"].get("ha", "center"),
                 va=self.expansion_props["Text"].get("va", "center"),
-                zorder=zorder+2
+                zorder=zorder+2,
+                path_effects=[pe.withStroke(linewidth=expansion["outline"], foreground=expansion["outline_c"])]
             )
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
