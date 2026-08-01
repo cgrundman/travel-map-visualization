@@ -66,10 +66,11 @@ class PlotManager:
         points_main = self._exclude_expansion_points(self.points_working)
         self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, self.submaps, zorder=30)
+        self._plot_overlay(ax, zorder=40)
 
         # Inset still gets original/full points
-        self._plot_expansions(ax, current_date, self.points_working, zorder=40)
-        self._plot_text(ax, self.text, zorder=50)
+        self._plot_expansions(ax, current_date, self.points_working, zorder=50)
+        self._plot_text(ax, self.text, zorder=60)
 
         if self.plot_scale >= 3:
             self._plot_labels(
@@ -82,11 +83,11 @@ class PlotManager:
                 self.colors["visited"],
                 self.colors["active"],
                 self.colors["label_bg"],
-                zorder=60
+                zorder=70
             )
         else:
-            self._plot_points(ax, current_date, points=points_main, zorder=60)
-        self._plot_points(ax, current_date, points=points_main, zorder=60, a_type="clear")
+            self._plot_points(ax, current_date, points=points_main, zorder=70)
+        self._plot_points(ax, current_date, points=points_main, zorder=70, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
 
@@ -230,6 +231,22 @@ class PlotManager:
                     linewidth=lw, 
                     zorder=1
                 )
+
+    def _plot_overlay(self, ax, zorder, alpha=1.0):
+
+        img = mpimg.imread("eu/overlay.png")
+
+        xmin, xmax = self.plotting["Plotting Area"]["xlims"]
+        ymin, ymax = self.plotting["Plotting Area"]["ylims"]
+
+        ax.imshow(
+            img,
+            extent=[xmin, xmax, ymin, ymax],
+            origin="upper",
+            aspect="auto",
+            alpha=alpha,
+            zorder=zorder
+        )
 
     def _plot_expansions(self, ax, current_date, points_gdf, zorder):
 
