@@ -14,6 +14,10 @@ import geopandas as gpd
 from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
 
+import io
+import cairosvg
+from PIL import Image
+
 from utils.file_utils import (
     crop_and_save_image,
     get_image_dimensions,
@@ -234,7 +238,13 @@ class PlotManager:
 
     def _plot_overlay(self, ax, zorder, alpha=1.0):
 
-        img = mpimg.imread("eu/overlay.png")
+        svg_path = f"{self.path}/overlay.svg"
+
+        png_bytes = cairosvg.svg2png(
+            url=svg_path
+        )
+
+        img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
 
         xmin, xmax = self.plotting["Plotting Area"]["xlims"]
         ymin, ymax = self.plotting["Plotting Area"]["ylims"]
