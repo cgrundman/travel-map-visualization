@@ -1,74 +1,86 @@
 {
-    "Title": "Iran",
+    "Plotting": {
+        "Figure Size": [12, 14],
+        "Cropping": [0.120, 0.068, 0.905, 0.809],
+        "Plotting Area": {
+            "xlims": [43.5, 63.5],
+            "ylims": [24.6, 39.9],
+            "grids": [15, 15]
+        }
+    },
+    "Text": [
+        {"text": "Iran", 
+            "x": 0.130, "y": 0.980, "color": "#1E1F1C", "size": 18, "font": "DejaVu Sans", "weight": 600},
+        {"text": "Travel Sites", 
+            "x": 0.130, "y": 0.960, "color": "#1E1F1C", "size": 11, "font": "DejaVu Sans", "weight": 400},
+        {"text": "CASPIAN SEA", 
+            "x": 0.120, "y": 0.880, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+        {"text": "IRQ", 
+            "x": 0.880, "y": 0.070, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},    
+        {"text": "Tehran", 
+            "x": 0.810, "y": 0.630, "color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600}
+    ],
     "Submaps": [
-        {"Name": "00", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "01", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "02", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "03", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "04", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "05", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "06", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "07", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "08", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "09", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "10", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "11", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "12", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "13", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "14", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "15", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "16", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "17", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "18", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "19", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "20", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "21", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "22", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "23", "Scale": [2.5, 2.5], "Shift": [-82.1, -62.4], "BG": [[43, 24],[43, 28.1],[51, 28.1],[51, 24]], "C": "bg_land"},
-        {"Name": "24", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "25", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "26", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "27", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "28", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "29", "Scale": [1, 1], "Shift": [0,  0]},
-        {"Name": "30", "Scale": [1, 1], "Shift": [0,  0]}
+        {"Name": "00", "Color": "#1E3DC8"},
+        {"Name": "01", "Color": "#1E3DC8"},
+        {"Name": "02", "Color": "#1E3DC8"},
+        {"Name": "03", "Color": "#1E3DC8"},
+        {"Name": "04", "Color": "#1E3DC8"},
+        {"Name": "05", "Color": "#1E3DC8"},
+        {"Name": "06", "Color": "#1E3DC8"},
+        {"Name": "07", "Color": "#1E3DC8"},
+        {"Name": "08", "Color": "#1E3DC8"},
+        {"Name": "09", "Color": "#1E3DC8"},
+        {"Name": "10", "Color": "#1E3DC8"},
+        {"Name": "11", "Color": "#1E3DC8"},
+        {"Name": "12", "Color": "#1E3DC8"},
+        {"Name": "13", "Color": "#1E3DC8"},
+        {"Name": "14", "Color": "#1E3DC8"},
+        {"Name": "15", "Color": "#1E3DC8"},
+        {"Name": "16", "Color": "#1E3DC8"},
+        {"Name": "17", "Color": "#1E3DC8"},
+        {"Name": "18", "Color": "#1E3DC8"},
+        {"Name": "19", "Color": "#1E3DC8"},
+        {"Name": "20", "Color": "#1E3DC8"},
+        {"Name": "21", "Color": "#1E3DC8"},
+        {"Name": "22", "Color": "#1E3DC8"},
+        {"Name": "23", "Color": "#1E3DC8"},
+        {"Name": "24", "Color": "#1E3DC8"},
+        {"Name": "25", "Color": "#1E3DC8"},
+        {"Name": "26", "Color": "#1E3DC8"},
+        {"Name": "27", "Color": "#1E3DC8"},
+        {"Name": "28", "Color": "#1E3DC8"},
+        {"Name": "29", "Color": "#1E3DC8"},
+        {"Name": "30", "Color": "#1E3DC8"}
     ],
-    "Backgound Maps": [
-        {"Name": "AE"},
-        {"Name": "AF"},
-        {"Name": "AM"},
-        {"Name": "AZ"},
-        {"Name": "BH"},
-        {"Name": "IQ"},
-        {"Name": "KW"},
-        {"Name": "OM"},
-        {"Name": "PK"},
-        {"Name": "QR"},
-        {"Name": "SA"},
-        {"Name": "TM"},
-        {"Name": "TR"},
-        {"Name": "UZ"}
+    "Borders": {
+        "Water": 
+            [[16, 0.08], [12, 0.13], [8, 0.18], [4, 0.35], [2, 1.0]],
+        "Background Map": 
+            [[10, 0.04], [8, 0.07], [6, 0.11], [4, 0.14], [2, 0.22]],
+        "Submap":
+            [[3, 0.08], [2, 0.18], [1.2, 1]]
+    },
+    "Expansions" : [
     ],
-    "Expansions" : [],
-    "Figure Size": [12, 14],
-    "Cropping": [0.120, 0.068, 0.905, 0.809],
-    "Plotting Area": {
-        "xlims": [43.5, 63.5],
-        "ylims": [24.6, 39.9],
-        "grids": [15, 15]
+    "Expanion Properties" : {
+        "Text": {"color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600},
+        "Borders": {"width": 1}
     },
     "Colors": {
+        "bg": "#2B3134",
         "bg_land": "#273735",
+        "bg_land_border": "#575757",
         "bg_water": "#1295e7",
+        "bg_water_border": "#6c8fa3",
         "map_dark": "#0C184E",
-        "map_light": "#1E3DC8",
+        "map_border": "#3A3126",
         "unvisited": "#65c5ba",
         "active": "#D8CDAB",
         "visited": "#dd368a",
         "label_bg": "#212121",
         "grid_lines": "#187fc0"
     },
-    "Marker Size": 50,
     "Labels": {
         "Start Longitude": 43, 
         "Start Latitude": 25,
@@ -78,7 +90,9 @@
         "Splits": 35,
         "Longitude Threshold": 1.0,
         "Latitude Threshold": 0.10,
-        "Shift Step": 0.10
+        "Shift Step": 0.10,
+        "Marker Size": 50,
+        "Marker Border": 1
     },
     "Flags": {
         "Scale": 0.17,
