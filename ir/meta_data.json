@@ -9,12 +9,14 @@
         }
     },
     "Text": [
-        {"text": "Iran", 
-            "x": 0.130, "y": 0.980, "color": "#1E1F1C", "size": 18, "font": "DejaVu Sans", "weight": 600},
-        {"text": "Travel Sites", 
-            "x": 0.130, "y": 0.960, "color": "#1E1F1C", "size": 11, "font": "DejaVu Sans", "weight": 400},
+        {"text": "IRAN", 
+            "x": 0.800, "y": 0.980, "color": "#bfbfbf", "size": 20, "font": "DejaVu Sans", "weight": 600},
+        {"text": "Natural and Historical Sites", 
+            "x": 0.800, "y": 0.950, "color": "#bfbfbf", "size": 12, "font": "DejaVu Sans", "weight": 400},
         {"text": "CASPIAN SEA", 
-            "x": 0.120, "y": 0.880, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.400, "y": 0.880, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+        {"text": "PERSIAN GULF", 
+            "x": 0.510, "y": 0.100, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
         {"text": "IRQ", 
             "x": 0.880, "y": 0.070, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},    
         {"text": "Tehran", 
@@ -55,13 +57,16 @@
     ],
     "Borders": {
         "Water": 
-            [[16, 0.08], [12, 0.13], [8, 0.18], [4, 0.35], [2, 1.0]],
+            [[4, 0.35], [2, 1.0]],
         "Background Map": 
-            [[10, 0.04], [8, 0.07], [6, 0.11], [4, 0.14], [2, 0.22]],
+            [[4, 0.14], [2, 0.22]],
         "Submap":
-            [[3, 0.08], [2, 0.18], [1.2, 1]]
+            [[1.2, 1]]
     },
-    "Expansions" : [
+    "Expansions" : [ 
+        {"Coords": [50.2, 53.3, 34.8, 36.2], "bbox_to_anchor": [0.001, -0.055, 1, 1], "height/width": ["35%", "35%"],
+        "Submaps": ["00", "02", "20", "23", "25", "26", "30"],
+        "Text": "Tehran", "x": 0.45, "y": 0.35}
     ],
     "Expanion Properties" : {
         "Text": {"color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600},
