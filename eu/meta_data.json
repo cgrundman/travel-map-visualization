@@ -160,7 +160,15 @@
         {"Name": "UA", "Color": "#946839"},
         {"Name": "UK", "Color": "#71443a"},
         {"Name": "VA", "Color": "#71443a"},
-        {"Name": "XK", "Color": "#71443a"}
+        {"Name": "XK", "Color": "#71443a"},
+        {"Name": "DZA", "Color": "#212121"},
+        {"Name": "IRN", "Color": "#212121"},
+        {"Name": "IRQ", "Color": "#212121"},
+        {"Name": "KAZ", "Color": "#212121"},
+        {"Name": "LBN", "Color": "#212121"},
+        {"Name": "MAR", "Color": "#212121"},
+        {"Name": "SYR", "Color": "#212121"},
+        {"Name": "TUN", "Color": "#212121"}
     ],
     "Borders": {
         "Water": 
@@ -217,7 +225,6 @@
     },
     "Colors": {
         "bg": "#2B3134",
-        "bg_land": "#212121",
         "bg_land_border": "#5e574d",
         "bg_water": "#111e27",
         "bg_water_border": "#1e3542",
