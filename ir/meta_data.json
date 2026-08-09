@@ -53,13 +53,25 @@
         {"Name": "27", "Color": "#1E3DC8"},
         {"Name": "28", "Color": "#1E3DC8"},
         {"Name": "29", "Color": "#1E3DC8"},
-        {"Name": "30", "Color": "#1E3DC8"}
+        {"Name": "30", "Color": "#1E3DC8"},
+        {"Name": "AFG", "Color": "#273735"},
+        {"Name": "ARE", "Color": "#273735"},
+        {"Name": "ARM", "Color": "#273735"},
+        {"Name": "AZE", "Color": "#273735"},
+        {"Name": "BHR", "Color": "#273735"},
+        {"Name": "IRQ", "Color": "#273735"},
+        {"Name": "KWT", "Color": "#273735"},
+        {"Name": "OMN", "Color": "#273735"},
+        {"Name": "PAK", "Color": "#273735"},
+        {"Name": "QAT", "Color": "#273735"},
+        {"Name": "SAU", "Color": "#273735"},
+        {"Name": "TKM", "Color": "#273735"},
+        {"Name": "TUR", "Color": "#273735"},
+        {"Name": "UZB", "Color": "#273735"}
     ],
     "Borders": {
         "Water": 
             [[4, 0.35], [2, 1.0]],
-        "Background Map": 
-            [[4, 0.14], [2, 0.22]],
         "Submap":
             [[1.2, 1]]
     },
