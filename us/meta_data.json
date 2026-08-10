@@ -80,13 +80,17 @@
         {"Name": "WA", "Color": "#4879B0"},
         {"Name": "WI", "Color": "#A35A28"},
         {"Name": "WV", "Color": "#6C7688"},
-        {"Name": "WY", "Color": "#C69A3F"}
+        {"Name": "WY", "Color": "#C69A3F"},
+        {"Name": "BHS", "Color": "#222222"},
+        {"Name": "CAN", "Color": "#222222"},
+        {"Name": "CUB", "Color": "#222222"},
+        {"Name": "HTI", "Color": "#222222"},
+        {"Name": "MEX", "Color": "#222222"},
+        {"Name": "TCA", "Color": "#222222"}
     ],
     "Borders": {
         "Water": 
             [[4, 0.35], [2, 1.0]],
-        "Background Map": 
-            [[4, 0.14], [2, 0.22]],
         "Submap":
             [[1.2, 1]]
     },
@@ -101,7 +105,7 @@
         "Submaps": ["DC", "MD", "VA"],
         "Text": "Washington DC", "x": 0.5, "y": 0.05},
         {"Coords": [-180, -128.9, 51.3, 71.4], "bbox_to_anchor": [-0.088, 0.03, 1, 1], "height/width": ["40%", "40%"],
-        "Submaps": ["AK"],
+        "Submaps": ["AK", "CAN"],
         "Text": "Alaska", "x": 0.5, "y": 0.05},
         {"Coords": [-161.0, -153.5, 18.2, 23.3], "bbox_to_anchor": [0.191, 0.03, 1, 1], "height/width": ["20%", "20%"],
         "Submaps": ["HI"],

@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime
-from pathlib import Path
+#from pathlib import Path
 
 from metadata.meta_loader import MetaLoader
 from data.points_loader import PointsLoader
@@ -28,11 +28,11 @@ meta_data = MetaLoader(PATH).load()
 points_gdf = PointsLoader(PATH).load()
 submaps = meta_data["Submaps"]
 expansions = meta_data["Expansions"]
-bgmaps = sorted({
-    f.stem
-    for f in Path(PATH+"/bg_maps/").iterdir()
-    if f.is_file()
-})
+#bgmaps = sorted({
+#    f.stem
+#    for f in Path(PATH+"/bg_maps/").iterdir()
+#    if f.is_file()
+#})
 #bgmaps = meta_data["Background Maps"]
 
 # Create a sorted values df
@@ -44,7 +44,7 @@ plot_manager = PlotManager(
     points_gdf=points_gdf,
     submaps=submaps,
     expansions=expansions,
-    bgmaps=bgmaps,
+    #bgmaps=bgmaps,
     meta_data=meta_data,
     path=PATH,
     scale=1
@@ -90,7 +90,7 @@ if large_map:
         points_gdf=points_gdf,
         submaps=submaps,
         expansions=expansions,
-        bgmaps=bgmaps,
+        #bgmaps=bgmaps,
         meta_data=meta_data,
         path=PATH,
         scale=5

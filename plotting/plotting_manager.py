@@ -39,11 +39,11 @@ random.seed(5)
 #10. flags / legend / title
 
 class PlotManager:
-    def __init__(self, points_gdf, submaps, expansions, bgmaps, meta_data, path, scale):
+    def __init__(self, points_gdf, submaps, expansions, meta_data, path, scale):
         self.points_gdf = points_gdf
         self.submaps = submaps
         self.expansions = expansions
-        self.bgmaps = bgmaps
+        #self.bgmaps = bgmaps
         self.meta_data = meta_data
         self.path = path
         self.plot_scale = scale
@@ -68,7 +68,7 @@ class PlotManager:
         self.points_working = self.points_gdf.copy(deep=True)
         self._find_ratios(current_date)
         points_main = self._exclude_expansion_points(self.points_working)
-        self._plot_background(ax, zorder=20)
+        #self._plot_background(ax, zorder=20)
         self._plot_submaps(ax, self.submaps, zorder=30)
         self._plot_overlay(ax, zorder=40)
 
@@ -168,7 +168,10 @@ class PlotManager:
             num_past_dates = (submap_points['date'] <= current_date).sum()
 
             # Caöculate Ratio and save to dictionary
-            ratio = num_past_dates / len(submap_points)
+            if len(submap_points) == 0:
+                ratio = 1
+            else:
+                ratio = num_past_dates / len(submap_points)
             self.ratios[submap["Name"]] = ratio
 
 
