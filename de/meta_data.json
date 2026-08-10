@@ -98,7 +98,17 @@
         {"Name": "SL", "Color": "#556B4F"},
         {"Name": "SN", "Color": "#556B4F"},
         {"Name": "ST", "Color": "#59646A"},
-        {"Name": "TH", "Color": "#9A8061"}
+        {"Name": "TH", "Color": "#9A8061"},
+        {"Name": "AUT", "Color": "#d4c7a7"},
+        {"Name": "BEL", "Color": "#d4c7a7"},
+        {"Name": "CHE", "Color": "#d4c7a7"},
+        {"Name": "CZE", "Color": "#d4c7a7"},
+        {"Name": "DNK", "Color": "#d4c7a7"},
+        {"Name": "FRA", "Color": "#d4c7a7"},
+        {"Name": "LIE", "Color": "#d4c7a7"},
+        {"Name": "LUX", "Color": "#d4c7a7"},
+        {"Name": "NED", "Color": "#d4c7a7"},
+        {"Name": "POL", "Color": "#d4c7a7"}
     ],
     "Borders": {
         "Water": 
