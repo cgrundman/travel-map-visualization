@@ -1,12 +1,15 @@
-import pandas as pd
 import datetime
-#from pathlib import Path
 
-from metadata.meta_loader import MetaLoader
+import pandas as pd
+
 from data.points_loader import PointsLoader
+
+#from pathlib import Path
+from metadata.meta_loader import MetaLoader
+from plotting.gif_generator import GifGenerator
+
 #from data.bgmaps_loader import BGmapsLoader
 from plotting.plotting_manager import PlotManager
-from plotting.gif_generator import GifGenerator
 from utils.file_utils import ensure_directory_exists
 
 # Map Directory
