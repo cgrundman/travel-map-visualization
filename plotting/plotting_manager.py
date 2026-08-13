@@ -1,29 +1,28 @@
+import io
+import math
 import os
+import random
+
+import cairosvg
+import geopandas as gpd
+import matplotlib.image as mpimg
+import matplotlib.patheffects as pe
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import math
-import matplotlib.pyplot as plt
-import random
-import matplotlib.image as mpimg
-import matplotlib.patches as patches
-import matplotlib.patheffects as pe
-from matplotlib.patches import Rectangle
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-import geopandas as gpd
-from scipy.spatial.distance import pdist, squareform
 from adjustText import adjust_text
-
-import io
-import cairosvg
+from matplotlib import patches
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
+from matplotlib.patches import Rectangle
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from PIL import Image
+from scipy.spatial.distance import pdist, squareform
 
+from colormap.cmap_maker import CustomCmap
 from utils.file_utils import (
     crop_and_save_image,
     get_image_dimensions,
 )
-
-from colormap.cmap_maker import CustomCmap
 
 random.seed(5)
 
@@ -108,28 +107,28 @@ class PlotManager:
     
     def _plot_text(self, ax, text, zorder):
 
-        for text in self.text:
+        for text_itm in self.text:
 
-            if "outline" in text:
+            if "outline" in text_itm:
                 pass
             else:
-                text["outline"] = 0
-                text["outline_c"] = "black"
+                text_itm["outline"] = 0
+                text_itm["outline_c"] = "black"
 
             ax.text(
-                text["x"],                     # x position in axes coords
-                text["y"],                     # y position in axes coords
-                text["text"],
+                text_itm["x"],                     # x position in axes coords
+                text_itm["y"],                     # y position in axes coords
+                text_itm["text"],
                 transform=ax.transAxes,
-                fontsize=text["size"],
-                fontfamily=text["font"],
-                fontweight=text["weight"],
-                color=text["color"],
+                fontsize=text_itm["size"],
+                fontfamily=text_itm["font"],
+                fontweight=text_itm["weight"],
+                color=text_itm["color"],
                 ha="center",
                 va="center",
                 zorder=zorder,
                 alpha=1,
-                path_effects=[pe.withStroke(linewidth=text["outline"], foreground=text["outline_c"])]
+                path_effects=[pe.withStroke(linewidth=text_itm["outline"], foreground=text_itm["outline_c"])]
             )
 
     def _plot_background(self, ax, zorder):
@@ -433,14 +432,14 @@ class PlotManager:
                 frameon=frameon, 
                 xycoords='axes fraction',
                 pad=0.1,                      # space between image and border
-                bboxprops=dict(
-                    edgecolor=border_color,   # border color
-                    linewidth=flag_linewidth, # border thickness
-                    boxstyle=f"round,pad=0.3,rounding_size={flag_radius}",  
+                bboxprops={
+                    "edgecolor": border_color,   # border color
+                    "linewidth": flag_linewidth, # border thickness
+                    "boxstyle": f"round,pad=0.3,rounding_size={flag_radius}",  
                                               # rounded corners
-                    facecolor=border_color,   # background behind image
-                    alpha=1.0                 # border opacity
-                )
+                    "facecolor": border_color,   # background behind image
+                    "alpha": 1.0                 # border opacity
+                }
             )
             ax.add_artist(imagebox_img)
 
@@ -549,7 +548,7 @@ class PlotManager:
             force_points=0.05,
             expand_text=(0.0, 10.0),
             expand_points=(1.5, 1.5),
-            arrowprops=dict(arrowstyle="-", color="gray", lw=0.5),
+            arrowprops={"arrowstyle": "-", "color": "gray", "lw": 0.5},
             lim=1000
         )
 
