@@ -22,7 +22,7 @@
         {"text": "GULF", 
             "x": 0.500, "y": 0.050, "color": "#E6D6B4", "size": 16, "font": "DejaVu Sans", "weight": 600},
         {"text": "IRQ", 
-            "x": 0.050, "y": 0.500, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},    
+            "x": 0.050, "y": 0.500, "color": "#635737", "size": 16, "font": "DejaVu Sans", "weight": 800},    
         {"text": "Tehran", 
             "x": 0.210, "y": 0.630, "color": "#E6D6B4", "size": 10, "font": "DejaVu Sans", "weight": 600}
     ],
