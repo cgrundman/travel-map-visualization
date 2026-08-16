@@ -127,7 +127,7 @@
         "Text": "BERLIN", "x": 0.5, "y": 0.330}
     ],
     "Expanion Properties" : {
-        "Text": {"color": "#1E1F1C", "size": 6, "font": "DejaVu Sans", "weight": 600},
+        "Text": {"color": "#1E1F1C", "size": 10, "font": "DejaVu Sans", "weight": 600},
         "Borders": {"width": 1}
     },
     "Colors": {
