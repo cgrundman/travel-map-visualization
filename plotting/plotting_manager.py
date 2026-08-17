@@ -49,6 +49,7 @@ class PlotManager:
 
         # Extract metadata fields for plotting
         self.text = meta_data["Text"]
+        self.text_styles = meta_data["Text Styles"]
         self.plotting = meta_data["Plotting"]
         self.colors = meta_data["Colors"]
         self.labels = meta_data["Labels"]
@@ -73,7 +74,7 @@ class PlotManager:
 
         # Inset still gets original/full points
         self._plot_expansions(ax, current_date, self.points_working, zorder=50)
-        self._plot_text(ax, self.text, zorder=60)
+        self._plot_text(ax, zorder=60)
 
         if self.plot_scale >= 3:
             self._plot_labels(
@@ -104,32 +105,27 @@ class PlotManager:
         )
         fig.patch.set_facecolor(self.colors["bg"])
         return fig, ax
-    
-    def _plot_text(self, ax, text, zorder):
 
-        for text_itm in self.text:
+       
+    def _plot_text(self, ax, zorder):
 
-            if "outline" in text_itm:
-                pass
-            else:
-                text_itm["outline"] = 0
-                text_itm["outline_c"] = "black"
+        for label in self.text:
 
+            style = self.text_styles[label["type"]]
+                
             ax.text(
-                text_itm["x"],                     # x position in axes coords
-                text_itm["y"],                     # y position in axes coords
-                text_itm["text"],
+                label["x"],
+                label["y"],
+                label["text"],
                 transform=ax.transAxes,
-                fontsize=text_itm["size"],
-                fontfamily=text_itm["font"],
-                fontweight=text_itm["weight"],
-                color=text_itm["color"],
+                #path_effects=[pe.withStroke(linewidth=text_itm["outline"], foreground=text_itm["outline_c"])],
                 ha="center",
                 va="center",
                 zorder=zorder,
                 alpha=1,
-                path_effects=[pe.withStroke(linewidth=text_itm["outline"], foreground=text_itm["outline_c"])]
+                **style
             )
+
 
     def _plot_background(self, ax, zorder):
         # Background Map Plotting
