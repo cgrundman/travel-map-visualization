@@ -2,7 +2,9 @@ import io
 import math
 import os
 import random
+import re
 
+import arabic_reshaper
 import cairosvg
 import geopandas as gpd
 import matplotlib.image as mpimg
@@ -11,6 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from adjustText import adjust_text
+from bidi.algorithm import get_display
 from matplotlib import patches
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import Rectangle
@@ -111,6 +114,9 @@ class PlotManager:
 
         for label in self.text:
 
+            print(label["text"])
+            label["text"] = self.prepare_text(text=label["text"])
+
             style = self.text_styles[label["type"]]
                 
             ax.text(
@@ -125,6 +131,20 @@ class PlotManager:
                 alpha=1,
                 **style
             )
+
+    def prepare_text(self, text):
+
+        # Arabic/Persian Unicode blocks
+        contains_rtl = re.search(
+            r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]',
+            text
+        )
+
+        if contains_rtl:
+            text = arabic_reshaper.reshape(text)
+            text = get_display(text)
+
+        return text
 
 
     def _plot_background(self, ax, zorder):

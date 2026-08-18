@@ -16,11 +16,11 @@
         {"text": "CASPIAN", 
             "x": 0.400, "y": 0.920, "type": "Water Label"},
         {"text": "SEA", 
-            "x": 0.400, "y": 0.880, "type": "Submap Label"},
+            "x": 0.400, "y": 0.880, "type": "Water Label"},
         {"text": "PERSIAN", 
-            "x": 0.500, "y": 0.090, "type": "Submap Label"},
+            "x": 0.500, "y": 0.090, "type": "Water Label"},
         {"text": "GULF", 
-            "x": 0.500, "y": 0.050, "type": "Submap Label"},
+            "x": 0.500, "y": 0.050, "type": "Water Label"},
         {"text": "IRQ",
             "x": 0.050, "y": 0.500, "type": "Submap Label"},    
         {"text": "Markazi",
@@ -146,7 +146,7 @@
     ],
     "Text Styles": {
         "Submap Label": {
-            "color": "#E6D6B4", "fontsize": 12, "fontfamily": "DejaVu Sans", "fontweight": 600
+            "color": "#E6D6B4", "fontsize": 8, "fontfamily": "DejaVu Sans", "fontweight": 400
         },
         "Title": {
             "color": "#E6D6B4", "fontsize": 20, "fontfamily": "DejaVu Sans", "fontweight": 600
