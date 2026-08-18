@@ -114,7 +114,6 @@ class PlotManager:
 
         for label in self.text:
 
-            print(label["text"])
             label["text"] = self.prepare_text(text=label["text"])
 
             style = self.text_styles[label["type"]]
@@ -336,6 +335,13 @@ class PlotManager:
             # Remove ticks
             ax_inset.set_xticks([])
             ax_inset.set_yticks([])
+
+            ax.tick_params(
+                left=False,
+                bottom=False,
+                labelleft=False,
+                labelbottom=False
+            )
 
             if "outline" in expansion:
                 pass

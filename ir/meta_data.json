@@ -22,7 +22,7 @@
         {"text": "GULF", 
             "x": 0.500, "y": 0.050, "type": "Water Label"},
         {"text": "IRQ",
-            "x": 0.050, "y": 0.500, "type": "Submap Label"},    
+            "x": 0.050, "y": 0.500, "type": "BG Map Label"},    
         {"text": "Markazi",
             "x": 0.310, "y": 0.650, "type": "Submap Label"},    
         {"text": "مرکزی", 
@@ -251,16 +251,16 @@
         "Marker Border": 0.3
     },
     "Flags": {
-        "Scale": 0.17,
+        "Scale": 0.20,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#916e82",
         "Position": {
-            "x_start": 0.05,
-            "y_start": 1.18,
-            "x_spacing": 0.090,
-            "y_spacing": 0.070,
-            "num_in_row": 11
+            "x_start": 0.045,
+            "y_start": 1.09,
+            "x_spacing": 0.101,
+            "y_spacing": -0.170,
+            "num_in_row": 10
         }
     }
 }
