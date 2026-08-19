@@ -1,7 +1,7 @@
 {
     "Plotting": {
         "Figure Size": [12, 14],
-        "Cropping": [0.120, 0.000, 0.905, 0.809],
+        "Cropping": [0.120, 0.065, 0.905, 0.809],
         "Plotting Area": {
             "xlims": [43.5, 63.5],
             "ylims": [24.6, 39.9],
@@ -251,16 +251,16 @@
         "Marker Border": 0.3
     },
     "Flags": {
-        "Scale": 0.20,
+        "Scale": 0.155,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#916e82",
         "Position": {
-            "x_start": 0.045,
-            "y_start": 1.09,
-            "x_spacing": 0.101,
-            "y_spacing": -0.170,
-            "num_in_row": 10
+            "x_start": 0.031,
+            "y_start": 1.06,
+            "x_spacing": 0.0625,
+            "y_spacing": -0.110,
+            "num_in_row": 16
         }
     }
 }
