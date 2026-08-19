@@ -226,11 +226,11 @@
     "Colors": {
         "bg": "#2B3134",
         "bg_land": "#252523",
-        "bg_land_border": "#967600",
+        "bg_land_border": "#9c6919",
         "bg_water": "#007385",
         "bg_water_border": "#002e36",
         "map_dark": "#0C184E",
-        "map_border": "#967600",
+        "map_border": "#9c6919",
         "unvisited": "#65c5ba",
         "active": "#D8CDAB",
         "visited": "#dd368a",
