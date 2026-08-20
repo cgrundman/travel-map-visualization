@@ -305,7 +305,7 @@ class PlotManager:
             points_in_expansion = points_gdf.cx[xmin:xmax, ymin:ymax].copy()
 
             if self.plot_scale >= 3:
-                self._plot_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=60)
+                self._plot_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=zorder)
             else:
                 self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
 
