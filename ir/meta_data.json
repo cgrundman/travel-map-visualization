@@ -13,14 +13,14 @@
             "x": 0.800, "y": 0.960, "type": "Title"},
         {"text": "Natural and Historical Sites", 
             "x": 0.800, "y": 0.930, "type": "Subtitle"},
-        {"text": "CASPIAN", 
+        {"text": "CASPIAN SEA", 
             "x": 0.400, "y": 0.920, "type": "Water Label"},
-        {"text": "SEA", 
-            "x": 0.400, "y": 0.880, "type": "Water Label"},
-        {"text": "PERSIAN", 
+        {"text": "دریای خزر", 
+            "x": 0.400, "y": 0.890, "type": "Water Label"},
+        {"text": "PERSIAN GULF", 
             "x": 0.500, "y": 0.090, "type": "Water Label"},
-        {"text": "GULF", 
-            "x": 0.500, "y": 0.050, "type": "Water Label"},
+        {"text": "خلیج فارس", 
+            "x": 0.500, "y": 0.060, "type": "Water Label"},
         {"text": "IRQ",
             "x": 0.050, "y": 0.500, "type": "BG Map Label"},    
         {"text": "Markazi",
@@ -159,7 +159,7 @@
             "color": "#E6D6B4", "fontsize": 12, "fontfamily": "DejaVu Sans", "fontweight": 400
         },
         "Water Label": {
-            "color": "#E6D6B4", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 600
+            "color": "#E6D6B4", "fontsize": 14, "fontfamily": "DejaVu Sans", "fontweight": 600
         },
         "BG Map Label": {
             "color": "#635737", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 800
@@ -255,7 +255,7 @@
         "Marker Border": 0.3
     },
     "Flags": {
-        "Scale": 0.155,
+        "Scale": 0.105,
         "Radius": 0.85,
         "Linewidth": 1,
         "Linecolor": "#916e82",
