@@ -399,7 +399,7 @@ class PlotManager:
             frameon = False
 
             ratio = self.ratios[file[:2]]
-            #ratio=1
+            ratio=1
             if ratio > 1:
                 frameon = True
 
