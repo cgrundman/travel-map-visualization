@@ -1,7 +1,7 @@
 {
     "Plotting": {
         "Figure Size": [12, 14],
-        "Cropping": [0.120, 0.065, 0.905, 0.809],
+        "Cropping": [0.120, 0.080, 0.905, 0.809],
         "Plotting Area": {
             "xlims": [43.5, 63.5],
             "ylims": [24.6, 39.9],
@@ -261,9 +261,9 @@
         "Linecolor": "#916e82",
         "Position": {
             "x_start": 0.031,
-            "y_start": 1.06,
+            "y_start": 1.052,
             "x_spacing": 0.0625,
-            "y_spacing": -0.110,
+            "y_spacing": -0.103,
             "num_in_row": 16
         }
     }
