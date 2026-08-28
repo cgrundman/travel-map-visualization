@@ -258,7 +258,9 @@ class PlotManager:
         svg_path = f"{self.path}/overlay.svg"
 
         png_bytes = cairosvg.svg2png(
-            url=svg_path
+            url=svg_path,
+            output_width=4000,
+            output_height=3500
         )
 
         img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
@@ -308,7 +310,7 @@ class PlotManager:
                 self._plot_labels(ax_inset, points_in_expansion, current_date, self.labels, self.plot_scale, self.colors["unvisited"], self.colors["visited"], self.colors["active"], self.colors["label_bg"], zorder=zorder)
             else:
                 self._plot_points(ax_inset, current_date, points=points_in_expansion, zorder=zorder+2)
-
+            #self._plot_overlay(ax_inset, zorder=51)
             ax_inset.set_facecolor(self.colors["bg_water"])
 
             for spine in ax_inset.spines.values():
