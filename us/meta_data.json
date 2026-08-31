@@ -10,28 +10,45 @@
     },
     "Text": [
         {"text": "National Parks of the USA", 
-            "x": 0.800, "y": 0.980, "color": "#bfbfbf", "size": 20, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.800, "y": 0.980, "type": "Title"},
         {"text": "Natural and Historical Sites", 
-            "x": 0.800, "y": 0.950, "color": "#bfbfbf", "size": 12, "font": "DejaVu Sans", "weight": 400},
+            "x": 0.800, "y": 0.950, "type": "Subtitle"},
         {"text": "ATLANTIC", 
-            "x": 0.92, "y": 0.67, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.92, "y": 0.67, "type": "Water Label"},
         {"text": "OCEAN", 
-            "x": 0.92, "y": 0.62, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.92, "y": 0.62, "type": "Water Label"},
         {"text": "PACIFIC", 
-            "x": 0.1, "y": 0.9, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.1, "y": 0.9, "type": "Water Label"},
         {"text": "OCEAN", 
-            "x": 0.1, "y": 0.85, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.1, "y": 0.85, "type": "Water Label"},
         {"text": "GULF OF", 
-            "x": 0.65, "y": 0.2, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.65, "y": 0.2, "type": "Water Label"},
         {"text": "MEXICO", 
-            "x": 0.65, "y": 0.15, "color": "#33576b", "size": 16, "font": "DejaVu Sans", "weight": 600},
+            "x": 0.65, "y": 0.15, "type": "Water Label"},
         {"text": "MEXICO", 
-            "x": 0.480, "y": 0.150, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},    
+            "x": 0.480, "y": 0.150,  "type": "BG Map Label"},    
         {"text": "CANADA", 
-            "x": 0.800, "y": 0.870, "color": "#706853", "size": 16, "font": "DejaVu Sans", "weight": 800},    
+            "x": 0.800, "y": 0.870,  "type": "BG Map Label"},    
         {"text": "NC", 
-            "x": 0.770, "y": 0.520, "color": "#1E1F1C", "size": 8, "font": "DejaVu Sans", "weight": 600}
+            "x": 0.770, "y": 0.520, "type": "Submap Label"}
     ],
+    "Text Styles": {
+        "Submap Label": {
+            "color": "#1E1F1C", "fontsize": 8, "fontfamily": "DejaVu Sans", "fontweight": 600
+        },
+        "Title": {
+            "color": "#bfbfbf", "fontsize": 20, "fontfamily": "DejaVu Sans", "fontweight": 600
+        },
+        "Subtitle": {
+            "color": "#bfbfbf", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 400
+        },
+        "Water Label": {
+            "color": "#33576b", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 600
+        },
+        "BG Map Label": {
+            "color": "#706853", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 800
+        }
+    },
     "Submaps" : [
         {"Name": "AK", "Color": "#2875AE"},
         {"Name": "AL", "Color": "#813D64"},
