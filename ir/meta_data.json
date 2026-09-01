@@ -23,6 +23,12 @@
             "x": 0.500, "y": 0.060, "type": "Water Label"},
         {"text": "IRQ",
             "x": 0.050, "y": 0.500, "type": "BG Map Label"},    
+        {"text": "TUR",
+            "x": 0.025, "y": 0.980, "type": "BG Map Label"},    
+        {"text": "ARM",
+            "x": 0.130, "y": 0.970, "type": "BG Map Label"},    
+        {"text": "AZE",
+            "x": 0.265, "y": 0.985, "type": "BG Map Label"},    
         {"text": "Markazi",
             "x": 0.310, "y": 0.650, "type": "Submap Label"},    
         {"text": "مرکزی", 
@@ -116,9 +122,9 @@
         {"text": "هرمزگان",
             "x": 0.650, "y": 0.180, "type": "Submap Label"},
         {"text": "Tehran", 
-            "x": 0.1, "y": 0.2, "type": "Submap Label"},    
+            "x": 0.100, "y": 0.200, "type": "Submap Label"},    
         {"text": "تهران",
-            "x": 0.1, "y": 0.2, "type": "Submap Label"},
+            "x": 0.100, "y": 0.200, "type": "Submap Label"},
         {"text": "Ardabil", 
             "x": 0.220, "y": 0.970, "type": "Submap Label"},    
         {"text": "اردبیل",
@@ -162,7 +168,7 @@
             "color": "#E6D6B4", "fontsize": 14, "fontfamily": "DejaVu Sans", "fontweight": 600
         },
         "BG Map Label": {
-            "color": "#635737", "fontsize": 16, "fontfamily": "DejaVu Sans", "fontweight": 800
+            "color": "#635737", "fontsize": 13, "fontfamily": "DejaVu Sans", "fontweight": 800
         }
     }, 
     "Submaps": [
