@@ -41,6 +41,8 @@
             "x": 0.970, "y": 0.080, "type": "BG Map Label"},    
         {"text": "TKM",
             "x": 0.920, "y": 0.850, "type": "BG Map Label"},    
+        {"text": "UAE",
+            "x": 0.615, "y": 0.030, "type": "BG Map Label"},    
         {"text": "Markazi",
             "x": 0.310, "y": 0.650, "type": "Submap Label"},    
         {"text": "مرکزی", 
