@@ -241,7 +241,12 @@
     "Expansions" : [ 
         {"Coords": [50.2, 53.3, 34.8, 36.2], "bbox_to_anchor": [0.001, -0.055, 1, 1], "height/width": ["35%", "35%"],
         "Submaps": ["00", "02", "20", "23", "25", "26", "30"],
-        "Text": "تهران", "id": "Tehran", "x": 0.4, "y": 0.4}
+        "Text": [
+            {"text": "Tehran", 
+                "x": 0.400, "y": 0.440, "type": "Submap Label"},
+            {"text": "تهران", 
+                "x": 0.400, "y": 0.380, "type": "Submap Label"}
+        ]}
     ],
     "Expanion Properties" : {
         "Text": {"color": "#E6D6B4", "size": 8, "font": "DejaVu Sans", "weight": 400},

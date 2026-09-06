@@ -77,7 +77,7 @@ class PlotManager:
 
         # Inset still gets original/full points
         self._plot_expansions(ax, current_date, self.points_working, zorder=50)
-        self._plot_text(ax, zorder=60)
+        self._plot_text(ax, self.text, zorder=60)
 
         if self.plot_scale >= 3:
             self._plot_labels(
@@ -110,9 +110,9 @@ class PlotManager:
         return fig, ax
 
        
-    def _plot_text(self, ax, zorder):
+    def _plot_text(self, ax, text, zorder):
 
-        for label in self.text:
+        for label in text:
 
             label["text"] = self.prepare_text(text=label["text"])
 
@@ -351,20 +351,22 @@ class PlotManager:
                 expansion["outline"] = 0
                 expansion["outline_c"] = "black"
 
-            ax_inset.text(
-                expansion["x"],
-                expansion["y"],
-                expansion["Text"],
-                transform=ax_inset.transAxes,
-                color=self.expansion_props["Text"].get("color", self.expansion_props["Text"]["color"]),
-                fontsize=self.expansion_props["Text"].get("size", self.expansion_props["Text"]["size"]),
-                fontfamily=self.expansion_props["Text"].get("font", "DejaVu Sans"),
-                fontweight=self.expansion_props["Text"].get("weight", 600),
-                ha=self.expansion_props["Text"].get("ha", "center"),
-                va=self.expansion_props["Text"].get("va", "center"),
-                zorder=zorder+2,
-                path_effects=[pe.withStroke(linewidth=expansion["outline"], foreground=expansion["outline_c"])]
-            )
+            # TODO plot with text feature
+            self._plot_text(ax_inset, expansion["Text"], zorder+2)
+            #ax_inset.text(
+            #    expansion["x"],
+            #    expansion["y"],
+            #    expansion["Text"],
+            #    transform=ax_inset.transAxes,
+            #    color=self.expansion_props["Text"].get("color", self.expansion_props["Text"]["color"]),
+            #    fontsize=self.expansion_props["Text"].get("size", self.expansion_props["Text"]["size"]),
+            #    fontfamily=self.expansion_props["Text"].get("font", "DejaVu Sans"),
+            #    fontweight=self.expansion_props["Text"].get("weight", 600),
+            #    ha=self.expansion_props["Text"].get("ha", "center"),
+            #    va=self.expansion_props["Text"].get("va", "center"),
+            #    zorder=zorder+2,
+            #    path_effects=[pe.withStroke(linewidth=expansion["outline"], foreground=expansion["outline_c"])]
+            #)
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 
@@ -501,7 +503,7 @@ class PlotManager:
         crop_and_save_image(full_temp_path, full_final_path, crop_box)
         crop_and_save_image(full_temp_path, full_temp_path, crop_box)
 
-    def _plot_labels(self, ax, locations_df, current_date, labels_config, scale, color_unvisited, color_visited, color_active, label_bg, zorder):    
+    def _plot_labels(self, ax, locations_df, current_date, zorder):    
 
         # Sort Locations
         locations_df_sorted = (locations_df.sort_values("latitude", ascending=False).reset_index(drop=True))
