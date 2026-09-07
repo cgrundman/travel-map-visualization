@@ -352,21 +352,21 @@ class PlotManager:
                 expansion["outline_c"] = "black"
 
             # TODO plot with text feature
-            self._plot_text(ax_inset, expansion["Text"], zorder+2)
-            #ax_inset.text(
-            #    expansion["x"],
-            #    expansion["y"],
-            #    expansion["Text"],
-            #    transform=ax_inset.transAxes,
-            #    color=self.expansion_props["Text"].get("color", self.expansion_props["Text"]["color"]),
-            #    fontsize=self.expansion_props["Text"].get("size", self.expansion_props["Text"]["size"]),
-            #    fontfamily=self.expansion_props["Text"].get("font", "DejaVu Sans"),
-            #    fontweight=self.expansion_props["Text"].get("weight", 600),
-            #    ha=self.expansion_props["Text"].get("ha", "center"),
-            #    va=self.expansion_props["Text"].get("va", "center"),
-            #    zorder=zorder+2,
-            #    path_effects=[pe.withStroke(linewidth=expansion["outline"], foreground=expansion["outline_c"])]
-            #)
+            #self._plot_text(ax_inset, expansion["Text"], zorder+2)
+            ax_inset.text(
+                expansion["x"],
+                expansion["y"],
+                expansion["Text"],
+                transform=ax_inset.transAxes,
+                color=self.expansion_props["Text"].get("color", self.expansion_props["Text"]["color"]),
+                fontsize=self.expansion_props["Text"].get("size", self.expansion_props["Text"]["size"]),
+                fontfamily=self.expansion_props["Text"].get("font", "DejaVu Sans"),
+                fontweight=self.expansion_props["Text"].get("weight", 600),
+                ha=self.expansion_props["Text"].get("ha", "center"),
+                va=self.expansion_props["Text"].get("va", "center"),
+                zorder=zorder+2,
+                path_effects=[pe.withStroke(linewidth=expansion["outline"], foreground=expansion["outline_c"])]
+            )
 
     def _plot_points(self, ax, current_date, points, zorder, a_type="normal"):
 
