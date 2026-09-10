@@ -93,7 +93,7 @@ class PlotManager:
                 zorder=70
             )
         else:
-            self._plot_points(ax, current_date, points=points_main, zorder=70)
+            self._plot_points(ax, current_date, points=self.points_working, zorder=70)
         self._plot_points(ax, current_date, points=points_main, zorder=70, a_type="clear")
         self._plot_flags(ax)
         self._finalize_and_save_plot(fig, ax, current_date)
