@@ -11,6 +11,8 @@
     "Text": [
         {"text": "EUROPE", 
             "x": 0.360, "y": 0.975, "type": "Title"},
+        {"text": "History and Nature", 
+            "x": 0.360, "y": 0.945, "type": "Subtitle"},
         {"text": "NORTH SEA", 
             "x": 0.250, "y": 0.580, "type": "Water Label"},
         {"text": "BLACK SEA", 
@@ -19,8 +21,10 @@
             "x": 0.650, "y": 0.010, "type": "Water Label"},
         {"text": "MEDITERRANEAN SEA", 
             "x": 0.295, "y": 0.120, "type": "Water Label"},
-        {"text": "CASPIAN SEA", 
-            "x": 0.950, "y": 0.260, "type": "Water Label"},
+        {"text": "CASPIAN", 
+            "x": 0.965, "y": 0.260, "type": "Water Label"},
+        {"text": "SEA", 
+            "x": 0.965, "y": 0.240, "type": "Water Label"},
         {"text": "IRAN", 
             "x": 0.950, "y": 0.040, "type": "BG Map Label"},
         {"text": "SYRIA", 
@@ -121,7 +125,7 @@
             "color": "#bfbfbf", "fontsize": 20, "fontfamily": "DejaVu Sans", "fontweight": 600
         },
         "Subtitle": {
-            "color": "#E6D6B4", "fontsize": 12, "fontfamily": "DejaVu Sans", "fontweight": 400
+            "color": "#bfbfbf", "fontsize": 10, "fontfamily": "DejaVu Sans", "fontweight": 400
         },
         "Water Label": {
             "color": "#33576b", "fontsize": 8, "fontfamily": "DejaVu Sans", "fontweight": 600
