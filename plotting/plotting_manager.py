@@ -216,6 +216,7 @@ class PlotManager:
             
             ratio = self.ratios[submap["Name"]]
             #ratio = 1
+            #print(submap["Name"], ratio)
             color = CustomCmap(self.colors["map_dark"], submap["Color"]).value(ratio)
 
             submap_gdf.plot(
